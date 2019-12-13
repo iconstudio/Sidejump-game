@@ -191,6 +191,14 @@
             }
         },
         {
+            "Key": "499ef7e9-ee60-4c84-8b8b-b9753aa49150",
+            "Value": {
+                "id": "829a3242-97dd-44c0-a2d9-e2c7a3f86732",
+                "resourcePath": "shaders\\shaderBlur\\shaderBlur.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "49ee32d7-d279-44f5-b480-da4dea2526d0",
             "Value": {
                 "id": "e4407e65-1a6e-4fd3-b4ce-a9a017fb7ca1",

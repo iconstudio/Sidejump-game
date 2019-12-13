@@ -1,5 +1,5 @@
 /// @description 어플리케이션 서피스 그리기
-if room != roomEditor {
+//if room != roomEditor {
 	if global.shader_supported {
 		gpu_set_blendenable(false)
 		shader_set(shaderFXAA)
@@ -14,4 +14,4 @@ if room != roomEditor {
 	} else {
 		draw_surface(application_surface, global.application_offset[0], global.application_offset[1])
 	}
-}
+//}
