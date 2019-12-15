@@ -223,6 +223,14 @@
             }
         },
         {
+            "Key": "4c3f9dc2-937b-4a8b-a923-fa9004ab00e4",
+            "Value": {
+                "id": "a7549f11-7164-403c-9b43-aadf410b052e",
+                "resourcePath": "sprites\\sTilesetRocks\\sTilesetRocks.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "4c5b6264-7ee0-4aa3-a955-7966f9bfe75a",
             "Value": {
                 "id": "8f0dbfad-52a8-4b6c-b78f-d44b03afaeab",
