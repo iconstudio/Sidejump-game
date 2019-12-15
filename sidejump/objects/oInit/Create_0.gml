@@ -25,6 +25,7 @@ if global.flag_is_mobile {
 } else if global.flag_is_browser {
 	display_set_sleep_margin(30)
 } else {
+	window_set_position(window_get_x(), 0)
 	display_set_sleep_margin(20)
 }
 display_set_gui_maximize()
@@ -209,4 +210,3 @@ if !global.network_available {
 instance_create_layer(0, 0, layer, oGlobal)
 instance_create_layer(0, 0, layer, oGamepad)
 alarm[0] = 1
-

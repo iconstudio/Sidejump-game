@@ -1,19 +1,25 @@
-/// @description 초기화
-velocity_x = 0
-velocity_y = 0
+event_inherited()
 
-friction_x = 0.6
-friction_x_air = 0.06
-friction_y = 0
+movement_forbid_time = 0
+movement_forbid_period = seconds(0.3)
+movement_forbid_period_short = seconds(0.1)
+movement_time = 0
+movement_period = seconds(0.1)
+velocity_movement = 180 / seconds(1)
 
-velocity_x_limit = 4
-velocity_y_min = -18
-velocity_y_max = 24
-velocity_gravity = 0.6
+velocity_hanging = 40 / seconds(1)
+solid_on_horizontal = 0 // 2: both
+friction_y_hang = velocity_gravity * 0.93
 
-jump_velocity = -160 / seconds(1)
+jump_forbid_time = 0
+jump_forbid_period = seconds(0.25)
+velocity_jump = -400 / seconds(1)
+velocity_jump_short = -320 / seconds(1)
+velocity_jump_tiny = -250 / seconds(1)
+velocity_jump_push = 190 / seconds(1)
+velocity_jump_push_short = 120 / seconds(1)
+velocity_jump_push_tiny = 80 / seconds(1)
 
 jumping = false
 hanging = false
 dashing = false
-
