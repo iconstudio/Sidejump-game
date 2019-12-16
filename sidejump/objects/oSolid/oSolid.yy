@@ -2,7 +2,7 @@
     "id": "db94ad7a-6f95-45fe-8f6f-3c62d2450091",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oBlock",
+    "name": "oSolid",
     "eventList": [
         
     ],
@@ -25,5 +25,5 @@
     "properties": null,
     "solid": true,
     "spriteId": "60b0e85d-25ed-4159-9d1a-ee7d2815f3c1",
-    "visible": true
+    "visible": false
 }
