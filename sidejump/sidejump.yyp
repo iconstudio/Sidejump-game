@@ -66,7 +66,7 @@
             "Key": "07e82148-a292-4d1c-aade-7b384a55a933",
             "Value": {
                 "id": "00df738b-58f8-40ef-a3dd-cd144dc98f58",
-                "resourcePath": "sprites\\sTileMetalPattern\\sTileMetalPattern.yy",
+                "resourcePath": "sprites\\sTileBlockMetal1\\sTileBlockMetal1.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -300,6 +300,14 @@
                 "id": "a5c61a84-8d93-42b6-a403-5f2e935d9a2f",
                 "resourcePath": "rooms\\roomMain\\roomMain.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "63c51a37-feba-4621-bb7a-1bba4d436b9b",
+            "Value": {
+                "id": "bacd4a06-4b54-44e6-85ad-8bb109122411",
+                "resourcePath": "sprites\\sTileBlockMetal2\\sTileBlockMetal2.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -676,6 +684,14 @@
                 "id": "5d6381b8-6b4a-4a76-a7b9-4edccdc19d06",
                 "resourcePath": "views\\d55501c9-758c-42f7-90b8-73628fad5591.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "dad64ff2-018f-469c-aab6-e4d9d0a01b56",
+            "Value": {
+                "id": "04728353-338f-48e0-9469-98fba7a607eb",
+                "resourcePath": "sprites\\sTileBlock\\sTileBlock.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
