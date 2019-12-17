@@ -33,7 +33,7 @@ menu_item_selected = 0
 //menu_item_add(menu_challange_continue, "정보", UP, -1)
 //menu_item_add(menu_challange_continue, "다시 시작", DOWN, -1)
 //menu_item_add(menu_challange_continue, "", RIGHT, menu_callback_back_to_right, false)
-
+/*
 menu_challange = menu_create() // 무한 모드
 menu_item_add(menu_challange, "계속", LEFT, -1)
 menu_item_add(menu_challange, "기록", UP, -1)

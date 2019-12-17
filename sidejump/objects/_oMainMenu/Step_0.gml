@@ -100,7 +100,7 @@ if menu_pushing {
 				}
 			} else {
 				// 원래 위치로 되돌아가기
-				menu_transition(menu_index)
+				//menu_transition(menu_index)
 			}
 		}
 		menu_scroll_vertical = 0
