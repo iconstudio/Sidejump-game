@@ -242,7 +242,7 @@
             "Key": "4c3f9dc2-937b-4a8b-a923-fa9004ab00e4",
             "Value": {
                 "id": "a7549f11-7164-403c-9b43-aadf410b052e",
-                "resourcePath": "sprites\\sTilesetRocks\\sTilesetRocks.yy",
+                "resourcePath": "sprites\\sTilesetArtificial\\sTilesetArtificial.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -794,7 +794,7 @@
             "Key": "f64ed2a6-d0d4-407b-a110-24f186e0234f",
             "Value": {
                 "id": "57eb8765-129f-48e9-9a48-a2eb67ffcb36",
-                "resourcePath": "tilesets\\tilesetRocks\\tilesetRocks.yy",
+                "resourcePath": "tilesets\\tilesetArtificial\\tilesetArtificial.yy",
                 "resourceType": "GMTileSet"
             }
         },
