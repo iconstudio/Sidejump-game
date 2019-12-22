@@ -5,11 +5,10 @@ movement_forbid_period = seconds(0.3)
 movement_forbid_period_short = seconds(0.1)
 movement_time = 0
 movement_period = seconds(0.1)
-velocity_movement = 180 / seconds(1)
+velocity_movement = 130 / seconds(1)
 
-velocity_hanging = 40 / seconds(1)
+velocity_hanging = 30 / seconds(1)
 solid_on_horizontal = 0 // 2: both
-friction_y_hang = velocity_gravity * 0.93
 
 jump_forbid_time = 0
 jump_forbid_period = seconds(0.25)

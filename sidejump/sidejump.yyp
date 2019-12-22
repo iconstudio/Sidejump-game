@@ -242,7 +242,7 @@
             "Key": "4c3f9dc2-937b-4a8b-a923-fa9004ab00e4",
             "Value": {
                 "id": "a7549f11-7164-403c-9b43-aadf410b052e",
-                "resourcePath": "sprites\\sTilesetArtificial\\sTilesetArtificial.yy",
+                "resourcePath": "sprites\\sTilesetTemple\\sTilesetTemple.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -268,6 +268,14 @@
                 "id": "84f17e75-e6f3-41a6-91e5-3a1b4f61d710",
                 "resourcePath": "objects\\oInit\\oInit.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "54e2fd0e-507d-4801-8af9-01d17e73c7a3",
+            "Value": {
+                "id": "fffd4770-09bc-46c4-ae1b-167335584be8",
+                "resourcePath": "sprites\\sTilesetRock\\sTilesetRock.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -623,6 +631,14 @@
             }
         },
         {
+            "Key": "b97b36ae-49ef-41a5-a35e-1e49d65446d8",
+            "Value": {
+                "id": "3fe2304e-ca6a-4a45-8f5e-8b25ab7e3b24",
+                "resourcePath": "tilesets\\tilesetRock\\tilesetRock.yy",
+                "resourceType": "GMTileSet"
+            }
+        },
+        {
             "Key": "b9e9b6c2-5023-49e6-94cb-b84563988ce8",
             "Value": {
                 "id": "374e88bc-91c6-4825-ab2a-04665edfa5c4",
@@ -794,7 +810,7 @@
             "Key": "f64ed2a6-d0d4-407b-a110-24f186e0234f",
             "Value": {
                 "id": "57eb8765-129f-48e9-9a48-a2eb67ffcb36",
-                "resourcePath": "tilesets\\tilesetArtificial\\tilesetArtificial.yy",
+                "resourcePath": "tilesets\\tilesetTemple\\tilesetTemple.yy",
                 "resourceType": "GMTileSet"
             }
         },

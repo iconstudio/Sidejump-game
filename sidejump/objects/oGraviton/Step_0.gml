@@ -25,6 +25,9 @@ if !place_free(x, check_y) {
 } else { 
 	y += velocity_y
 	velocity_y += velocity_gravity
+
+	if velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
+		velocity_y = velocity_y_max_in_gravity
 }
 
 if accel_x == 0 and velocity_x != 0 and friction_x != 0 {

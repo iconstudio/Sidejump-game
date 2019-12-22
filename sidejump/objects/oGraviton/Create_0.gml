@@ -9,6 +9,8 @@ friction_y = 0
 
 velocity_x_limit = 420 / seconds(1)
 velocity_y_min = -600 / seconds(1)
+velocity_y_max_in_gravity = 330 / seconds(1)
+velocity_y_gap_in_gravity = 100 / seconds(1)
 velocity_y_max = 700 / seconds(1)
 velocity_gravity = 20 / seconds(1)
 

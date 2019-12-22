@@ -95,3 +95,6 @@ if 0 < movement_forbid_time
 	movement_forbid_time--
 else
 	movement_forbid_time = 0
+
+if accel_x != 0
+	accel_x = 0
