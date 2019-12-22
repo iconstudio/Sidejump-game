@@ -1,8 +1,8 @@
 {
-    "id": "db94ad7a-6f95-45fe-8f6f-3c62d2450091",
+    "id": "fb68e9d7-1372-4f2f-8b9a-82ecc24fd70b",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oSolid",
+    "name": "oCameraBlock",
     "eventList": [
         
     ],
@@ -23,7 +23,7 @@
     "physicsShapePoints": null,
     "physicsStartAwake": true,
     "properties": null,
-    "solid": true,
-    "spriteId": "60b0e85d-25ed-4159-9d1a-ee7d2815f3c1",
+    "solid": false,
+    "spriteId": "ca25c853-1864-499f-b6ea-3558811f30cc",
     "visible": false
 }

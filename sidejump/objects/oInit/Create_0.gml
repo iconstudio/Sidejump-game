@@ -14,9 +14,9 @@ surface_depth_disable(true)
 display_reset(8, true)
 display_set_timing_method(tm_countvsyncs)
 
-// 16 : 9
-var default_width = 600
-var default_height = 1200
+// 2 : 1
+var default_width = 960
+var default_height = 480
 
 if global.flag_is_mobile {
 	display_set_sleep_margin(4)
@@ -34,6 +34,7 @@ var window_height = window_get_height()
 var gui_width = display_get_gui_width()
 var gui_height = display_get_gui_height()
 
+global.resolutions_default = [default_width, default_height]
 global.resolutions = [window_width, window_height]
 global.resolutions_gui = [gui_width, gui_height]
 #endregion
@@ -139,19 +140,16 @@ enum e__YYMKIND {
 
 #region 게임
 enum theme {
-	ruins,
-	desert,
-	wasteland, // 황무지
-	wasteland_,
-	plains_lava, // 용암 지대
-	mountain_volcano, // 화산 지대
-	plains, // 
+	cave,
+	underworld,
+	volcano,
 	forest,
-	mountain,
-	forest_darker,
-	forest_autumn,
+	ocean,
+	city,
+	factory,
 	cold,
-	coldest
+	sky,
+	space
 }
 #endregion
 

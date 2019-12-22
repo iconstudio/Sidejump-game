@@ -75,7 +75,7 @@ if !dashing {
 		velocity_y *= 0.4
 	}
 
-	if hanging
+	if hanging and 0 <= velocity_y
 		velocity_y = mean(velocity_hanging, velocity_y)
 		//friction_y = friction_y_hang
 	//else
