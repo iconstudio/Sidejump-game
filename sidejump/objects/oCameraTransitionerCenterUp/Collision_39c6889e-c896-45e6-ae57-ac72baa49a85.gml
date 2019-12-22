@@ -1,1 +1,1 @@
-camera_formation(camera_mode.center_up)
+camera_formation(camera_position.center_up)

@@ -1,1 +1,1 @@
-camera_formation(camera_mode.left_middle)
+camera_formation(camera_position.left_middle)

@@ -1,24 +1,15 @@
 {
-    "id": "8f684f86-c292-4c35-a616-061c92cf37e4",
+    "id": "a199835f-392c-435d-9482-56df3111de3d",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oCamera",
+    "name": "oCameraTransitionerHorizontal",
     "eventList": [
-        {
-            "id": "161d5d10-5fab-4b46-a67a-d36a3e882267",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 0,
-            "eventtype": 0,
-            "m_owner": "8f684f86-c292-4c35-a616-061c92cf37e4"
-        }
+        
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
-    "persistent": true,
+    "parentObjectId": "fb68e9d7-1372-4f2f-8b9a-82ecc24fd70b",
+    "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
     "physicsFriction": 0.2,
@@ -33,6 +24,6 @@
     "physicsStartAwake": true,
     "properties": null,
     "solid": false,
-    "spriteId": "2706bdf7-9b66-4c15-a0e5-d22c8a88d8a5",
+    "spriteId": "e77682bf-13b2-47ca-b72e-a5bc0cae3f73",
     "visible": false
 }

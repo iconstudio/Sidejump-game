@@ -1,3 +1,12 @@
+mode = -1
+postition = -1
 target = oPlayer
-mode = 0
-border = 16
+
+width = 240
+height = 120
+image_xscale = width
+image_yscale = height
+border = 0
+
+xspeed = 8
+yspeed = 6

@@ -615,6 +615,14 @@
             }
         },
         {
+            "Key": "a199835f-392c-435d-9482-56df3111de3d",
+            "Value": {
+                "id": "150616dd-a1a4-4012-a681-8c2a5bcd916c",
+                "resourcePath": "objects\\oCameraTransitionerHorizontal\\oCameraTransitionerHorizontal.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "a230d862-799e-48c9-b3f0-f18cc2b7f462",
             "Value": {
                 "id": "2b198ffd-4a45-45e9-8796-e731f3bd63fa",
@@ -668,6 +676,14 @@
                 "id": "d83a3f5b-9a3b-4caa-afb1-3b586a5d1849",
                 "resourcePath": "objects\\oCameraTransitionerLeftUp\\oCameraTransitionerLeftUp.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "ab7e9158-ac43-41bf-9234-f66e94d2ae59",
+            "Value": {
+                "id": "634d8e21-fc7b-44b8-ad88-a2f9baf7de7b",
+                "resourcePath": "scripts\\camera_set_mode\\camera_set_mode.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -903,6 +919,14 @@
             }
         },
         {
+            "Key": "e77682bf-13b2-47ca-b72e-a5bc0cae3f73",
+            "Value": {
+                "id": "f952c8c0-43e5-4e37-9c9d-b9e75884271b",
+                "resourcePath": "sprites\\sCameraTransitionerHorizontal\\sCameraTransitionerHorizontal.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "e8779ddc-d2fd-4fdd-b5cf-6fd825981b33",
             "Value": {
                 "id": "99dd9ee3-e6e3-4837-897b-2cd2a340883e",
@@ -1026,6 +1050,7 @@
     "script_order": [
         "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
         "ad08d13e-db5d-40c2-a511-2bee91e90e58",
+        "ab7e9158-ac43-41bf-9234-f66e94d2ae59",
         "a4c60548-e6ce-4a69-a06d-bac19c587919"
     ],
     "tutorial": ""

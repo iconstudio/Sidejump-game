@@ -1,1 +1,1 @@
-camera_formation(camera_mode.left_up)
+camera_formation(camera_position.left_up)
