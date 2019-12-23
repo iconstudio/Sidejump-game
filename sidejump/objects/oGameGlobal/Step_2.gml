@@ -149,27 +149,14 @@ switch camera.mode {
 		#region transition_horizontal
 		with camera {
 			if instance_place(x, y, oCameraBlock) {
-				
+				if transition == camera_transition.left
+					x -= other.camerawork_transition_horizontal_velocity
+				else if transition == camera_transition.right
+					x += other.camerawork_transition_horizontal_velocity
+			} else {
+				transition = camera_mode.dynamic
 			}
 		}
-		
-		if camerawork_time < camerawork_period {
-			var camerawork_ratio = ease_out_quartic(camerawork_time / camerawork_period)
-			camera.x = lerp(camerawork_coordinate_begin[0], camerawork_coordinate_target[0], camerawork_ratio)
-			camera.y = lerp(camerawork_coordinate_begin[1], camerawork_coordinate_target[1], camerawork_ratio)
-
-			camerawork_time++
-
-			if camerawork_period <= camerawork_time
-				camerawork_status = CLEARING
-			} else {
-				if camerawork_status == CLEARING {
-					camerawork_time = camerawork_period
-					camera.x = camerawork_coordinate_target[0]
-					camera.y = camerawork_coordinate_target[1]
-					camerawork_status = END
-				}
-			}
 		#endregion
 	break
 

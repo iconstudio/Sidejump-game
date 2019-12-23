@@ -1,4 +1,5 @@
 mode = -1
+transition = -1
 postition = -1
 target = oPlayer
 

@@ -1,0 +1,1 @@
+player_collided = false

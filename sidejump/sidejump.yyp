@@ -698,7 +698,7 @@
             "Key": "ad08d13e-db5d-40c2-a511-2bee91e90e58",
             "Value": {
                 "id": "386ad6b4-70b9-4c3d-b236-543030101c98",
-                "resourcePath": "scripts\\camera_formation\\camera_formation.yy",
+                "resourcePath": "scripts\\camera_set_formation\\camera_set_formation.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -788,6 +788,14 @@
                 "id": "374e88bc-91c6-4825-ab2a-04665edfa5c4",
                 "resourcePath": "tilesets\\tilesetDirt\\tilesetDirt.yy",
                 "resourceType": "GMTileSet"
+            }
+        },
+        {
+            "Key": "bb0ef187-ef09-463c-89d2-89af7547c1dd",
+            "Value": {
+                "id": "fc87931d-7213-41e5-a905-e3bf1f0af365",
+                "resourcePath": "scripts\\camera_set_transition\\camera_set_transition.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1049,8 +1057,9 @@
     ],
     "script_order": [
         "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
-        "ad08d13e-db5d-40c2-a511-2bee91e90e58",
         "ab7e9158-ac43-41bf-9234-f66e94d2ae59",
+        "bb0ef187-ef09-463c-89d2-89af7547c1dd",
+        "ad08d13e-db5d-40c2-a511-2bee91e90e58",
         "a4c60548-e6ce-4a69-a06d-bac19c587919"
     ],
     "tutorial": ""

@@ -36,7 +36,8 @@ camerawork_coordinate_target = [0, 0]
 camerawork_period = seconds(0.9)
 camerawork_time = camerawork_period
 camerawork_transition_horizontal_velocity = camera.width / camerawork_period
+camerawork_transition_vertical_velocity = camera.height / camerawork_period
 
 camera_set_mode(camera_mode.dynamic)
-camera_formation(camera_position.left_up)
+camera_set_formation(camera_position.left_up)
 camerawork_time = camerawork_period
