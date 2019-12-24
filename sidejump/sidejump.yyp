@@ -151,6 +151,14 @@
             }
         },
         {
+            "Key": "205225e6-7dbd-487f-8f08-57231e9353a5",
+            "Value": {
+                "id": "94523c51-ef6a-4edf-acce-07ffe91d8616",
+                "resourcePath": "sprites\\sCameraTransitionerVertical\\sCameraTransitionerVertical.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "250bc8dc-9096-4bd2-bd1d-a00cf288c55d",
             "Value": {
                 "id": "2ba6b39c-97d6-4c1c-8efe-dcced5cac4d3",
