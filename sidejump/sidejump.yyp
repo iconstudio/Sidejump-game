@@ -375,6 +375,14 @@
             }
         },
         {
+            "Key": "61cef39a-101a-4d2f-85f6-b07cb4ce1a9a",
+            "Value": {
+                "id": "fd31cefa-baee-402a-bbc1-18849d4bc6ef",
+                "resourcePath": "objects\\oCameraTransitionerVertical\\oCameraTransitionerVertical.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "6393dc52-cae2-464c-b0bb-9e142b56c2ae",
             "Value": {
                 "id": "a5c61a84-8d93-42b6-a403-5f2e935d9a2f",
@@ -1066,8 +1074,8 @@
     "script_order": [
         "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
         "ab7e9158-ac43-41bf-9234-f66e94d2ae59",
-        "bb0ef187-ef09-463c-89d2-89af7547c1dd",
         "ad08d13e-db5d-40c2-a511-2bee91e90e58",
+        "bb0ef187-ef09-463c-89d2-89af7547c1dd",
         "a4c60548-e6ce-4a69-a06d-bac19c587919"
     ],
     "tutorial": ""

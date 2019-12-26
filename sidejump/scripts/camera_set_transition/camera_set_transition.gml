@@ -1,16 +1,7 @@
-/// @description camera_set_transition(kind)
+/// @description camera_set_transition(horizontal, vertical)
 /// @function camera_set_transition
-/// @param kind { enumerate }
-with oGameGlobal {
-	camera.transition = argument0
-	with camera {
-		if transition == camera_transition.left
-			x -= other.camerawork_transition_horizontal_velocity
-		else if transition == camera_transition.up
-			y -= other.camerawork_transition_vertical_velocity
-		else if transition == camera_transition.right
-			x += other.camerawork_transition_horizontal_velocity
-		else if transition == camera_transition.down
-			y += other.camerawork_transition_vertical_velocity
-	}
+/// @param horizontal { integer }
+/// @param vertical { integer }
+with oCamera {
+	camerawork_transition_direction = [argument0, argument1]
 }
