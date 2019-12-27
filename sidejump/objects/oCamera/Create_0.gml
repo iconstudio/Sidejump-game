@@ -1,5 +1,5 @@
 mode = camera_mode.dynamic
-postition = camera_position.left_up
+postition = camera_position.center_middle
 target = oPlayer
 
 width = 480

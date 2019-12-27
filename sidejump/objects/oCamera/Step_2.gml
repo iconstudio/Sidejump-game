@@ -73,10 +73,11 @@ switch mode {
 			} else {
 				var target_x = camerawork_coordinate_target[0]
 				var target_y = camerawork_coordinate_target[1]
-				//x = target_x
-				//y = target_y
+				var distance_x = target_x - x
+				var distance_y = target_y - y
+				
 
-				mp_linear_step_object(target_x, target_y, 10, oCameraBlock)
+				//mp_linear_step_object(target_x, target_y, 10, oCameraBlock)
 			}
 		}
 		#endregion
