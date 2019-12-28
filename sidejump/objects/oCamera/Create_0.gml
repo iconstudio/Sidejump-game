@@ -4,8 +4,8 @@ target = oPlayer
 
 width = 480
 height = 240
-image_xscale = width
-image_yscale = height
+image_xscale = width * 0.125
+image_yscale = height * 0.125
 border = 24 // 16 + 8
 
 END = 0

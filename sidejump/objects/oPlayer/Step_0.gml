@@ -43,31 +43,34 @@ if !dashing {
 		if solid_on_bottom or solid_on_horizontal != 0 {
 			if solid_on_bottom or solid_on_horizontal == 2 {
 				velocity_y = velocity_jump
+				jumping = true
 			} else if hanging {
-				velocity_x += -velocity_jump_push_tiny * imxs
-				velocity_y = velocity_jump_short
+				velocity_x += -velocity_jump_push_hang * imxs
+				velocity_y = velocity_jump_hang
 				hanging = false
 				movement_forbid_time = movement_forbid_period_short
+				jumping = true
 				show_debug_message(velocity_x)
 			} else if solid_on_horizontal != 0 {
-				if solid_on_horizontal == imxs { // 벽을 향해 있다.
-					imxs *= -1
-					velocity_x += velocity_jump_push * imxs
-					if movement_input == -imxs
-						velocity_y = velocity_jump_short
-					else
-						velocity_y = velocity_jump_tiny
-					movement_forbid_time = movement_forbid_period
+				if solid_on_horizontal == imxs { // 벽을 보고 붙어있다.
+					if movement_input == -solid_on_horizontal { // 벽과 반대 방향으로 움직이려고 한다.
+						velocity_x += velocity_jump_push_bounce * imxs
+						velocity_y = velocity_jump_bounce
+						movement_forbid_time = movement_forbid_period
+					} else {
+						imxs *= -1
+						velocity_x += velocity_jump_push_rebound * imxs
+						velocity_y = velocity_jump_hang
+					}
+					jumping = true
 				} else { // 벽을 등지고 붙어있다.
-					velocity_x += velocity_jump_push_short * imxs
-					velocity_y = velocity_jump_tiny
+					velocity_x += velocity_jump_push_bounce * imxs
+					velocity_y = velocity_jump_bounce
+					movement_forbid_time = movement_forbid_period
+					jumping = true
 				}
 			}
 
-			if velocity_y != 0 {
-				jump_forbid_time = jump_forbid_period
-				jumping = true
-			}
 		}
 	}
 
@@ -77,11 +80,6 @@ if !dashing {
 
 	if hanging and 0 <= velocity_y
 		velocity_y = mean(velocity_hanging, velocity_y)
-		//friction_y = friction_y_hang
-	//else
-		//friction_y = 0
-
-
 } else {
 	friction_y = 0
 }

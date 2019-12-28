@@ -73,11 +73,46 @@ switch mode {
 			} else {
 				var target_x = camerawork_coordinate_target[0]
 				var target_y = camerawork_coordinate_target[1]
-				var distance_x = target_x - x
-				var distance_y = target_y - y
+				//x = target_x
+				//y = target_y
+				var distance_x = target_x - x, sign_x = sign(distance_x)
+				var distance_y = target_y - y, sign_y = sign(distance_y)
+				var check_x = false, check_y = false
+				mp_linear_step_object(target_x, target_y, 30, oCameraBlock)
+				//repeat 30
+				//	mp_potential_step_object(target_x, target_y, 2, oCameraBlock)
+				//if instance_place(x, y, oCameraBlock)
+				//	show_debug_message("!")
 				
+				/*
+				repeat 20 {
+					if distance_x < 0
+						check_x = 0 < collision_line(bbox_left - 1, bbox_top + 1, bbox_left - 1, bbox_bottom - 1, oCameraBlock, false, true)
+					else if 0 < distance_x
+						check_x = 0 < collision_line(bbox_right + 1, bbox_top + 1, bbox_right + 1, bbox_bottom - 1, oCameraBlock, false, true)
 
-				//mp_linear_step_object(target_x, target_y, 10, oCameraBlock)
+					if distance_y < 0
+						check_y = 0 < collision_line(bbox_left + 1, bbox_top - 1, bbox_right - 1, bbox_top - 1, oCameraBlock, false, true)
+					else if 0 < distance_y
+						check_y = 0 < collision_line(bbox_left + 1, bbox_bottom + 1, bbox_right - 1, bbox_bottom + 1, oCameraBlock, false, true)
+
+					if !check_x and !check_y {
+						move_towards_point(target_x, target_y, 1)
+					} else if !check_x {
+						if abs(distance_x) <= 1
+							x = target_x
+						else
+							x += sign_x
+					} else if !check_y {
+						if abs(distance_y) <= 1
+							y = target_y
+						else
+							y += sign_y
+					} else {
+						break
+					}
+					//mp_potential_step_object(target_x, target_y, 1, oCameraBlock)
+				}//*/
 			}
 		}
 		#endregion
