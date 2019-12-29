@@ -14,4 +14,6 @@ velocity_y_gap_in_gravity = 100 / seconds(1)
 velocity_y_max = 700 / seconds(1)
 velocity_gravity = 20 / seconds(1)
 
+slope_upper_limit = 3
+
 imxs = 1

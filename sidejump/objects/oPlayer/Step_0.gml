@@ -6,7 +6,7 @@ if movement_input != 0 {
 	movement_time = 0
 }
 
-if movement_period <= movement_time and movement_input != 0 and movement_forbid_time == 0 {
+if (movement_period <= movement_time and movement_input != 0 and movement_forbid_time == 0) {
 	accel_x = movement_input
 	velocity_x = mean(accel_x * velocity_movement, velocity_x)
 } else {
@@ -14,6 +14,11 @@ if movement_period <= movement_time and movement_input != 0 and movement_forbid_
 }
 
 event_inherited()
+
+if global.io_pressed_jump {
+	jump_fore_time = 0
+}
+jump_fore_available = jump_fore_time < jump_fore_period
 
 var solid_on_left = !place_free(x - 1, y)
 var solid_on_right = !place_free(x + 1, y)
@@ -39,7 +44,7 @@ if !dashing {
 			hanging = true
 	}
 
-	if global.io_pressed_jump and place_free(x, y - 1) and jump_forbid_time == 0 {
+	if (global.io_pressed_jump or jump_fore_available) and place_free(x, y - 1) and jump_forbid_time == 0 {
 		if solid_on_bottom or solid_on_horizontal != 0 {
 			if solid_on_bottom or solid_on_horizontal == 2 {
 				velocity_y = velocity_jump
@@ -49,18 +54,19 @@ if !dashing {
 				velocity_y = velocity_jump_hang
 				hanging = false
 				movement_forbid_time = movement_forbid_period_short
+				jump_forbid_time = jump_forbid_period
 				jumping = true
 				show_debug_message(velocity_x)
 			} else if solid_on_horizontal != 0 {
 				if solid_on_horizontal == imxs { // 벽을 보고 붙어있다.
 					if movement_input == -solid_on_horizontal { // 벽과 반대 방향으로 움직이려고 한다.
+						// 이미 반대 방향을 보고 있다.
 						velocity_x += velocity_jump_push_bounce * imxs
 						velocity_y = velocity_jump_bounce
 						movement_forbid_time = movement_forbid_period
 					} else {
-						imxs *= -1
-						velocity_x += velocity_jump_push_rebound * imxs
-						velocity_y = velocity_jump_hang
+						velocity_x += -velocity_jump_push_rebound * imxs
+						velocity_y = velocity_jump_rebound
 					}
 					jumping = true
 				} else { // 벽을 등지고 붙어있다.
@@ -71,6 +77,8 @@ if !dashing {
 				}
 			}
 
+			if jumping
+				jump_fore_time = jump_fore_period
 		}
 	}
 
@@ -93,6 +101,11 @@ if 0 < movement_forbid_time
 	movement_forbid_time--
 else
 	movement_forbid_time = 0
+
+if jump_fore_time < jump_fore_period
+	jump_fore_time++
+else
+	jump_fore_time = jump_fore_period
 
 if accel_x != 0
 	accel_x = 0

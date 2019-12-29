@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "00092121-a3d8-4584-a250-dfe197507856",
+            "Value": {
+                "id": "27cb0df9-ef90-4d08-a69b-769ba5200d14",
+                "resourcePath": "objects\\oRoomArea\\oRoomArea.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "0285ebb1-8c13-4aac-8d7f-74ee2a9f520e",
             "Value": {
                 "id": "fcde0bec-04af-40a8-afb8-6a3114e267df",
@@ -932,6 +940,14 @@
                 "id": "3253865d-a1b2-4e4f-9534-b63d51b62b38",
                 "resourcePath": "options\\windows\\options_windows.yy",
                 "resourceType": "GMWindowsOptions"
+            }
+        },
+        {
+            "Key": "d0d1f5f7-0f74-4879-bdf7-51529e932a5c",
+            "Value": {
+                "id": "4d1d4c32-b256-4d22-961c-ea145a55d865",
+                "resourcePath": "sprites\\sRoomAreaMask\\sRoomAreaMask.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

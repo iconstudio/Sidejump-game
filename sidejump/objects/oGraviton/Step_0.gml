@@ -2,7 +2,14 @@
 if velocity_x != 0 {
 	var check_x = x + velocity_x + sign(velocity_x)
 	if place_free(check_x, y) {
-		x += velocity_x
+		if place_free(check_x, y - slope_upper_limit) {
+			x += velocity_x
+			y -= slope_upper_limit
+			move_contact_solid(270, slope_upper_limit)
+			//move_outside_solid(90, 1)
+		} else {
+			x += velocity_x
+		}
 	} else {
 		if 0 < velocity_x
 			event_user(10)
@@ -15,7 +22,7 @@ var check_y = velocity_y < 0 ? y + velocity_y - 1 : y + velocity_y + 1
 if !place_free(x, check_y) {
 	if 0 < velocity_y {
 		move_contact_solid(270, abs(velocity_y) + 1)
-		move_outside_solid(90, 1)
+		//move_outside_solid(90, 1)
 		y = floor(y)
 	} else if velocity_y < 0 {
 		move_contact_solid(90, abs(velocity_y) + 1)
