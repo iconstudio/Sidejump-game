@@ -4,7 +4,26 @@
     "mvc": "1.0",
     "name": "oRoomArea",
     "eventList": [
-        
+        {
+            "id": "fb1d21ba-e9c6-425e-aa7a-50056e149897",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "1c3fb0bb-fc6e-4398-9a6c-dd5d5785f605",
+            "enumb": 0,
+            "eventtype": 4,
+            "m_owner": "00092121-a3d8-4584-a250-dfe197507856"
+        },
+        {
+            "id": "a82d9bae-9cdf-4190-9a89-6c71366bb0d7",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "00092121-a3d8-4584-a250-dfe197507856"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,

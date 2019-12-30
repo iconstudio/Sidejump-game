@@ -1,8 +1,8 @@
 {
-    "id": "bb0ef187-ef09-463c-89d2-89af7547c1dd",
+    "id": "d3a0af41-87dd-4972-9689-cdacb2731080",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "camera_set_mode1",
+    "name": "camera_set_area",
     "IsCompatibility": false,
     "IsDnD": false
 }
