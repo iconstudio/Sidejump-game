@@ -128,14 +128,7 @@ switch mode {
 
 	case camera_mode.transition_area:
 		#region transitioning
-		repeat camerawork_transition_horizontal_velocity {
-			if instance_place(x, y, oCameraBlock) or instance_place(x + camerawork_transition_direction[0], y, oCameraBlock) {
-				x += camerawork_transition_direction[0]
-			} else {
-				mode = camera_mode.dynamic
-				break
-			}
-		}
+		mode = camera_mode.dynamic
 		#endregion
 	break
 

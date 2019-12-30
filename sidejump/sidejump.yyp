@@ -423,14 +423,6 @@
             }
         },
         {
-            "Key": "61cef39a-101a-4d2f-85f6-b07cb4ce1a9a",
-            "Value": {
-                "id": "fd31cefa-baee-402a-bbc1-18849d4bc6ef",
-                "resourcePath": "objects\\oCameraTransitionerVertical\\oCameraTransitionerVertical.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "6393dc52-cae2-464c-b0bb-9e142b56c2ae",
             "Value": {
                 "id": "a5c61a84-8d93-42b6-a403-5f2e935d9a2f",
@@ -700,14 +692,6 @@
                 "id": "a365d255-099c-4a07-84c7-903458b61cd7",
                 "resourcePath": "options\\amazonfire\\options_amazonfire.yy",
                 "resourceType": "GMAmazonFireOptions"
-            }
-        },
-        {
-            "Key": "a199835f-392c-435d-9482-56df3111de3d",
-            "Value": {
-                "id": "150616dd-a1a4-4012-a681-8c2a5bcd916c",
-                "resourcePath": "objects\\oCameraTransitionerHorizontal\\oCameraTransitionerHorizontal.yy",
-                "resourceType": "GMObject"
             }
         },
         {
