@@ -1,23 +1,48 @@
 var movement_input = global.io_right - global.io_left
 if movement_input != 0 {
-	movement_time++
+	if movement_input == -1
+		movement_delay_left_time++
+	else
+		movement_delay_left_time = 0
+
+	if movement_input == 1
+		movement_delay_right_time++
+	else
+		movement_delay_right_time = 0
+
 	imxs = movement_input
 } else {
-	movement_time = 0
+	movement_delay_left_time = 0
+	movement_delay_right_time = 0
 }
 
-if (movement_period <= movement_time and movement_input != 0 and movement_forbid_time == 0) {
-	accel_x = movement_input
-	velocity_x = mean(accel_x * velocity_movement, velocity_x)
+if movement_input != 0 and movement_forbid_time == 0 {
+	if movement_delay_period <= movement_delay_left_time {
+		accel_x = -1
+		if abs(velocity_x) < velocity_movement_limit or 0 <= velocity_x
+			velocity_x -= velocity_movement
+		else
+			velocity_x = max(velocity_x, -velocity_movement_limit)
+	} else if movement_delay_period <= movement_delay_right_time {
+		accel_x = 1
+		if abs(velocity_x) < velocity_movement_limit or velocity_x <= 0
+			velocity_x += velocity_movement
+		else
+			velocity_x = min(velocity_x, velocity_movement_limit)
+	}
 } else {
 	accel_x = 0
 }
 
 event_inherited()
 
-if global.io_pressed_jump {
-	jump_fore_time = 0
+if cliffoff {
+	jump_cliffoff_time = 0
+	cliffoff = false
+	//show_debug_message("got")
 }
+if global.io_pressed_jump
+	jump_fore_time = 0
 jump_fore_available = jump_fore_time < jump_fore_period
 
 var solid_on_left = !place_free(x - 1, y)
@@ -45,15 +70,16 @@ if !dashing {
 	}
 
 	if (global.io_pressed_jump or jump_fore_available) and place_free(x, y - 1) and jump_forbid_time == 0 {
-		if solid_on_bottom or solid_on_horizontal != 0 {
-			if solid_on_bottom or solid_on_horizontal == 2 {
+		var cliffoff_jump_available = jump_cliffoff_time < jump_cliffoff_period
+		if solid_on_bottom or solid_on_horizontal != 0 or cliffoff_jump_available {
+			if solid_on_bottom or solid_on_horizontal == 2 or cliffoff_jump_available {
 				velocity_y = velocity_jump
 				jumping = true
 			} else if hanging {
 				velocity_x += -velocity_jump_push_hang * imxs
 				velocity_y = velocity_jump_hang
 				hanging = false
-				movement_forbid_time = movement_forbid_period_short
+				movement_forbid_time = movement_forbid_period_hang
 				jump_forbid_time = jump_forbid_period
 				jumping = true
 				show_debug_message(velocity_x)
@@ -79,6 +105,7 @@ if !dashing {
 
 			if jumping
 				jump_fore_time = jump_fore_period
+			cliffoff = false
 		}
 	}
 
@@ -106,6 +133,11 @@ if jump_fore_time < jump_fore_period
 	jump_fore_time++
 else
 	jump_fore_time = jump_fore_period
+
+if jump_cliffoff_time < jump_cliffoff_period
+	jump_cliffoff_time++
+else
+	jump_cliffoff_time = jump_cliffoff_period
 
 if accel_x != 0
 	accel_x = 0

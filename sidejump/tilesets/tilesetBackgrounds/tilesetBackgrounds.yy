@@ -1,10 +1,34 @@
 {
-    "id": "fbb97409-f528-40c3-98f5-066ced714799",
+    "id": "f6816a9d-fed6-4c5a-b2f8-bbd2e682e5ec",
     "modelName": "GMTileSet",
     "mvc": "1.11",
-    "name": "tilesetDoodads",
+    "name": "tilesetBackgrounds",
     "auto_tile_sets": [
-        
+        {
+            "id": "d5936f27-dee4-4366-bee5-a606a2b24370",
+            "modelName": "GMAutoTileSet",
+            "mvc": "1.0",
+            "closed_edge": false,
+            "name": "autotile_1",
+            "tiles": [
+                10,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
     ],
     "macroPageTiles": {
         "SerialiseData": null,
@@ -14,10 +38,10 @@
             
         ]
     },
-    "out_columns": 4,
+    "out_columns": 6,
     "out_tilehborder": 2,
     "out_tilevborder": 2,
-    "spriteId": "e9136ce7-b59e-46c9-8169-da766aac03c7",
+    "spriteId": "838faa10-eb09-45cc-9d1a-d231e7077c40",
     "sprite_no_export": true,
     "textureGroupId": "3f2ee59e-d1a8-401e-bde2-79fedc969f23",
     "tile_animation": {
@@ -40,7 +64,21 @@
             14,
             15,
             16,
-            17
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
         ],
         "SerialiseFrameCount": 1
     },
@@ -48,7 +86,7 @@
         
     ],
     "tile_animation_speed": 15,
-    "tile_count": 18,
+    "tile_count": 32,
     "tileheight": 16,
     "tilehsep": 0,
     "tilevsep": 0,

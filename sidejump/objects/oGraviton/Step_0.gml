@@ -1,15 +1,23 @@
 /// @description 동작
+cliffoff = false
 if velocity_x != 0 {
 	var check_x = x + velocity_x + sign(velocity_x)
 	if place_free(check_x, y) {
-		if place_free(check_x, y - slope_upper_limit) {
-			x += velocity_x
-			y -= slope_upper_limit
-			move_contact_solid(270, slope_upper_limit)
-			//move_outside_solid(90, 1)
-		} else {
-			x += velocity_x
+		var cliffoff_check = false
+		if !cliffoff and 0 <= velocity_y
+			cliffoff_check = !place_free(x, y + 1)
+
+		x += velocity_x
+
+		if cliffoff_check and place_free(x, y + 1) {
+			cliffoff = true
+			//show_debug_message("on")
 		}
+	} else if place_free(check_x, y - slope_upper_limit) {
+		x += velocity_x
+		y -= slope_upper_limit
+		move_contact_solid(270, slope_upper_limit)
+		//move_outside_solid(90, 1)
 	} else {
 		if 0 < velocity_x
 			event_user(10)
@@ -20,20 +28,15 @@ if velocity_x != 0 {
 
 var check_y = velocity_y < 0 ? y + velocity_y - 1 : y + velocity_y + 1
 if !place_free(x, check_y) {
-	if 0 < velocity_y {
-		move_contact_solid(270, abs(velocity_y) + 1)
-		//move_outside_solid(90, 1)
-		y = floor(y)
-	} else if velocity_y < 0 {
-		move_contact_solid(90, abs(velocity_y) + 1)
-	}
-
-	velocity_y = 0
+	if 0 < velocity_y
+		event_user(12)
+	else if velocity_y < 0
+		event_user(13)
 } else { 
 	y += velocity_y
 	velocity_y += velocity_gravity
 
-	if velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
+	if 0 < velocity_y and velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
 		velocity_y = velocity_y_max_in_gravity
 }
 

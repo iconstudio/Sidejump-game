@@ -551,6 +551,14 @@
             }
         },
         {
+            "Key": "838faa10-eb09-45cc-9d1a-d231e7077c40",
+            "Value": {
+                "id": "86cd8859-c4d4-4a96-b351-b8e365ca1b96",
+                "resourcePath": "sprites\\sTilesetBackgrounds\\sTilesetBackgrounds.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "8427047f-9ef8-4c77-89f3-9c20623d07b6",
             "Value": {
                 "id": "0f9574a0-78bc-46e8-b6e4-a34ad26e25df",
@@ -1068,6 +1076,14 @@
                 "id": "2c674f04-c8ec-45e5-b41f-b1203b19095f",
                 "resourcePath": "views\\f35247e6-2ee1-4294-935a-8299f3e40e47-room.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f6816a9d-fed6-4c5a-b2f8-bbd2e682e5ec",
+            "Value": {
+                "id": "2b8000b0-382e-4b2f-9ca3-502eed3d2417",
+                "resourcePath": "tilesets\\tilesetBackgrounds\\tilesetBackgrounds.yy",
+                "resourceType": "GMTileSet"
             }
         },
         {
