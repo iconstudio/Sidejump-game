@@ -17,7 +17,8 @@
         "067573d4-15ad-4514-8fc0-02379d72c4f6",
         "42362cc8-a85b-40e9-b7b4-1d519f745c7f",
         "ac057786-d8ca-4f2d-b587-24dfa8e5aa75",
-        "8ae1e751-4dba-469a-bff0-5157387320a6"
+        "8ae1e751-4dba-469a-bff0-5157387320a6",
+        "58ec6a43-8b87-4e8e-beba-8ffbf19e6938"
     ],
     "filterType": "GMObject",
     "folderName": "Camera",

@@ -1,3 +1,4 @@
+area = noone
 mode = camera_mode.dynamic
 postition = camera_position.center_middle
 target = oPlayer
@@ -18,4 +19,3 @@ camerawork_period = seconds(0.9)
 camerawork_time = camerawork_period
 camerawork_transition_direction = [0, 0]
 camerawork_transition_horizontal_velocity = floor(width / camerawork_period)
-camerawork_transition_vertical_velocity = floor(height / camerawork_period)

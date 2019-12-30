@@ -3,8 +3,7 @@ enum camera_mode {
 	dynamic,
 	fixed,
 	cutscene,
-	transition_horizontal,
-	transition_vertical
+	transition_area
 }
 
 enum camera_position {
