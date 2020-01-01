@@ -17,7 +17,6 @@ if velocity_x != 0 {
 		x += velocity_x
 		y -= slope_upper_limit
 		move_contact_solid(270, slope_upper_limit)
-		//move_outside_solid(90, 1)
 	} else {
 		if 0 < velocity_x
 			event_user(10)
@@ -28,10 +27,10 @@ if velocity_x != 0 {
 
 var check_y = velocity_y < 0 ? y + velocity_y - 1 : y + velocity_y + 1
 if !place_free(x, check_y) {
-	if 0 < velocity_y
-		event_user(12)
-	else if velocity_y < 0
+	if velocity_y < 0
 		event_user(13)
+	else
+		event_user(12)
 } else { 
 	y += velocity_y
 	velocity_y += velocity_gravity
@@ -40,21 +39,7 @@ if !place_free(x, check_y) {
 		velocity_y = velocity_y_max_in_gravity
 }
 
-if accel_x == 0 and velocity_x != 0 and friction_x != 0 {
-	if !place_free(x, y + 1) {
-		if abs(velocity_x) < friction_x
-			velocity_x = 0
-		else
-			velocity_x -= friction_x * sign(velocity_x)
-	} else {
-		if abs(velocity_x) < friction_x_air
-			velocity_x = 0
-		else
-			velocity_x -= friction_x_air * sign(velocity_x)
-	}
-}
-if velocity_y != 0 and friction_y != 0
-	velocity_y -= friction_y * sign(velocity_y)
+event_user(14)
 
 if velocity_x_limit < abs(velocity_x)
 	velocity_x = velocity_x_limit * sign(velocity_x)

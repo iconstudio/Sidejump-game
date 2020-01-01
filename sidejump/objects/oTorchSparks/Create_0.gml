@@ -31,7 +31,7 @@ if type == PIECE {
 	image_blend_red += irandom(32)
 } else if type == ASH {
 	disappear_period += seconds(0.9 + random(3))
-	image_blend_period_first += seconds(1)
+	image_blend_period_first += SECOND
 	image_blend_red = 0
 }
 image_blend = make_color_rgb(image_blend_red, image_blend_green, image_blend_blue)

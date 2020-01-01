@@ -287,6 +287,14 @@
             }
         },
         {
+            "Key": "4163eb8a-96d8-40d1-b77e-23ce1ed57812",
+            "Value": {
+                "id": "f9495566-4a7e-4fc0-a0cc-2a0025de62a2",
+                "resourcePath": "sounds\\soundJump\\soundJump.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "4186cf22-9aab-45cc-ae6d-d4f86915c7ff",
             "Value": {
                 "id": "d61661c0-b095-46bc-a745-59951719fc5f",
