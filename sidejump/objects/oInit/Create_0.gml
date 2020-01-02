@@ -141,7 +141,7 @@ enum e__YYMKIND {
 
 #region 게임
 enum theme {
-	cave,
+	cave = 0,
 	underworld,
 	volcano,
 	forest,

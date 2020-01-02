@@ -9,9 +9,9 @@ velocity_gravity = velocity_gravity_normal
 cliffoff = false
 slope_upper_limit = 3
 
-friction_x_normal = 8 / SECOND
+friction_x_ground = 8 / SECOND
 friction_x_air = 1 / SECOND
-friction_x = friction_x_normal
+friction_x = friction_x_ground
 friction_y = 0
 
 velocity_x_limit_normal = 320 / SECOND

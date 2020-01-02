@@ -2,7 +2,7 @@ if global.io_pressed_jump {
 	jump_fore_time = 0
 	jump_fore_available = true
 }
-velocity_gravity = velocity_gravity_normal
+
 if cliffoff {
 	jump_cliffoff_time = 0
 	cliffoff = false
@@ -34,9 +34,9 @@ if dashing {
 
 	if movement_input != 0 and movement_forbid_time == 0 {
 		if movement_delay_period <= movement_delay_left_time
-			accel_x = -velocity_movement_x
+			accel_x = -1
 		else if movement_delay_period <= movement_delay_right_time
-			accel_x = velocity_movement_x
+			accel_x = 1
 		else
 			accel_x = 0
 	} else {
@@ -86,8 +86,8 @@ if dashing {
 	if hanging {
 		// 매달린 상태
 		if jump_execute {
-			if !solid_on_both and !solid_on_bottom
-				velocity_x -= velocity_jump_push_hang * imxs
+			//if !solid_on_both and !solid_on_bottom
+			//	velocity_x -= velocity_jump_push_hang * imxs
 			//velocity_y = velocity_jump_hang
 			jumping = true
 			hanging = false
@@ -103,10 +103,12 @@ if dashing {
 	} else {
 		// 일반 상태
 		if accel_x != 0 {
-			if abs(velocity_x) < velocity_movement_x_limit or velocity_x * accel_direction <= 0
-				velocity_x += accel_x
-			//else
-			//	velocity_x_limit = velocity_movement_x_limit
+			if abs(velocity_x) < velocity_movement_x_limit {
+				velocity_x += accel_x * velocity_movement_x
+				if velocity_movement_x_limit < abs(velocity_x)
+					velocity_x = sign(velocity_x) * velocity_movement_x_limit
+			}
+			friction_x = 0
 		}
 
 		if jump_time < jump_period {
@@ -136,7 +138,12 @@ if dashing {
 				// 한쪽 벽에 붙어있다.
 				if solid_on_horizontal == imxs {
 					// 벽을 보고 붙어있다.
-					velocity_x += -velocity_jump_push_rebound * imxs
+					if place_free(x + imxs, y - slope_upper_limit)
+						velocity_x = 0
+					else if global.io_up
+						velocity_x += -velocity_jump_push_rebound_upper * imxs
+					else
+						velocity_x += -velocity_jump_push_rebound * imxs
 					//velocity_y = velocity_jump_rebound
 					speed_jump = speed_jump_rebound
 					jump_time = 0
@@ -176,35 +183,40 @@ if dashing {
 
 event_inherited()
 
-if solid_on_bottom
-	jumping = false
-
-if 0 < jump_forbid_time
-	jump_forbid_time--
-else
-	jump_forbid_time = 0
-
-if 0 < movement_forbid_time
-	movement_forbid_time--
-else
-	movement_forbid_time = 0
-
-if jump_time < jump_period
-	jump_time++
-else
-	jump_time = jump_period
-
-if jump_fore_time < jump_fore_period {
-	jump_fore_time++
-} else {
-	jump_fore_time = jump_fore_period
-	jump_fore_available = false
+if solid_on_bottom {
+	if jumping {
+		jumping = false
+	}
 }
 
-if jump_cliffoff_time < jump_cliffoff_period
-	jump_cliffoff_time++
-else
-	jump_cliffoff_time = jump_cliffoff_period
+if 0 < jump_forbid_time {
+	if --jump_forbid_time <= 0
+		jump_forbid_time = 0
+}
+
+if 0 < movement_forbid_time {
+	if --movement_forbid_time <= 0
+		movement_forbid_time = 0
+}
+
+if jump_time < jump_period {
+	if jump_period <= ++jump_time {
+		jump_time = jump_period
+		velocity_gravity = velocity_gravity_normal
+	}
+}
+
+if jump_fore_time < jump_fore_period {
+	if jump_fore_period <= ++jump_fore_time {
+		jump_fore_time = jump_fore_period
+		jump_fore_available = false
+	}
+}
+
+if jump_cliffoff_time < jump_cliffoff_period {
+	if jump_cliffoff_period <= ++jump_cliffoff_time
+		jump_cliffoff_time = jump_cliffoff_period
+}
 
 if accel_x != 0
 	accel_x = 0
