@@ -9,10 +9,8 @@ if velocity_x != 0 {
 
 		x += velocity_x
 
-		if cliffoff_check and place_free(x, y + 1) {
+		if cliffoff_check and place_free(x, y + 1)
 			cliffoff = true
-			//show_debug_message("on")
-		}
 	} else if place_free(check_x, y - slope_upper_limit) {
 		x += velocity_x
 		y -= slope_upper_limit
@@ -25,19 +23,21 @@ if velocity_x != 0 {
 	}
 }
 
-var check_y = velocity_y < 0 ? y + velocity_y - 1 : y + velocity_y + 1
-if !place_free(x, check_y) {
-	if velocity_y < 0
-		event_user(13)
-	else
-		event_user(12)
-} else { 
-	y += velocity_y
-	velocity_y += velocity_gravity
+if velocity_y != 0 {
+	move_vertical(velocity_y)
 
-	if 0 < velocity_y and velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
-		velocity_y = velocity_y_max_in_gravity
+	var check_y = velocity_y < 0 ? y - 1 : y + 1
+	if !place_free(x, check_y) {
+		if velocity_y < 0
+			event_user(13)
+		else
+			event_user(12)
+	}
 }
+velocity_y += velocity_gravity
+
+if 0 < velocity_y and velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
+	velocity_y = velocity_y_max_in_gravity
 
 event_user(14)
 

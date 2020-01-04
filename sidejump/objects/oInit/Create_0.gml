@@ -3,25 +3,19 @@ global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지�
 global.flag_is_browser = (os_browser == browser_not_a_browser)
 #macro SECOND 100 // == seconds(100)
 
+window_set_fullscreen(true)
 device_mouse_dbclick_enable(false)
 
 #region 화면
 application_surface_enable(true)
 application_surface_draw_enable(false)
-global.application_texture = surface_get_texture(application_surface)
-global.application_offset = application_get_position()
 
 surface_depth_disable(true)
 display_reset(8, true)
 display_set_timing_method(tm_countvsyncs)
 
-// 2 : 1
-var default_width = 960
-var default_height = 480
-
 if global.flag_is_mobile {
 	display_set_sleep_margin(4)
-	window_set_fullscreen(true)
 	os_powersave_enable(false)
 } else if global.flag_is_browser {
 	display_set_sleep_margin(30)
@@ -30,14 +24,6 @@ if global.flag_is_mobile {
 	display_set_sleep_margin(20)
 }
 display_set_gui_maximize()
-var window_width = window_get_width()
-var window_height = window_get_height()
-var gui_width = display_get_gui_width()
-var gui_height = display_get_gui_height()
-
-global.resolutions_default = [default_width, default_height]
-global.resolutions = [window_width, window_height]
-global.resolutions_gui = [gui_width, gui_height]
 #endregion
 
 #region 음성

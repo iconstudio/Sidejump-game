@@ -3,14 +3,14 @@ status = 0
 
 velocity_x = 0
 velocity_y = 0
-velocity_gravity_normal = 16 / SECOND
+velocity_gravity_normal = 12 / SECOND
 velocity_gravity = velocity_gravity_normal
 
 cliffoff = false
 slope_upper_limit = 3
 
-friction_x_ground = 8 / SECOND
-friction_x_air = 1 / SECOND
+friction_x_ground = 32 / SECOND
+friction_x_air = 2 / SECOND
 friction_x = friction_x_ground
 friction_y = 0
 

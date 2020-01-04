@@ -2,10 +2,13 @@ event_inherited()
 
 // 이동
 accel_x = 0
-velocity_movement_x = 16 / (SECOND * seconds(0.2))
-velocity_movement_x_limit = 16 / SECOND
-velocity_hanging = 5 / SECOND
-friction_x_jumping = 8 / SECOND
+accel_y = 0
+velocity_movement_x = 16 / SECOND
+velocity_movement_x_limit = 80 / SECOND
+velocity_hanging = 6 / SECOND
+velocity_x_limit_normal = 160 / SECOND
+friction_x_air = 16 / SECOND
+friction_x_air_for_accel = 5 / SECOND
 
 NONE = 0
 LEFT = -1
@@ -18,10 +21,12 @@ jump_period = seconds(0.09)
 jump_time = jump_period
 
 // 점프 속도
-speed_jump_normal = 16 / jump_period
-speed_jump_hang = 16 / jump_period
-speed_jump_bounce = 20 / jump_period
-speed_jump_rebound = 24 / jump_period
+speed_jump_normal = 15 / jump_period
+speed_jump_hang = 12 / jump_period
+speed_jump_bounce = 15 / jump_period
+speed_jump_hang_bounce = 14 / jump_period
+speed_jump_rebound = 15 / jump_period
+speed_jump_rebound_upper = 20 / jump_period
 speed_jump = speed_jump_normal
 
 // 점프 속력
@@ -31,10 +36,9 @@ velocity_jump_bounce = -280 / SECOND
 velocity_jump_rebound = -300 / SECOND
 
 // 벽 밀어내기 속력
-velocity_jump_push_hang = 50 / SECOND
-velocity_jump_push_bounce = 200 / SECOND
-velocity_jump_push_rebound = 120 / SECOND
-velocity_jump_push_rebound_upper = 80 / SECOND
+velocity_jump_push_bounce = 128 / SECOND
+velocity_jump_push_rebound = 100 / SECOND
+velocity_jump_push_rebound_upper = 72 / SECOND
 
 // 상태 플래그
 jumping = false
@@ -46,10 +50,18 @@ movement_delay_left_time = 0
 movement_delay_right_time = 0
 movement_delay_period = seconds(0.04)
 
+// 좌우 속도 유지 시간
+movement_preserve_velocity = 0
+movement_preserve_time = 0
+movement_preserve_period = seconds(0.44)
+
 // 좌우 이동 금지 시간
 movement_forbid_time = 0
 movement_forbid_period = seconds(0.2)
-movement_forbid_period_hang = seconds(0.1)
+
+// 벽에서 잠시 떨어졌을 때도 벽 점프가 가능하게
+jump_sideoff_period = seconds(0.08)
+jump_sideoff_time = jump_sideoff_period
 
 // 점프를 이르거나 늦게 눌렀을 때도 가능하게
 jump_fore_available = false
