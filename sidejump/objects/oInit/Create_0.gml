@@ -3,7 +3,7 @@ global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지�
 global.flag_is_browser = (os_browser == browser_not_a_browser)
 #macro SECOND 100 // == seconds(100)
 
-window_set_fullscreen(true)
+//window_set_fullscreen(true)
 device_mouse_dbclick_enable(false)
 
 #region 화면

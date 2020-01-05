@@ -45,7 +45,7 @@ if dashing {
 	#endregion
 	#region inputs for vertical
 	var vetical_input = global.io_down - global.io_up
-	if movement_input != 0 and movement_forbid_time == 0 {
+	if vetical_input != 0 and movement_forbid_time == 0 {
 		accel_y = vetical_input
 	} else {
 		accel_y = 0
@@ -92,11 +92,12 @@ if dashing {
 
 	// 매달리기
 	hanging = false
-	if global.io_hang and jump_period <= jump_time and 0 <= velocity_y {
+	if global.io_hang and jump_period <= jump_time {
 		// 양쪽에 벽이 있으면 언제든지 매달릴 수 있다.
 		if solid_on_horizontal == imxs {
 			jumping = false
 			hanging = true
+			velocity_y = 0
 		}
 	}
 
@@ -118,7 +119,7 @@ if dashing {
 			player_prohibit_jumping()
 			player_preserve_hspeed()
 		} else {
-			velocity_y = movement_input * velocity_hanging
+			velocity_y = accel_y * velocity_hanging
 		}
 	} else {
 		// 일반 상태
@@ -140,6 +141,7 @@ if dashing {
 				}
 			}
 		}
+
 		if jump_execute {
 			var cliffoff_jump_available = jump_cliffoff_time < jump_cliffoff_period
 			if solid_on_both {
@@ -221,7 +223,6 @@ if solid_on_bottom {
 	}
 	movement_forbid_time = 0
 	jump_forbid_time = 0
-	movement_preserve_time = 0
 	jump_sideoff_time = jump_sideoff_period
 	jump_cliffoff_time = jump_cliffoff_period
 }

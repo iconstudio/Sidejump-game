@@ -7,7 +7,7 @@ velocity_gravity_normal = 12 / SECOND
 velocity_gravity = velocity_gravity_normal
 
 cliffoff = false
-slope_upper_limit = 3
+slope_upper_limit = 2
 
 friction_x_ground = 32 / SECOND
 friction_x_air = 2 / SECOND

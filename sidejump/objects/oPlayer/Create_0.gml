@@ -5,10 +5,10 @@ accel_x = 0
 accel_y = 0
 velocity_movement_x = 16 / SECOND
 velocity_movement_x_limit = 80 / SECOND
-velocity_hanging = 6 / SECOND
+velocity_hanging = 16 / SECOND
 velocity_x_limit_normal = 160 / SECOND
 friction_x_air = 16 / SECOND
-friction_x_air_for_accel = 5 / SECOND
+friction_x_air_for_accel = 8 / SECOND
 
 NONE = 0
 LEFT = -1
@@ -60,7 +60,7 @@ movement_forbid_time = 0
 movement_forbid_period = seconds(0.2)
 
 // 벽에서 잠시 떨어졌을 때도 벽 점프가 가능하게
-jump_sideoff_period = seconds(0.08)
+jump_sideoff_period = seconds(0.1)
 jump_sideoff_time = jump_sideoff_period
 
 // 점프를 이르거나 늦게 눌렀을 때도 가능하게
