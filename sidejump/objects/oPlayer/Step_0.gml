@@ -45,7 +45,7 @@ if dashing {
 	#endregion
 	#region inputs for vertical
 	var vetical_input = global.io_down - global.io_up
-	if vetical_input != 0 and movement_forbid_time == 0 {
+	if vetical_input != 0 {
 		accel_y = vetical_input
 	} else {
 		accel_y = 0
@@ -59,6 +59,7 @@ if dashing {
 	var solid_on_right = !place_free(x + 1, y)
 	var solid_on_left_long = false
 	var solid_on_right_long = false
+	var solid_on_movement = !place_free(x + movement_input, y)
 	var solid_on_direction = false
 	var solid_on_bottom = !place_free(x, y + 1)
 	if solid_on_left and solid_on_right {
@@ -91,37 +92,75 @@ if dashing {
 	#endregion
 
 	// 매달리기
-	hanging = false
-	if global.io_hang and jump_period <= jump_time {
+	if movement_input == 0 or !solid_on_movement
+		grabbing = false
+	if !global.io_hang
+		hanging = false
+	if solid_on_horizontal == imxs and jump_period <= jump_time {
 		// 양쪽에 벽이 있으면 언제든지 매달릴 수 있다.
-		if solid_on_horizontal == imxs {
-			jumping = false
-			hanging = true
-			velocity_y = 0
+		if global.io_hang {
+			if !hanging {
+				velocity_x = 0
+				jumping = false
+				hanging = true
+				grabbing = false
+				deaccel_hang_velocity_begin = velocity_y
+				deaccel_hang_time = 0
+			}
+		} else if movement_input != 0 and solid_on_movement {
+			if !grabbing {
+				velocity_x = 0
+				jumping = false
+				grabbing = true
+				deaccel_hang_velocity_begin = velocity_y
+				deaccel_hang_time = 0
+			}
 		}
 	}
 
-	if hanging {
+	if hanging or grabbing {
 		// 매달린 상태
-		if jump_execute {
+		if solid_on_horizontal != imxs {
+			hanging = false
+			grabbing = false
+			deaccel_hang_time = 0
+		} else if jump_execute {
 			//velocity_y = velocity_jump_hang
 			hanging = false
 
-			if movement_input != 0 and place_free(x + movement_input, y) {
+			if movement_input != 0 and !solid_on_movement {
 				// 반대쪽으로 점프
 				velocity_x = movement_input * velocity_jump_push_rebound
 				player_jump(speed_jump_hang_bounce)
+				player_preserve_hspeed()
 				imxs = movement_input
 			} else {
 				player_jump(speed_jump_hang)
 				player_prohibit_moving()
 			}
 			player_prohibit_jumping()
-			player_preserve_hspeed()
-		} else {
-			velocity_y = accel_y * velocity_hanging
+		} else if hanging {
+			if deaccel_hang_time < deaccel_hang_period {
+				velocity_y = lerp(deaccel_hang_velocity_begin, 0, deaccel_hang_time / deaccel_hang_period)
+				deaccel_hang_time++
+			} else {
+				deaccel_hang_time = deaccel_hang_period
+				velocity_y = accel_y * velocity_hanging
+				move_vertical(velocity_y)
+			}
+			//velocity_y = accel_y * velocity_hanging
+		} else if grabbing {
+			if deaccel_hang_time < deaccel_grab_period {
+				velocity_y = lerp(deaccel_hang_velocity_begin, deaccel_grab_velocity, deaccel_hang_time / deaccel_grab_period)
+				deaccel_hang_time++
+				//show_debug_message(deaccel_hang_time)
+			} else {
+				deaccel_hang_time = deaccel_grab_period
+				//velocity_y = deaccel_grab_velocity
+			}
 		}
 	} else {
+		#region normal
 		// 일반 상태
 		if accel_x != 0 {
 			// 이동
@@ -208,6 +247,7 @@ if dashing {
 			velocity_y = -speed_jump
 			velocity_gravity = 0
 		}
+	#endregion
 	} // ELSE
 }
 

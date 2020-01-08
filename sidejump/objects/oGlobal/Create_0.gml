@@ -11,6 +11,8 @@ global.io_pressed_down = false
 global.io_pressed_jump = false
 global.io_pressed_dash = false
 global.io_released_jump = false
+global.io_released_hang = false
+
 global.io_pressed_yes = false
 global.io_pressed_no = false
 

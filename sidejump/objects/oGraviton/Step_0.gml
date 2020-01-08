@@ -14,7 +14,8 @@ if velocity_x != 0 {
 	} else if place_free(check_x, y - slope_upper_limit) {
 		x += velocity_x
 		y -= slope_upper_limit
-		move_contact_solid(270, slope_upper_limit)
+		if velocity_y <= 0
+			move_contact_solid(270, slope_upper_limit)
 	} else {
 		if 0 < velocity_x
 			event_user(10)
@@ -34,7 +35,8 @@ if velocity_y != 0 {
 			event_user(12)
 	}
 }
-velocity_y += velocity_gravity
+if place_free(x, y + 1)
+	velocity_y += velocity_gravity
 
 if 0 < velocity_y and velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
 	velocity_y = velocity_y_max_in_gravity

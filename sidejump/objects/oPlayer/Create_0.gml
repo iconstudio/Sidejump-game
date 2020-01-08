@@ -1,32 +1,35 @@
 event_inherited()
 
-// 이동
+// 수평 이동
 accel_x = 0
-accel_y = 0
 velocity_movement_x = 16 / SECOND
-velocity_movement_x_limit = 80 / SECOND
-velocity_hanging = 16 / SECOND
+velocity_movement_x_limit = 84 / SECOND
 velocity_x_limit_normal = 160 / SECOND
 friction_x_air = 16 / SECOND
 friction_x_air_for_accel = 8 / SECOND
 
-NONE = 0
-LEFT = -1
-RIGHT = 1
-BOTH = 2
-solid_on_horizontal = 0 // 2: both
+// 매달리기
+deaccel_hang_velocity_begin = 0
+deaccel_hang_time = 0
+deaccel_hang_period = seconds(0.1)
+deaccel_grab_velocity = 6 / SECOND
+deaccel_grab_period = seconds(0.3)
+
+// 수직 이동
+accel_y = 0
+velocity_hanging = 16 / SECOND
 
 // 점프 시간
-jump_period = seconds(0.09)
+jump_period = seconds(0.08)
 jump_time = jump_period
 
 // 점프 속도
-speed_jump_normal = 15 / jump_period
-speed_jump_hang = 12 / jump_period
-speed_jump_bounce = 15 / jump_period
-speed_jump_hang_bounce = 14 / jump_period
-speed_jump_rebound = 15 / jump_period
-speed_jump_rebound_upper = 20 / jump_period
+speed_jump_normal = 11 / jump_period
+speed_jump_hang = 11 / jump_period
+speed_jump_bounce = 13 / jump_period
+speed_jump_hang_bounce = 13 / jump_period
+speed_jump_rebound = 12 / jump_period
+speed_jump_rebound_upper = 13 / jump_period
 speed_jump = speed_jump_normal
 
 // 점프 속력
@@ -42,6 +45,7 @@ velocity_jump_push_rebound_upper = 72 / SECOND
 
 // 상태 플래그
 jumping = false
+grabbing = false
 hanging = false
 dashing = false
 
@@ -75,3 +79,9 @@ jump_cliffoff_time = jump_cliffoff_period
 // 점프 금지 시간
 jump_forbid_time = 0
 jump_forbid_period = seconds(0.25)
+
+NONE = 0
+LEFT = -1
+RIGHT = 1
+BOTH = 2
+solid_on_horizontal = 0 // 2: both
