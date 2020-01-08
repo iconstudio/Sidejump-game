@@ -44,12 +44,7 @@ if dashing {
 	}
 	#endregion
 	#region inputs for vertical
-	var vetical_input = global.io_down - global.io_up
-	if vetical_input != 0 {
-		accel_y = vetical_input
-	} else {
-		accel_y = 0
-	}
+	accel_y = global.io_down - global.io_up
 	#endregion
 	#region presets
 	var accel_direction = sign(accel_x)
@@ -151,11 +146,11 @@ if dashing {
 			//velocity_y = accel_y * velocity_hanging
 		} else if grabbing {
 			if deaccel_hang_time < deaccel_grab_period {
-				velocity_y = lerp(deaccel_hang_velocity_begin, deaccel_grab_velocity, deaccel_hang_time / deaccel_grab_period)
-				deaccel_hang_time++
+				//velocity_y = lerp(deaccel_hang_velocity_begin, deaccel_grab_velocity, deaccel_hang_time / deaccel_grab_period)
+				//deaccel_hang_time++
 				//show_debug_message(deaccel_hang_time)
 			} else {
-				deaccel_hang_time = deaccel_grab_period
+				//deaccel_hang_time = deaccel_grab_period
 				//velocity_y = deaccel_grab_velocity
 			}
 		}

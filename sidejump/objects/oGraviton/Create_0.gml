@@ -3,7 +3,7 @@ status = 0
 
 velocity_x = 0
 velocity_y = 0
-velocity_gravity_normal = 7.5 / SECOND
+velocity_gravity_normal = 7 / SECOND
 velocity_gravity_water = 1.5 / SECOND
 velocity_gravity = velocity_gravity_normal
 
