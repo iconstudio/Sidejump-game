@@ -138,6 +138,25 @@ enum theme {
 	sky,
 	space
 }
+
+enum camera_mode {
+	dynamic,
+	fixed,
+	cutscene,
+	transition
+}
+
+enum camera_position {
+	left_up,
+	left_middle,
+	left_down,
+	center_up,
+	center_middle,
+	center_down,
+	right_up,
+	right_middle,
+	right_down
+}
 #endregion
 
 #region 네트워크

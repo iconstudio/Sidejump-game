@@ -3,8 +3,9 @@
 /// @param area { instance }
 with oCamera {
 	if area != argument0 {
+		area_previous = area
 		area = argument0
-		camera_set_mode(camera_mode.transition_area)
+		camera_set_mode(camera_mode.transition)
 		camerawork_time = 0
 		camerawork_coordinate_begin = [x, y]
 		camerawork_status = MOVING

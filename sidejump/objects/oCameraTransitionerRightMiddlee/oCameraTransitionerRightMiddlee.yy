@@ -2,7 +2,7 @@
     "id": "ac057786-d8ca-4f2d-b587-24dfa8e5aa75",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oCameraTransitionerRightMiddle",
+    "name": "oCameraTransitionerRightMiddlee",
     "eventList": [
         {
             "id": "68ece2f4-ba57-4e54-9e1a-36a469eb77b2",

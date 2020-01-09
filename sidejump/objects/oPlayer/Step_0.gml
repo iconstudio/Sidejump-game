@@ -68,8 +68,9 @@ if dashing {
 			solid_on_horizontal = NONE
 
 		if velocity_x != 0 {
-			solid_on_left_long = !place_free(x + velocity_x - 1, y)
-			solid_on_right_long = !place_free(x + velocity_x + 1, y)
+			var velocity_x_real = velocity(velocity_x)
+			solid_on_left_long = !place_free(x + velocity_x_real - 1, y)
+			solid_on_right_long = !place_free(x + velocity_x_real + 1, y)
 		} else {
 			solid_on_left_long = solid_on_left
 			solid_on_right_long = solid_on_right
@@ -87,8 +88,6 @@ if dashing {
 	#endregion
 
 	// 매달리기
-	if movement_input == 0 or !solid_on_movement
-		grabbing = false
 	if !global.io_hang
 		hanging = false
 	if solid_on_horizontal == imxs and jump_period <= jump_time {
@@ -102,22 +101,13 @@ if dashing {
 				deaccel_hang_velocity_begin = velocity_y
 				deaccel_hang_time = 0
 			}
-		} else if movement_input != 0 and solid_on_movement {
-			if !grabbing {
-				velocity_x = 0
-				jumping = false
-				grabbing = true
-				deaccel_hang_velocity_begin = velocity_y
-				deaccel_hang_time = 0
-			}
 		}
 	}
 
-	if hanging or grabbing {
+	if hanging {
 		// 매달린 상태
 		if solid_on_horizontal != imxs {
 			hanging = false
-			grabbing = false
 			deaccel_hang_time = 0
 		} else if jump_execute {
 			//velocity_y = velocity_jump_hang
@@ -141,18 +131,9 @@ if dashing {
 			} else {
 				deaccel_hang_time = deaccel_hang_period
 				velocity_y = accel_y * velocity_hanging
-				move_vertical(velocity_y)
+				//move_vertical(velocity_y)
 			}
 			//velocity_y = accel_y * velocity_hanging
-		} else if grabbing {
-			if deaccel_hang_time < deaccel_grab_period {
-				//velocity_y = lerp(deaccel_hang_velocity_begin, deaccel_grab_velocity, deaccel_hang_time / deaccel_grab_period)
-				//deaccel_hang_time++
-				//show_debug_message(deaccel_hang_time)
-			} else {
-				//deaccel_hang_time = deaccel_grab_period
-				//velocity_y = deaccel_grab_velocity
-			}
 		}
 	} else {
 		#region normal
@@ -256,6 +237,7 @@ if solid_on_bottom {
 	if jumping {
 		jumping = false
 	}
+	cliffoff = false
 	movement_forbid_time = 0
 	jump_forbid_time = 0
 	jump_sideoff_time = jump_sideoff_period

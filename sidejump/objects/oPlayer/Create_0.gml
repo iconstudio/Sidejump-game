@@ -2,46 +2,47 @@ event_inherited()
 
 // 수평 이동
 accel_x = 0
-velocity_movement_x = 16 / SECOND
-velocity_movement_x_limit = 84 / SECOND
-velocity_x_limit_normal = 160 / SECOND
-friction_x_air = 16 / SECOND
-friction_x_air_for_accel = 8 / SECOND
+velocity_movement_x = 16
+velocity_movement_x_limit = 84
+velocity_x_limit_normal = 160
+
+friction_x_air = 16
+friction_x_air_for_accel = 8
 
 // 매달리기
 deaccel_hang_velocity_begin = 0
 deaccel_hang_time = 0
 deaccel_hang_period = seconds(0.1)
-deaccel_grab_velocity = 6 / SECOND
+deaccel_grab_velocity = 6
 deaccel_grab_period = seconds(0.3)
 
 // 수직 이동
 accel_y = 0
-velocity_hanging = 16 / SECOND
+velocity_hanging = 16
 
 // 점프 시간
 jump_period = seconds(0.08)
 jump_time = jump_period
 
-// 점프 속도
-speed_jump_normal = 11 / jump_period
-speed_jump_hang = 11 / jump_period
-speed_jump_bounce = 13 / jump_period
-speed_jump_hang_bounce = 13 / jump_period
-speed_jump_rebound = 12 / jump_period
-speed_jump_rebound_upper = 13 / jump_period
+// 점프 속력
+speed_jump_normal = 124
+speed_jump_hang = 120
+speed_jump_bounce = 144
+speed_jump_hang_bounce = 140
+speed_jump_rebound = 128
+speed_jump_rebound_upper = 150
 speed_jump = speed_jump_normal
 
-// 점프 속력
-velocity_jump = -270 / SECOND
-velocity_jump_hang = -230 / SECOND
-velocity_jump_bounce = -280 / SECOND
-velocity_jump_rebound = -300 / SECOND
+// 점프 속도
+velocity_jump = -270
+velocity_jump_hang = -230
+velocity_jump_bounce = -280
+velocity_jump_rebound = -300
 
 // 벽 밀어내기 속력
-velocity_jump_push_bounce = 128 / SECOND
-velocity_jump_push_rebound = 100 / SECOND
-velocity_jump_push_rebound_upper = 72 / SECOND
+velocity_jump_push_bounce = 128
+velocity_jump_push_rebound = 100
+velocity_jump_push_rebound_upper = 72
 
 // 상태 플래그
 jumping = false
@@ -85,3 +86,5 @@ LEFT = -1
 RIGHT = 1
 BOTH = 2
 solid_on_horizontal = 0 // 2: both
+
+//instance_create_layer(x, y, "Shade", oPlayerGlowShade)

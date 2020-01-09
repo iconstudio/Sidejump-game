@@ -1,4 +1,4 @@
 /// @description seconds(time)
 /// @function seconds
 /// @param time { real }
-return max(1, room_speed * argument0)
+return max(1, argument0 * SECOND)

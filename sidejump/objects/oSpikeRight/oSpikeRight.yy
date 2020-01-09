@@ -1,23 +1,14 @@
 {
-    "id": "42362cc8-a85b-40e9-b7b4-1d519f745c7f",
+    "id": "a2928551-46db-4c02-9365-9c2fbb6833fc",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oCameraTransitionerRightUp",
+    "name": "oSpikeRight",
     "eventList": [
-        {
-            "id": "82c9be18-67db-49f8-ab58-0cbb3200bf34",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "1c3fb0bb-fc6e-4398-9a6c-dd5d5785f605",
-            "enumb": 0,
-            "eventtype": 4,
-            "m_owner": "42362cc8-a85b-40e9-b7b4-1d519f745c7f"
-        }
+        
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "parentObjectId": "58b0f220-efff-4cd6-8d12-a83de9fcaec2",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -33,6 +24,6 @@
     "physicsStartAwake": true,
     "properties": null,
     "solid": false,
-    "spriteId": "cb1fdc35-c402-41f4-b604-39f0473a1a5e",
-    "visible": false
+    "spriteId": "d9639578-8d8e-4cf6-bd11-c6505df39c31",
+    "visible": true
 }

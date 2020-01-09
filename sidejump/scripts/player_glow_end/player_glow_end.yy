@@ -1,8 +1,8 @@
 {
-    "id": "bb0ef187-ef09-463c-89d2-89af7547c1dd",
+    "id": "ae04801b-9428-4688-adb5-5ae21b92c3f4",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "camera_set_transition",
+    "name": "player_glow_end",
     "IsCompatibility": false,
     "IsDnD": false
 }
