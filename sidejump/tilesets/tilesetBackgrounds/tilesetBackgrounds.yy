@@ -9,7 +9,7 @@
             "modelName": "GMAutoTileSet",
             "mvc": "1.0",
             "closed_edge": false,
-            "name": "Dirt Bricks",
+            "name": "Fel Woods",
             "tiles": [
                 18,
                 49,
@@ -34,7 +34,7 @@
             "modelName": "GMAutoTileSet",
             "mvc": "1.0",
             "closed_edge": false,
-            "name": "Fel Woods",
+            "name": "Dirt Bricks",
             "tiles": [
                 22,
                 53,

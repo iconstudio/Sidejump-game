@@ -1,4 +1,5 @@
 /// @description 주 메뉴 그리기
+/*
 draw_set_alpha(image_alpha)
 
 //draw_stack_push()

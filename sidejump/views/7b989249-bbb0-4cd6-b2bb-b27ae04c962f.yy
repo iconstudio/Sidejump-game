@@ -18,7 +18,9 @@
         "09818aee-3312-4ca3-a551-9803218fc7b6",
         "a2928551-46db-4c02-9365-9c2fbb6833fc",
         "47971bc1-b7ef-4bb8-8654-f5611a221074",
-        "c511f5c2-0884-41da-8fca-fc28cd27ddc3"
+        "c511f5c2-0884-41da-8fca-fc28cd27ddc3",
+        "09e4b67c-fd78-46c3-9ed6-ba22ca29488e",
+        "41fe7588-90f1-4e74-94fe-481571640007"
     ],
     "filterType": "GMObject",
     "folderName": "Entity",

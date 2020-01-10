@@ -8,7 +8,7 @@ LEFT = 0
 RIGHT = 1
 UP = 2
 DOWN = 3
-draw_set_font(fontMenu)
+//draw_set_font(fontMenu)
 
 // 
 menu_item_size_half = 280

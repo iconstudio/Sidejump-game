@@ -53,6 +53,11 @@ switch postition {
 	break
 }
 
+if origin_x != 0
+	target_x += origin_x
+if origin_y != 0
+	target_y += origin_y
+
 switch mode {
 	case camera_mode.dynamic:
 		#region dynamic
@@ -121,6 +126,12 @@ switch mode {
 				y = target_y
 				camerawork_status = NORMAL
 				mode = camera_mode.dynamic
+
+				instance_deactivate_all(true)
+				instance_activate_object(oIgnore)
+				instance_activate_object(oPlayer)
+				instance_activate_object(oLightObject)
+				instance_activate_region(bbox_left, bbox_top, bbox_right, bbox_bottom, true)
 			}
 		}
 		#endregion

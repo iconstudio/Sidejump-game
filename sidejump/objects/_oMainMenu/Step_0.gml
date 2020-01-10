@@ -1,4 +1,5 @@
 /// @description 메뉴 갱신
+/*
 cursor_x = device_mouse_x(0)
 cursor_y = device_mouse_y(0)
 cursor_gui_x_previous = cursor_gui_x
