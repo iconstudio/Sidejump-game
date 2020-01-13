@@ -263,6 +263,14 @@
             }
         },
         {
+            "Key": "2327793b-9e3c-474d-a74a-3fbd46815af1",
+            "Value": {
+                "id": "ebf5783a-1e09-4168-b028-8d9ab2f259a9",
+                "resourcePath": "rooms\\roomGameStagr001\\roomGameStagr001.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "250bc8dc-9096-4bd2-bd1d-a00cf288c55d",
             "Value": {
                 "id": "2ba6b39c-97d6-4c1c-8efe-dcced5cac4d3",
@@ -1282,7 +1290,7 @@
             "Key": "c605dff8-4999-46de-b092-d7670a86070a",
             "Value": {
                 "id": "f5f9fa1e-a517-4647-a4ab-1619a89766cb",
-                "resourcePath": "rooms\\roomGameStage1\\roomGameStage1.yy",
+                "resourcePath": "rooms\\roomGameStage000\\roomGameStage000.yy",
                 "resourceType": "GMRoom"
             }
         },
