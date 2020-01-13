@@ -234,14 +234,7 @@ if global.io_released_jump {
 event_inherited()
 
 if solid_on_bottom {
-	if jumping {
-		jumping = false
-	}
-	cliffoff = false
-	movement_forbid_time = 0
-	jump_forbid_time = 0
-	jump_sideoff_time = jump_sideoff_period
-	jump_cliffoff_time = jump_cliffoff_period
+	event_user(9)
 }
 
 if 0 < jump_forbid_time {
