@@ -455,6 +455,14 @@
             }
         },
         {
+            "Key": "44153cc8-ded0-4d89-9a85-12ad5b18581d",
+            "Value": {
+                "id": "aa6a70ad-9868-4676-9ee6-77e69f710898",
+                "resourcePath": "sprites\\sBreakableBlock\\sBreakableBlock.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "44a34c3c-cef0-4471-9f9f-c760ebf970e8",
             "Value": {
                 "id": "b016d5dd-6303-4dbc-87fa-0193cbf9aeef",
@@ -695,6 +703,14 @@
             }
         },
         {
+            "Key": "6b0b4996-f4c7-4b59-a071-aa0fef4f8a54",
+            "Value": {
+                "id": "68cd9bd2-ffa6-4973-baf9-9aa3dc5e2dab",
+                "resourcePath": "scripts\\game_set_spawn_point\\game_set_spawn_point.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6c300abd-d91c-4866-9ada-7abb746efa35",
             "Value": {
                 "id": "f50f20e2-5f57-4341-8053-0026ca8785bc",
@@ -844,6 +860,14 @@
                 "id": "dcdd07b7-da63-47cd-a65d-2f49ede44246",
                 "resourcePath": "sprites\\sThornsBack\\sThornsBack.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "81b5724b-bb17-4a4b-8891-d2cd3e350edb",
+            "Value": {
+                "id": "a2c9af53-9b34-44d7-bf14-20346f5172ba",
+                "resourcePath": "objects\\oBreakableBlock\\oBreakableBlock.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -1655,6 +1679,7 @@
         "a4c60548-e6ce-4a69-a06d-bac19c587919",
         "ab7e9158-ac43-41bf-9234-f66e94d2ae59",
         "d3a0af41-87dd-4972-9689-cdacb2731080",
+        "6b0b4996-f4c7-4b59-a071-aa0fef4f8a54",
         "ad08d13e-db5d-40c2-a511-2bee91e90e58",
         "12c45c12-8c97-48db-8e44-0e210a19ff25",
         "c0466549-d920-4b44-8be7-618a95da5f00",

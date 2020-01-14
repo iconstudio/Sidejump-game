@@ -132,6 +132,7 @@ switch mode {
 				instance_activate_object(oPlayer)
 				instance_activate_object(oLightObject)
 				instance_activate_region(bbox_left, bbox_top, bbox_right, bbox_bottom, true)
+				game_set_spawn_point(instance_nearest(target.x, target.y, oSpawnPoint))
 			}
 		}
 		#endregion
