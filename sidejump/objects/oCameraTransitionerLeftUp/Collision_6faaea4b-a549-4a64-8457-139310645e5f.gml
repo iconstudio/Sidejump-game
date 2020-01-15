@@ -1,1 +1,0 @@
-camera_set_formation(camera_position.left_up)

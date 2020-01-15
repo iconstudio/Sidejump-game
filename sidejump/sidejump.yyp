@@ -34,7 +34,7 @@
             "Key": "00092121-a3d8-4584-a250-dfe197507856",
             "Value": {
                 "id": "27cb0df9-ef90-4d08-a69b-769ba5200d14",
-                "resourcePath": "objects\\oRoomArea\\oRoomArea.yy",
+                "resourcePath": "objects\\oGameArea\\oGameArea.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -60,14 +60,6 @@
                 "id": "fdd161b3-fee9-4d80-a32c-fe725f65c155",
                 "resourcePath": "views\\058c3944-1250-4ea8-9ec1-fcab875e2a75.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "067573d4-15ad-4514-8fc0-02379d72c4f6",
-            "Value": {
-                "id": "adcdea2b-e3c7-41cc-81c4-33b7f743e775",
-                "resourcePath": "objects\\oCameraTransitionerCenterDown\\oCameraTransitionerCenterDown.yy",
-                "resourceType": "GMObject"
             }
         },
         {
@@ -375,14 +367,6 @@
             }
         },
         {
-            "Key": "371b59f1-df32-492b-84fb-cc6258f09195",
-            "Value": {
-                "id": "44454ec3-309f-46ca-8704-1e99425552eb",
-                "resourcePath": "objects\\oCameraTransitionerLeftDown\\oCameraTransitionerLeftDown.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "37da7398-ff13-42a9-9ce9-1e82985b72b6",
             "Value": {
                 "id": "1d29a5d4-6264-4207-b11b-b580b36179f1",
@@ -407,6 +391,14 @@
             }
         },
         {
+            "Key": "410c7d43-2a59-450c-b042-06f92626e30f",
+            "Value": {
+                "id": "0fbe4b41-ee85-4696-bd6e-f9ebe2eb87f4",
+                "resourcePath": "views\\410c7d43-2a59-450c-b042-06f92626e30f.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "4163eb8a-96d8-40d1-b77e-23ce1ed57812",
             "Value": {
                 "id": "f9495566-4a7e-4fc0-a0cc-2a0025de62a2",
@@ -427,14 +419,6 @@
             "Value": {
                 "id": "29033fd8-8433-475a-9b8f-3d044dceea77",
                 "resourcePath": "objects\\oLightObject\\oLightObject.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "42362cc8-a85b-40e9-b7b4-1d519f745c7f",
-            "Value": {
-                "id": "afbed4f9-5649-49d5-8929-1774af07c5e2",
-                "resourcePath": "objects\\oCameraTransitionerRightUpe\\oCameraTransitionerRightUpe.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -535,26 +519,10 @@
             }
         },
         {
-            "Key": "4d3e9c65-2582-49f3-b41b-1e06582715a3",
-            "Value": {
-                "id": "a7d935cc-6b27-4d0b-bdda-f91d171a1b93",
-                "resourcePath": "objects\\oCameraTransitionerLeftMiddle\\oCameraTransitionerLeftMiddle.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "4d8e1e3b-913a-4681-86b4-a79a77acd542",
             "Value": {
                 "id": "84f17e75-e6f3-41a6-91e5-3a1b4f61d710",
                 "resourcePath": "objects\\oInit\\oInit.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "4ef40368-fa65-4f0c-a5ab-94706cf08731",
-            "Value": {
-                "id": "5b560379-8c0f-44b8-b1c9-45f1a8c18695",
-                "resourcePath": "objects\\oCameraTransitionerCenterUp\\oCameraTransitionerCenterUp.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -815,6 +783,14 @@
             }
         },
         {
+            "Key": "79b64242-417c-4d6e-8e4e-b9f09068f4c9",
+            "Value": {
+                "id": "cf4607c0-bf41-4ad7-b93c-ebe2e7be1115",
+                "resourcePath": "scripts\\player_jump_once\\player_jump_once.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7b989249-bbb0-4cd6-b2bb-b27ae04c962f",
             "Value": {
                 "id": "0c6bc0f1-d983-4ee3-a6ca-29a01db22ee1",
@@ -919,14 +895,6 @@
             }
         },
         {
-            "Key": "8ae1e751-4dba-469a-bff0-5157387320a6",
-            "Value": {
-                "id": "9996f69f-53e2-4f8a-b858-a5650c17d694",
-                "resourcePath": "objects\\oCameraTransitionerRightDowne\\oCameraTransitionerRightDowne.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "8c2f54e4-2fe1-41f3-a4c9-d9c2d5c0c631",
             "Value": {
                 "id": "e3182bb4-b63d-4767-8d53-05d2ae9afb60",
@@ -954,7 +922,7 @@
             "Key": "8f684f86-c292-4c35-a616-061c92cf37e4",
             "Value": {
                 "id": "68115905-0991-4ce1-964f-83eabd68a6a7",
-                "resourcePath": "objects\\oCamera\\oCamera.yy",
+                "resourcePath": "objects\\oGameCamera\\oGameCamera.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -1103,14 +1071,6 @@
             }
         },
         {
-            "Key": "ab40f9f5-fc46-481e-8110-8c6307afd416",
-            "Value": {
-                "id": "d83a3f5b-9a3b-4caa-afb1-3b586a5d1849",
-                "resourcePath": "objects\\oCameraTransitionerLeftUp\\oCameraTransitionerLeftUp.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "ab48b851-6fb2-462e-b4f7-77096a417a63",
             "Value": {
                 "id": "26477597-f82b-45d8-bb83-94dfb84bb617",
@@ -1124,30 +1084,6 @@
                 "id": "634d8e21-fc7b-44b8-ad88-a2f9baf7de7b",
                 "resourcePath": "scripts\\camera_set_mode\\camera_set_mode.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "ac057786-d8ca-4f2d-b587-24dfa8e5aa75",
-            "Value": {
-                "id": "dd47954f-9a97-48a7-8619-4ff2fdb49106",
-                "resourcePath": "objects\\oCameraTransitionerRightMiddlee\\oCameraTransitionerRightMiddlee.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "ad08d13e-db5d-40c2-a511-2bee91e90e58",
-            "Value": {
-                "id": "386ad6b4-70b9-4c3d-b236-543030101c98",
-                "resourcePath": "scripts\\camera_set_formation\\camera_set_formation.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "ad644152-2200-40f2-a806-0fa4bae40ef7",
-            "Value": {
-                "id": "0654ae43-6c6d-4d2e-be59-81e30289d48c",
-                "resourcePath": "views\\ad644152-2200-40f2-a806-0fa4bae40ef7.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -1394,7 +1330,7 @@
             "Key": "d3a0af41-87dd-4972-9689-cdacb2731080",
             "Value": {
                 "id": "c9a7cc88-35c7-4e02-8f96-154ab5902063",
-                "resourcePath": "scripts\\camera_set_area\\camera_set_area.yy",
+                "resourcePath": "scripts\\game_set_area\\game_set_area.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1655,14 +1591,6 @@
             }
         },
         {
-            "Key": "fd05a7e7-f9d6-485a-8066-12e82a0f7640",
-            "Value": {
-                "id": "4c38152c-494a-4353-8ed0-9f399da06d2c",
-                "resourcePath": "objects\\oCameraTransitionerCenterMiddle\\oCameraTransitionerCenterMiddle.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "fef71224-67ca-4ac2-89a4-4f431f22471b",
             "Value": {
                 "id": "c8366e85-dc27-4431-9578-387c1a0cc334",
@@ -1677,14 +1605,14 @@
         "ab48b851-6fb2-462e-b4f7-77096a417a63",
         "2b14e728-c4f4-4db8-bc3b-956136f36442",
         "a4c60548-e6ce-4a69-a06d-bac19c587919",
-        "ab7e9158-ac43-41bf-9234-f66e94d2ae59",
         "d3a0af41-87dd-4972-9689-cdacb2731080",
         "6b0b4996-f4c7-4b59-a071-aa0fef4f8a54",
-        "ad08d13e-db5d-40c2-a511-2bee91e90e58",
-        "12c45c12-8c97-48db-8e44-0e210a19ff25",
+        "ab7e9158-ac43-41bf-9234-f66e94d2ae59",
         "c0466549-d920-4b44-8be7-618a95da5f00",
         "6f4d5c6f-76a2-48dd-bdb6-ebecc8671401",
         "ae04801b-9428-4688-adb5-5ae21b92c3f4",
+        "12c45c12-8c97-48db-8e44-0e210a19ff25",
+        "79b64242-417c-4d6e-8e4e-b9f09068f4c9",
         "6377d903-0702-4b71-b892-038e9db08b34",
         "dcdf8ea6-76cb-455c-83e6-f0e1c3adf8de",
         "de2333dc-39c4-41dc-8d30-bdff99c4ace3"

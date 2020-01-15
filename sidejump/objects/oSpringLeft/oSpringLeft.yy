@@ -4,7 +4,16 @@
     "mvc": "1.0",
     "name": "oSpringLeft",
     "eventList": [
-        
+        {
+            "id": "5ee9a3aa-b395-4029-b61f-4039b8f11f64",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "f7942622-3a25-4718-9f63-d39c773c12a6"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,

@@ -1,7 +1,7 @@
 /// @description 입자 효과 선언
 //Generated for GMS2 in Geon FX v1.2.4
 //Put this code in Create event
-
+//*
 //firework dusty 1 Particle System
 ps = part_system_create();
 part_system_depth(ps, -1);

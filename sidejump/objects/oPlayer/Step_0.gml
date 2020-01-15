@@ -110,17 +110,18 @@ if dashing {
 			hanging = false
 			deaccel_hang_time = 0
 		} else if jump_execute {
-			//velocity_y = velocity_jump_hang
 			hanging = false
 
 			if movement_input != 0 and !solid_on_movement {
 				// 반대쪽으로 점프
-				velocity_x = movement_input * velocity_jump_push_rebound
-				player_jump(speed_jump_hang_bounce)
+				velocity_x = movement_input * velocity_move_rebound
+				//player_jump(speed_jump_hang_bounce)
+				player_jump_once(velocity_jump_bounce)
 				player_preserve_hspeed()
 				imxs = movement_input
 			} else {
-				player_jump(speed_jump_hang)
+				//player_jump(speed_jump_hang)
+				player_jump_once(velocity_jump_hang)
 				player_prohibit_moving()
 			}
 			player_prohibit_jumping()
@@ -162,41 +163,44 @@ if dashing {
 			if solid_on_both {
 				// 양쪽에 벽이 있다.
 				velocity_x = 0
-				//velocity_y = velocity_jump
-				player_jump(speed_jump_normal)
+				//player_jump(speed_jump_normal)
+				player_jump_once(velocity_jump)
 				player_prohibit_jumping()
 				player_preserve_hspeed()
 			} else if solid_on_bottom or cliffoff_jump_available {
 				// 바닥에 벽이 있거나 모서리 점프가 가능하다.
-				//velocity_y = velocity_jump
-				player_jump(speed_jump_normal)
+				//player_jump(speed_jump_normal)
+				player_jump_once(velocity_jump)
 			} else if solid_on_horizontal != 0 or jump_sideoff_time < jump_sideoff_period {
 				// 한쪽 벽에 붙어있다.
 				if solid_on_horizontal == imxs {
 					// 벽을 보고 붙어있다.
 					if place_free(x + imxs, y - slope_upper_limit) {
-						player_jump(speed_jump_rebound)
+						//player_jump(speed_jump_rebound)
+						player_jump_once(velocity_jump_rebound)
 					} else if global.io_up {
-						velocity_x = -velocity_jump_push_rebound_upper * imxs
-						player_jump(speed_jump_rebound_upper)
+						velocity_x = -velocity_move_rebound_upper * imxs
+						//player_jump(speed_jump_rebound_upper)
+						player_jump_once(velocity_jump_rebound_upper)
 						player_prohibit_moving()
 						player_preserve_hspeed()
 					} else {
-						velocity_x = -velocity_jump_push_rebound * imxs
-						player_jump(speed_jump_rebound)
+						velocity_x = -velocity_move_rebound * imxs
+						//player_jump(speed_jump_rebound)
+						player_jump_once(velocity_jump_rebound)
 						player_prohibit_moving()
 						player_preserve_hspeed()
 					}
 					//velocity_y = velocity_jump_rebound
 					player_prohibit_jumping()
 				} else { // 벽을 등지고 붙어있다.
-					velocity_x = velocity_jump_push_bounce * imxs
+					velocity_x = velocity_move_bounce * imxs
 					if movement_input != 0
-						player_jump(speed_jump_rebound)
-						//velocity_y = velocity_jump_rebound
+						//player_jump(speed_jump_rebound)
+						player_jump_once(velocity_jump_rebound)
 					else
-						player_jump(speed_jump_bounce)
-						//velocity_y = velocity_jump_bounce
+						//player_jump(speed_jump_bounce)
+						player_jump_once(velocity_jump_bounce)
 					player_prohibit_moving()
 					player_prohibit_jumping()
 					player_preserve_hspeed()
@@ -205,8 +209,9 @@ if dashing {
 				// 벽에 붙어있지 않다.
 				if solid_on_direction {
 					imxs *= -1
-					velocity_x = velocity_jump_push_bounce * imxs
-					player_jump(speed_jump_bounce)
+					velocity_x = velocity_move_bounce * imxs
+					//player_jump(speed_jump_bounce)
+					player_jump_once(velocity_jump_bounce)
 					player_prohibit_moving()
 					player_preserve_hspeed()
 				}
@@ -218,23 +223,32 @@ if dashing {
 				cliffoff = false
 			}
 		} // IF jump_execute
-
-		if jump_time < jump_period {
-			velocity_y = -speed_jump
-			velocity_gravity = 0
-		}
 	#endregion
 	} // ELSE
 }
 
 if global.io_released_jump {
-	jump_time = jump_period
+	
 }
 
 event_inherited()
 
 if solid_on_bottom {
 	event_user(9)
+
+	var breakblock_when_hang = instance_place(x + imxs, y, oBreakableBlock)
+	var breakblock_when_thud = instance_place(x, y + 1, oBreakableBlock)
+	if hanging {
+		if instance_exists(breakblock_when_hang) {
+			with breakblock_when_hang
+				event_user(0)
+		}
+	} else {
+		if instance_exists(breakblock_when_thud) {
+			with breakblock_when_thud
+				event_user(0)
+		}
+	}
 }
 
 if 0 < jump_forbid_time {
@@ -250,13 +264,6 @@ if 0 < movement_forbid_time {
 if 0 < movement_preserve_time {
 	if --movement_preserve_time < 0
 		movement_preserve_time = 0
-}
-
-if jump_time < jump_period {
-	if jump_period < ++jump_time
-		jump_time = jump_period
-} else {
-	velocity_gravity = velocity_gravity_normal
 }
 
 if jump_sideoff_time < jump_sideoff_period {

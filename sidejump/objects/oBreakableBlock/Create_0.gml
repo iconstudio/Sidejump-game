@@ -1,6 +1,6 @@
 breaking = false
 
-life_max = seconds(2)
+life_max = seconds(1.5)
 life = life_max
 respawn_time = 0
 respawn_period = seconds(4.5)

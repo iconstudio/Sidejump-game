@@ -1,7 +1,7 @@
 /// @description camera_set_mode(mode)
 /// @function camera_set_mode
 /// @param mode { enumerate }
-with oCamera {
+with oGameCamera {
 	if mode != argument0 {
 		mode = argument0
 		camerawork_time = 0

@@ -3,7 +3,7 @@ status = 0
 
 velocity_x = 0
 velocity_y = 0
-velocity_gravity_normal = 7
+velocity_gravity_normal = 8.2
 velocity_gravity_water = 1.5
 velocity_gravity = velocity_gravity_normal
 
@@ -21,4 +21,5 @@ velocity_y_max = 240
 
 imxs = 1
 cliffoff = false
+slope_climbable = false
 slope_upper_limit = 2

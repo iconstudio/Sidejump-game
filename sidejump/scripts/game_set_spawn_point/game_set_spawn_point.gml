@@ -2,5 +2,5 @@
 /// @function game_set_spawn_point
 /// @param point { instance }
 with oGameGlobal
-	home = argument0
+	global.game_spawnspot = argument0
 

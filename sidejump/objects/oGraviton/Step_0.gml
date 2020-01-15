@@ -5,11 +5,13 @@ if velocity_x != 0 {
 	
 	if instance_place(check_x, y, oNonsolidBlock) {
 		if 0 < velocity_x_real {
-			for (var i = velocity_x_real; !instance_place(x + 1, y, oNonsolidBlock); --i)
+			for (var i = velocity_x_real; !instance_place(x + 1, y, oNonsolidBlock); --i) {
 				x++
+			}
 		} else if velocity_x_real < 0 {
-			for (var i = -velocity_x_real; !instance_place(x - 1, y, oNonsolidBlock); --i)
+			for (var i = -velocity_x_real; !instance_place(x - 1, y, oNonsolidBlock); --i) {
 				x--
+			}
 		}
 		velocity_x = 0
 	} else if place_free(check_x, y) {
@@ -21,7 +23,7 @@ if velocity_x != 0 {
 
 		if cliffoff_check and place_free(x, y + 1)
 			cliffoff = true
-	} else if place_free(check_x, y - slope_upper_limit) {
+	} else if slope_climbable and place_free(check_x, y - slope_upper_limit) {
 		x += velocity_x_real
 		y -= slope_upper_limit
 		if velocity_y <= 0
@@ -34,6 +36,8 @@ if velocity_x != 0 {
 	}
 }
 
+if place_free(x, y + 1)
+	velocity_y += velocity_gravity
 if velocity_y != 0 {
 	var velocity_y_real = velocity(velocity_y)
 	move_vertical(velocity_y_real)
@@ -46,8 +50,6 @@ if velocity_y != 0 {
 			event_user(12)
 	}
 }
-if place_free(x, y + 1)
-	velocity_y += velocity_gravity
 
 if 0 < velocity_y and velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
 	velocity_y = velocity_y_max_in_gravity
