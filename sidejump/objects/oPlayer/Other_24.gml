@@ -12,8 +12,3 @@ if velocity_y != 0 and friction_y != 0 {
 	else
 		velocity_y -= friction_y * sign(velocity_y)
 }
-
-if place_free(x, y + 1)
-	friction_x = friction_x_air
-else
-	friction_x = friction_x_ground

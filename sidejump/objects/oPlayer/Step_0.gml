@@ -47,6 +47,11 @@ if dashing {
 	accel_y = global.io_down - global.io_up
 	#endregion
 	#region presets
+	if 0 < movement_preserve_time {
+		velocity_x = movement_preserve_velocity
+		show_debug_message(velocity_x)
+		show_debug_message(movement_preserve_velocity)
+	}
 	var accel_direction = sign(accel_x)
 	var jump_available = place_free(x, y - 1) and jump_forbid_time == 0
 	var jump_execute = (global.io_pressed_jump or jump_fore_available) and jump_available
@@ -81,23 +86,27 @@ if dashing {
 		}
 	}
 	var solid_on_both = solid_on_horizontal == BOTH
-	if movement_preserve_time == 0
-		velocity_x_limit = velocity_x_limit_normal
-	else
-		velocity_x_limit = movement_preserve_velocity
+	if solid_on_horizontal != NONE {
+		if imxs < 0
+			hang_block_number = collision_line_list(bbox_left - 1, bbox_top + 1, bbox_left - 1, y, oSolidParent, false, true, hang_block_list, false)
+		else
+			hang_block_number = collision_line_list(bbox_right + 1, bbox_top + 1, bbox_right + 1, y, oSolidParent, false, true, hang_block_list, false)
+	} else {
+		hang_block_number = 0
+	}
 	#endregion
 
 	// 매달리기
 	if !global.io_hang
 		hanging = false
-	if solid_on_horizontal == imxs and jump_period <= jump_time {
+	if solid_on_horizontal == imxs {
 		// 양쪽에 벽이 있으면 언제든지 매달릴 수 있다.
 		if global.io_hang {
 			if !hanging {
 				velocity_x = 0
-				jumping = false
+				event_user(9)
 				hanging = true
-				grabbing = false
+				movement_preserve_time = 0
 				deaccel_hang_velocity_begin = velocity_y
 				deaccel_hang_time = 0
 			}
@@ -106,7 +115,7 @@ if dashing {
 
 	if hanging {
 		// 매달린 상태
-		if solid_on_horizontal != imxs {
+		if hang_block_number == 0 {
 			hanging = false
 			deaccel_hang_time = 0
 		} else if jump_execute {
@@ -120,24 +129,34 @@ if dashing {
 				player_preserve_hspeed()
 				imxs = movement_input
 			} else {
-				//player_jump(speed_jump_hang)
-				player_jump_once(velocity_jump_hang)
-				player_prohibit_moving()
+				if movement_input != 0 and solid_on_movement and place_free(x + movement_input, bbox_top - 4) {
+					player_jump_once(velocity_jump)
+				} else if global.io_up {
+					player_jump_once(velocity_jump_rebound_upper)
+				} else {
+					player_jump_once(velocity_jump_hang)
+				}
+				hang_slope_time = 0
+				slope_climbable = true
 			}
 			player_prohibit_jumping()
-		} else if hanging {
+		} else {
 			if deaccel_hang_time < deaccel_hang_period {
 				velocity_y = lerp(deaccel_hang_velocity_begin, 0, deaccel_hang_time / deaccel_hang_period)
 				deaccel_hang_time++
 			} else {
 				deaccel_hang_time = deaccel_hang_period
 				velocity_y = accel_y * velocity_hanging
-				//move_vertical(velocity_y)
 			}
 			//velocity_y = accel_y * velocity_hanging
 		}
 	} else {
 		#region normal
+		if !solid_on_bottom
+			friction_x = friction_x_air
+		else
+			friction_x = friction_x_ground
+
 		// 일반 상태
 		if accel_x != 0 {
 			// 이동
@@ -236,17 +255,23 @@ event_inherited()
 if solid_on_bottom {
 	event_user(9)
 
-	var breakblock_when_hang = instance_place(x + imxs, y, oBreakableBlock)
-	var breakblock_when_thud = instance_place(x, y + 1, oBreakableBlock)
-	if hanging {
-		if instance_exists(breakblock_when_hang) {
-			with breakblock_when_hang
-				event_user(0)
-		}
-	} else {
+	var breakblock_when_thud = collision_point(x, bbox_bottom + 1, oBreakableBlock, false, true)
+	if !dashing and !hanging {
 		if instance_exists(breakblock_when_thud) {
 			with breakblock_when_thud
 				event_user(0)
+		}
+	}
+} else {
+	if hanging {
+		if 0 < hang_block_number {
+			for (var i = 0; i < hang_block_number; ++i) {
+				var ablock = ds_list_find_value(hang_block_list, i)
+				if instance_exists(ablock) and (ablock.object_index == oBreakableBlock or object_get_parent(ablock.object_index) == oBreakableBlock) {
+					with ablock
+						event_user(0)
+				}
+			}
 		}
 	}
 }
@@ -259,6 +284,14 @@ if 0 < jump_forbid_time {
 if 0 < movement_forbid_time {
 	if --movement_forbid_time < 0
 		movement_forbid_time = 0
+}
+
+if hang_slope_time < hang_slope_period {
+	if hang_slope_period <= hang_slope_time++
+		hang_slope_time = hang_slope_period
+} else {
+	hang_slope_time = hang_slope_period
+	slope_climbable = false
 }
 
 if 0 < movement_preserve_time {

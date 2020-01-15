@@ -16,7 +16,7 @@
         "800bb0cb-0b99-487c-822b-0d776c6bef6b"
     ],
     "filterType": "GMSprite",
-    "folderName": "Entity Traps",
+    "folderName": "Traps",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

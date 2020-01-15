@@ -8,7 +8,7 @@
         "7548eb83-42ea-424d-b33a-777571973459"
     ],
     "filterType": "GMSprite",
-    "folderName": "Entity Doodads",
+    "folderName": "Doodads",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

@@ -2,4 +2,3 @@
 move_vertical(velocity(velocity_x) - 1)
 y = floor(y)
 velocity_y *= 0.5
-jump_time = jump_period

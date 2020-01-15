@@ -1,10 +1,9 @@
 /// @description 초기화
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지만 안드로이드만 지원
 global.flag_is_browser = (os_browser == browser_not_a_browser)
-#macro SECOND 100 // == seconds(100)
+#macro SECOND 100 // == seconds(1)
 game_set_speed(100, gamespeed_fps)
 
-//window_set_fullscreen(true)
 device_mouse_dbclick_enable(false)
 
 #region 화면
@@ -17,11 +16,26 @@ display_set_timing_method(tm_countvsyncs)
 
 if global.flag_is_mobile {
 	display_set_sleep_margin(4)
+	window_set_fullscreen(true)
 	os_powersave_enable(false)
 } else if global.flag_is_browser {
 	display_set_sleep_margin(30)
 } else {
 	window_set_position(window_get_x(), 0)
+	var display_width = display_get_width()
+	if display_width < 1280 {
+		window_set_size(960, 480)
+	} else if display_width < 1600 {
+		window_set_size(1280, 640)
+	} else if display_width < 1920 {
+		window_set_size(1600, 800)
+	} else {
+		window_set_size(1920, 960)
+	}
+	for (var i = room_first; room_exists(i); i = room_next(i)) {
+		
+	}
+	
 	display_set_sleep_margin(20)
 }
 display_set_gui_maximize()
@@ -46,7 +60,7 @@ if global.shader_supported {
 global.shaderFXAA_texel = shader_get_uniform(shaderFXAA, "u_texel")
 global.shaderFXAA_strength = shader_get_uniform(shaderFXAA, "u_strength")
 global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
-
+global.shaderPlayerGlow_player_position = shader_get_uniform(shaderPlayerGlow, "player_position")
 #endregion
 
 #region 그래픽
