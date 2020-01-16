@@ -5,6 +5,31 @@
     "name": "tilesetBackgrounds",
     "auto_tile_sets": [
         {
+            "id": "2f584473-bc36-4c2c-81ea-ca01ef870d84",
+            "modelName": "GMAutoTileSet",
+            "mvc": "1.0",
+            "closed_edge": false,
+            "name": "Dark Blue Stones",
+            "tiles": [
+                30,
+                60,
+                61,
+                14,
+                62,
+                29,
+                28,
+                13,
+                63,
+                44,
+                31,
+                15,
+                46,
+                45,
+                47,
+                0
+            ]
+        },
+        {
             "id": "c0e9b407-9fd2-4b66-84f6-27a6eccc5ddf",
             "modelName": "GMAutoTileSet",
             "mvc": "1.0",
@@ -51,31 +76,6 @@
                 38,
                 37,
                 39,
-                0
-            ]
-        },
-        {
-            "id": "2f584473-bc36-4c2c-81ea-ca01ef870d84",
-            "modelName": "GMAutoTileSet",
-            "mvc": "1.0",
-            "closed_edge": false,
-            "name": "Dark Blue Stones",
-            "tiles": [
-                30,
-                60,
-                61,
-                14,
-                62,
-                29,
-                28,
-                13,
-                63,
-                44,
-                31,
-                15,
-                46,
-                45,
-                47,
                 0
             ]
         }

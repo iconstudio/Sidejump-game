@@ -11,7 +11,7 @@ application_surface_enable(true)
 application_surface_draw_enable(false)
 
 surface_depth_disable(true)
-display_reset(8, true)
+display_reset(8, false)
 display_set_timing_method(tm_countvsyncs)
 
 if global.flag_is_mobile {
@@ -36,7 +36,7 @@ if global.flag_is_mobile {
 		
 	}
 	
-	display_set_sleep_margin(20)
+	display_set_sleep_margin(10)
 }
 display_set_gui_maximize()
 #endregion

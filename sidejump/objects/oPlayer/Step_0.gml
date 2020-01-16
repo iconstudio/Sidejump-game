@@ -49,8 +49,8 @@ if dashing {
 	#region presets
 	if 0 < movement_preserve_time {
 		velocity_x = movement_preserve_velocity
-		show_debug_message(velocity_x)
-		show_debug_message(movement_preserve_velocity)
+		//show_debug_message(velocity_x)
+		//show_debug_message(movement_preserve_velocity)
 	}
 	var accel_direction = sign(accel_x)
 	var jump_available = place_free(x, y - 1) and jump_forbid_time == 0
@@ -132,7 +132,7 @@ if dashing {
 				if movement_input != 0 and solid_on_movement and place_free(x + movement_input, bbox_top - 4) {
 					player_jump_once(velocity_jump)
 				} else if global.io_up {
-					player_jump_once(velocity_jump_rebound_upper)
+					player_jump_once(velocity_jump_hang_upper)
 				} else {
 					player_jump_once(velocity_jump_hang)
 				}

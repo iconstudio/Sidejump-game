@@ -18,8 +18,9 @@ accel_y = 0
 velocity_hanging = 4
 
 // 점프 속도
-velocity_jump = -180
+velocity_jump = -175
 velocity_jump_hang = -120
+velocity_jump_hang_upper = -150
 velocity_jump_bounce = -180
 velocity_jump_rebound = -180
 velocity_jump_rebound_upper = -200

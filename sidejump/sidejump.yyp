@@ -1383,6 +1383,14 @@
             }
         },
         {
+            "Key": "d85c8f1c-0059-4614-bb95-0b9024c68129",
+            "Value": {
+                "id": "16d63978-be29-4554-8422-ca16899300ce",
+                "resourcePath": "sprites\\sBreakableBlockDots\\sBreakableBlockDots.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "d9639578-8d8e-4cf6-bd11-c6505df39c31",
             "Value": {
                 "id": "7e5bd256-7bcc-4a10-9161-fac77aa7fa12",
