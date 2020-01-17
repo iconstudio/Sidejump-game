@@ -2,8 +2,6 @@ breaking = false
 
 life_max = seconds(1)
 life = life_max
-respawn_time = 0
-respawn_period = seconds(4)
 
 draw_ax = 0
 draw_ay = 0

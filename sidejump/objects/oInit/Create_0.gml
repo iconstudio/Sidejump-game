@@ -2,13 +2,12 @@
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지만 안드로이드만 지원
 global.flag_is_browser = (os_browser == browser_not_a_browser)
 #macro SECOND 100 // == seconds(1)
-game_set_speed(100, gamespeed_fps)
 
 device_mouse_dbclick_enable(false)
 
 #region 화면
 application_surface_enable(true)
-application_surface_draw_enable(false)
+application_surface_draw_enable(true)
 
 surface_depth_disable(true)
 display_reset(8, false)
@@ -21,24 +20,12 @@ if global.flag_is_mobile {
 } else if global.flag_is_browser {
 	display_set_sleep_margin(30)
 } else {
-	window_set_position(window_get_x(), 0)
-	var display_width = display_get_width()
-	if display_width < 1280 {
-		window_set_size(960, 480)
-	} else if display_width < 1600 {
-		window_set_size(1280, 640)
-	} else if display_width < 1920 {
-		window_set_size(1600, 800)
-	} else {
-		window_set_size(1920, 960)
-	}
-	for (var i = room_first; room_exists(i); i = room_next(i)) {
-		
-	}
-	
 	display_set_sleep_margin(10)
 }
-display_set_gui_maximize()
+display_width = display_get_width()
+display_height = display_get_height()
+window_size = []
+
 #endregion
 
 #region 음성
@@ -155,7 +142,7 @@ enum theme {
 }
 
 enum camera_mode {
-	dynamic,
+	follow,
 	fixed,
 	cutscene,
 	transition

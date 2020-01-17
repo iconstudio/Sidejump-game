@@ -26,8 +26,8 @@ velocity_jump_rebound = -180
 velocity_jump_rebound_upper = -200
 
 // 벽 밀어내기 속력
-velocity_move_bounce = 135
-velocity_move_rebound = 120
+velocity_move_bounce = 125
+velocity_move_rebound = 110
 velocity_move_rebound_upper = 48
 
 // 상태 플래그

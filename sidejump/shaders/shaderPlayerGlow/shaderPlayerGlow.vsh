@@ -13,7 +13,6 @@ void main()
 		vec4 object_space_pos = vec4( in_Position.x, in_Position.y, in_Position.z, 1.0);
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * object_space_pos;
 		
-		vec4 temp = vec4(240.0, 295.0, 0.0, 0.0);
 		if (player_position.x == -1.0 && player_position.y == -1.0) {
 			player_distance = 9999.0;
 		} else {

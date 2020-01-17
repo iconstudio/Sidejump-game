@@ -283,6 +283,31 @@
                 360,
                 252
             ]
+        },
+        {
+            "id": "bd267af8-baf1-4b3c-a8eb-28dddc64cb56",
+            "modelName": "GMAutoTileSet",
+            "mvc": "1.0",
+            "closed_edge": false,
+            "name": "autotile_1",
+            "tiles": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
         }
     ],
     "macroPageTiles": {

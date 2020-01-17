@@ -1,5 +1,6 @@
 area_previous = noone
-mode = camera_mode.dynamic
+area_is_small = false
+mode = camera_mode.follow
 target = oPlayer
 
 width = 480
@@ -25,9 +26,6 @@ CLEARING = 2
 camerawork_status = CLEARING
 camerawork_coordinate_begin = [0, 0]
 camerawork_coordinate_target = [0, 0]
-
 camerawork_transition_period = seconds(0.9)
 camerawork_period = seconds(0.9)
 camerawork_time = camerawork_period
-camerawork_transition_direction = [0, 0]
-camerawork_transition_horizontal_velocity = floor(width / camerawork_period)

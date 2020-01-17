@@ -2,57 +2,67 @@
 if velocity_x != 0 {
 	var velocity_x_real = velocity(velocity_x)
 	var check_x = x + velocity_x_real + sign(velocity_x_real)
+
+	var cliffoff_check = false
 	
-	if instance_place(check_x, y, oNonsolidBlock) {
-		if 0 < velocity_x_real {
-			for (var i = velocity_x_real; !instance_place(x + 1, y, oNonsolidBlock); --i) {
-				x++
+	if 0 < velocity_x_real {
+		if check_right(velocity_x_real) {
+			if slope_climbable and !check_line(check_x, y - slope_upper_limit) {
+				x += velocity_x_real
+				y -= slope_upper_limit
+				if velocity_y <= 0
+					move_vertical(slope_upper_limit)
+			} else {
+				move_horizontal(velocity_x_real)
+				event_user(10)
 			}
-		} else if velocity_x_real < 0 {
-			for (var i = -velocity_x_real; !instance_place(x - 1, y, oNonsolidBlock); --i) {
-				x--
-			}
+		} else {
+			if !cliffoff and 0 <= velocity_y cliffoff_check = check_bottom(1)
+			x += velocity_x_real
+			if cliffoff_check and !check_bottom(1) cliffoff = true
 		}
-		velocity_x = 0
-	} else if place_free(check_x, y) {
-		var cliffoff_check = false
-		if !cliffoff and 0 <= velocity_y
-			cliffoff_check = !place_free(x, y + 1)
-
-		x += velocity_x_real
-
-		if cliffoff_check and place_free(x, y + 1)
-			cliffoff = true
-	} else if slope_climbable and place_free(check_x, y - slope_upper_limit) {
-		x += velocity_x_real
-		y -= slope_upper_limit
-		if velocity_y <= 0
-			move_contact_solid(270, slope_upper_limit)
 	} else {
-		if 0 < velocity_x_real
-			event_user(10)
-		else if velocity_x_real < 0
-			event_user(11)
+		if check_left(-velocity_x_real) {
+			if slope_climbable and !check_line(check_x, y - slope_upper_limit) {
+				x += velocity_x_real
+				y -= slope_upper_limit
+				if velocity_y <= 0
+					move_vertical(slope_upper_limit)
+			} else {
+				move_horizontal(velocity_x_real)
+				event_user(11)
+			}
+		} else {
+			if !cliffoff and 0 <= velocity_y cliffoff_check = check_bottom(1)
+			x += velocity_x_real
+			if cliffoff_check and !check_bottom(1) cliffoff = true
+		}
 	}
 }
 
-if place_free(x, y + 1)
+if !check_bottom(1)
 	velocity_y += velocity_gravity
-if velocity_y != 0 {
-	var velocity_y_real = velocity(velocity_y)
-	move_vertical(velocity_y_real)
-
-	var check_y = velocity_y_real < 0 ? y - 1 : y + 1
-	if !place_free(x, check_y) {
-		if velocity_y_real < 0
-			event_user(13)
-		else
-			event_user(12)
-	}
-}
-
 if 0 < velocity_y and velocity_y_max_in_gravity - velocity_y < velocity_y_gap_in_gravity
 	velocity_y = velocity_y_max_in_gravity
+
+if velocity_y != 0 {
+	var velocity_y_real = velocity(velocity_y)
+	if 0 < velocity_y_real {
+		if check_bottom(velocity_y_real) {
+			move_vertical(velocity_y_real + 1)
+			event_user(13)
+		} else {
+			y += velocity_y_real
+		}
+	} else {
+		if check_top(-velocity_y_real) {
+			move_vertical(velocity_y_real - 1)
+			event_user(12)
+		} else {
+			y += velocity_y_real
+		}
+	}
+}
 
 event_user(14)
 

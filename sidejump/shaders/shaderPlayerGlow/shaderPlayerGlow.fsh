@@ -9,6 +9,7 @@ void main()
 {
 	const float glow_range_inner = 24.0;
 	const float glow_range_outer = 24.0;
+	const float glow_color = 32.0 / 255.0; 
 	float distance_factor;
 	
 	if (player_distance < glow_range_inner) {
@@ -20,7 +21,7 @@ void main()
 	}
 	
 	vec4 result = texture2D(gm_BaseTexture, v_vTexcoord);
-	result += distance_factor * vec4(0.1, 0.1, 0.1, 0.0);
+	result += distance_factor * vec4(glow_color, glow_color, glow_color, 0.0);
 	
 	gl_FragColor = v_vColour * result;
 }

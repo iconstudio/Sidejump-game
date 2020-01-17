@@ -53,15 +53,15 @@ if dashing {
 		//show_debug_message(movement_preserve_velocity)
 	}
 	var accel_direction = sign(accel_x)
-	var jump_available = place_free(x, y - 1) and jump_forbid_time == 0
+	var solid_on_movement = !place_free(x + movement_input, y)
+	var jump_available = !check_top(1) and jump_forbid_time == 0
 	var jump_execute = (global.io_pressed_jump or jump_fore_available) and jump_available
-	var solid_on_left = !place_free(x - 1, y)
-	var solid_on_right = !place_free(x + 1, y)
+	var solid_on_left = check_left_solid(1)
+	var solid_on_right = check_right_solid(1)
 	var solid_on_left_long = false
 	var solid_on_right_long = false
-	var solid_on_movement = !place_free(x + movement_input, y)
 	var solid_on_direction = false
-	var solid_on_bottom = !place_free(x, y + 1)
+	var solid_on_bottom = check_bottom(1)
 	if solid_on_left and solid_on_right {
 		solid_on_horizontal = BOTH
 	} else {
@@ -74,17 +74,15 @@ if dashing {
 
 		if velocity_x != 0 {
 			var velocity_x_real = velocity(velocity_x)
-			solid_on_left_long = !place_free(x + velocity_x_real - 1, y)
-			solid_on_right_long = !place_free(x + velocity_x_real + 1, y)
+			solid_on_left_long = velocity_x < 0 ? check_left_solid(abs(velocity_x_real) + 1) : false
+			solid_on_right_long = 0 < velocity_x ? check_right_solid(abs(velocity_x_real) + 1) : false
+			solid_on_direction = solid_on_left_long or solid_on_right_long
 		} else {
 			solid_on_left_long = solid_on_left
 			solid_on_right_long = solid_on_right
 		}
-		if velocity_x != 0 {
-			if (solid_on_left_long and velocity_x < 0) or (solid_on_right_long and 0 < velocity_x)
-				solid_on_direction = true
-		}
 	}
+
 	var solid_on_both = solid_on_horizontal == BOTH
 	if solid_on_horizontal != NONE {
 		if imxs < 0
@@ -129,9 +127,7 @@ if dashing {
 				player_preserve_hspeed()
 				imxs = movement_input
 			} else {
-				if movement_input != 0 and solid_on_movement and place_free(x + movement_input, bbox_top - 4) {
-					player_jump_once(velocity_jump)
-				} else if global.io_up {
+				if global.io_up {
 					player_jump_once(velocity_jump_hang_upper)
 				} else {
 					player_jump_once(velocity_jump_hang)
@@ -148,7 +144,6 @@ if dashing {
 				deaccel_hang_time = deaccel_hang_period
 				velocity_y = accel_y * velocity_hanging
 			}
-			//velocity_y = accel_y * velocity_hanging
 		}
 	} else {
 		#region normal
@@ -182,43 +177,32 @@ if dashing {
 			if solid_on_both {
 				// 양쪽에 벽이 있다.
 				velocity_x = 0
-				//player_jump(speed_jump_normal)
 				player_jump_once(velocity_jump)
 				player_prohibit_jumping()
 				player_preserve_hspeed()
 			} else if solid_on_bottom or cliffoff_jump_available {
 				// 바닥에 벽이 있거나 모서리 점프가 가능하다.
-				//player_jump(speed_jump_normal)
 				player_jump_once(velocity_jump)
 			} else if solid_on_horizontal != 0 or jump_sideoff_time < jump_sideoff_period {
 				// 한쪽 벽에 붙어있다.
 				if solid_on_horizontal == imxs {
 					// 벽을 보고 붙어있다.
-					if place_free(x + imxs, y - slope_upper_limit) {
-						//player_jump(speed_jump_rebound)
-						player_jump_once(velocity_jump_rebound)
-					} else if global.io_up {
+					if global.io_up {
 						velocity_x = -velocity_move_rebound_upper * imxs
-						//player_jump(speed_jump_rebound_upper)
 						player_jump_once(velocity_jump_rebound_upper)
-						player_prohibit_moving()
 						player_preserve_hspeed()
 					} else {
 						velocity_x = -velocity_move_rebound * imxs
-						//player_jump(speed_jump_rebound)
 						player_jump_once(velocity_jump_rebound)
 						player_prohibit_moving()
 						player_preserve_hspeed()
 					}
-					//velocity_y = velocity_jump_rebound
 					player_prohibit_jumping()
 				} else { // 벽을 등지고 붙어있다.
 					velocity_x = velocity_move_bounce * imxs
 					if movement_input != 0
-						//player_jump(speed_jump_rebound)
 						player_jump_once(velocity_jump_rebound)
 					else
-						//player_jump(speed_jump_bounce)
 						player_jump_once(velocity_jump_bounce)
 					player_prohibit_moving()
 					player_prohibit_jumping()
@@ -229,7 +213,6 @@ if dashing {
 				if solid_on_direction {
 					imxs *= -1
 					velocity_x = velocity_move_bounce * imxs
-					//player_jump(speed_jump_bounce)
 					player_jump_once(velocity_jump_bounce)
 					player_prohibit_moving()
 					player_preserve_hspeed()

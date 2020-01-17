@@ -1,16 +1,17 @@
 // 2 : 1
-var default_width = 960
-var default_height = 480
-var window_width = window_get_width()
-var window_height = window_get_height()
-var gui_width = display_get_gui_width()
-var gui_height = display_get_gui_height()
+if display_width < 1280 {
+	window_size = [960, 480]
+} else if display_width < 1600 {
+	window_size = [1280, 640]
+} else {
+	window_size = [1600, 800]
+}
 
-surface_resize(application_surface, window_width, window_width * 0.5)
-global.application_texture = surface_get_texture(application_surface)
-global.application_offset = application_get_position()
-global.resolutions_default = [default_width, default_height]
-global.resolutions = [window_width, window_height]
-global.resolutions_gui = [gui_width, gui_height]
+for (var i = room_first; room_exists(i); i = room_next(i)) {
+	room_set_viewport(i, 0, true, 0, 0, window_size[0], window_size[1])
+}
 
-room_goto_next()
+window_set_size(window_size[0], window_size[1])
+window_set_position((display_width - window_size[0]) * 0.5, (display_height - window_size[1]) * 0.5)
+
+alarm[1] = 1
