@@ -239,14 +239,6 @@
             }
         },
         {
-            "Key": "12c45c12-8c97-48db-8e44-0e210a19ff25",
-            "Value": {
-                "id": "b5aa34ce-95e1-439a-ba5c-4aebd16e9e9b",
-                "resourcePath": "scripts\\player_jump\\player_jump.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "181bc980-a30f-4055-824a-0ee45a7d4d44",
             "Value": {
                 "id": "e99b6a00-d1a4-4ed6-bbb6-c32b39eeeb29",
@@ -623,6 +615,14 @@
             }
         },
         {
+            "Key": "5274ab72-7190-4c3d-a02e-8d7b32b81c62",
+            "Value": {
+                "id": "645bdd58-9242-4c55-86ad-eed944b5df77",
+                "resourcePath": "objects\\oMainMenu\\oMainMenu.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "5498c6a0-43fc-429a-a553-7df4bdb41645",
             "Value": {
                 "id": "45dc485a-fc54-493e-941b-ad14b1696330",
@@ -642,7 +642,7 @@
             "Key": "54f2f3e6-fcee-42cf-8adf-84648843e7dc",
             "Value": {
                 "id": "c28736d7-a51a-4fd6-abdd-95c499529ed2",
-                "resourcePath": "sprites\\sTilesetTest\\sTilesetTest.yy",
+                "resourcePath": "sprites\\sTilesetTerrain\\sTilesetTerrain.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -1375,6 +1375,14 @@
             }
         },
         {
+            "Key": "bfa0a71e-d15a-482c-879c-65b15c381f17",
+            "Value": {
+                "id": "1108f9c3-1510-48bc-b50d-ca3145f9128c",
+                "resourcePath": "sprites\\sTilesetTemp\\sTilesetTemp.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "c0466549-d920-4b44-8be7-618a95da5f00",
             "Value": {
                 "id": "e1c06cfa-0373-4f5a-b3bf-bbd77c38c415",
@@ -1591,6 +1599,14 @@
             }
         },
         {
+            "Key": "dfa6a5e2-497b-475b-a13c-c5ba39c3d79b",
+            "Value": {
+                "id": "615658d7-5e22-4aea-8f42-372a011dba42",
+                "resourcePath": "sprites\\sTitle\\sTitle.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "e3f8b453-b17e-4ad3-b0f2-1e0147377b3a",
             "Value": {
                 "id": "cedff7bf-962a-492a-a130-902339b99c28",
@@ -1803,7 +1819,6 @@
         "c0466549-d920-4b44-8be7-618a95da5f00",
         "6f4d5c6f-76a2-48dd-bdb6-ebecc8671401",
         "ae04801b-9428-4688-adb5-5ae21b92c3f4",
-        "12c45c12-8c97-48db-8e44-0e210a19ff25",
         "79b64242-417c-4d6e-8e4e-b9f09068f4c9",
         "6377d903-0702-4b71-b892-038e9db08b34",
         "dcdf8ea6-76cb-455c-83e6-f0e1c3adf8de",

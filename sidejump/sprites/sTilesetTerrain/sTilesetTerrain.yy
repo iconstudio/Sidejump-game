@@ -2,7 +2,7 @@
     "id": "54f2f3e6-fcee-42cf-8adf-84648843e7dc",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "sTilesetTest",
+    "name": "sTilesetTerrain",
     "For3D": false,
     "HTile": false,
     "VTile": false,
@@ -29,18 +29,18 @@
             },
             "images": [
                 {
-                    "id": "ba0ef693-81db-4ae3-9e04-3e97f9451490",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "2dcad0a5-064f-4ad1-8668-e6a48539462c",
-                    "LayerId": "30f3e098-c9c6-40cc-80bd-bd295bd734bc"
-                },
-                {
                     "id": "bf1e87cd-6f88-4297-aca9-64b6e04da0eb",
                     "modelName": "GMSpriteImage",
                     "mvc": "1.0",
                     "FrameId": "2dcad0a5-064f-4ad1-8668-e6a48539462c",
                     "LayerId": "43ab0b07-a6db-4fa4-8cc1-3983b6b1922a"
+                },
+                {
+                    "id": "3b249ad7-d94d-4b0c-b725-e3ba657a9aa1",
+                    "modelName": "GMSpriteImage",
+                    "mvc": "1.0",
+                    "FrameId": "2dcad0a5-064f-4ad1-8668-e6a48539462c",
+                    "LayerId": "35a5fffa-5148-4c10-8e55-bc251f8a65ea"
                 }
             ]
         }
@@ -56,12 +56,12 @@
             "SpriteId": "54f2f3e6-fcee-42cf-8adf-84648843e7dc",
             "blendMode": 0,
             "isLocked": true,
-            "name": "Layer 1",
+            "name": "Rock",
             "opacity": 100,
             "visible": true
         },
         {
-            "id": "30f3e098-c9c6-40cc-80bd-bd295bd734bc",
+            "id": "35a5fffa-5148-4c10-8e55-bc251f8a65ea",
             "modelName": "GMImageLayer",
             "mvc": "1.0",
             "SpriteId": "54f2f3e6-fcee-42cf-8adf-84648843e7dc",
