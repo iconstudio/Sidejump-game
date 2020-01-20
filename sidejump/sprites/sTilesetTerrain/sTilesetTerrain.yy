@@ -29,18 +29,11 @@
             },
             "images": [
                 {
-                    "id": "bf1e87cd-6f88-4297-aca9-64b6e04da0eb",
+                    "id": "7879d5ec-9e0b-4aa7-b844-01355a0006c9",
                     "modelName": "GMSpriteImage",
                     "mvc": "1.0",
                     "FrameId": "2dcad0a5-064f-4ad1-8668-e6a48539462c",
-                    "LayerId": "43ab0b07-a6db-4fa4-8cc1-3983b6b1922a"
-                },
-                {
-                    "id": "3b249ad7-d94d-4b0c-b725-e3ba657a9aa1",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "2dcad0a5-064f-4ad1-8668-e6a48539462c",
-                    "LayerId": "35a5fffa-5148-4c10-8e55-bc251f8a65ea"
+                    "LayerId": "bcffd895-8a6a-46c8-916f-251a862264e5"
                 }
             ]
         }
@@ -50,18 +43,7 @@
     "height": 512,
     "layers": [
         {
-            "id": "43ab0b07-a6db-4fa4-8cc1-3983b6b1922a",
-            "modelName": "GMImageLayer",
-            "mvc": "1.0",
-            "SpriteId": "54f2f3e6-fcee-42cf-8adf-84648843e7dc",
-            "blendMode": 0,
-            "isLocked": true,
-            "name": "Rock",
-            "opacity": 100,
-            "visible": true
-        },
-        {
-            "id": "35a5fffa-5148-4c10-8e55-bc251f8a65ea",
+            "id": "bcffd895-8a6a-46c8-916f-251a862264e5",
             "modelName": "GMImageLayer",
             "mvc": "1.0",
             "SpriteId": "54f2f3e6-fcee-42cf-8adf-84648843e7dc",
