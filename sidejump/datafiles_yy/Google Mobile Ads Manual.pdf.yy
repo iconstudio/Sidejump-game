@@ -1,5 +1,5 @@
 {
-    "id": "846ca6d9-ca98-4572-b615-594ebf7de8cf",
+    "id": "7dfee325-f690-4e83-bbc9-e9ed1dc3c171",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "Google Mobile Ads Manual.pdf",

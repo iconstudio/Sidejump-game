@@ -1,11 +1,14 @@
 /// @description 초기화
+loading_failed = true
+#region 일반
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지만 안드로이드만 지원
 global.flag_is_browser = (os_browser == browser_not_a_browser)
 #macro SECOND 100 // == seconds(1)
-
 device_mouse_dbclick_enable(false)
+#endregion
 
 #region 화면
+window_set_fullscreen(true)
 application_surface_enable(true)
 application_surface_draw_enable(true)
 
@@ -25,16 +28,20 @@ if global.flag_is_mobile {
 display_width = display_get_width()
 display_height = display_get_height()
 window_size = []
-
 #endregion
 
 #region 음성
+audio_loaded = true
 if global.flag_is_mobile {
 	audio_channel_num(16)
 } else if global.flag_is_browser {
 	audio_channel_num(4)
 } else {
 	audio_channel_num(32)
+}
+if !audio_group_is_loaded(audiogroup_everthing) {
+	audio_group_load(audiogroup_everthing)
+	audio_loaded = false
 }
 #endregion
 
@@ -129,8 +136,8 @@ enum e__YYMKIND {
 
 #region 게임
 enum theme {
-	cave = 0,
-	underworld,
+	night,
+	cave,
 	volcano,
 	forest,
 	ocean,
@@ -165,12 +172,10 @@ enum camera_position {
 // 네트워크 초기화와 클라우드 로그인
 global.network_available = os_is_network_connected()
 global.platformservice_available = false
-loading_interrupt_msg = -1
-loading_continues = true
+network_interrupt_msg = -1
 
 if !global.network_available {
-	loading_interrupt_msg = show_message_async("네트워크가 연결되지 않았습니다. 연결 상태를 확인해주세요.")
-	loading_continues = false
+	network_interrupt_msg = show_message_async("네트워크가 연결되지 않았습니다. 연결 상태를 확인해주세요.")
 } else if global.flag_is_mobile {
 	if GooglePlayServices_Status() != GooglePlayServices_SUCCESS
 		GooglePlayServices_Init()
@@ -178,34 +183,33 @@ if !global.network_available {
 	var google_available = GooglePlayServices_Status()
 	switch google_available {
 		case GooglePlayServices_SERVICE_VERSION_UPDATE_REQUIRED:
-			loading_interrupt_msg = show_message_async("Google Player Service의 업데이트가 필요합니다.\nPlay Store에서 업데이트 해주세요.")
-			loading_continues = false
+			network_interrupt_msg = show_message_async("Google Player Service의 업데이트가 필요합니다.\nPlay Store에서 업데이트 해주세요.")
 		break
 
 		case GooglePlayServices_SERVICE_DISABLED:
-			loading_interrupt_msg = show_message_async("Google Player Service가 비활성화 돼있습니다.")
-			loading_continues = false
+			network_interrupt_msg = show_message_async("Google Player Service가 비활성화 돼있습니다.")
 		break
 
 		case GooglePlayServices_SERVICE_MISSING:
-			loading_interrupt_msg = show_message_async("Google Player Service API를 찾을 수 없습니다.")
-			loading_continues = false
+			network_interrupt_msg = show_message_async("Google Player Service API를 찾을 수 없습니다.")
 		break
 
 		case GooglePlayServices_SERVICE_INVALID:
-			loading_interrupt_msg = show_message_async("설치된 Google Player Service의 버전이 올바르지 않습니다.")
-			loading_continues = false
+			network_interrupt_msg = show_message_async("설치된 Google Player Service의 버전이 올바르지 않습니다.")
 		break
 
 		case GooglePlayServices_SUCCESS:
 			achievement_login()
 
 			global.platformservice_available = achievement_login_status()
+			loading_failed = false
 		break
 
 		default:
 		break
 	}
+} else {
+	loading_failed = false
 }
 #endregion
 
@@ -213,6 +217,8 @@ if !global.network_available {
 #macro gamepad_type_playstation 1
 #macro gamepad_type_other 2
 
-instance_create_layer(0, 0, layer, oGlobal)
-instance_create_layer(0, 0, layer, oGamepad)
-alarm[0] = 1
+if audio_loaded and !loading_failed {
+	event_user(0)
+} else {
+	
+}

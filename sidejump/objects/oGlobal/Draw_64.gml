@@ -1,4 +1,5 @@
 /// @description 디버그
+draw_set_font(fontSmall)
 draw_set_color($ffffff)
 draw_set_halign(0)
 draw_set_valign(0)
