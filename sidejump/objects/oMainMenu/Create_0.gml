@@ -6,8 +6,9 @@ TITLE_ENTER = 2
 TITLE_EXIT = 90
 x = room_width * 0.5
 y = room_height * 0.5
-title_alpha = 0
-title_scale = 0
+image_alpha = 0
+image_xscale = 0
+image_yscale = 0
 
 MAIN_APPEAR = 3
 MAIN_IDLE = 4
@@ -17,8 +18,13 @@ main_alpha = 0
 scene = TITLE_APPEAR
 
 // 메뉴 항목
-menu_number = 0
+opened = true // 주 메뉴는 무조건 true지만 디버그 용으로 남겨둔다.
+entry_last = noone // 종류를 막론하고 마지막으로 선택된 메뉴 항목
+entry_list = ds_list_create()
+entry_choice = noone
 
+// 메뉴 항목 열거
+event_user(0)
 
 // 배경
 // 서피스 두개 써서 구현할 것. 서피스 투명도 더하는 예제 찾아볼 것. 
