@@ -1,8 +1,8 @@
 {
-    "id": "2ed632a4-c9b9-4c3a-b96a-1ac534cbd9c7",
+    "id": "355524fe-194b-49ce-9316-9d8aeb8ee213",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "menu_add",
+    "name": "callback_menu_exit",
     "IsCompatibility": false,
     "IsDnD": false
 }

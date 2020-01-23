@@ -1,39 +1,38 @@
 /// @description 메뉴 항목 열거
 draw_set_font(fontMenuMedium)
-with menu_add("Campaign") {
-	menu_add("Cleft Moor") // 갈라진 습지
-	menu_add("Cave of Grief") // 통곡의 동굴
-	menu_add("Volcano") // 화산
-	menu_add("Red Forest") // 붉은 숲
-	menu_add("Coast") // 해안
-	menu_add("Tearing City") // 찢어지는 도시
-	menu_add("Factory of Doom") // 파멸의 공장
-	menu_add("Skyrocket") // 고공 상승
-	menu_add("Back")
+with menu_add_entry_caption("Campaign") {
+	menu_add_entry_caption("Cleft Moor") // 갈라진 습지
+	menu_add_entry_caption("Cave of Grief") // 통곡의 동굴
+	menu_add_entry_caption("Volcano") // 화산
+	menu_add_entry_caption("Red Forest") // 붉은 숲
+	menu_add_entry_caption("Coast") // 해안
+	menu_add_entry_caption("Tearing City") // 찢어지는 도시
+	menu_add_entry_caption("Factory of Doom") // 파멸의 공장
+	menu_add_entry_caption("Skyrocket") // 고공 상승
+	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
 }
 
-with menu_add("Endless") {
-	menu_add("Back")
+with menu_add_entry_caption("Endless") {
+	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
 }
 
-with menu_add("Setting") {
-	with menu_add("BGM: ") {
-		menu_add("Back")
+with menu_add_entry_caption("Setting") {
+	with menu_add_entry_caption("BGM: ") {
+		menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
 	}
-	with menu_add("SFX: ") {
-		menu_add("Back")
+	with menu_add_entry_caption("SFX: ") {
+		menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
 	}
-	menu_add("Fullscreen: ")
-	menu_add("Resolution: ")
-	menu_add("Graphics: ")
-	menu_add("Back")
+	menu_add_entry_caption("Fullscreen: ")
+	menu_add_entry_caption("Resolution: ")
+	menu_add_entry_caption("Graphics: ")
+	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
 }
 
-with menu_add("Credit") {
-	menu_add("Back")
+with menu_add_entry_caption("Credit") {
+	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
 }
 
-with menu_add("Exit") {
-	menu_add("Yes")
-	menu_add("No")
-}
+menu_add_entry_caption("Exit", callback_menu_exit)
+
+menu_choice(entry_choice_index)

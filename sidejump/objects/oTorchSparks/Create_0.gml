@@ -1,15 +1,15 @@
-image_alpha_begin = 0.2 + random(1)
-image_alpha_end = random(2) * 0.2
-image_alpha_time = 0
-image_alpha_period = seconds(0.1 + random(1))
-image_alpha = image_alpha_begin
+spark_alpha_begin = 0.2 + random(1)
+spark_alpha_end = random(2) * 0.2
+spark_alpha_time = 0
+spark_alpha_period = seconds(0.1 + random(1))
+image_alpha = spark_alpha_begin
 
-image_alpha_wiggle_value = 0.03 + random(0.05)
-image_alpha_wiggle_time = 0
-image_alpha_wiggle_period = seconds(0.05 + random(0.1))
+spark_alpha_wiggle_value = 0.03 + random(0.05)
+spark_alpha_wiggle_time = 0
+spark_alpha_wiggle_period = seconds(0.05 + random(0.1))
 
 disappear_time = 0
-disappear_period = image_alpha_period
+disappear_period = spark_alpha_period
 
 image_blend_red = 110
 image_blend_green = 0

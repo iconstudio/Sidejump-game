@@ -19,7 +19,7 @@ switch scene {
 	if idle_await_time < idle_await_period {
 		idle_await_time++
 	} else {
-		if global.io_pressed_back {
+		if global.io_pressed_exit {
 			scene = TITLE_EXIT
 		} else {
 			var condition0 = keyboard_check_pressed(vk_anykey)
@@ -57,21 +57,64 @@ switch scene {
 	main_alpha = ease_out_quad(menu_appear_time / menu_appear_period)
 	if menu_appear_time < menu_appear_period {
 		menu_appear_time++
-	} else {
+	} else if !lock {
 		menu_appear_time = menu_appear_period
 
-		if global.io_pressed_back {
+		if global.io_pressed_exit {
 			scene = MAIN_BACK_TO_TITLE
 		} else {
-			var check_menu_up = global.io_pressed_left or global.io_pressed_up
-			var check_menu_dw = global.io_pressed_right or global.io_pressed_down
-			
+			var check_menu_up = global.io_pressed_up
+			var check_menu_dw = global.io_pressed_down
+			var check_menu_go = global.io_pressed_yes
+
+			if check_menu_up ^^ check_menu_dw {
+				with entry_current_opened {
+					if check_menu_up {
+						menu_select(entry_choice_index - 1)
+					} else if check_menu_dw {
+						menu_select(entry_choice_index + 1)
+					}
+				}
+			}
+
+			if check_menu_go {
+				with entry_last {
+					if !opened { // 메뉴 열기
+						if object_index == oMainMenu
+							show_error("Main Menu is last entry!", true)
+						if script_exists(callback)
+							script_execute(callback, id)
+
+						if 0 < ds_list_size(entry_list) {
+							opened = true
+							menu_choice(entry_choice_index)
+							other.entry_current_opened = id
+						}
+					}
+				}
+			}
 		}
 	}
 	break
 
 	case MAIN_BACK_TO_TITLE:
+	var disappear_ratio = disappear_time / disappear_period
+	image_alpha = 1 - ease_out_quad(disappear_ratio)
+	y = lerp(title_y, title_disappear_y, ease_in_cubic(disappear_ratio))
+
+	if disappear_time < disappear_period {
+		disappear_time++
+	} else {
+		disappear_time = 0
+		image_alpha = 0
+		scene = TITLE_IDLE
+	}
 	
+	main_alpha = ease_out_quad(menu_appear_time / menu_appear_period)
+	if menu_appear_time < menu_appear_period
+		menu_appear_time++
+	else
+		menu_appear_time = menu_appear_period
 	break
 
 	case TITLE_EXIT:
@@ -98,6 +141,3 @@ switch scene {
 		
 	break
 }
-
-if info_brand_time < info_brand_period
-	info_brand_time++

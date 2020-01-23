@@ -1,19 +1,19 @@
-if image_alpha_time < image_alpha_period {
-	image_alpha = lerp(image_alpha_begin, image_alpha_end, image_alpha_time / image_alpha_period)
+if spark_alpha_time < spark_alpha_period {
+	image_alpha = lerp(spark_alpha_begin, spark_alpha_end, spark_alpha_time / spark_alpha_period)
 
-	image_alpha_time++
+	spark_alpha_time++
 } else {
-	var wiggle_ratio = image_alpha_wiggle_time / image_alpha_wiggle_period
+	var wiggle_ratio = spark_alpha_wiggle_time / spark_alpha_wiggle_period
 	var wiggle_rotation = 360 * wiggle_ratio
-	var wiggle_alpha = lengthdir_y(image_alpha_wiggle_value, wiggle_rotation)
-	image_alpha = image_alpha_end + wiggle_alpha
+	var wiggle_alpha = lengthdir_y(spark_alpha_wiggle_value, wiggle_rotation)
+	image_alpha = spark_alpha_end + wiggle_alpha
 
-	image_alpha_time = image_alpha_period
+	spark_alpha_time = spark_alpha_period
 
-	if image_alpha_wiggle_time < image_alpha_wiggle_period
-		image_alpha_wiggle_time++
+	if spark_alpha_wiggle_time < spark_alpha_wiggle_period
+		spark_alpha_wiggle_time++
 	else
-		image_alpha_wiggle_time = 0
+		spark_alpha_wiggle_time = 0
 }
 
 if disappear_time < disappear_period

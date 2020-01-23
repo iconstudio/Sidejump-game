@@ -15,7 +15,7 @@ global.io_released_hang = false
 
 global.io_pressed_yes = false
 global.io_pressed_no = false
-global.io_pressed_back = false
+global.io_pressed_exit = false
 
 event_user(1)
 

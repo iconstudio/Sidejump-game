@@ -6,7 +6,7 @@ y = gui_cy
 
 draw_set_color($ffffff)
 
-info_caption_copyright = "copyright 2020"
+info_caption_copyright = "copyright 2020 iconstudio"
 info_caption_version = "version " + GM_version
 info_drawn_y = global.resolutions_gui[1] - 4
 info_time = 0
