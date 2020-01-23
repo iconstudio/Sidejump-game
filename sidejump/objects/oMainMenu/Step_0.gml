@@ -21,18 +21,19 @@ switch scene {
 	} else {
 		if global.io_pressed_back {
 			scene = TITLE_EXIT
-		} else if keyboard_check_pressed(vk_anykey) {
-			scene = MAIN_ENTER
-		} else if mouse_check_button_pressed(mb_left) and !global.flag_is_desktop {
-			scene = MAIN_ENTER
-		} else if oGamepad.index != -1 {
-			scene = MAIN_ENTER
+		} else {
+			var condition0 = keyboard_check_pressed(vk_anykey)
+			var condition1 = mouse_check_button_pressed(mb_left) and !global.flag_is_desktop
+			var condition2 = oGamepad.index != -1
+			if condition0 or condition1 or condition2 {
+				idle_await_time = 0
+				scene = MAIN_ENTER
+			}
 		}
 	}
 	break
 
 	case MAIN_ENTER:
-	idle_await_time = 0
 	var disappear_ratio = disappear_time / disappear_period
 	image_alpha = 1 - ease_out_quad(disappear_ratio)
 	y = lerp(title_y, title_disappear_y, ease_in_cubic(disappear_ratio))
@@ -61,6 +62,10 @@ switch scene {
 
 		if global.io_pressed_back {
 			scene = MAIN_BACK_TO_TITLE
+		} else {
+			var check_menu_up = global.io_pressed_left or global.io_pressed_up
+			var check_menu_dw = global.io_pressed_right or global.io_pressed_down
+			
 		}
 	}
 	break
