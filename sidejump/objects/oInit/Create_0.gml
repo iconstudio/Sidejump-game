@@ -2,7 +2,8 @@
 loading_failed = true
 #region 일반
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지만 안드로이드만 지원
-global.flag_is_browser = (os_browser == browser_not_a_browser)
+global.flag_is_browser = (os_browser != browser_not_a_browser)
+global.flag_is_desktop = (os_type == os_windows or os_type == os_macosx or os_type == os_linux) and !global.flag_is_browser
 #macro SECOND 100 // == seconds(1)
 device_mouse_dbclick_enable(false)
 #endregion

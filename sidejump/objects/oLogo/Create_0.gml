@@ -12,4 +12,4 @@ info_drawn_y = global.resolutions_gui[1] - 4
 info_time = 0
 info_period = seconds(0.8)
 
-alarm[0] = seconds(2)
+alarm[0] = seconds(1)

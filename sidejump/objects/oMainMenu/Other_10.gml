@@ -1,4 +1,5 @@
 /// @description 메뉴 항목 열거
+draw_set_font(fontMenuMedium)
 with menu_add("Campaign") {
 	menu_add("Cleft Moor") // 갈라진 습지
 	menu_add("Cave of Grief") // 통곡의 동굴
@@ -16,8 +17,12 @@ with menu_add("Endless") {
 }
 
 with menu_add("Setting") {
-	menu_add("BGM: ")
-	menu_add("SFX: ")
+	with menu_add("BGM: ") {
+		menu_add("Back")
+	}
+	with menu_add("SFX: ") {
+		menu_add("Back")
+	}
 	menu_add("Fullscreen: ")
 	menu_add("Resolution: ")
 	menu_add("Graphics: ")

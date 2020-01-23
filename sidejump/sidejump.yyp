@@ -487,6 +487,14 @@
             }
         },
         {
+            "Key": "3cce70d0-15eb-4099-bcc3-5bac120668f4",
+            "Value": {
+                "id": "b6aee90c-2ff3-4217-a8f0-134dbfa207e1",
+                "resourcePath": "scripts\\ease_in_out_back\\ease_in_out_back.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3d6806e3-4693-4d9e-88bb-3e280d16c56b",
             "Value": {
                 "id": "77f96728-7ea7-4083-bf87-b4c406f4fe16",
@@ -1044,6 +1052,14 @@
                 "id": "dcdd07b7-da63-47cd-a65d-2f49ede44246",
                 "resourcePath": "sprites\\sThornsBack\\sThornsBack.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "801c0d71-4a68-4d6d-bc41-a7d8a5160c57",
+            "Value": {
+                "id": "05698022-766b-4e16-af44-e59c8e06da49",
+                "resourcePath": "fonts\\fontMenuLarge\\fontMenuLarge.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -1623,6 +1639,14 @@
             }
         },
         {
+            "Key": "d2721dad-4afb-48b1-8cd4-1635dc0075f0",
+            "Value": {
+                "id": "881a1f90-5684-4853-b82a-f260c9e1e5e6",
+                "resourcePath": "scripts\\ease_in_out_elastic\\ease_in_out_elastic.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d3a0af41-87dd-4972-9689-cdacb2731080",
             "Value": {
                 "id": "c9a7cc88-35c7-4e02-8f96-154ab5902063",
@@ -1708,6 +1732,14 @@
                 "id": "12f32f48-58e1-4618-8d8a-c8519f2822ee",
                 "resourcePath": "objects\\oSpawnArea\\oSpawnArea.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "daca0422-ff9e-4091-aeb1-be950ee7747a",
+            "Value": {
+                "id": "4ba5de33-c7a7-4852-83d5-9822c69505d7",
+                "resourcePath": "scripts\\menu_draw\\menu_draw.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1973,11 +2005,20 @@
                 "resourcePath": "views\\fef71224-67ca-4ac2-89a4-4f431f22471b.yy",
                 "resourceType": "GMFolder"
             }
+        },
+        {
+            "Key": "ff2250ec-9c4a-4d6f-95fc-0b68b331133a",
+            "Value": {
+                "id": "5aae2ee4-1e72-4964-83f2-b5cafc1b570e",
+                "resourcePath": "fonts\\fontMenuMedium\\fontMenuMedium.yy",
+                "resourceType": "GMFont"
+            }
         }
     ],
     "script_order": [
         "6d508e59-70ba-4c8c-b235-cd39cacf9bb8",
         "2ed632a4-c9b9-4c3a-b96a-1ac534cbd9c7",
+        "daca0422-ff9e-4091-aeb1-be950ee7747a",
         "c1292cbb-096c-40fa-a194-6fb9cebaef53",
         "642cacd0-5b2e-4c2b-b208-618f32f8cc73",
         "0d3f1482-0cdc-4a7f-abd5-be87ed404fa5",
@@ -2007,7 +2048,9 @@
         "62e568a4-f01b-4740-9058-3ee1e94f4999",
         "f0ae9c12-8cba-46a5-97e8-d8d13eaa4e67",
         "0b766d79-1ecd-44be-a8ca-c89d7a302570",
-        "a4c60548-e6ce-4a69-a06d-bac19c587919"
+        "a4c60548-e6ce-4a69-a06d-bac19c587919",
+        "3cce70d0-15eb-4099-bcc3-5bac120668f4",
+        "d2721dad-4afb-48b1-8cd4-1635dc0075f0"
     ],
     "tutorial": ""
 }

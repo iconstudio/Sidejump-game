@@ -15,4 +15,5 @@ global.io_released_hang = keyboard_check_pressed(ord("Z"))
 
 global.io_released_jump = keyboard_check_released(vk_space) or keyboard_check_released(ord("X"))
 global.io_pressed_yes = global.io_pressed_jump or keyboard_check_pressed(vk_enter)
-global.io_pressed_no = global.io_pressed_dash or keyboard_check_pressed(vk_escape) or keyboard_check_pressed(vk_backspace)
+global.io_pressed_no = global.io_pressed_dash
+global.io_pressed_back = keyboard_check_pressed(vk_escape) or keyboard_check_pressed(vk_backspace)

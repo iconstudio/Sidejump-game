@@ -10,7 +10,9 @@
         "62e568a4-f01b-4740-9058-3ee1e94f4999",
         "f0ae9c12-8cba-46a5-97e8-d8d13eaa4e67",
         "0b766d79-1ecd-44be-a8ca-c89d7a302570",
-        "a4c60548-e6ce-4a69-a06d-bac19c587919"
+        "a4c60548-e6ce-4a69-a06d-bac19c587919",
+        "3cce70d0-15eb-4099-bcc3-5bac120668f4",
+        "d2721dad-4afb-48b1-8cd4-1635dc0075f0"
     ],
     "filterType": "GMScript",
     "folderName": "Arithmetics",
