@@ -137,17 +137,28 @@ enum e__YYMKIND {
 
 #region 게임
 enum theme {
-	night,
+	moor,
 	cave,
 	volcano,
 	forest,
-	ocean,
+	coast,
 	city,
 	factory,
-	cold,
+	mountain,
 	sky,
 	space
 }
+global.chapter_info = ds_map_create()
+global.chapter_info[? theme.moor] = ["Cleft Moor"]
+global.chapter_info[? theme.cave] = ["Cave of Grief"]
+global.chapter_info[? theme.volcano] = ["Volcano"]
+global.chapter_info[? theme.forest] = ["Red Forest"]
+global.chapter_info[? theme.coast] = ["The Coast"]
+global.chapter_info[? theme.city] = ["Tearing City"]
+global.chapter_info[? theme.factory] = ["Factory of Doom"]
+global.chapter_info[? theme.mountain] = ["Spine Mountain"]
+global.chapter_info[? theme.sky] = ["Skyrocket"]
+global.chapter_info[? theme.space] = ["Space"]
 
 enum camera_mode {
 	follow,

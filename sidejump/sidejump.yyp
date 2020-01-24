@@ -338,7 +338,7 @@
             "Key": "250bc8dc-9096-4bd2-bd1d-a00cf288c55d",
             "Value": {
                 "id": "2ba6b39c-97d6-4c1c-8efe-dcced5cac4d3",
-                "resourcePath": "objects\\oBlock\\oBlock.yy",
+                "resourcePath": "objects\\oBlock16\\oBlock16.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -690,7 +690,7 @@
             "Key": "5210d21f-e1d0-4c7d-a54f-bb0d3b3d99b0",
             "Value": {
                 "id": "afc8ed77-8734-408a-bcb8-2c81f635da4e",
-                "resourcePath": "objects\\oMainMenuEntry\\oMainMenuEntry.yy",
+                "resourcePath": "objects\\oMenuEntry\\oMenuEntry.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -1135,6 +1135,14 @@
             }
         },
         {
+            "Key": "83c5e203-f525-480d-853c-78c707b2df5f",
+            "Value": {
+                "id": "742cc94c-7a45-4761-9c26-f48097bc6095",
+                "resourcePath": "objects\\oMenuEntryCampaign\\oMenuEntryCampaign.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "8427047f-9ef8-4c77-89f3-9c20623d07b6",
             "Value": {
                 "id": "0f9574a0-78bc-46e8-b6e4-a34ad26e25df",
@@ -1562,7 +1570,7 @@
             "Key": "be56ee6b-edb1-4f64-b6d4-62e23ad27593",
             "Value": {
                 "id": "4d3d1fae-1075-4828-9a63-8ac315565151",
-                "resourcePath": "objects\\oMainMenuEntryCaption\\oMainMenuEntryCaption.yy",
+                "resourcePath": "objects\\oMenuEntryCaption\\oMenuEntryCaption.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -2031,6 +2039,14 @@
             }
         },
         {
+            "Key": "f772cba6-0281-4ad6-97f8-442233e0cb3a",
+            "Value": {
+                "id": "26ea54da-d0b6-43ef-a364-435f216ff3dd",
+                "resourcePath": "scripts\\menu_get_y_last\\menu_get_y_last.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f7942622-3a25-4718-9f63-d39c773c12a6",
             "Value": {
                 "id": "552cedc1-9236-4db0-8824-fa06851af90f",
@@ -2119,6 +2135,7 @@
         "72b559f1-8d8d-4a6e-8a20-7d1714175e95",
         "4289e47e-15ba-4c6f-a53a-477a1e1ce7a1",
         "daca0422-ff9e-4091-aeb1-be950ee7747a",
+        "f772cba6-0281-4ad6-97f8-442233e0cb3a",
         "a95268e2-0b65-4009-9f7c-88397831f19e",
         "355524fe-194b-49ce-9316-9d8aeb8ee213",
         "0d3f1482-0cdc-4a7f-abd5-be87ed404fa5",

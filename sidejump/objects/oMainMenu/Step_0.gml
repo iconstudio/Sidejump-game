@@ -27,6 +27,7 @@ switch scene {
 			var condition2 = oGamepad.index != -1
 			if condition0 or condition1 or condition2 {
 				idle_await_time = 0
+				menu_appear_time = 0
 				scene = MAIN_ENTER
 			}
 		}
@@ -57,6 +58,8 @@ switch scene {
 	main_alpha = ease_out_quad(menu_appear_time / menu_appear_period)
 	if menu_appear_time < menu_appear_period {
 		menu_appear_time++
+	} else if input_delay_time < input_delay_period {
+		input_delay_time++
 	} else if !lock {
 		menu_appear_time = menu_appear_period
 
@@ -67,13 +70,12 @@ switch scene {
 			var check_menu_dw = global.io_pressed_down
 			var check_menu_go = global.io_pressed_yes
 
-			if check_menu_up ^^ check_menu_dw {
+			if check_menu_up xor check_menu_dw {
 				with entry_current_opened {
-					if check_menu_up {
+					if check_menu_up
 						menu_select(entry_choice_index - 1)
-					} else if check_menu_dw {
+					else if check_menu_dw
 						menu_select(entry_choice_index + 1)
-					}
 				}
 			}
 
@@ -89,32 +91,44 @@ switch scene {
 							opened = true
 							menu_choice(entry_choice_index)
 							other.entry_current_opened = id
+							event_user(2)
+
+							with oMainMenu {
+								var push = menu_get_y_last()
+								menu_drawn_y_target = menu_drawn_y_default - push[0]
+								menu_drawn_y_begin = menu_drawn_y
+								menu_drawn_y_time = 0
+							}
 						}
 					}
-				}
-			}
+				} // WITH (entry_last)
+				input_delay_time = 0
+			} // IF (check_menu_go)
 		}
+	}
+
+	if menu_drawn_y_time < menu_drawn_y_period {
+		var drawn_interpolation_ratio = menu_drawn_y_time / menu_drawn_y_period
+		menu_drawn_y = lerp(menu_drawn_y_begin, menu_drawn_y_target, ease_out_circ(drawn_interpolation_ratio))
+		menu_drawn_y_time++
+	} else {
+		menu_drawn_y = menu_drawn_y_target
 	}
 	break
 
 	case MAIN_BACK_TO_TITLE:
-	var disappear_ratio = disappear_time / disappear_period
-	image_alpha = 1 - ease_out_quad(disappear_ratio)
-	y = lerp(title_y, title_disappear_y, ease_in_cubic(disappear_ratio))
+	var reappear_ratio = reappear_time / reappear_period
+	image_alpha = ease_out_quad(reappear_ratio)
+	y = lerp(title_y, title_disappear_y, ease_in_cubic(reappear_ratio))
+	main_alpha = 1 - ease_out_expo(reappear_ratio)
 
-	if disappear_time < disappear_period {
-		disappear_time++
+	if reappear_time < reappear_period {
+		reappear_time++
 	} else {
-		disappear_time = 0
+		reappear_time = 0
 		image_alpha = 0
 		scene = TITLE_IDLE
 	}
-	
-	main_alpha = ease_out_quad(menu_appear_time / menu_appear_period)
-	if menu_appear_time < menu_appear_period
-		menu_appear_time++
-	else
-		menu_appear_time = menu_appear_period
 	break
 
 	case TITLE_EXIT:
@@ -141,3 +155,6 @@ switch scene {
 		
 	break
 }
+
+if menu_drawn_y_push != 0
+	menu_drawn_y_push -= menu_drawn_y_push * 0.1

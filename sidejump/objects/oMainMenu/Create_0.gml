@@ -28,20 +28,40 @@ menu_appear_time = 0
 menu_appear_period = seconds(0.7)
 reappear_time = 0 
 reappear_period = seconds(1)
+input_delay_time = 0
+input_delay_period = seconds(0.2)
 exit_time = 0 
 exit_period = seconds(0.4)
 scene = MAIN_IDLE
 
 // 메뉴 그리기 속성
-menu_drawn_x_begin = floor(global.resolutions_gui[0] * 0.18)
-menu_drawn_y_begin = floor(global.resolutions_gui[0] * 0.14)
+menu_surface = -1
+menu_texture = pointer_null
+menu_drawn_x_default = floor(global.resolutions_gui[0] * 0.1)
+menu_drawn_y_default = floor(global.resolutions_gui[1] * 0.18)
+menu_drawn_y_target = menu_drawn_y_default
+menu_drawn_y_begin = menu_drawn_y_target
+menu_drawn_y = menu_drawn_y_target
+menu_drawn_y_period = seconds(0.46)
+menu_drawn_y_time = menu_drawn_y_period
+menu_drawn_y_push = 0
+
+menu_surface_count = floor(menu_drawn_y_default * 1.2)
+menu_surface_alpha = 1 / menu_surface_count
+menu_surface_width = global.resolutions_gui[0]
+menu_surface_middle_y = menu_surface_count
+menu_surface_middle_height = global.resolutions_gui[1] - menu_surface_count * 2
+menu_surface_bottom_y = menu_surface_count + menu_surface_middle_height
+
 menu_entry_color_selected = $b507fe
 menu_entry_width_addition = 12
 menu_entry_height_border = 4
-menu_entry_font_scale = 26 / 30 // -> fontLarge / fontMenuLarge
+menu_entry_font_scale = 38 / 26
 
 // 메뉴 항목
 opened = true // 주 메뉴는 무조건 true지만 디버그 용으로 남겨둔다.
+open_time = 1
+open_period = 1
 entry_list = ds_list_create()
 entry_current_opened = id // 현재 가장 하위에 있는 열린 메뉴
 entry_last = noone // 종류를 막론하고 마지막으로 선택된 메뉴 항목

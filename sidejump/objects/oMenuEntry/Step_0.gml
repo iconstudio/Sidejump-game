@@ -1,4 +1,3 @@
-/// @description 글꼴 크기 갱신
 if opened {
 	if open_time < open_period
 		open_time++

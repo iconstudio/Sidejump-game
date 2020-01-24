@@ -1,7 +1,18 @@
 /// @description 그리기
 if !surface_exists(selection_surface)
 	event_user(0)
-
+/*
+with oMainMenu {
+	if surface_exists(menu_surface) {
+		shader_set(shaderBlur)
+		var texel_width = texture_get_texel_width(menu_texture)
+		var texel_height = texture_get_texel_height(menu_texture)
+		shader_set_uniform_f(global.shaderBlur_texel_size, texel_width, texel_height)
+		draw_surface_part_ext(menu_surface, 0, 0, global.resolutions_gui[0], other.alpha_shroud_y, 0, 0, 1, 1, $ffffff, image_alpha)
+		shader_reset()
+	}
+}
+*/
 gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color)
 draw_sprite_ext(sPointMask, 0, 0, 0, global.resolutions_gui[0], alpha_shroud_y, 0, $ffffff, 1)
 gpu_set_blendmode(bm_add)

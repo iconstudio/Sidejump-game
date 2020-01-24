@@ -9,28 +9,28 @@ with menu_add_entry_caption("Campaign") {
 	menu_add_entry_caption("Tearing City") // 찢어지는 도시
 	menu_add_entry_caption("Factory of Doom") // 파멸의 공장
 	menu_add_entry_caption("Skyrocket") // 고공 상승
-	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
+	menu_add_entry_caption("Back", callback_menu_back)
 }
 
 with menu_add_entry_caption("Endless") {
-	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
+	menu_add_entry_caption("Back", callback_menu_back)
 }
 
 with menu_add_entry_caption("Setting") {
 	with menu_add_entry_caption("BGM: ") {
-		menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
+		menu_add_entry_caption("Back", callback_menu_back)
 	}
 	with menu_add_entry_caption("SFX: ") {
-		menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
+		menu_add_entry_caption("Back", callback_menu_back)
 	}
 	menu_add_entry_caption("Fullscreen: ")
 	menu_add_entry_caption("Resolution: ")
 	menu_add_entry_caption("Graphics: ")
-	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
+	menu_add_entry_caption("Back", callback_menu_back)
 }
 
 with menu_add_entry_caption("Credit") {
-	menu_button_place_at_bottom(menu_add_entry_caption("Back", callback_menu_back))
+	menu_add_entry_caption("Back", callback_menu_back)
 }
 
 menu_add_entry_caption("Exit", callback_menu_exit)

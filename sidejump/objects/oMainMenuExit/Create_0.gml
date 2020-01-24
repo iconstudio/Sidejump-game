@@ -16,11 +16,12 @@ alpha_shroud_gravity = global.resolutions_gui[1] / alpha_shroud_duration
 alpha_shroud_speed = alpha_shroud_gravity * 0.5
 alpha_shroud_speed_min = alpha_shroud_gravity * 0.02
 
+deadend = false
+textout_time = 0
+textout_period = seconds(0.5)
 fadeout = false
 fadeout_time = 0
 fadeout_period = seconds(0.4)
-textout_time = 0
-textout_period = seconds(0.5)
 
 selection = 1
 selection_surface = -1

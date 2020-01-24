@@ -1,14 +1,14 @@
 {
-    "id": "250bc8dc-9096-4bd2-bd1d-a00cf288c55d",
+    "id": "83c5e203-f525-480d-853c-78c707b2df5f",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oBlock",
+    "name": "oMenuEntryCampaign",
     "eventList": [
         
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
-    "parentObjectId": "bbe6f61f-c43a-48c3-bc9f-c6a1c23d097e",
+    "parentObjectId": "5210d21f-e1d0-4c7d-a54f-bb0d3b3d99b0",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -23,7 +23,7 @@
     "physicsShapePoints": null,
     "physicsStartAwake": true,
     "properties": null,
-    "solid": true,
-    "spriteId": "60b0e85d-25ed-4159-9d1a-ee7d2815f3c1",
-    "visible": false
+    "solid": false,
+    "spriteId": "00000000-0000-0000-0000-000000000000",
+    "visible": true
 }

@@ -1,5 +1,5 @@
 /// @description 투명도 갱신
-if !fadeout {
+if !deadend {
 	image_alpha = lerp(0, alpha_target, ease_out_cubic(alpha_time / alpha_period))
 
 	if alpha_time < alpha_period {
@@ -23,28 +23,36 @@ if !fadeout {
 				selection = !selection
 		}
 
-		if check_menu_go
-			fadeout = true
+		if check_menu_go {
+			deadend = true
+			if selection == 1
+				fadeout = true
+		}
 	}
-} else {
+}
+
+if deadend {
 	image_alpha = lerp(alpha_target, 0, ease_in_cubic(fadeout_time / fadeout_period))
 	text_alpha = 1 - alpha_time / alpha_period
 
-	if textout_time < textout_period
+	if textout_time < textout_period {
 		textout_time++
-	else
-		textout_time = textout_period
-
-	if fadeout_time < fadeout_period {
-		fadeout_time++
 	} else {
-		fadeout_time = fadeout_period
+		textout_time = textout_period
 		if selection == 0 {
 			with oMainMenu
 				scene = MAIN_EXIT
 		} else {
 			oMainMenu.lock = false
 			instance_destroy()
+		}
+	}
+
+	if fadeout {
+		if fadeout_time < fadeout_period {
+			fadeout_time++
+		} else {
+			fadeout_time = fadeout_period
 		}
 	}
 }
