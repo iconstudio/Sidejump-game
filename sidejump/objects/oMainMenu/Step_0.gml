@@ -82,8 +82,6 @@ switch scene {
 			if check_menu_go {
 				with entry_last {
 					if !opened { // 메뉴 열기
-						if object_index == oMainMenu
-							show_error("Main Menu is last entry!", true)
 						if script_exists(callback)
 							script_execute(callback, id)
 
@@ -93,12 +91,7 @@ switch scene {
 							other.entry_current_opened = id
 							event_user(2)
 
-							with oMainMenu {
-								var push = menu_get_y_last()
-								menu_drawn_y_target = menu_drawn_y_default - push[0]
-								menu_drawn_y_begin = menu_drawn_y
-								menu_drawn_y_time = 0
-							}
+							menu_push()
 						}
 					}
 				} // WITH (entry_last)
@@ -109,7 +102,7 @@ switch scene {
 
 	if menu_drawn_y_time < menu_drawn_y_period {
 		var drawn_interpolation_ratio = menu_drawn_y_time / menu_drawn_y_period
-		menu_drawn_y = lerp(menu_drawn_y_begin, menu_drawn_y_target, ease_out_circ(drawn_interpolation_ratio))
+		menu_drawn_y = lerp(menu_drawn_y_begin, menu_drawn_y_target, ease_in_out_cubic(drawn_interpolation_ratio))
 		menu_drawn_y_time++
 	} else {
 		menu_drawn_y = menu_drawn_y_target
@@ -126,7 +119,7 @@ switch scene {
 		reappear_time++
 	} else {
 		reappear_time = 0
-		image_alpha = 0
+		image_alpha = 1
 		scene = TITLE_IDLE
 	}
 	break

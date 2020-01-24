@@ -14,13 +14,12 @@ if opened {
 	} else  {
 		height = lerp(height_min, 0, 1 - upper_opening_ratio)
 	}
-	//y = lerp(y_begin, ystart, upper_opening_ratio)
 } else {
 	if down_time < down_period {
 		var opening_ratio = ease_out_quad(down_time / down_period)
-		//y = lerp(y_begin, ystart, opening_ratio)
+		y = lerp(y_begin, ystart, opening_ratio)
 		down_time++
 	} else {
-		//y = ystart
+		y = ystart
 	}
 }

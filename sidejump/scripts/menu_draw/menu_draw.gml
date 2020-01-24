@@ -6,7 +6,7 @@ var x_begin = argument0
 var y_begin = argument1
 
 for (var i = 0; i < ds_list_size(entry_list); ++i) {
-	var entry = entry_list[| i]
+	var entry = menu_get_entry(i)
 	var alpha_before = draw_get_alpha()
 	if open_time < open_period
 		draw_set_alpha(alpha_before * ease_out_cubic(open_time / open_period))

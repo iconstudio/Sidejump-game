@@ -5,8 +5,7 @@ caption = ""
 
 down_time = 0
 down_period = seconds(0.3)
-y_distance_begin = 50
-y_begin = ystart - y_distance_begin
+y_begin = ystart - 40
 y = y_begin
 
 width = 0
