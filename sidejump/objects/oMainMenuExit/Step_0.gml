@@ -32,8 +32,8 @@ if !deadend {
 }
 
 if deadend {
-	image_alpha = lerp(alpha_target, 0, ease_in_cubic(fadeout_time / fadeout_period))
-	text_alpha = 1 - alpha_time / alpha_period
+	image_alpha = lerp(alpha_target, 0, (fadeout_time / fadeout_period))
+	text_alpha = 1 - ease_in_cubic(alpha_time / alpha_period)
 
 	if textout_time < textout_period {
 		textout_time++
@@ -43,7 +43,8 @@ if deadend {
 			with oMainMenu
 				scene = MAIN_EXIT
 		} else {
-			oMainMenu.lock = false
+			with oMainMenu
+				lock = false
 			instance_destroy()
 		}
 	}

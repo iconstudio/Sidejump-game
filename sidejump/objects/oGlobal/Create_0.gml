@@ -17,6 +17,11 @@ global.io_pressed_yes = false
 global.io_pressed_no = false
 global.io_pressed_exit = false
 
+shader_set(shaderFXAA)
+shader_set_uniform_f(global.shaderFXAA_vSize, 1 / global.application_sizes[0], 1 / global.application_sizes[1])
+shader_reset()
+
+event_user(0)
 event_user(1)
 
 network_update_period = seconds(3)

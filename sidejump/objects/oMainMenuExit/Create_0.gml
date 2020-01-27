@@ -18,10 +18,10 @@ alpha_shroud_speed_min = alpha_shroud_gravity * 0.02
 
 deadend = false
 textout_time = 0
-textout_period = seconds(0.5)
+textout_period = seconds(0.7)
 fadeout = false
 fadeout_time = 0
-fadeout_period = seconds(0.4)
+fadeout_period = seconds(0.8)
 
 selection = 1
 selection_surface = -1

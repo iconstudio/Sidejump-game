@@ -11,7 +11,7 @@ device_mouse_dbclick_enable(false)
 #region 화면
 window_set_fullscreen(true)
 application_surface_enable(true)
-application_surface_draw_enable(true)
+application_surface_draw_enable(false)
 
 surface_depth_disable(true)
 display_reset(8, false)
@@ -26,9 +26,12 @@ if global.flag_is_mobile {
 } else {
 	display_set_sleep_margin(10)
 }
+
+// 기본 화면 크기는 960x480
+default_width = 960
+default_height = 480
 display_width = display_get_width()
 display_height = display_get_height()
-window_size = []
 #endregion
 
 #region 음성
@@ -52,10 +55,10 @@ if global.shader_supported {
 	if !shader_is_compiled(shaderFXAA)
 		show_debug_message("shaderFXAA is not complied. Be careful!")
 }
-global.shaderFXAA_texel = shader_get_uniform(shaderFXAA, "u_texel")
-global.shaderFXAA_strength = shader_get_uniform(shaderFXAA, "u_strength")
+global.shaderFXAA_vSize = shader_get_uniform(shaderFXAA, "u_vSize");
 global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
 global.shaderPlayerGlow_player_position = shader_get_uniform(shaderPlayerGlow, "player_position")
+global.shaderMenuFadeout_shroud_alpha = shader_get_uniform(shaderMenuFadeout, "shroud_alpha")
 #endregion
 
 #region 그래픽
@@ -149,16 +152,16 @@ enum theme {
 	space
 }
 global.chapter_info = ds_map_create()
-global.chapter_info[? theme.moor] = ["Cleft Moor"]
-global.chapter_info[? theme.cave] = ["Cave of Grief"]
-global.chapter_info[? theme.volcano] = ["Volcano"]
-global.chapter_info[? theme.forest] = ["Red Forest"]
-global.chapter_info[? theme.coast] = ["The Coast"]
-global.chapter_info[? theme.city] = ["Tearing City"]
-global.chapter_info[? theme.factory] = ["Factory of Doom"]
-global.chapter_info[? theme.mountain] = ["Spine Mountain"]
-global.chapter_info[? theme.sky] = ["Skyrocket"]
-global.chapter_info[? theme.space] = ["Space"]
+ds_map_add(global.chapter_info, theme.moor, "Cleft Moor")
+ds_map_add(global.chapter_info, theme.cave, "Underworld")
+ds_map_add(global.chapter_info, theme.volcano, "Volcano")
+ds_map_add(global.chapter_info, theme.forest, "Red Forest")
+ds_map_add(global.chapter_info, theme.coast, "The Coast")
+ds_map_add(global.chapter_info, theme.city, "Tearing City")
+ds_map_add(global.chapter_info, theme.factory, "Factory of Doom")
+ds_map_add(global.chapter_info, theme.mountain, "Spine Mountain")
+ds_map_add(global.chapter_info, theme.sky, "Skyrocket")
+ds_map_add(global.chapter_info, theme.space, "Space")
 
 enum camera_mode {
 	follow,

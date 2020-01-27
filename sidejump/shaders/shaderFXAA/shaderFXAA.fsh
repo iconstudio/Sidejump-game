@@ -1,48 +1,29 @@
-//
-// Simple passthrough fragment shader
-//
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-uniform vec2 u_texel;
-uniform float u_strength;
+uniform vec2 u_vSize;
 
-void main()
-{
-    float reducemul = 1.0 / 8.0;
-    float reducemin = 1.0 / 128.0;
+const float FXAA_SPAN_MAX   = 8.0;
+const float FXAA_REDUCE_MUL = 1.0/8.0;
+const float FXAA_REDUCE_MIN = 1.0/128.0;
+const vec3  LUMA            = vec3(0.299, 0.587, 0.114);
+
+void main() {
+    float lumaNW = dot(vec3(texture2D(gm_BaseTexture, v_vTexcoord - u_vSize)), LUMA);
+    float lumaNE = dot(vec3(texture2D(gm_BaseTexture, v_vTexcoord + vec2(u_vSize.x, -u_vSize.y))), LUMA);
+    float lumaSW = dot(vec3(texture2D(gm_BaseTexture, v_vTexcoord + vec2(-u_vSize.x, u_vSize.y))), LUMA);
+    float lumaSE = dot(vec3(texture2D(gm_BaseTexture, v_vTexcoord + u_vSize)), LUMA);
+    float lumaM  = dot(vec3(texture2D(gm_BaseTexture, v_vTexcoord)),  LUMA); // v_vColour
     
-    vec3 basecol = texture2D(gm_BaseTexture, v_vTexcoord).rgb;
-    vec3 baseNW = texture2D(gm_BaseTexture, v_vTexcoord - u_texel).rgb;
-    vec3 baseNE = texture2D(gm_BaseTexture, v_vTexcoord + vec2(u_texel.x, -u_texel.y)).rgb;
-    vec3 baseSW = texture2D(gm_BaseTexture, v_vTexcoord + vec2(-u_texel.x, u_texel.y)).rgb;
-    vec3 baseSE = texture2D(gm_BaseTexture, v_vTexcoord + u_texel).rgb;
+    vec2 dir = vec2(-lumaNW - lumaNE + lumaSW + lumaSE, lumaNW + lumaSW - lumaNE - lumaSE);
     
-    vec3 gray = vec3(0.299, 0.587, 0.114);
-    float monocol = dot(basecol, gray);
-    float monoNW = dot(baseNW, gray);
-    float monoNE = dot(baseNE, gray);
-    float monoSW = dot(baseSW, gray);
-    float monoSE = dot(baseSE, gray);
+    dir = clamp(dir / (min(abs(dir.x), abs(dir.y)) + max((lumaNW + lumaNE + lumaSW + lumaSE) * 0.25 * FXAA_REDUCE_MUL, FXAA_REDUCE_MIN)), -FXAA_SPAN_MAX, FXAA_SPAN_MAX) * u_vSize;
     
-    float monomin = min(monocol, min(min(monoNW, monoNE), min(monoSW, monoSE)));
-    float monomax = max(monocol, max(max(monoNW, monoNE), max(monoSW, monoSE)));
+    vec3 rgbA = 0.5 * (vec3(texture2D(gm_BaseTexture, v_vTexcoord.xy + dir * -0.167)) + vec3(texture2D(gm_BaseTexture, v_vTexcoord.xy + dir * 0.167)));
+    vec3 rgbB = -0.5 * rgbA + 0.25 * (vec3(texture2D(gm_BaseTexture, v_vTexcoord.xy + dir * -0.5)) + vec3(texture2D(gm_BaseTexture, v_vTexcoord.xy + dir * 0.5)));
     
-    vec2 dir = vec2(-((monoNW + monoNE) - (monoSW + monoSE)), ((monoNW + monoSW) - (monoNE + monoSE)));
-    float dirreduce = max((monoNW + monoNE + monoSW + monoSE) * reducemul * 0.25, reducemin);
-    float dirmin = 1.0 / (min(abs(dir.x), abs(dir.y)) + dirreduce);
-    dir = min(vec2(u_strength), max(vec2(-u_strength), dir * dirmin)) * u_texel;
+    float lumaB = dot(rgbB + rgbA, LUMA);
     
-    vec4 resultA = 0.5 * (texture2D(gm_BaseTexture, v_vTexcoord + dir * -0.166667) +
-                          texture2D(gm_BaseTexture, v_vTexcoord + dir * 0.166667));
-    vec4 resultB = resultA * 0.5 + 0.25 * (texture2D(gm_BaseTexture, v_vTexcoord + dir * -0.5) +
-                                           texture2D(gm_BaseTexture, v_vTexcoord + dir * 0.5));
-    float monoB = dot(resultB.rgb, gray);
-    
-    if(monoB < monomin || monoB > monomax) {
-        gl_FragColor = resultA * v_vColour;
-    } else {
-        gl_FragColor = resultB * v_vColour;
-    }
+    gl_FragColor = vec4(rgbA + step(min(lumaM, min(min(lumaNW, lumaNE), min(lumaSW, lumaSE))), lumaB) * step(lumaB, max(lumaM, max(max(lumaNW, lumaNE), max(lumaSW, lumaSE)))) * rgbB, 1.0);
 }
 

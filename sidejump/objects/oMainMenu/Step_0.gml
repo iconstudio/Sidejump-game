@@ -64,7 +64,13 @@ switch scene {
 		menu_appear_time = menu_appear_period
 
 		if global.io_pressed_exit {
-			scene = MAIN_BACK_TO_TITLE
+			if entry_current_opened == id {
+				scene = MAIN_BACK_TO_TITLE
+			} else {
+				with entry_current_opened {
+					
+				}
+			}
 		} else {
 			var check_menu_up = global.io_pressed_up
 			var check_menu_dw = global.io_pressed_down
@@ -80,21 +86,7 @@ switch scene {
 			}
 
 			if check_menu_go {
-				with entry_last {
-					if !opened { // 메뉴 열기
-						if script_exists(callback)
-							script_execute(callback, id)
-
-						if 0 < ds_list_size(entry_list) {
-							opened = true
-							menu_choice(entry_choice_index)
-							other.entry_current_opened = id
-							event_user(2)
-
-							menu_push()
-						}
-					}
-				} // WITH (entry_last)
+				menu_entry_open(entry_last)
 				input_delay_time = 0
 			} // IF (check_menu_go)
 		}
@@ -111,8 +103,8 @@ switch scene {
 
 	case MAIN_BACK_TO_TITLE:
 	var reappear_ratio = reappear_time / reappear_period
-	image_alpha = ease_out_quad(reappear_ratio)
-	y = lerp(title_y, title_disappear_y, ease_in_cubic(reappear_ratio))
+	image_alpha = 0.5 + ease_out_quad(reappear_ratio) // *
+	y = lerp(title_disappear_y, title_y, ease_in_cubic(reappear_ratio))
 	main_alpha = 1 - ease_out_expo(reappear_ratio)
 
 	if reappear_time < reappear_period {
@@ -146,6 +138,17 @@ switch scene {
 
 	default:
 		
+	break
+}
+
+switch bg_scene {
+	case SHOW:
+	break
+
+	case OPENING:
+	break
+
+	case FADEOUT:
 	break
 }
 

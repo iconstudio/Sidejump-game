@@ -6,7 +6,7 @@ var y_index = 0
 for (var i = 0; i < ds_list_size(entry_list); ++i) {
 	var entry = menu_get_entry(i)
 	with entry {
-		if custom_y == -1 {
+		if !use_custom_coords {
 			var size = ds_list_size(entry_list)
 
 			if 0 < size {

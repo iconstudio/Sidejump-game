@@ -1,5 +1,5 @@
 /// @description 메뉴 항목 열거
-draw_set_font(fontMenuMedium)
+draw_set_font(fontMenu)
 with menu_add_entry_caption("Campaign") {
 	menu_add_other(oMenuEntryCampaign, id)
 	menu_add_entry_caption("Back", callback_menu_back)
@@ -11,18 +11,35 @@ with menu_add_entry_caption("Endless") {
 
 with menu_add_entry_caption("Setting") {
 	with menu_add_entry_caption("BGM: ") {
+		menu_add_entry_caption("10")
 		menu_add_entry_caption("Back", callback_menu_back)
 	}
 	with menu_add_entry_caption("SFX: ") {
+		menu_add_entry_caption("10")
 		menu_add_entry_caption("Back", callback_menu_back)
 	}
-	menu_add_entry_caption("Fullscreen: ")
-	menu_add_entry_caption("Resolution: ")
+	with menu_add_entry_caption("Fullscreen: ") {
+		menu_add_entry_caption("On")
+		menu_add_entry_caption("Back", callback_menu_back)
+	}
+	with menu_add_entry_caption("SFX: ") {
+		menu_add_entry_caption("10")
+		menu_add_entry_caption("Back", callback_menu_back)
+	}
+	with menu_add_entry_caption("SFX: ") {
+		menu_add_entry_caption("10")
+		menu_add_entry_caption("Back", callback_menu_back)
+	}
+	with menu_add_entry_caption("SFX: ") {
+		menu_add_entry_caption("10")
+		menu_add_entry_caption("Back", callback_menu_back)
+	}
 	menu_add_entry_caption("Graphics: ")
 	menu_add_entry_caption("Back", callback_menu_back)
 }
 
 with menu_add_entry_caption("Credit") {
+	menu_add_entry_caption("Content")
 	menu_add_entry_caption("Back", callback_menu_back)
 }
 

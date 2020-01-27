@@ -1,10 +1,10 @@
 /// @description 그리기
-if custom_x != -1
+if use_custom_coords {
 	x = custom_x
-if custom_y != -1
 	y = custom_y
+}
 
-draw_set_font(fontMenuMedium)
+draw_set_font(fontMenu)
 draw_set_halign(1)
 draw_set_valign(1)
 var scale = 1
@@ -19,6 +19,7 @@ var scale_big = scale * 1.03
 var caption_drawn_x = x + width * 0.5
 var caption_drawn_y = y + height * 0.5
 draw_set_color(0)
+draw_text_transformed(caption_drawn_x, caption_drawn_y, caption, scale_big, scale_big, 0)
 draw_text_transformed(caption_drawn_x - 2, caption_drawn_y, caption, scale_big, scale_big, 0)
 draw_text_transformed(caption_drawn_x, caption_drawn_y - 2, caption, scale_big, scale_big, 0)
 draw_text_transformed(caption_drawn_x + 2, caption_drawn_y, caption, scale_big, scale_big, 0)
