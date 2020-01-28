@@ -54,5 +54,5 @@ for (var i = chapter_get_first(); i <= chapter_get_last(); ++i) {
 		}
 	}
 }
-menu_select(entry_choice_index)
+menu_select(0)
 chapter_board_number = ds_list_size(entry_list)

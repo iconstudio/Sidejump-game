@@ -67,6 +67,7 @@ entry_current_opened = id // 현재 가장 하위에 있는 열린 메뉴
 entry_last = noone // 종류를 막론하고 마지막으로 선택된 메뉴 항목
 entry_choice = noone
 entry_choice_index = 0
+entry_uses_custom_predicate = false
 
 // 메뉴 항목 열거
 event_user(0)
