@@ -2,13 +2,13 @@
     "id": "13c1aef3-87b4-4e03-b810-2c2a6685f8c2",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "sprite72",
+    "name": "sRaindrop",
     "For3D": false,
     "HTile": false,
     "VTile": false,
     "bbox_bottom": 0,
     "bbox_left": 0,
-    "bbox_right": 0,
+    "bbox_right": 15,
     "bbox_top": 0,
     "bboxmode": 0,
     "colkind": 1,
@@ -40,7 +40,7 @@
     ],
     "gridX": 0,
     "gridY": 0,
-    "height": 32,
+    "height": 1,
     "layers": [
         {
             "id": "696d45fe-fc55-4ba6-a0f8-1779b5635d8a",
@@ -54,17 +54,17 @@
             "visible": true
         }
     ],
-    "origin": 0,
-    "originLocked": false,
+    "origin": 5,
+    "originLocked": true,
     "playbackSpeed": 30,
     "playbackSpeedType": 0,
     "premultiplyAlpha": false,
     "sepmasks": false,
     "swatchColours": null,
     "swfPrecision": 2.525,
-    "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f",
+    "textureGroupId": "3f2ee59e-d1a8-401e-bde2-79fedc969f23",
     "type": 0,
-    "width": 32,
-    "xorig": 0,
+    "width": 16,
+    "xorig": 15,
     "yorig": 0
 }

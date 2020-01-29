@@ -5,3 +5,5 @@ for (var i = 0; i < chapter_board_number; ++i) {
 		event_user(3)
 }
 scale = 0
+menu_choice(0)
+chapter_board_scroll = 0

@@ -19,7 +19,7 @@ disappear_period = seconds(0.4)
 title_y = room_height * 0.5
 title_disappear_y = title_y - 60
 x = room_width * 0.5
-y = room_height * 0.5
+y = title_y
 image_alpha = 0
 image_xscale = 0
 image_yscale = 0
@@ -37,8 +37,8 @@ scene = MAIN_IDLE
 // 메뉴 그리기 속성
 menu_surface = -1
 menu_texture = pointer_null
-menu_drawn_x_default = 48//floor(global.resolutions_gui[0] * 0.1)
-menu_drawn_y_default = 32//floor(global.resolutions_gui[1] * 0.18)
+menu_drawn_x_default = 72
+menu_drawn_y_default = 16
 menu_drawn_y_target = menu_drawn_y_default
 menu_drawn_y_begin = menu_drawn_y_target
 menu_drawn_y = menu_drawn_y_target
@@ -55,8 +55,7 @@ menu_surface_bottom_y = menu_surface_count + menu_surface_middle_height
 
 menu_entry_color_selected = $b507fe
 menu_entry_width_addition = 12
-menu_entry_height_padding = 2
-menu_entry_font_scale = 38 / 26
+menu_entry_font_scale = 22 / 20
 
 // 메뉴 항목
 opened = true // 주 메뉴는 무조건 true지만 디버그 용으로 남겨둔다.
@@ -67,15 +66,18 @@ entry_current_opened = id // 현재 가장 하위에 있는 열린 메뉴
 entry_last = noone // 종류를 막론하고 마지막으로 선택된 메뉴 항목
 entry_choice = noone
 entry_choice_index = 0
-entry_uses_custom_predicate = false
 
 // 메뉴 항목 열거
 event_user(0)
 
 // 배경
 // 서피스 두개 써서 구현할 것. 서피스 투명도 더하는 예제 찾아볼 것. 
-bg_theme = theme.cave
+bg_theme = chapter_get_first()
 SHOW = 0
 OPENING = 10
 FADEOUT = 90
 bg_scene = SHOW
+rainy_time = 0
+rainy_duration = seconds(0.06)
+rainy_counts_min = 6
+rainy_counts_random_max = 3

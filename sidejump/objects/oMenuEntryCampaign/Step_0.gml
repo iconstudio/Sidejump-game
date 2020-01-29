@@ -1,12 +1,6 @@
 /// @description 챕터 보드 갱신
 event_inherited()
 
-//for (var i = 0; i < chapter_board_number; ++i) {
-//	with menu_get_entry(i) {
-		
-//	}
-//}
-
 scale = entry_upper.open_time / entry_upper.open_period
 board_height = height - board_margin * 2
 if scale < 1 {
@@ -33,7 +27,8 @@ if scale < 1 {
 
 	if chapter_board_await_time < chapter_board_await_period {
 		chapter_board_await_time++
-	} else if entry_upper.opened and entry_upper.entry_choice == id and !lock and scale == 1 {
+	} else if entry_upper.opened and entry_upper.entry_choice == id
+	and !instance_exists(oMenuCampaignPopup) and scale == 1 {
 		var check_menu_lf = global.io_pressed_left
 		var check_menu_rt = global.io_pressed_right
 		var check_menu_go = global.io_pressed_yes

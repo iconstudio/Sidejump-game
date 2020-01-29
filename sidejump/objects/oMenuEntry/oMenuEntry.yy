@@ -239,6 +239,34 @@
             "value": "-1",
             "varName": "custom_y",
             "varType": 0
+        },
+        {
+            "id": "5fbe0d57-57a5-4204-95c5-90a02cb98591",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "0",
+            "varName": "created_time",
+            "varType": 0
+        },
+        {
+            "id": "83f7a480-a5fb-4ece-9c8c-58ba5f6c29b6",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "seconds(0.55)",
+            "varName": "created_period",
+            "varType": 4
         }
     ],
     "solid": false,

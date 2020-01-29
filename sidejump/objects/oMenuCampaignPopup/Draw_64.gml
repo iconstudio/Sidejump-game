@@ -10,18 +10,21 @@ if 0 < scale {
 	var alpha_before = draw_get_alpha()
 	draw_set_alpha(alpha_before * ease_in_expo(scale))
 	var dx = content_margin
-	var dy = content_y
+	var dy = content_margin
+	var dy2 = content_buttons_y
 
 	surface_set_target(popup_surface)
 	draw_clear($ffffff)
 	with entry_upper {
-		// 서피스로 그릴  것
+		// 서피스로 그릴 것
 		with info_campaign {
-			custom_x = dx
-			custom_y = dy
+			x = dx
+			y = dy
 			event_user(0)
 			dy += height
 		}
+
+		dy = dy2
 		with button_start {
 			custom_x = dx
 			custom_y = dy
@@ -38,6 +41,8 @@ if 0 < scale {
 	surface_reset_target()
 	draw_set_alpha(alpha_before)
 
-	draw_surface_ext(popup_surface, global.resolutions_gui[0] - width, 0, 1, 1, 0, $ffffff, draw_get_alpha())
+	var surface_drawn_x = global.resolutions_gui[0] - width
+	draw_surface_ext(popup_surface, surface_drawn_x, 0, 1, 1, 0, $ffffff, draw_get_alpha())
+	draw_sprite_ext(sChapterGlow, 0, surface_drawn_x, 0, 1, glow_scale, 0, $ffffff, draw_get_alpha())
 }
 

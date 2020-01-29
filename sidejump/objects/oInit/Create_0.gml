@@ -1,5 +1,22 @@
 /// @description 초기화
 loading_failed = true
+#region 외부 파일
+enum input {
+	keyboard,
+	mouse,
+	gamepad
+}
+
+external_clear()
+controls_clear()
+global.file_settings = "options.json"
+global.file_profile = "player.dat"
+
+global.settings = ds_map_create()
+global.controls_keyboard = ds_map_create()
+global.controls_gamepad = ds_map_create()
+#endregion
+
 #region 일반
 global.flag_is_mobile = (os_type == os_android or os_type == os_ios) // 하지만 안드로이드만 지원
 global.flag_is_browser = (os_browser != browser_not_a_browser)
@@ -9,7 +26,7 @@ device_mouse_dbclick_enable(false)
 #endregion
 
 #region 화면
-window_set_fullscreen(true)
+//window_set_fullscreen(true)
 application_surface_enable(true)
 application_surface_draw_enable(false)
 

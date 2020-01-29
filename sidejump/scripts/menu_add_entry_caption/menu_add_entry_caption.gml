@@ -9,7 +9,7 @@ with menu_add_other(oMenuEntryCaption, id, menu_callback) {
 	caption = argument[0]
 	info_predicate = menu_variable
 	width = string_width(caption)
-	height_min = string_height(caption) + oMainMenu.menu_entry_height_padding
+	height_min = string_height(caption)
 	height_max = height_min * oMainMenu.menu_entry_font_scale
 	height = height_min
 	return id

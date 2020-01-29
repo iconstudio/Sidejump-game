@@ -10,11 +10,11 @@ with menu_add_entry_caption("Endless") {
 }
 
 with menu_add_entry_caption("Setting") {
-	with menu_add_entry_caption("BGM: ") {
+	with menu_add_entry_caption("BGM Volume: ") {
 		menu_add_entry_caption("10")
 		menu_add_entry_caption("Back", callback_menu_back)
 	}
-	with menu_add_entry_caption("SFX: ") {
+	with menu_add_entry_caption("SFX Volume: ") {
 		menu_add_entry_caption("10")
 		menu_add_entry_caption("Back", callback_menu_back)
 	}
@@ -22,19 +22,23 @@ with menu_add_entry_caption("Setting") {
 		menu_add_entry_caption("On")
 		menu_add_entry_caption("Back", callback_menu_back)
 	}
-	with menu_add_entry_caption("SFX: ") {
-		menu_add_entry_caption("10")
+
+	with menu_add_entry_caption("Keyboard Controls") {
 		menu_add_entry_caption("Back", callback_menu_back)
 	}
-	with menu_add_entry_caption("SFX: ") {
-		menu_add_entry_caption("10")
+	if gamepad_is_supported() {
+		with menu_add_entry_caption("Gamepad Controls") {
+			menu_add_entry_caption("Back", callback_menu_back)
+		}
+	}
+
+	with menu_add_entry_caption("Graphics: ") {
+		menu_add_entry_caption("High")
+		menu_add_entry_caption("Medium")
+		menu_add_entry_caption("Low")
 		menu_add_entry_caption("Back", callback_menu_back)
 	}
-	with menu_add_entry_caption("SFX: ") {
-		menu_add_entry_caption("10")
-		menu_add_entry_caption("Back", callback_menu_back)
-	}
-	menu_add_entry_caption("Graphics: ")
+
 	menu_add_entry_caption("Back", callback_menu_back)
 }
 

@@ -34,13 +34,10 @@ for (var i = chapter_get_first(); i <= chapter_get_last(); ++i) {
 		x = move_begin_x
 		move_await_period = 1 + seconds(0.05 * i)
 
-		info_campaign = menu_add_entry_caption("Description")
+		info_campaign = instance_create_layer(0, 0, "Menu", oMenuEntryChapterInfo)
 		with info_campaign {
 			visible = false
 			use_custom_coords = true
-			//height_max = 256
-			//height_min = height_max
-			//height = height_min
 		}
 		button_start = menu_add_entry_caption("Start")
 		with button_start {

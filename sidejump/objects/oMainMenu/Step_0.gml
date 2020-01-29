@@ -68,7 +68,8 @@ switch scene {
 				scene = MAIN_BACK_TO_TITLE
 			} else {
 				with entry_current_opened {
-					
+					if script_exists(back_delegate)
+						script_execute(back_delegate, id)
 				}
 			}
 		} else {
@@ -88,7 +89,7 @@ switch scene {
 			if check_menu_go {
 				menu_entry_open(entry_last)
 				input_delay_time = 0
-			} // IF (check_menu_go)
+			}
 		}
 	}
 
@@ -103,7 +104,7 @@ switch scene {
 
 	case MAIN_BACK_TO_TITLE:
 	var reappear_ratio = reappear_time / reappear_period
-	image_alpha = 0.5 + ease_out_quad(reappear_ratio) // *
+	image_alpha = 1//0.5 + ease_out_quad(reappear_ratio) // *
 	y = lerp(title_disappear_y, title_y, ease_in_cubic(reappear_ratio))
 	main_alpha = 1 - ease_out_expo(reappear_ratio)
 
@@ -143,6 +144,14 @@ switch scene {
 
 switch bg_scene {
 	case SHOW:
+	if 0 < rainy_time {
+		rainy_time--
+	} else {
+		rainy_time = irandom(rainy_duration)
+
+		repeat rainy_counts_min + irandom(rainy_counts_random_max)
+			instance_create_layer(0, 0, "Instances", oMainRaindrops)
+	}
 	break
 
 	case OPENING:

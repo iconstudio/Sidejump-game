@@ -8,6 +8,7 @@
         "dfa6a5e2-497b-475b-a13c-c5ba39c3d79b",
         "574b17b1-76d6-428c-ad04-fd46485e9827",
         "aebe864b-9be4-4000-86ed-2238f0f564d6",
+        "1288dcbb-b680-4fe9-acb3-d5651a3158fe",
         "3fbcfb59-4507-412b-8fb5-3ab99014f5df",
         "2706bdf7-9b66-4c15-a0e5-d22c8a88d8a5",
         "36b7cd08-c763-439f-9de2-bd426fc4ea99",
@@ -19,8 +20,7 @@
         "e77682bf-13b2-47ca-b72e-a5bc0cae3f73",
         "205225e6-7dbd-487f-8f08-57231e9353a5",
         "cb1fdc35-c402-41f4-b604-39f0473a1a5e",
-        "7983777e-e6cd-4873-b0f9-5b0fe1df81b0",
-        "13c1aef3-87b4-4e03-b810-2c2a6685f8c2"
+        "7983777e-e6cd-4873-b0f9-5b0fe1df81b0"
     ],
     "filterType": "GMSprite",
     "folderName": "System",

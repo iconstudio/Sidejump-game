@@ -9,3 +9,8 @@ if opened {
 	else
 		open_time = 0
 }
+
+if created_time < created_period
+	created_time++
+else
+	created_time = created_period
