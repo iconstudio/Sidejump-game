@@ -14,3 +14,4 @@ content_buttons_y = floor(global.resolutions_gui[1] * 0.8)
 glow_scale = global.resolutions_gui[1] / 8
 
 event_user(1)
+event_user(2)

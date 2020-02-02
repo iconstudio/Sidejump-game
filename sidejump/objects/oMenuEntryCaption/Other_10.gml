@@ -1,4 +1,10 @@
 /// @description 그리기
+if draw_get_alpha() <= 0
+	exit
+
+if !surface_exists(caption_surface)
+	event_user(1)
+
 if use_custom_coords {
 	x = custom_x
 	y = custom_y
@@ -25,14 +31,29 @@ if script_exists(info_predicate) {
 	_width = width
 	_height = height
 }
-var caption_drawn_x = x// + _width * 0.5
-var caption_drawn_y = y// + _height * 0.5
-if setting_get_value("graphics") == 2
-	shader_set(shaderOutline)
+if surface_get_width(caption_surface) != _width or surface_get_height(caption_surface) != _height
+	surface_resize(caption_surface, _width, _height)
+
+var alpha_before = draw_get_alpha()
+draw_set_alpha(1)
 if entry_upper.entry_choice == id
 	draw_set_color(oMainMenu.menu_entry_color_selected)
 else
 	draw_set_color($ffffff)
-draw_text_transformed(caption_drawn_x, caption_drawn_y, _caption, scale, scale, 0)
-if setting_get_value("graphics") == 2
+
+surface_set_target(caption_surface)
+draw_clear_alpha(0, 0)
+draw_text(0, 0, _caption)
+surface_reset_target()
+
+draw_set_alpha(alpha_before)
+
+if setting_get_value("graphics") != 0 {
+	shader_set(shaderOutline)
+	shader_set_uniform_f(global.shaderOutline_resolution, _width, _height)
+}
+draw_surface_ext(caption_surface, floor(x), floor(y), scale, scale, 0, $ffffff, draw_get_alpha())
+if setting_get_value("graphics") != 0 {
+	shader_set_uniform_f(global.shaderOutline_resolution, global.application_sizes[0], global.application_sizes[1])
 	shader_reset()
+}

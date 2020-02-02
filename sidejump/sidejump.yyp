@@ -759,6 +759,14 @@
             }
         },
         {
+            "Key": "52ca018d-d04a-468a-9ce0-acaee4544633",
+            "Value": {
+                "id": "939ddff1-5bba-4c6e-acaf-18a1080b6292",
+                "resourcePath": "shaders\\shaderBlurCentral\\shaderBlurCentral.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "53942e26-ba5a-4c61-bbc1-e406aa962009",
             "Value": {
                 "id": "fb30505d-b82a-49f6-8cbb-cc198474f156",
@@ -1108,6 +1116,14 @@
                 "id": "52e30d0d-cd28-4bff-907b-4585f0eb1c20",
                 "resourcePath": "scripts\\huder_SmoothNoise\\huder_SmoothNoise.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7712bf56-6c10-4baf-ac6e-94293ec5bc88",
+            "Value": {
+                "id": "33060482-d238-411d-9cc1-0f04966c08c8",
+                "resourcePath": "sprites\\sMainScreenFrame\\sMainScreenFrame.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

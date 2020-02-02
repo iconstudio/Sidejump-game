@@ -28,5 +28,4 @@ surface_width_margin = 40
 surface_height_margin = (bar_height + grade_height_half) * 2
 surface_width = width + surface_width_margin * 2
 surface_height = height_max + surface_height_margin * 2
-surface_texels = [1 / width, 1 / height_max]
 event_user(1)

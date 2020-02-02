@@ -73,10 +73,10 @@ if global.shader_supported {
 		show_debug_message("shaderFXAA is not complied. Be careful!")
 }
 global.shaderFXAA_vSize = shader_get_uniform(shaderFXAA, "u_vSize");
-global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
-global.shaderOutline_texel_size = shader_get_uniform(shaderOutline, "texel_size")
+global.shaderBlur_resolution = shader_get_uniform(shaderBlur, "resolution")
+global.shaderBlurCentral_resolution = shader_get_uniform(shaderBlurCentral, "resolution")
+global.shaderOutline_resolution = shader_get_uniform(shaderOutline, "resolution")
 global.shaderPlayerGlow_player_position = shader_get_uniform(shaderPlayerGlow, "player_position")
-global.shaderMenuFadeout_shroud_alpha = shader_get_uniform(shaderMenuFadeout, "shroud_alpha")
 #endregion
 
 #region 그래픽

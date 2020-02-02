@@ -1,8 +1,6 @@
-//
-// Simple passthrough vertex shader
-//
+precision highp float;
+
 attribute vec3 in_Position;                  // (x,y,z)
-//attribute vec3 in_Normal;                  // (x,y,z)     unused in this shader.
 attribute vec4 in_Colour;                    // (r,g,b,a)
 attribute vec2 in_TextureCoord;              // (u,v)
 
@@ -10,7 +8,8 @@ varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 varying vec2 v_vPositionCache[8];
 
-uniform vec2 texel_size;
+varying vec2 texel_size;
+uniform vec2 resolution;
 
 void main()
 {
@@ -20,6 +19,7 @@ void main()
     v_vColour = in_Colour;
     v_vTexcoord = in_TextureCoord;
 		
+		vec2 texel_size = vec2(1.0 / resolution[0], 1.0 / resolution[1]);
 		v_vPositionCache[0] = vec2(texel_size.x, 0.0);
 		v_vPositionCache[1] = vec2(texel_size.x, texel_size.y);
 		v_vPositionCache[2] = vec2(0.0, texel_size.y);

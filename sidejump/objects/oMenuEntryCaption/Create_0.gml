@@ -15,3 +15,5 @@ height_max = 0
 info_predicate = -1
 opening_easing_start_height = 0
 closing_easing_start_height = 0
+
+caption_surface = -1

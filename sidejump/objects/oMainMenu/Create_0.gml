@@ -61,6 +61,7 @@ menu_entry_font_scale = 22 / 20
 opened = true // 주 메뉴는 무조건 true지만 디버그 용으로 남겨둔다.
 open_time = 1
 open_period = 1
+back_delegate = -1
 entry_list = ds_list_create()
 entry_current_opened = id // 현재 가장 하위에 있는 열린 메뉴
 entry_last = noone // 종류를 막론하고 마지막으로 선택된 메뉴 항목
@@ -84,5 +85,11 @@ rainy_counts_random_max = 3
 
 global.application_texels = [texture_get_texel_width(global.application_texture), texture_get_texel_height(global.application_texture)]
 shader_set(shaderOutline)
-shader_set_uniform_f(global.shaderOutline_texel_size, global.application_texels[0], global.application_texels[1])
+shader_set_uniform_f(global.shaderOutline_resolution, global.application_sizes[0], global.application_sizes[1])
+shader_reset()
+shader_set(shaderBlur)
+shader_set_uniform_f(global.shaderBlur_resolution, global.application_sizes[0], global.application_sizes[1])
+shader_reset()
+shader_set(shaderBlurCentral)
+shader_set_uniform_f(global.shaderBlurCentral_resolution, global.application_sizes[0], global.application_sizes[1])
 shader_reset()

@@ -23,5 +23,11 @@ vec4 blur(vec2 uv, vec2 resolution, vec2 direction) {
 void main()
 {
 	vec2 uv = vec2(gl_FragCoord.xy / resolution.xy);
-	gl_FragColor = blur(uv, resolution.xy, vec2(1.1, 1.0)) * v_vColour;
+	vec4 sum = vec4(0.0);
+	sum += blur(uv, resolution.xy, vec2(1.0, 0.0)) * 0.25;
+	sum += blur(uv, resolution.xy, vec2(0.0, 1.0)) * 0.25;
+	sum += blur(uv, resolution.xy, vec2(-1.0, 0.0)) * 0.25;
+	sum += blur(uv, resolution.xy, vec2(0.0, -1.0)) * 0.25;
+
+	gl_FragColor = sum * v_vColour;
 }
