@@ -29,6 +29,8 @@ gpu_set_blendmode(bm_normal)
 gpu_set_colorwriteenable(true, true, true, true)
 
 draw_set_alpha(alpha_before2)
+if setting_get_value("graphics") == 2
+	shader_set(shaderOutline)
 if entry_upper.entry_choice == id
 	draw_set_color(oMainMenu.menu_entry_color_selected)
 else
@@ -37,5 +39,6 @@ draw_set_font(fontMedium)
 draw_set_halign(0)
 draw_set_valign(0)
 draw_text(x - 40, y + entry_upper.chapter_board_size * 0.6 + 24, caption)
-
+if setting_get_value("graphics") == 2
+	shader_reset()
 draw_set_alpha(alpha_before)

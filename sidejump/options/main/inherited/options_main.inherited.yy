@@ -55,6 +55,21 @@
                     "mipsToGenerate": -1,
                     "scaled": false
                 }
+            },
+            {
+                "Key": 4,
+                "Value": {
+                    "id": "8d59ccf4-1dbd-46b9-a040-090c48e06e63",
+                    "modelName": "GMTextureGroup",
+                    "mvc": "1.0",
+                    "groupName": "MainMenu",
+                    "targets": 461609314234257646,
+                    "autocrop": true,
+                    "border": 2,
+                    "groupParent": "00000000-0000-0000-0000-000000000000",
+                    "mipsToGenerate": 0,
+                    "scaled": true
+                }
             }
         ],
         "Checksum": "ࢺ懜璙ᓆ锯翋꤯맫",

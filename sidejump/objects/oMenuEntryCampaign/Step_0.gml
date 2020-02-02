@@ -20,15 +20,11 @@ if scale < 1 {
 			event_user(9)
 	}
 } else {
-	if entry_upper.opened {
-		height = height_max
-		closing_time = 0
-	}
 
 	if chapter_board_await_time < chapter_board_await_period {
 		chapter_board_await_time++
 	} else if entry_upper.opened and entry_upper.entry_choice == id
-	and !instance_exists(oMenuCampaignPopup) and scale == 1 {
+	and !instance_exists(oMenuCampaignPopup) and scale == 1 and !lock {
 		var check_menu_lf = global.io_pressed_left
 		var check_menu_rt = global.io_pressed_right
 		var check_menu_go = global.io_pressed_yes
@@ -37,11 +33,9 @@ if scale < 1 {
 			if check_menu_lf {
 				if 0 < entry_choice_index
 					menu_choice(entry_choice_index - 1)
-				chapter_board_scroll = -entry_choice_index * chapter_board_each_gap
 			} else if check_menu_rt {
 				if entry_choice_index < chapter_board_number - 1
 					menu_choice(entry_choice_index + 1)
-				chapter_board_scroll = -entry_choice_index * chapter_board_each_gap
 			}
 		}
 
@@ -50,4 +44,5 @@ if scale < 1 {
 			menu_entry_open(oMainMenu.entry_last)
 		}
 	}
+	chapter_board_scroll = -entry_choice_index * chapter_board_each_gap
 }

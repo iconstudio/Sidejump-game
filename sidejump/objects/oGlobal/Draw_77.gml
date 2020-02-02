@@ -1,4 +1,6 @@
 /// @description 어플리케이션 서피스 그리기
+/*
+
 if !surface_exists(post_surface)
 	event_user(0)
 

@@ -20,7 +20,7 @@ title_y = room_height * 0.5
 title_disappear_y = title_y - 60
 x = room_width * 0.5
 y = title_y
-image_alpha = 0
+image_alpha = 1
 image_xscale = 0
 image_yscale = 0
 main_alpha = 0
@@ -32,7 +32,7 @@ input_delay_time = 0
 input_delay_period = seconds(0.2)
 exit_time = 0 
 exit_period = seconds(0.4)
-scene = MAIN_IDLE
+scene = TITLE_APPEAR//MAIN_IDLE
 
 // 메뉴 그리기 속성
 menu_surface = -1
@@ -81,3 +81,8 @@ rainy_time = 0
 rainy_duration = seconds(0.06)
 rainy_counts_min = 6
 rainy_counts_random_max = 3
+
+global.application_texels = [texture_get_texel_width(global.application_texture), texture_get_texel_height(global.application_texture)]
+shader_set(shaderOutline)
+shader_set_uniform_f(global.shaderOutline_texel_size, global.application_texels[0], global.application_texels[1])
+shader_reset()

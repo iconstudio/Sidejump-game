@@ -5,8 +5,8 @@ if use_custom_coords {
 }
 
 draw_set_font(fontMenu)
-draw_set_halign(1)
-draw_set_valign(1)
+draw_set_halign(0)
+draw_set_valign(0)
 var scale = 1
 if 0 < open_time {
 	if opened
@@ -15,18 +15,24 @@ if 0 < open_time {
 		scale = lerp(1, oMainMenu.menu_entry_font_scale, ease_in_expo(open_time / open_period))
 }
 
-var scale_big = scale * 1.03
-var caption_drawn_x = x + width * 0.5
-var caption_drawn_y = y + height * 0.5
-draw_set_color(0)
-draw_text_transformed(caption_drawn_x, caption_drawn_y, caption, scale_big, scale_big, 0)
-draw_text_transformed(caption_drawn_x - 2, caption_drawn_y, caption, scale_big, scale_big, 0)
-draw_text_transformed(caption_drawn_x, caption_drawn_y - 2, caption, scale_big, scale_big, 0)
-draw_text_transformed(caption_drawn_x + 2, caption_drawn_y, caption, scale_big, scale_big, 0)
-draw_text_transformed(caption_drawn_x, caption_drawn_y + 2, caption, scale_big, scale_big, 0)
-
+var _caption, _width, _height
+if script_exists(info_predicate) {
+	_caption = caption + script_execute(info_predicate)
+	_width = string_width(_caption)
+	_height = string_height(_caption)
+} else {
+	_caption = caption
+	_width = width
+	_height = height
+}
+var caption_drawn_x = x// + _width * 0.5
+var caption_drawn_y = y// + _height * 0.5
+if setting_get_value("graphics") == 2
+	shader_set(shaderOutline)
 if entry_upper.entry_choice == id
 	draw_set_color(oMainMenu.menu_entry_color_selected)
 else
 	draw_set_color($ffffff)
-draw_text_transformed(caption_drawn_x, caption_drawn_y, caption, scale, scale, 0)
+draw_text_transformed(caption_drawn_x, caption_drawn_y, _caption, scale, scale, 0)
+if setting_get_value("graphics") == 2
+	shader_reset()

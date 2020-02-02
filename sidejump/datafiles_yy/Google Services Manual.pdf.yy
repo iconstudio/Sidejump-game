@@ -3,7 +3,7 @@
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "Google Services Manual.pdf",
-    "CopyToMask": -1,
+    "CopyToMask": 0,
     "exists": false,
     "exportAction": 0,
     "exportDir": "",

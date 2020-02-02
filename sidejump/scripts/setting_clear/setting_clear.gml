@@ -1,8 +1,9 @@
 /// @description setting_clear()
 /// @function setting_clear
 ds_map_clear(global.settings)
-global.setting_music = 10
-global.setting_sfx = 10
-global.setting_fullscreen = true
-global.setting_graphics = 2
-global.setting_on_shake = true
+ds_map_add(global.settings, "version", GM_version)
+ds_map_add(global.settings, "volume_music", 10)
+ds_map_add(global.settings, "volume_sfx", 10)
+ds_map_add(global.settings, "fullscreen", 1)
+ds_map_add(global.settings, "shake", 1)
+ds_map_add(global.settings, "graphics", 2)

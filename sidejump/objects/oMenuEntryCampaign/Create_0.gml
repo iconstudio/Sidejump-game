@@ -7,7 +7,7 @@ closing_period = seconds(0.2)
 
 scale = 0
 board_margin = 4
-height_max = 200 + board_margin * 2
+height_max = 240 + board_margin * 2
 board_y = board_margin
 board_height_max = height_max - board_margin * 2
 board_height = 0
@@ -17,15 +17,16 @@ board_y_half = 0
 board_content_x_beign = floor(global.resolutions_gui[0] * 0.4)
 board_content_y = board_y + board_margin
 
-chapter_board_scroll = 0
 chapter_board_await_time = 0
 chapter_board_await_period = seconds(0.03)
+chapter_board_scroll = 0
 chapter_board_size = 128
 chapter_board_padding = 72
 chapter_board_each_gap = chapter_board_padding + chapter_board_size
-
+//*
 for (var i = chapter_get_first(); i <= chapter_get_last(); ++i) {
 	with menu_add_other(oMenuEntryChapterBoard, id, -1) {
+		menu_entry_set_delegate_back(callback_campaign_back)
 		caption = chapter_get_name(i)
 		chapter_index = i
 
@@ -37,6 +38,7 @@ for (var i = chapter_get_first(); i <= chapter_get_last(); ++i) {
 		info_campaign = instance_create_layer(0, 0, "Menu", oMenuEntryChapterInfo)
 		with info_campaign {
 			visible = false
+			caption = other.caption
 			use_custom_coords = true
 		}
 		button_start = menu_add_entry_caption("Start")
@@ -51,5 +53,5 @@ for (var i = chapter_get_first(); i <= chapter_get_last(); ++i) {
 		}
 	}
 }
-menu_select(0)
+menu_choice(0)
 chapter_board_number = ds_list_size(entry_list)

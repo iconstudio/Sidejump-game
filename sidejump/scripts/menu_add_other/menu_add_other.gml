@@ -1,4 +1,3 @@
-
 /// @description menu_add_other(type, target, [callback])
 /// @function menu_add_other
 /// @param type { object }

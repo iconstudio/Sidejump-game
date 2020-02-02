@@ -2,7 +2,7 @@
 switch scene {
 	case TITLE_APPEAR:
 	var appear_ratio = appear_time / appear_period
-	image_alpha = ease_out_quartic(appear_ratio)
+	//image_alpha = ease_out_quartic(appear_ratio)
 	image_xscale = 1 + ease_in_out_back(1 - appear_ratio) * 0.3
 	if appear_time < appear_period {
 		appear_time++
@@ -67,12 +67,12 @@ switch scene {
 			if entry_current_opened == id {
 				scene = MAIN_BACK_TO_TITLE
 			} else {
-				with entry_current_opened {
-					if script_exists(back_delegate)
-						script_execute(back_delegate, id)
+				with entry_last {
+					if instance_exists(entry_upper) and script_exists(entry_upper.back_delegate)
+						script_execute(entry_upper.back_delegate, id)
 				}
 			}
-		} else {
+		} else if entry_current_opened.open_time == entry_current_opened.open_period {
 			var check_menu_up = global.io_pressed_up
 			var check_menu_dw = global.io_pressed_down
 			var check_menu_go = global.io_pressed_yes
@@ -86,7 +86,7 @@ switch scene {
 				}
 			}
 
-			if check_menu_go {
+			if check_menu_go and entry_last.object_index != oMenuEntrySlider {
 				menu_entry_open(entry_last)
 				input_delay_time = 0
 			}
@@ -104,7 +104,7 @@ switch scene {
 
 	case MAIN_BACK_TO_TITLE:
 	var reappear_ratio = reappear_time / reappear_period
-	image_alpha = 1//0.5 + ease_out_quad(reappear_ratio) // *
+	image_alpha = ease_out_quad(reappear_ratio)
 	y = lerp(title_disappear_y, title_y, ease_in_cubic(reappear_ratio))
 	main_alpha = 1 - ease_out_expo(reappear_ratio)
 
@@ -120,7 +120,7 @@ switch scene {
 	case TITLE_EXIT:
 	var exit_ratio = exit_time / exit_period
 	image_alpha = 1 - ease_out_expo(exit_ratio)
-	y = lerp(title_y, title_disappear_y, ease_out_circ(exit_ratio))
+	//y = lerp(title_y, title_disappear_y, ease_out_circ(exit_ratio))
 	image_yscale = image_xscale
 	if exit_time < exit_period
 		exit_time++
@@ -130,7 +130,7 @@ switch scene {
 
 	case MAIN_EXIT:
 	var exit_ratio = exit_time / exit_period
-	y = lerp(title_y, title_disappear_y, ease_out_circ(exit_ratio))
+	//y = lerp(title_y, title_disappear_y, ease_out_circ(exit_ratio))
 	if exit_time < exit_period
 		exit_time++
 	else
@@ -145,7 +145,7 @@ switch scene {
 switch bg_scene {
 	case SHOW:
 	if 0 < rainy_time {
-		rainy_time--
+		//rainy_time--
 	} else {
 		rainy_time = irandom(rainy_duration)
 

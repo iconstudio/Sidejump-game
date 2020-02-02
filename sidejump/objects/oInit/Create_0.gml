@@ -7,14 +7,16 @@ enum input {
 	gamepad
 }
 
-external_clear()
-controls_clear()
-global.file_settings = "options.json"
 global.file_profile = "player.dat"
 
+global.file_settings = "options.json"
 global.settings = ds_map_create()
+setting_load()
+
 global.controls_keyboard = ds_map_create()
 global.controls_gamepad = ds_map_create()
+controls_clear()
+
 #endregion
 
 #region 일반
@@ -26,12 +28,11 @@ device_mouse_dbclick_enable(false)
 #endregion
 
 #region 화면
-//window_set_fullscreen(true)
 application_surface_enable(true)
-application_surface_draw_enable(false)
+application_surface_draw_enable(true)
 
 surface_depth_disable(true)
-display_reset(8, false)
+display_reset(0, false)
 display_set_timing_method(tm_countvsyncs)
 
 if global.flag_is_mobile {
@@ -47,8 +48,7 @@ if global.flag_is_mobile {
 // 기본 화면 크기는 960x480
 default_width = 960
 default_height = 480
-display_width = display_get_width()
-display_height = display_get_height()
+global.resolutions_default = [default_width, default_height]
 #endregion
 
 #region 음성
@@ -74,6 +74,7 @@ if global.shader_supported {
 }
 global.shaderFXAA_vSize = shader_get_uniform(shaderFXAA, "u_vSize");
 global.shaderBlur_texel_size = shader_get_uniform(shaderBlur, "texelSize")
+global.shaderOutline_texel_size = shader_get_uniform(shaderOutline, "texel_size")
 global.shaderPlayerGlow_player_position = shader_get_uniform(shaderPlayerGlow, "player_position")
 global.shaderMenuFadeout_shroud_alpha = shader_get_uniform(shaderMenuFadeout, "shroud_alpha")
 #endregion
@@ -81,78 +82,6 @@ global.shaderMenuFadeout_shroud_alpha = shader_get_uniform(shaderMenuFadeout, "s
 #region 그래픽
 gpu_set_ztestenable(true)
 gpu_set_zwriteenable(true)
-global.__d3dPrimKind = -1
-global.__d3dPrimTex = -1
-global.__d3dPrimBuffer = vertex_create_buffer()
-vertex_format_begin()
-vertex_format_add_position_3d()
-vertex_format_add_normal()
-vertex_format_add_colour()
-vertex_format_add_texcoord()
-global.__d3dPrimVF = vertex_format_end()
-
-enum e__YYM {
-	PointB,
-	LineB,
-	TriB,
-	PointUVB,
-	LineUVB,
-	TriUVB,
-	PointVB,
-	LineVB,
-	TriVB,
-	Texture,
-	Colour,
-	NumVerts,
-	PrimKind,
-	NumPointCols,
-	NumLineCols,
-	NumTriCols,
-	PointCols,
-	LineCols,
-	TriCols,
-
-	// these are used when building model primitives
-	V1X,
-	V1Y,
-	V1Z,
-	V1NX,
-	V1NY,
-	V1NZ,
-	V1C,
-	V1U,
-	V1V,
-
-	V2X,
-	V2Y,
-	V2Z,
-	V2NX,
-	V2NY,
-	V2NZ,
-	V2C,
-	V2U,
-	V2V,
-}
-
-enum e__YYMKIND {
-	PRIMITIVE_BEGIN,
-	PRIMITIVE_END,
-	VERTEX,
-	VERTEX_COLOR,
-	VERTEX_TEX,
-	VERTEX_TEX_COLOR,
-	VERTEX_N,
-	VERTEX_N_COLOR,
-	VERTEX_N_TEX,
-	VERTEX_N_TEX_COLOR,
-	SHAPE_BLOCK,
-	SHAPE_CYLINDER,
-	SHAPE_CONE,
-	SHAPE_ELLIPSOID,
-	SHAPE_WALL,
-	SHAPE_FLOOR,
-}
-
 #endregion
 
 #region 게임
@@ -249,8 +178,5 @@ if !global.network_available {
 #macro gamepad_type_playstation 1
 #macro gamepad_type_other 2
 
-if audio_loaded and !loading_failed {
+if audio_loaded and !loading_failed
 	event_user(0)
-} else {
-	
-}

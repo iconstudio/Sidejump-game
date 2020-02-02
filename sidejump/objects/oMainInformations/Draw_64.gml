@@ -22,4 +22,8 @@ draw_text(global.resolutions_gui[0] - 4, 58, oMainMenu.menu_drawn_y)
 //draw_text(4, info_drawn_y, info_caption_copyright)
 
 draw_set_halign(2)
+if setting_get_value("graphics") == 2
+	shader_set(shaderOutline)
 draw_text(global.resolutions_gui[0] - 4, info_drawn_y, info_caption_version)
+if setting_get_value("graphics") == 2
+	shader_reset()

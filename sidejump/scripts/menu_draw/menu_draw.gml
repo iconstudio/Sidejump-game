@@ -5,10 +5,10 @@
 var x_begin = argument0
 var y_begin = argument1
 
+var alpha_before = draw_get_alpha()
 for (var i = 0; i < ds_list_size(entry_list); ++i) {
 	var entry = menu_get_entry(i)
-	var alpha_before = draw_get_alpha()
-	if open_time < open_period and openable
+	if open_time < open_period and openable and setting_get_value("graphics") != 0
 		draw_set_alpha(alpha_before * ease_out_cubic(open_time / open_period))
 
 	with entry {
