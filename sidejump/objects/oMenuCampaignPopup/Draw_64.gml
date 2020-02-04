@@ -10,11 +10,13 @@ if 0 < scale {
 	var popup_alpha = alpha_before * ease_out_quartic(scale)
 	draw_set_alpha(popup_alpha)
 
+	gpu_set_texfilter(true)
+	/*
 	if setting_get_value("graphics") != 0 {
 		surface_set_target(menu_blur_surface2)
 		draw_clear_alpha(0, 0)
 		gpu_set_blendmode(bm_add)
-		gpu_set_texfilter(true)
+		
 		var w_new = global.resolutions_gui[0] * 0.5
 		var h_new = global.resolutions_gui[1] * 0.5
 		draw_surface_stretched_ext(application_surface, 0, 1.5, w_new, h_new, $ffffff, 0.35)
@@ -36,6 +38,7 @@ if 0 < scale {
 		draw_surface_ext(application_surface, 0, 0, 1, 1, 0, $ffffff, 1)
 		draw_surface_ext(menu_blur_surface2, 0, 0, 2, 2, 0, $ffffff, 1)
 		surface_reset_target()
+		
 
 		shader_set(shaderBlurCentral)
 		//draw_surface_ext(menu_blur_surface1, 0, 0, 1, 1, 0, $ffffff, draw_get_alpha())
