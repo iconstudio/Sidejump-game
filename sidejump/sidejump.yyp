@@ -903,6 +903,14 @@
             }
         },
         {
+            "Key": "62a85a20-3698-45fc-8686-7543e52bdff4",
+            "Value": {
+                "id": "8a85918a-767e-400b-a646-c44543660000",
+                "resourcePath": "objects\\oBlockAutoTiler\\oBlockAutoTiler.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "62e568a4-f01b-4740-9058-3ee1e94f4999",
             "Value": {
                 "id": "11b5f405-0f45-4549-bb36-6d999e986059",

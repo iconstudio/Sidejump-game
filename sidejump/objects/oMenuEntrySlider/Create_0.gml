@@ -1,7 +1,7 @@
 /// @description 슬라이더 초기화
 event_inherited()
 openable = false
-height_max = 100
+height_max = 64
 height = 0
 scale = 0
 width = floor(global.resolutions_gui[0] * 0.65)

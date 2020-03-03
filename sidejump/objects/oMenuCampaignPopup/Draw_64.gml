@@ -9,8 +9,6 @@ if 0 < scale {
 	var alpha_before = draw_get_alpha()
 	var popup_alpha = alpha_before * ease_out_quartic(scale)
 	draw_set_alpha(popup_alpha)
-
-	gpu_set_texfilter(true)
 	/*
 	if setting_get_value("graphics") != 0 {
 		surface_set_target(menu_blur_surface2)

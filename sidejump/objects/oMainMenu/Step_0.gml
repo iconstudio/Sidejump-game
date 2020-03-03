@@ -147,10 +147,10 @@ switch bg_scene {
 	if 0 < rainy_time {
 		//rainy_time--
 	} else {
-		rainy_time = irandom(rainy_duration)
+		//rainy_time = irandom(rainy_duration)
 
-		repeat rainy_counts_min + irandom(rainy_counts_random_max)
-			instance_create_layer(0, 0, "Instances", oMainRaindrops)
+		//repeat rainy_counts_min + irandom(rainy_counts_random_max)
+		//	instance_create_layer(0, 0, "Instances", oMainRaindrops)
 	}
 	break
 

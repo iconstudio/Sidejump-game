@@ -10,7 +10,7 @@ var alpha_before2 = draw_get_alpha()
 if entry_upper.entry_upper.entry_choice != entry_upper {
 	draw_set_alpha(draw_get_alpha() * 0.5)
 	gpu_set_blendmode_ext(bm_one, bm_one)
-	gpu_set_colorwriteenable(false, false, false, true)
+	//gpu_set_colorwriteenable(false, false, false, true)
 }
 
 //var picture_height_max = entry_upper.chapter_board_size
@@ -26,7 +26,7 @@ if entry_upper.scale == 1 {
 	draw_sprite_ext(sChapterPicture, 0, rect_x, rect_y, 1, rect_scale, picture_tilt_angle, $ffffff, draw_get_alpha())
 }
 gpu_set_blendmode(bm_normal)
-gpu_set_colorwriteenable(true, true, true, true)
+//gpu_set_colorwriteenable(true, true, true, true)
 
 draw_set_alpha(alpha_before2)
 if setting_get_value("graphics") != 0

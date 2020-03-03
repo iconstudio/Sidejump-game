@@ -5,9 +5,10 @@ lock = false
 closing_time = 0
 closing_period = seconds(0.2)
 
+chapter_board_size = sprite_get_height(sChapterPicture)
 scale = 0
-board_margin = 4
-height_max = 240 + board_margin * 2
+board_margin = 0
+height_max = chapter_board_size * 2 + board_margin * 2 + 34
 board_y = board_margin
 board_height_max = height_max - board_margin * 2
 board_height = 0
@@ -20,8 +21,8 @@ board_content_y = board_y + board_margin
 chapter_board_await_time = 0
 chapter_board_await_period = seconds(0.03)
 chapter_board_scroll = 0
-chapter_board_size = 128
-chapter_board_padding = 72
+
+chapter_board_padding = floor(chapter_board_size * 0.6) + 24
 chapter_board_each_gap = chapter_board_padding + chapter_board_size
 //*
 for (var i = chapter_get_first(); i <= chapter_get_last(); ++i) {

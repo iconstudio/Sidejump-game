@@ -65,10 +65,10 @@ draw_set_alpha(alpha_before)
 
 if setting_get_value("graphics") != 0 {
 	shader_set(shaderOutline)
-	shader_set_uniform_f(global.shaderOutline_resolution, width, height_max)
+	//shader_set_uniform_f(global.shaderOutline_resolution, width, height_max)
 }
 draw_surface_ext(slide_surface, x - surface_width_margin, y - surface_height_margin, 1, 1, 0, $ffffff, draw_get_alpha())
 if setting_get_value("graphics") != 0 {
-	shader_set_uniform_f(global.shaderOutline_resolution, global.application_sizes[0], global.application_sizes[1])
+	//shader_set_uniform_f(global.shaderOutline_resolution, global.application_sizes[0], global.application_sizes[1])
 	shader_reset()
 }

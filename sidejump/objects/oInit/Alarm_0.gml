@@ -9,7 +9,7 @@ global.application_texture = surface_get_texture(application_surface)
 global.application_offset = application_get_position()
 global.application_sizes = [global.resolutions_default[0], global.resolutions_default[1]]
 //global.application_texels = [texture_get_texel_width(global.application_texture), texture_get_texel_height(global.application_texture)]
-global.application_texels = [1 / 320, 1 / 240]
+global.application_texels = [1 / global.resolutions_default[0], 1 / global.resolutions_default[1]]
 
 setting_apply()
 

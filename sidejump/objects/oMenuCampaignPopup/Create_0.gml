@@ -5,7 +5,7 @@ created_time = 0
 created_period = seconds(0.55)
 
 width = 0
-width_max = floor(global.resolutions_gui[0] * 0.3)
+width_max = floor(global.resolutions_gui[0] * 0.4)
 width_easing_start = 0
 width_increase = 16
 
