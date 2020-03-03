@@ -45,9 +45,9 @@ if global.flag_is_mobile {
 	display_set_sleep_margin(10)
 }
 
-// 기본 화면 크기는 960x480
-default_width = 960
-default_height = 480
+// 기본 화면 크기는 320x240
+default_width = 320
+default_height = 240
 global.resolutions_default = [default_width, default_height]
 #endregion
 

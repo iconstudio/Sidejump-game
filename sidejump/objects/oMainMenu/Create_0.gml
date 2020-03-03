@@ -16,9 +16,9 @@ idle_await_time = 0
 idle_await_period = seconds(0.6)
 disappear_time = 0 
 disappear_period = seconds(0.4)
-title_y = room_height * 0.5
+title_y = global.resolutions_gui[1] * 0.5
 title_disappear_y = title_y - 60
-x = room_width * 0.5
+x = global.resolutions_gui[0] * 0.5
 y = title_y
 image_alpha = 1
 image_xscale = 0
@@ -37,8 +37,8 @@ scene = TITLE_APPEAR//MAIN_IDLE
 // 메뉴 그리기 속성
 menu_surface = -1
 menu_texture = pointer_null
-menu_drawn_x_default = 72
-menu_drawn_y_default = 16
+menu_drawn_x_default = 8
+menu_drawn_y_default = 8
 menu_drawn_y_target = menu_drawn_y_default
 menu_drawn_y_begin = menu_drawn_y_target
 menu_drawn_y = menu_drawn_y_target
@@ -54,7 +54,7 @@ menu_surface_middle_height = global.resolutions_gui[1] - menu_surface_count * 2
 menu_surface_bottom_y = menu_surface_count + menu_surface_middle_height
 
 menu_entry_color_selected = $b507fe
-menu_entry_width_addition = 12
+menu_entry_width_addition = 8
 menu_entry_font_scale = 22 / 20
 
 // 메뉴 항목

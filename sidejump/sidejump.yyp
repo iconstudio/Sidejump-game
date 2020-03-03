@@ -807,14 +807,6 @@
             }
         },
         {
-            "Key": "574b17b1-76d6-428c-ad04-fd46485e9827",
-            "Value": {
-                "id": "95845aaa-4237-4060-af8e-c91ef2e8e148",
-                "resourcePath": "sprites\\sCursor\\sCursor.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "586fd7bd-0eaf-4c25-a1e1-55cab85baedf",
             "Value": {
                 "id": "ec6cae05-6330-4848-8ad1-2a55f31f7b23",

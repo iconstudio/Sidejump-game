@@ -9,7 +9,7 @@ global.application_texture = surface_get_texture(application_surface)
 global.application_offset = application_get_position()
 global.application_sizes = [global.resolutions_default[0], global.resolutions_default[1]]
 //global.application_texels = [texture_get_texel_width(global.application_texture), texture_get_texel_height(global.application_texture)]
-global.application_texels = [1 / 960, 1 / 480]
+global.application_texels = [1 / 320, 1 / 240]
 
 setting_apply()
 
@@ -19,6 +19,6 @@ global.resolutions_gui = [gui_width, gui_height]
 
 instance_create_layer(0, 0, layer, oGlobal)
 instance_create_layer(0, 0, layer, oGamepad)
-instance_create_layer(0, 0, layer, oCursor)
+//instance_create_layer(0, 0, layer, oCursor)
 
 room_goto_next()
