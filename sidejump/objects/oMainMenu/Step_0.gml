@@ -2,17 +2,19 @@
 switch scene {
 	case TITLE_APPEAR:
 	var appear_ratio = appear_time / appear_period
-	//image_alpha = ease_out_quartic(appear_ratio)
-	image_xscale = 1 + ease_in_out_back(1 - appear_ratio) * 0.3
+	image_alpha =  ease_out_quartic(appear_ratio)
+	//image_xscale = 1 + ease_in_out_back(1 - appear_ratio) * 0.3
+	y = lerp(title_disappear_y, title_y, ease_in_cubic(appear_ratio))
 	if appear_time < appear_period {
 		appear_time++
 	} else {
 		appear_time = 0
 		image_alpha = 1
-		image_xscale = 1
+		//image_xscale = 1
+		y = title_y
 		scene = TITLE_IDLE
 	}
-	image_yscale = image_xscale
+	//image_yscale = image_xscale
 	break
 
 	case TITLE_IDLE:
@@ -68,8 +70,15 @@ switch scene {
 				scene = MAIN_BACK_TO_TITLE
 			} else {
 				with entry_last {
-					if instance_exists(entry_upper) and script_exists(entry_upper.back_delegate)
-						script_execute(entry_upper.back_delegate, id)
+					if instance_exists(entry_upper) {
+						if object_index != oMenuEntryCampaign {
+							if script_exists(entry_upper.back_delegate)
+								script_execute(entry_upper.back_delegate, id)
+						} else {
+							if script_exists(back_delegate)
+								script_execute(back_delegate, id)
+						}
+					}
 				}
 			}
 		} else if entry_current_opened.open_time == entry_current_opened.open_period {
