@@ -1,7 +1,7 @@
 /// @description 이동 및 펼치기
 event_inherited()
 
-y = entry_upper.y + entry_upper.board_content_y + 64
+y = entry_upper.y + entry_upper.board_content_y + 50
 
 if entry_upper.chapter_board_await_period <= entry_upper.chapter_board_await_time
 and entry_upper.entry_upper.opened {

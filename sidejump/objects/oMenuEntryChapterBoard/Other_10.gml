@@ -16,13 +16,13 @@ if entry_upper.entry_upper.entry_choice != entry_upper {
 //var picture_height_max = entry_upper.chapter_board_size
 if entry_upper.scale == 1 {
 	draw_sprite_ext(sChapterPicture, 0, x, y, 1, 1, 0, $ffffff, draw_get_alpha())
-	draw_sprite_ext(sChapterPicture, 0, x - 20, y + 32, 1, 1, picture_tilt_angle, $ffffff, draw_get_alpha())
+	draw_sprite_ext(sChapterPicture, 0, x - away_distance, y + away_distance * 2, 1, 1, picture_tilt_angle, $ffffff, draw_get_alpha())
 } else if 0 < entry_upper.scale {
 	var rect_scale = ease_in_expo(entry_upper.scale)
 	draw_sprite_ext(sChapterPicture, 0, x, y, 1, rect_scale, 0, $ffffff, draw_get_alpha())
 	var rect_outspread_ratio = lerp(0, 1, rect_scale)
-	var rect_x = x + rect_outspread_ratio * -20
-	var rect_y = y + rect_outspread_ratio * 32
+	var rect_x = x + rect_outspread_ratio * -away_distance
+	var rect_y = y + rect_outspread_ratio * away_distance * 2
 	draw_sprite_ext(sChapterPicture, 0, rect_x, rect_y, 1, rect_scale, picture_tilt_angle, $ffffff, draw_get_alpha())
 }
 gpu_set_blendmode(bm_normal)

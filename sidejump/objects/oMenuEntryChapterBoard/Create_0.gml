@@ -8,6 +8,7 @@ move_await_time = 0
 move_await_period = 1
 move_target_x = x
 move_begin_x = x
+away_distance = 12
 
 popin_time = 0
 popin_period = seconds(0.5)
