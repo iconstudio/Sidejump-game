@@ -287,6 +287,14 @@
             }
         },
         {
+            "Key": "15b0934a-c5ab-41fe-8464-6b2b6cb6f97c",
+            "Value": {
+                "id": "0df624f5-f6d0-4ab4-a393-34577c669623",
+                "resourcePath": "rooms\\roomGameTemplate\\roomGameTemplate.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "181bc980-a30f-4055-824a-0ee45a7d4d44",
             "Value": {
                 "id": "e99b6a00-d1a4-4ed6-bbb6-c32b39eeeb29",
