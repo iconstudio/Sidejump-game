@@ -86,7 +86,7 @@ rainy_counts_random_max = 3
 global.application_texels = [texture_get_texel_width(global.application_texture), texture_get_texel_height(global.application_texture)]
 shader_set(shaderOutline)
 //shader_set_uniform_f(global.shaderOutline_resolution, global.application_sizes[0], global.application_sizes[1])
-shader_set_uniform_f(global.shaderOutline_resolution, 960, 720)
+shader_set_uniform_f(global.shaderOutline_resolution, 640, 540)
 shader_reset()
 shader_set(shaderBlur)
 shader_set_uniform_f(global.shaderBlur_resolution, global.application_sizes[0], global.application_sizes[1])

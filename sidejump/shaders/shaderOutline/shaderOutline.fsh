@@ -14,10 +14,11 @@ void main() {
 		temp.b = 0.0;
 		summary += temp;
 	}
+	summary.a = summary.a / 2.0;
 	summary += texture2D(gm_BaseTexture, v_vTexcoord);
-	if (1.0 < summary.a) {
-		summary.a = 1.0;
-	}
+	//if (1.0 < summary.a) {
+		
+	//}
 
 	gl_FragColor = v_vColour * summary;
 }
