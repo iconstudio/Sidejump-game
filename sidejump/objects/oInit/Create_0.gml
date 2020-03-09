@@ -47,7 +47,7 @@ if global.flag_is_mobile {
 }
 
 default_width = room_width
-default_height = room_height
+default_height = room_width * 9 / 16
 global.resolutions_default = [default_width, default_height]
 #endregion
 
