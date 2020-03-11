@@ -2,7 +2,7 @@
     "id": "54e2fd0e-507d-4801-8af9-01d17e73c7a3",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "sTilesetAtlas",
+    "name": "_sTilesetAtlas",
     "For3D": false,
     "HTile": false,
     "VTile": false,

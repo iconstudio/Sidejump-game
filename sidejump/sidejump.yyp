@@ -794,7 +794,7 @@
             "Key": "54e2fd0e-507d-4801-8af9-01d17e73c7a3",
             "Value": {
                 "id": "fffd4770-09bc-46c4-ae1b-167335584be8",
-                "resourcePath": "sprites\\sTilesetAtlas\\sTilesetAtlas.yy",
+                "resourcePath": "sprites\\_sTilesetAtlas\\_sTilesetAtlas.yy",
                 "resourceType": "GMSprite"
             }
         },

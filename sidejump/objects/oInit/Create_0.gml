@@ -86,6 +86,7 @@ gpu_set_zwriteenable(true)
 
 #region 게임
 enum theme {
+	intro,
 	moor,
 	cave,
 	volcano,
