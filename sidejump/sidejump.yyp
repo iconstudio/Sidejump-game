@@ -39,6 +39,14 @@
             }
         },
         {
+            "Key": "01a8ac46-d02e-4c36-abf8-930eae3e45a9",
+            "Value": {
+                "id": "bbf8d4b2-09f5-41e6-9daf-7bfca55011cc",
+                "resourcePath": "views\\01a8ac46-d02e-4c36-abf8-930eae3e45a9.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "05266510-150e-4e07-a1e0-10c88fb5f490",
             "Value": {
                 "id": "573d182d-8dd9-4639-888a-929b207f4430",
@@ -340,6 +348,14 @@
                 "id": "7d3b7497-a080-4628-b9cc-2b42b14647a8",
                 "resourcePath": "objects\\oPlayer\\oPlayer.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "1eaee92d-2266-41cb-ae1c-5c010f0a555a",
+            "Value": {
+                "id": "81dcd401-2786-4b48-9289-2c398d010b5a",
+                "resourcePath": "sprites\\sDryDirt_Up\\sDryDirt_Up.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
