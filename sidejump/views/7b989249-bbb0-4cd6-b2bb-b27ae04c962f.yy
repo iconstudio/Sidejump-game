@@ -6,7 +6,8 @@
     "children": [
         "bdfe357b-80a9-4e3f-82e3-132b450a16d9",
         "1c3fb0bb-fc6e-4398-9a6c-dd5d5785f605",
-        "31e914c1-9d6c-438c-b8c7-da211cc4d818"
+        "31e914c1-9d6c-438c-b8c7-da211cc4d818",
+        "dc055822-5fde-415b-8482-f2357465d094"
     ],
     "filterType": "GMObject",
     "folderName": "Entities",
