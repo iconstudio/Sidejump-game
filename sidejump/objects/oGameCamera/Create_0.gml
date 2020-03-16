@@ -3,7 +3,7 @@ area_is_small = false
 mode = camera_mode.follow
 target = oPlayer
 
-width = 480
+width = 320 
 height = 240
 anchor_x = 0.5
 anchor_y = 128 / 240
