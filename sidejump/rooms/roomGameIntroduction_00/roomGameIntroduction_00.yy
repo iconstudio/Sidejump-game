@@ -7,7 +7,6 @@
     "inheritCreationOrder": true,
     "inheritLayers": true,
     "instanceCreationOrderIDs": [
-        "1ac69be5-0e8d-4ada-9315-d7bfb68330f4",
         "1cc896d4-b5a2-493b-b0c1-785e412c466c",
         "b9e97d7a-c4fa-402b-9136-55148d9be7a7",
         "1f8062ff-c28f-45c0-a824-545b49feaac7",
@@ -25,6 +24,7 @@
         "b84160dc-717b-4ec0-969b-0f5b72ef3336",
         "08d85858-ffec-45d0-b62b-55f93a87e609",
         "cf2b4d93-a04e-4feb-824d-56b6574e6005",
+        "1ac69be5-0e8d-4ada-9315-d7bfb68330f4",
         "0ed3c101-c64d-4117-8660-b5155214539f",
         "e5532d11-f84f-40b8-ab43-d5efa6006bad",
         "466868bb-fe60-4868-a98e-12aeb94ea2c6",
@@ -43,7 +43,8 @@
         "fb4dc677-9361-43b9-b56f-4f2d7dced092",
         "07c86869-28e8-489a-aeab-c523eed1a944",
         "a68719ca-c2dc-40fd-92ef-d68dc7b30e7a",
-        "e09f323f-2b34-4160-b966-bfc0bece5083"
+        "e09f323f-2b34-4160-b966-bfc0bece5083",
+        "fb3cd133-19f2-40d5-b1c3-49091d892652"
     ],
     "IsDnD": false,
     "layers": [
@@ -283,8 +284,8 @@
             "name": "Player",
             "id": "ac27ad8c-c25c-4fb9-879d-043ee96dbc92",
             "depth": 1800,
-            "grid_x": 32,
-            "grid_y": 32,
+            "grid_x": 4,
+            "grid_y": 4,
             "hierarchyFrozen": false,
             "hierarchyVisible": true,
             "inheritLayerDepth": true,
@@ -292,7 +293,7 @@
             "inheritSubLayers": true,
             "inheritVisibility": true,
             "instances": [
-
+{"name": "inst_660DBACB","id": "fb3cd133-19f2-40d5-b1c3-49091d892652","colour": { "Value": 4294967295 },"creationCodeFile": "","creationCodeType": "","ignore": false,"imageIndex": 0,"imageSpeed": 1,"inheritCode": false,"inheritItemSettings": false,"IsDnD": false,"m_originalParentID": "00000000-0000-0000-0000-000000000000","m_serialiseFrozen": false,"modelName": "GMRInstance","name_with_no_file_rename": "inst_660DBACB","objId": "1c3fb0bb-fc6e-4398-9a6c-dd5d5785f605","properties": null,"rotation": 0,"scaleX": 1,"scaleY": 1,"mvc": "1.1","x": 76,"y": 184}
             ],
             "layers": [
 

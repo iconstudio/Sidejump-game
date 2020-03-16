@@ -799,6 +799,14 @@
             }
         },
         {
+            "Key": "53942e26-ba5a-4c61-bbc1-e406aa962009",
+            "Value": {
+                "id": "3afb9e2a-da1e-4828-ab9f-a93b4f5172b2",
+                "resourcePath": "rooms\\roomGameChapter00_00\\roomGameChapter00_00.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "5498c6a0-43fc-429a-a553-7df4bdb41645",
             "Value": {
                 "id": "45dc485a-fc54-493e-941b-ad14b1696330",
