@@ -2,7 +2,7 @@
     "id": "d6c3027a-c4dd-48be-af79-288eeeeca869",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oGameBasicSetter",
+    "name": "oGameTemplateSkipper",
     "eventList": [
         {
             "id": "38bf8d7c-ca16-445f-8175-6f7ee7ab438b",
