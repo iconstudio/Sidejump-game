@@ -1,0 +1,10 @@
+/// @description 캠페인 정보 그리기
+var alpha_before = draw_get_alpha()
+draw_set_color(0)
+draw_set_alpha(1)
+draw_rectangle_size(x, y, width, height, false)
+draw_set_font(fontMedium)
+draw_set_halign(1)
+draw_set_valign(0)
+draw_text(x + width * 0.5, y + height + 8, caption)
+draw_set_alpha(alpha_before)

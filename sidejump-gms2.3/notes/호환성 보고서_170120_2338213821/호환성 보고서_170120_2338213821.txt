@@ -1,0 +1,22 @@
+GML 스크립트 변환 중: ${project_dir}\scripts\huder_SmoothNoise\huder_SmoothNoise.gml
+변환된 설명 /// @description huder_SmoothNoise(size,octaves,scale,persistent)/// @param size
+/// @param octaves
+/// @param scale
+/// @param persistent
+
+GML 스크립트 변환 중: ${project_dir}\objects\oSmoothNoise\Create_0.gml
+변환된 설명 /// @description  generate smooth noise
+
+GML 스크립트 변환 중: ${project_dir}\objects\oSmoothNoise\Draw_64.gml
+내장 축약어가 변환됨 - 줄 4: view_wview→__view_get( e__VW.WView, 0 )
+내장 축약어가 변환됨 - 줄 4: view_hview→__view_get( e__VW.HView, 0 )
+변환된 설명 /// @description  draw smooth noise
+
+GML 스크립트 변환 중: ${project_dir}\objects\oSmoothNoise\KeyPress_13.gml
+변환된 설명 /// @description  clear old and generate new smooth noise surface
+
+호환성 스크립트 'draw/draw_set_blend_mode.gml' 추가
+호환성 스크립트 'texture/texture_set_interpolation.gml' 추가
+호환성 스크립트 'view/__view_get.gml' 추가
+호환성 스크립트 'view/__init_view.gml' 추가
+호환성 스크립트 '__init_global.gml' 추가

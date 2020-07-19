@@ -1,0 +1,26 @@
+{
+  "kind": 1,
+  "closed": false,
+  "precision": 8,
+  "points": [
+    {"speed":100.0,"x":-32.0,"y":80.0,},
+    {"speed":100.0,"x":40.0,"y":136.0,},
+    {"speed":100.0,"x":112.0,"y":120.0,},
+    {"speed":100.0,"x":168.0,"y":160.0,},
+    {"speed":100.0,"x":240.0,"y":168.0,},
+    {"speed":100.0,"x":296.0,"y":112.0,},
+    {"speed":100.0,"x":368.0,"y":128.0,},
+    {"speed":100.0,"x":432.0,"y":88.0,},
+    {"speed":100.0,"x":576.0,"y":96.0,},
+    {"speed":100.0,"x":672.0,"y":56.0,},
+    {"speed":100.0,"x":760.0,"y":80.0,},
+  ],
+  "parent": {
+    "name": "Paths",
+    "path": "folders/Paths.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "pathGameIntroduction_00_Wisp",
+  "tags": [],
+  "resourceType": "GMPath",
+}
