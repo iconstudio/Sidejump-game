@@ -1,12 +1,11 @@
 {
-  "isDnD": false,
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "draw_transform_set_rotation_y",
   "isCompatibility": false,
+  "isDnD": false,
   "parent": {
     "name": "Drawing",
     "path": "folders/Scripts/Drawing.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "draw_transform_set_rotation_y",
-  "tags": [],
-  "resourceType": "GMScript",
 }

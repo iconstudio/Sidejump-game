@@ -1,7 +1,13 @@
 {
-  "kind": 1,
+  "resourceType": "GMPath",
+  "resourceVersion": "1.0",
+  "name": "pathGameIntroduction_00_Wisp",
   "closed": false,
-  "precision": 8,
+  "kind": 1,
+  "parent": {
+    "name": "Paths",
+    "path": "folders/Paths.yy",
+  },
   "points": [
     {"speed":100.0,"x":-32.0,"y":80.0,},
     {"speed":100.0,"x":40.0,"y":136.0,},
@@ -15,12 +21,5 @@
     {"speed":100.0,"x":672.0,"y":56.0,},
     {"speed":100.0,"x":760.0,"y":80.0,},
   ],
-  "parent": {
-    "name": "Paths",
-    "path": "folders/Paths.yy",
-  },
-  "resourceVersion": "1.0",
-  "name": "pathGameIntroduction_00_Wisp",
-  "tags": [],
-  "resourceType": "GMPath",
+  "precision": 8,
 }
