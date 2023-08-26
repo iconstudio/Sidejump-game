@@ -12,7 +12,7 @@ if adjustingJump
 		adjustingJump = false
 	}
 
-	if myVelocity.isCollidedBottom and not wasOnGround
+	if IsOnGround() and not wasOnGround
 	{
 		adjustingJump = false
 	}
@@ -22,7 +22,7 @@ if adjustingJump
 		adjustingJump = false
 	}
 
-	if wasOnGround and not myVelocity.isCollidedBottom
+	if wasOnGround and not IsOnGround()
 	{
 		wasOnGround = false
 	}

@@ -13,13 +13,19 @@ function Physics()
 	myVelocity.colliderOnBottom = DefaultBottomCollider
 	myVelocity.colliderOnSide = DefaultSideCollider
 
-	myVelocity.useXFriction = true
-	myVelocity.useYFriction = true
+	myVelocity.useFriction = true
+	myVelocity.frictionHrzFunctor = DefaultHrzFriction;
+	myVelocity.frictionVrtFunctor = DefaultVrtFriction;
+
+	myVelocity.useLimit = true
+	myVelocity.limitHrzunctor = DefaultHrzFriction;
+	myVelocity.limitVrtFunctor = DefaultVrtFriction;
 }
 
 /// @param {Real} dist
 /// @param {Array} collisions
 /// @param {Function} [collider]
+/// @return {Bool}
 function MoveContactX(dist, collisions, collider = DefaultSideCollider)
 {
 	var checkx1 = 0, checkx2 = 0
@@ -43,14 +49,13 @@ function MoveContactX(dist, collisions, collider = DefaultSideCollider)
 			{
 				if place_meeting(x - 1, y, collisions)
 				{
-					break
+					x = round(x)
+					collider(id)
+					return true
 				}
 
 				x--
 			}
-
-			x = round(x)
-			collider(id)
 		}
 	}
 	else
@@ -71,21 +76,23 @@ function MoveContactX(dist, collisions, collider = DefaultSideCollider)
 			{
 				if place_meeting(x + 1, y, collisions)
 				{
-					break
+					x = floor(x)
+					collider(id)
+					return true
 				}
 
 				x++
 			}
-
-			x = floor(x)
-			collider(id)
 		}
 	}
+
+	return false
 }
 
 /// @param {Real} dist
 /// @param {Array} collisions
 /// @param {Function} collider
+/// @return {Bool}
 function MoveContactY(dist, collisions, collider)
 {
 	if 0 <= dist
@@ -99,8 +106,7 @@ function MoveContactY(dist, collisions, collider)
 				collider(id)
 				y = round(y)
 
-				myVelocity.isCollidedBottom = true
-				break
+				return true
 			}
 
 			y++
@@ -118,15 +124,17 @@ function MoveContactY(dist, collisions, collider)
 				collider(id)
 				y = floor(y)
 
-				myVelocity.isCollidedTop = true
-				break
+				return true
 			}
 
 			y--
 		}
 	}
+
+	return false
 }
 
+/// @self oGraviton
 /// @param {Asset.GMObject or Id.Instance} target
 function DefaultTopCollider(target)
 {
@@ -136,6 +144,7 @@ function DefaultTopCollider(target)
 	}
 }
 
+/// @self oGraviton
 /// @param {Asset.GMObject or Id.Instance} target
 function DefaultBottomCollider(target)
 {
@@ -145,6 +154,7 @@ function DefaultBottomCollider(target)
 	}
 }
 
+/// @self oGraviton
 /// @param {Asset.GMObject or Id.Instance} target
 function DefaultSideCollider(target)
 {
@@ -152,4 +162,28 @@ function DefaultSideCollider(target)
 	{
 		myVelocity.SetHspeed(0)
 	}
+}
+
+/// @param {Real} xspeed
+/// @return {Real}
+/// @pure
+function DefaultHrzFriction(xspeed)
+{
+	return xspeed * 0.9
+}
+
+/// @param {Real} yspeed
+/// @return {Real}
+/// @pure
+function DefaultVrtFriction(yspeed)
+{
+	return yspeed
+}
+
+/// @self oGraviton
+/// @return {Bool}
+/// @pure
+function IsOnGround()
+{
+	return myVelocity.isCollidedBottom
 }

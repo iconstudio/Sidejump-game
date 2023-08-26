@@ -5,7 +5,7 @@ adjustingJump = false
 wasOnGround = true
 
 jumpMeters = 3.6
-jumpDuration = 0.6 // seconds
+jumpDuration = 0.8 // seconds
 
 jumpHeight = gameSetting.Meters(jumpMeters)
 jumpPeriod = gameSetting.Seconds(jumpDuration)

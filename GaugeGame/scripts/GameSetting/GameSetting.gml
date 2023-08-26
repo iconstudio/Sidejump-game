@@ -37,8 +37,7 @@ function GameSetting() constructor
 
 		pixelPerStep = mess * secondsPerStep
 
-		rawGravity = 50
-		worldGravity = CalcVelocity(rawGravity)
+		worldGravity = 9.8
 	}
 
 	/// @self GameSetting

@@ -5,14 +5,20 @@ var vspd = myVelocity.GetYSpeed()
 if 0 != hspd
 {
 	var tspd = gameSetting.CalcVelocity(hspd)
+	var tgrp;
 
 	if hspd < 0
 	{
-		MoveContactX(tspd, myVelocity.collisionGrpLt, myVelocity.colliderOnSide)
+		tgrp = myVelocity.collisionGrpLt
 	}
 	else
 	{
-		MoveContactX(tspd, myVelocity.collisionGrpRt, myVelocity.colliderOnSide)
+		tgrp = myVelocity.collisionGrpRt
+	}
+
+	if MoveContactX(tspd, tgrp, myVelocity.colliderOnSide)
+	{
+		
 	}
 }
 
@@ -37,16 +43,31 @@ else
 	myVelocity.isCollidedBottom = false
 }
 
-if not myVelocity.isCollidedBottom
+if 0 <= vspd
+{
+	if MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpBt, myVelocity.colliderOnBottom)
+	{
+		myVelocity.isCollidedBottom = true
+	}
+}
+else
+{
+	if MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpTp, myVelocity.colliderOnTop)
+	{
+		myVelocity.isCollidedTop = true
+	}
+}
+
+if not IsOnGround()
 {
 	myVelocity.AddSpeed(0, gameSetting.worldGravity)
 }
 
-if 0 <= vspd
+if myVelocity.useLimit
 {
-	MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpBt, myVelocity.colliderOnBottom)
-}
-else
-{
-	MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpTp, myVelocity.colliderOnTop)
+	with myVelocity
+	{
+		SetHspeed(frictionHrzFunctor(GetXSpeed()))
+		SetVspeed(frictionVrtFunctor(GetYSpeed()))
+	}
 }

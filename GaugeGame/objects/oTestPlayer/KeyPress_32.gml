@@ -1,5 +1,5 @@
 /// @description Jump
-if (myVelocity.isCollidedBottom)
+if IsOnGround()
 {
 	DoJump()
 }
