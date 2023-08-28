@@ -20,84 +20,92 @@ function Physics()
 	myVelocity.frictionVrtFunctor = DefaultVrtFriction
 
 	myVelocity.useLimit = true
-	myVelocity.limitHrzunctor = DefaultHrzFriction
+	myVelocity.limitHrzFunctor = DefaultHrzFriction
 	myVelocity.limitVrtFunctor = DefaultVrtFriction
+
+	myVelocity.useSlope = false
+	myVelocity.slopeUpper = 50
+	myVelocity.slopeUpperDist = gameSetting.meterToPixel * 0.2
+	myVelocity.slopeLower = 30
+	myVelocity.slopeLowerDist = gameSetting.meterToPixel * 0.2
 }
 
 /// @self oGameObject
 /// @param {Real} dist
 /// @param {Array<Asset.GMObject>} collisions
-/// @param {Function} [collider]
-/// @return {Bool}
-function MoveContactX(dist, collisions, collider = DefaultSideCollider)
+/// @param {Bool} precise
+/// @return {ID.Instance}
+function CollisionLeft(dist, collisions, precise)
 {
-	var checkx1 = 0, checkx2 = 0
-
-	if dist <= 0
-	{
-		var adist = abs(dist)
-		var rdist = round(adist)
-
-		checkx1 = bbox_left + 1
-		checkx2 = bbox_left - max(rdist, 1)
-
-		var ltcollide = collision_rectangle(checkx2, bbox_top, checkx1, bbox_bottom, collisions, false, true)
-		if noone == ltcollide
-		{
-			x += dist
-		}
-		else
-		{
-			for (var i = 0; i < rdist; i++)
-			{
-				if place_meeting(x - 1, y, collisions)
-				{
-					x = ceil(x)
-					collider(id)
-					return true
-				}
-
-				x--
-			}
-		}
-	}
-	else
-	{
-		var rdist = round(dist)
-
-		checkx1 = bbox_right - 1
-		checkx2 = bbox_right + max(rdist, 1)
-
-		var rtcollide = collision_rectangle(checkx1, bbox_top, checkx2, bbox_bottom, collisions, false, true)
-		if noone == rtcollide
-		{
-			x += dist
-		}
-		else
-		{
-			for (var i = 0; i < rdist; i++)
-			{
-				if place_meeting(x + 1, y, collisions)
-				{
-					x = floor(x)
-					collider(id)
-					return true
-				}
-
-				x++
-			}
-		}
-	}
-
-	return false
+	return collision_rectangle(bbox_left - max(1, dist), bbox_top, bbox_left + 1, bbox_bottom, collisions, precise, true)
 }
 
 /// @self oGameObject
 /// @param {Real} dist
 /// @param {Array<Asset.GMObject>} collisions
-/// @param {Function} collider
+/// @param {Bool} precise
+/// @return {ID.Instance}
+function CollisionRight(dist, collisions, precise)
+{
+	return collision_rectangle(bbox_right - 1, bbox_top, bbox_left + max(1, dist), bbox_bottom, collisions, precise, true)
+}
+
+/// @self oGameObject
+/// @param {Real} dist
+/// @param {Array<Asset.GMObject>} collisions
+/// @param {Bool} [precise]
+/// @param {Function, undefined}[collider]
+/// @return {Real}
+function MoveContactX(dist, collisions, precise = false, collider = DefaultSideCollider)
+{
+	var mdir = sign(dist)
+	var adist = abs(dist)
+	var rdist = ceil(adist)
+
+	var collision = noone
+	if dist < 0
+	{
+		collision = CollisionLeft(rdist, collisions, precise)
+	}
+	else if 0 < dist
+	{
+		collision = CollisionRight(rdist, collisions, precise)
+	}
+
+	if noone == collision
+	{
+		x += dist
+
+		return 0
+	}
+	else if 0 != dist
+	{
+		var i
+		for (i = 0; i < rdist; i++)
+		{
+			if place_meeting(x + mdir, y, collisions)
+			{
+				if is_callable(collider) collider(id)
+
+				break
+			}
+
+			x += mdir
+		}
+
+		return rdist - i
+	}
+
+	return adist
+}
+
+/// @self oGameObject
+/// @param {Real} dist
+/// @param {Array<Asset.GMObject>} collisions
+/// @param {Bool} [precise]
+/// @param {Function, undefined} collider
 /// @return {Bool}
-function MoveContactY(dist, collisions, collider)
+function MoveContactY(dist, collisions, precise = false, collider)
 {
 	if 0 <= dist
 	{
@@ -107,7 +115,7 @@ function MoveContactY(dist, collisions, collider)
 		{
 			if place_meeting(x, y + 1, collisions)
 			{
-				collider(id)
+				if is_callable(collider) collider(id)
 				y = round(y)
 
 				return true
@@ -125,7 +133,7 @@ function MoveContactY(dist, collisions, collider)
 		{
 			if place_meeting(x, y - 1, collisions)
 			{
-				collider(id)
+				if is_callable(collider) collider(id)
 				y = floor(y)
 
 				return true

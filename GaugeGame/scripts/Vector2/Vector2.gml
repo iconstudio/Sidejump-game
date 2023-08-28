@@ -7,6 +7,7 @@ function Vector2(vx = 0, vy = 0) constructor
 
 	/// @self Vector2
 	/// @return {Real}
+	/// @pure
 	static GetAbsolute = function()
 	{
 		return point_distance(0, 0, self.x, self.y)
@@ -14,6 +15,7 @@ function Vector2(vx = 0, vy = 0) constructor
 
 	/// @self Vector2
 	/// @return {Real}
+	/// @pure
 	static GetLength = function()
 	{
 		return self.GetAbsolute()
@@ -21,6 +23,7 @@ function Vector2(vx = 0, vy = 0) constructor
 
 	/// @self Vector2
 	/// @return {Struct.Vector2}
+	/// @pure
 	static GetUnit = function()
 	{
 		var len = self.GetLength()

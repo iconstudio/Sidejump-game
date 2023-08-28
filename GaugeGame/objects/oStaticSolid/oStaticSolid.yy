@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oTestBlock",
+  "name": "oStaticSolid",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],
@@ -10,8 +10,8 @@
     "path": "folders/Objects.yy",
   },
   "parentObjectId": {
-    "name": "oStaticSolid",
-    "path": "objects/oStaticSolid/oStaticSolid.yy",
+    "name": "oSolid",
+    "path": "objects/oSolid/oSolid.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
@@ -27,11 +27,8 @@
   "physicsShapePoints": [],
   "physicsStartAwake": true,
   "properties": [],
-  "solid": true,
-  "spriteId": {
-    "name": "sTestBlock",
-    "path": "sprites/sTestBlock/sTestBlock.yy",
-  },
+  "solid": false,
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": true,
 }

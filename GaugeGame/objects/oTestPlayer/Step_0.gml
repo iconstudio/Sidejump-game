@@ -111,7 +111,7 @@ if can_act
 		{
 			EndAdjJump()
 		}
-		else if adjustingJump and not justAdjusting
+		else if not justAdjusting
 		{
 			if myVelocity.isCollidedTop
 			{

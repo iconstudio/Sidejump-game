@@ -1,7 +1,9 @@
 /// @description End Jump
 if isJumping and not wasOnGround
 {
-	coyoteTime = 0
+	var yvel = myVelocity.GetVspeed()
+	myVelocity.SetVspeed(yvel * 0.6)
 
+	coyoteTime = 0
 	EndAdjJump()
 }

@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oTestBlock",
+  "name": "oTestSlope2",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],
@@ -29,8 +29,8 @@
   "properties": [],
   "solid": true,
   "spriteId": {
-    "name": "sTestBlock",
-    "path": "sprites/sTestBlock/sTestBlock.yy",
+    "name": "sTestSlope2",
+    "path": "sprites/sTestSlope2/sTestSlope2.yy",
   },
   "spriteMaskId": null,
   "visible": true,

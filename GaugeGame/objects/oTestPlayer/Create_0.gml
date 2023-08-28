@@ -4,6 +4,7 @@ isRunning = false
 isJumping = false
 
 moveDir = 0
+myVelocity.useSlope = true
 
 coyoteDuration = 0.08 // seconds
 coyotePeriod = gameSetting.Seconds(coyoteDuration)
