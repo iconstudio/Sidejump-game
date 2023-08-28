@@ -354,7 +354,7 @@ function List(data = undefined) constructor
 					AssignBy(argument[0])
 				}
 			}
-			else
+			else if not is_undefined(data)
 			{
 				show_error($"Cannot create list! ({ self })", true)
 			}

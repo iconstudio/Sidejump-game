@@ -1,5 +1,5 @@
 /// @description Jump
-if IsOnGround()
+if wasOnGround
 {
 	DoJump()
 }

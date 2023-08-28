@@ -1,4 +1,4 @@
-/// @param {Constant.VirtualKey or Real} key
+/// @param {Constant.VirtualKey, Real} key
 /// @desc Creates a keyboard key indicator
 function KeyboardIndicator(key) : InputIndicator() constructor
 {

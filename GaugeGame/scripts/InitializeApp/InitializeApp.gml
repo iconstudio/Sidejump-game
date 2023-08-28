@@ -1,6 +1,7 @@
 function InitializeApp()
 {
-	globalvar gamePlatform, gameDisplay, gameSetting;
+	globalvar gamePlatform, gameDisplay, gameUnit, gameSetting, gameInput;
+
 	gamePlatform = new GamePlatform()
 	gamePlatform.isDesktop = (os_type == os_windows or os_type == os_macosx or os_type == os_linux)
 	gamePlatform.isMobile = (os_type == os_android or os_type == os_ios)
@@ -8,9 +9,12 @@ function InitializeApp()
 
 	gameDisplay = new GameDisplay()
 
-	gameSetting = new GameSetting()
+	gameSetting = new GameSetting(18)
 	gameSetting.UpdateTimes()
 	gameSetting.UpdateUnits()
+
+	gameInput = new GameInputs()
+	
 
 	if (_DEBUG_)
 	{
@@ -28,6 +32,7 @@ function InitializeApp()
 	surface_depth_disable(true)
 	display_reset(0, false)
 
+	window_set_cursor(cr_none)
 	device_mouse_dbclick_enable(false)
 
 	if gamePlatform.isBrowser

@@ -1,5 +1,18 @@
-function GameSetting() constructor
+/// @param {Real} meter
+function GameSetting(meter) constructor
 {
+	// Time Units
+	stepsPerSecond = 0
+	secondsPerStep = 0
+
+	// Space Units
+	meterToPixel = meter
+	pixelPerStep = 1 // a arbitrary value
+
+	// Physics Constants
+	rawGravity = 10
+	worldGravity = 10
+	
 	/// @self GameSetting
 	/// @desc convert [km/h] to [pixel/step]
 	/// @param {Real} value
@@ -48,16 +61,4 @@ function GameSetting() constructor
 		stepsPerSecond = game_get_speed(gamespeed_fps)
 		secondsPerStep = 1 / stepsPerSecond
 	}
-
-	// Time Units
-	stepsPerSecond = 0
-	secondsPerStep = 0
-
-	// Space Units
-	meterToPixel = 18
-	pixelPerStep = 1 // a arbitrary value
-
-	// Physics Constants
-	rawGravity = 10
-	worldGravity = 10
 }

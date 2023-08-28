@@ -156,6 +156,22 @@ function Velocity() constructor
 	/// @self Velocity
 	/// @return {Real}
 	/// @pure
+	static GetHspeed = function()
+	{
+		return mySpeed.x
+	}
+
+	/// @self Velocity
+	/// @return {Real}
+	/// @pure
+	static GetVspeed = function()
+	{
+		return mySpeed.y
+	}
+
+	/// @self Velocity
+	/// @return {Real}
+	/// @pure
 	static GetXSpeed = function()
 	{
 		return mySpeed.x
@@ -190,7 +206,7 @@ function Velocity() constructor
 	}
 	
 	/// @self Velocity
-	/// @param {Asset.GMObject or Id.Instance} target
+	/// @param {ID.Instance} target
 	static MoveWith = function(target)
 	{
 		if is_callable(myPredicate)
@@ -200,7 +216,7 @@ function Velocity() constructor
 	}
 }
 
-/// @param {Asset.GMObject or Id.Instance} target
+/// @param {ID.Instance} target
 /// @param {Real} vx
 /// @param {Real} vy
 function DefaultVelocityFn(target, vx, vy)

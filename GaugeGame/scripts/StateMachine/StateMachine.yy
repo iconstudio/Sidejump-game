@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Vector2",
+  "name": "StateMachine",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

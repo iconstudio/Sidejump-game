@@ -60,14 +60,18 @@ else
 
 if not IsOnGround()
 {
-	myVelocity.AddSpeed(0, gameSetting.worldGravity)
+	if myVelocity.useGravity
+	{
+		myVelocity.AddSpeed(0, gameSetting.worldGravity)
+	}
 }
 
-if myVelocity.useLimit
+if IsUsingFriction()
 {
+	var target = id
 	with myVelocity
 	{
-		SetHspeed(frictionHrzFunctor(GetXSpeed()))
-		SetVspeed(frictionVrtFunctor(GetYSpeed()))
+		SetHspeed(frictionHrzFunctor(target, GetHspeed()))
+		SetVspeed(frictionVrtFunctor(target, GetVspeed()))
 	}
 }

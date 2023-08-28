@@ -1,6 +1,7 @@
 function GameInputs() constructor
 {
-	myMap = new List()
+	myMap = new Map()
+	virtualIOs = new List()
 
 	/// @self GameInputs
 	/// @func Update
@@ -17,6 +18,6 @@ function GameInputs() constructor
 			indicator.Update()
 		}
 
-		myMap.Enumerate(__Update)
+		virtualIOs.Enumerate(__Update)
 	}
 }
