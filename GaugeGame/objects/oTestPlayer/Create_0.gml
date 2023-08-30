@@ -55,7 +55,7 @@ function TestPlayerXfriction(target, xspeed)
 		{
 			if IsOnGround()
 			{
-				return xspeed * 0.5
+				return xspeed * 0.1
 			}
 			else
 			{

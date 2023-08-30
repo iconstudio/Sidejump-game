@@ -8,7 +8,7 @@ function StateMachine(default_state = "stateEmpty") constructor
 	/// @param {String} state
 	static Add = function(state)
 	{
-		myStates.Add(state)
+		myStates.Add(state, false)
 	}
 
 	/// @self StateMachine
@@ -27,7 +27,6 @@ function StateMachine(default_state = "stateEmpty") constructor
 				myStatus = state
 				return true
 			}
-			return false
 		}
 		else
 		{

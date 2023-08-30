@@ -3,6 +3,35 @@ var use_slope = myVelocity.useSlope
 var hspd = myVelocity.GetXSpeed()
 var vspd = myVelocity.GetYSpeed()
 
+if 0 <= vspd
+{
+	var btcollide = collision_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, myVelocity.collisionGrpBt, use_slope, true)
+	if noone == btcollide
+	{
+		myVelocity.isCollidedBottom = false
+	}
+	else
+	{
+		myVelocity.isCollidedBottom = true
+	}
+
+	myVelocity.isCollidedTop = false
+}
+else
+{
+	var tpcollide = collision_rectangle(bbox_left, bbox_top - 1, bbox_right, bbox_top, myVelocity.collisionGrpBt, use_slope, true)
+	if noone == tpcollide
+	{
+		myVelocity.isCollidedTop = false
+	}
+	else
+	{
+		myVelocity.isCollidedTop = true
+	}
+
+	myVelocity.isCollidedBottom = false
+}
+
 if 0 != hspd
 {
 	var tgrp;
@@ -33,42 +62,36 @@ if 0 != hspd
 			var slope_ub = tan(degtorad(myVelocity.slopeUpper)) * 2
 			var sdist_ub = min(max(1, mdist * slope_ub), myVelocity.slopeUpperDist)
 
-			var mv_ub = new Vector2(mdist, sdist_ub)
-			var uv_ub = mv_ub.GetUnit()
-			var ux_ub = max(1, uv_ub.x) * mdir;
-			var uy_ub = max(1, uv_ub.y)
-
 			if 0 < vspd
 			{
 				slope_ub *= 0.5
 			}
 
 			// seek best position
-			for (var i = 0; i < mdist; ++i)
+			repeat mdist
 			{
-				MoveContactY(-uy_ub, myVelocity.collisionGrpTp, true, undefined)
+				MoveContactY(-sdist_ub, myVelocity.collisionGrpTp, true, undefined)
 				MoveContactX(mdir, tgrp, true, undefined)
-				MoveContactY(uy_ub, myVelocity.collisionGrpBt, true, undefined)
-				MoveContactX(-mdir, tgrp, true, undefined)
+				myVelocity.isCollidedBottom = MoveContactY(sdist_ub, myVelocity.collisionGrpBt, true, undefined) or myVelocity.isCollidedBottom
+
+				if IsUsingFriction()
+				{
+					myVelocity.SetHspeed(myVelocity.frictionHrzFunctor(id, hspd))
+				}
 			}
 
 			var side_collision = noone
 			if 0 < mdir
 			{
-				side_collision = CollisionRight(rdist, tgrp, true)
+				side_collision = CollisionRight(1, tgrp, true)
 			}
 			else
 			{
-				side_collision = CollisionLeft(rdist, tgrp, true)
+				side_collision = CollisionLeft(1, tgrp, true)
 			}
 
 			if noone != side_collision
 			{
-				if 0 < mdir
-					x = floor(x)
-				else
-					x = ceil(x)
-
 				// it collided at last
 				myVelocity.colliderOnSide(id)
 			}
@@ -79,13 +102,13 @@ if 0 != hspd
 			var slope_lb = tan(degtorad(myVelocity.slopeLower))
 			var sdist_lb = max(1, mdist * slope_lb)
 
-			if vspd <= 0
-			{
-				slope_lb *= 0.5
-			}
-
 			var cy = y
-			MoveContactY(sdist_lb, myVelocity.collisionGrpBt, true, undefined)
+			myVelocity.isCollidedBottom = MoveContactY(sdist_lb, myVelocity.collisionGrpBt, true, undefined) or myVelocity.isCollidedBottom
+
+			if IsUsingFriction()
+			{
+				myVelocity.SetHspeed(myVelocity.frictionHrzFunctor(id, hspd) * 0.667)
+			}
 
 			if myVelocity.slopeLowerDist < y - cy
 			{
@@ -101,38 +124,11 @@ if 0 != hspd
 
 if 0 <= vspd
 {
-	var btcollide = collision_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_bottom + 1, myVelocity.collisionGrpBt, use_slope, true)
-	if noone == btcollide
-	{
-		myVelocity.isCollidedBottom = false
-	}
-
-	myVelocity.isCollidedTop = false
+	MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpBt, use_slope, myVelocity.colliderOnBottom)
 }
 else
 {
-	var tpcollide = collision_rectangle(bbox_left, bbox_top - 1, bbox_right, bbox_top, myVelocity.collisionGrpBt, use_slope, true)
-	if noone == tpcollide
-	{
-		myVelocity.isCollidedTop = false
-	}
-
-	myVelocity.isCollidedBottom = false
-}
-
-if 0 <= vspd
-{
-	if MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpBt, use_slope, myVelocity.colliderOnBottom)
-	{
-		myVelocity.isCollidedBottom = true
-	}
-}
-else
-{
-	if MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpTp, use_slope, myVelocity.colliderOnTop)
-	{
-		myVelocity.isCollidedTop = true
-	}
+	MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpTp, use_slope, myVelocity.colliderOnTop)
 }
 
 if not IsOnGround()
