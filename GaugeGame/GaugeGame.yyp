@@ -44,10 +44,6 @@
   "resources": [
     {"id":{"name":"oGlobal","path":"objects/oGlobal/oGlobal.yy",},},
     {"id":{"name":"sTestSlope1","path":"sprites/sTestSlope1/sTestSlope1.yy",},},
-<<<<<<< HEAD
-=======
-    {"id":{"name":"tileGame","path":"tilesets/tileGame/tileGame.yy",},},
->>>>>>> a9b12da (stone tiles modified)
     {"id":{"name":"sGameTileset","path":"sprites/sGameTileset/sGameTileset.yy",},},
     {"id":{"name":"fntMain","path":"fonts/fntMain/fntMain.yy",},},
     {"id":{"name":"objUICheckbox","path":"objects/objUICheckbox/objUICheckbox.yy",},},
@@ -75,7 +71,6 @@
     {"id":{"name":"oGameObject","path":"objects/oGameObject/oGameObject.yy",},},
     {"id":{"name":"GameSetting","path":"scripts/GameSetting/GameSetting.yy",},},
     {"id":{"name":"sndPlayerJump","path":"sounds/sndPlayerJump/sndPlayerJump.yy",},},
-    {"id":{"name":"roomMain","path":"rooms/roomMain/roomMain.yy",},},
     {"id":{"name":"objUIWindowCaption","path":"objects/objUIWindowCaption/objUIWindowCaption.yy",},},
     {"id":{"name":"objUISlider","path":"objects/objUISlider/objUISlider.yy",},},
     {"id":{"name":"sprCheckBox","path":"sprites/sprCheckBox/sprCheckBox.yy",},},
@@ -114,7 +109,6 @@
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"roomInit","path":"rooms/roomInit/roomInit.yy",},},
-    {"roomId":{"name":"roomMain","path":"rooms/roomMain/roomMain.yy",},},
   ],
   "templateType": "game",
   "TextureGroups": [
