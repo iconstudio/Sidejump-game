@@ -96,6 +96,7 @@
     {"id":{"name":"sTestSlope2","path":"sprites/sTestSlope2/sTestSlope2.yy",},},
     {"id":{"name":"sTestDot","path":"sprites/sTestDot/sTestDot.yy",},},
     {"id":{"name":"Vector2","path":"scripts/Vector2/Vector2.yy",},},
+    {"id":{"name":"roomMain","path":"rooms/roomMain/roomMain.yy",},},
     {"id":{"name":"GamePlatform","path":"scripts/GamePlatform/GamePlatform.yy",},},
     {"id":{"name":"sprSlider","path":"sprites/sprSlider/sprSlider.yy",},},
     {"id":{"name":"sprSliderCell","path":"sprites/sprSliderCell/sprSliderCell.yy",},},
@@ -109,6 +110,7 @@
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"roomInit","path":"rooms/roomInit/roomInit.yy",},},
+    {"roomId":{"name":"roomMain","path":"rooms/roomMain/roomMain.yy",},},
   ],
   "templateType": "game",
   "TextureGroups": [

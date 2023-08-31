@@ -13,16 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"d36ee8fb-32a4-413a-8b6e-663989cc46c0",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"409d7493-319e-451a-bb66-f2803b6d7a75",},
   ],
   "gridX": 0,
   "gridY": 0,
   "height": 128,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"db54c26d-e064-4c28-96b2-e8de20492cff","blendMode":0,"displayName":"Layer 1","isLocked":false,"opacity":100.0,"visible":true,},
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"19cae437-cf2d-4c76-a0d0-a25ce71bea8d","blendMode":0,"displayName":"View","isLocked":false,"opacity":100.0,"visible":false,},
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"3b0e57fb-b5e9-438c-b2f1-a0fca9fa4c18","blendMode":0,"displayName":"Background","isLocked":true,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"57fca2ea-148d-48d7-b656-8d9ff5d84838","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": {
     "resourceType": "GMNineSliceData",
@@ -79,7 +77,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"d36ee8fb-32a4-413a-8b6e-663989cc46c0","path":"sprites/sGameTileset/sGameTileset.yy",},},},"Disabled":false,"id":"f374e811-202a-4de7-bf7c-8f5e585b1946","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"409d7493-319e-451a-bb66-f2803b6d7a75","path":"sprites/sGameTileset/sGameTileset.yy",},},},"Disabled":false,"id":"099aec5f-a362-485b-94e8-158d365b2c1f","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

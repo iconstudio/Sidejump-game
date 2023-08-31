@@ -100,16 +100,13 @@ if 0 != hspd
 		{
 			// trying to move to the lower slope
 			var slope_lb = tan(degtorad(myVelocity.slopeLower))
-			var sdist_lb = max(1, mdist * slope_lb)
-
-<<<<<<< HEAD
-=======
 			if vspd < 0
 			{
 				slope_lb *= 0.5
 			}
 
->>>>>>> efd19a8 (dirt tiles)
+			var sdist_lb = max(1, mdist * slope_lb)
+
 			var cy = y
 			myVelocity.isCollidedBottom = MoveContactY(sdist_lb, myVelocity.collisionGrpBt, true, undefined) or myVelocity.isCollidedBottom
 

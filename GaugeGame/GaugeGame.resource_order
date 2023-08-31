@@ -56,6 +56,7 @@
     {"name":"GameInputs","order":4,"path":"scripts/GameInputs/GameInputs.yy",},
     {"name":"sTestSlope2","order":4,"path":"sprites/sTestSlope2/sTestSlope2.yy",},
     {"name":"sTestDot","order":2,"path":"sprites/sTestDot/sTestDot.yy",},
+    {"name":"roomMain","order":1,"path":"rooms/roomMain/roomMain.yy",},
     {"name":"GamePlatform","order":1,"path":"scripts/GamePlatform/GamePlatform.yy",},
     {"name":"sprSlider","order":2,"path":"sprites/sprSlider/sprSlider.yy",},
     {"name":"sprSliderCell","order":3,"path":"sprites/sprSliderCell/sprSliderCell.yy",},
