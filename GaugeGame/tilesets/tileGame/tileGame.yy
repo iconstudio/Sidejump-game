@@ -1,7 +1,7 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "tileForrest",
+  "name": "tileGame",
   "autoTileSets": [],
   "macroPageTiles": {
     "SerialiseHeight": 10,
@@ -22,8 +22,8 @@
     "path": "folders/Tilesets.yy",
   },
   "spriteId": {
-    "name": "sForrestTile",
-    "path": "sprites/sForrestTile/sForrestTile.yy",
+    "name": "sGameTileset",
+    "path": "sprites/sGameTileset/sGameTileset.yy",
   },
   "spriteNoExport": true,
   "textureGroupId": {
