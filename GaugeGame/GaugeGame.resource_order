@@ -25,6 +25,7 @@
     {"name":"oSolid","order":5,"path":"objects/oSolid/oSolid.yy",},
     {"name":"sprWindowCaption","order":4,"path":"sprites/sprWindowCaption/sprWindowCaption.yy",},
     {"name":"ReferenceList","order":1,"path":"scripts/ReferenceList/ReferenceList.yy",},
+    {"name":"oDryDirt","order":15,"path":"objects/oDryDirt/oDryDirt.yy",},
     {"name":"oTestBlock2","order":11,"path":"objects/oTestBlock2/oTestBlock2.yy",},
     {"name":"Map","order":2,"path":"scripts/Map/Map.yy",},
     {"name":"oStaticSolid","order":6,"path":"objects/oStaticSolid/oStaticSolid.yy",},

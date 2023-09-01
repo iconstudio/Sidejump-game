@@ -54,6 +54,7 @@
     {"id":{"name":"oSolid","path":"objects/oSolid/oSolid.yy",},},
     {"id":{"name":"sprWindowCaption","path":"sprites/sprWindowCaption/sprWindowCaption.yy",},},
     {"id":{"name":"ReferenceList","path":"scripts/ReferenceList/ReferenceList.yy",},},
+    {"id":{"name":"oDryDirt","path":"objects/oDryDirt/oDryDirt.yy",},},
     {"id":{"name":"oTestBlock2","path":"objects/oTestBlock2/oTestBlock2.yy",},},
     {"id":{"name":"Map","path":"scripts/Map/Map.yy",},},
     {"id":{"name":"oStaticSolid","path":"objects/oStaticSolid/oStaticSolid.yy",},},
