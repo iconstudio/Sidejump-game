@@ -1,19 +1,17 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oEntity",
-  "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
-  ],
+  "name": "oDoodad",
+  "eventList": [],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Physical Objects",
-    "path": "folders/Objects/GameObjects/Physical Objects.yy",
+    "name": "GameObjects",
+    "path": "folders/Objects/GameObjects.yy",
   },
   "parentObjectId": {
-    "name": "oGraviton",
-    "path": "objects/oGraviton/oGraviton.yy",
+    "name": "oGameObject",
+    "path": "objects/oGameObject/oGameObject.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

@@ -6,8 +6,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "GameObjects",
-    "path": "folders/Objects/GameObjects.yy",
+    "name": "Solids",
+    "path": "folders/Objects/GameObjects/Solids.yy",
   },
   "parentObjectId": {
     "name": "oSolid",
