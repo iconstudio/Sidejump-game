@@ -47,7 +47,7 @@
 -3,25,-2,27,10,-2147483648,34,35,34,34,-2147483648,-2147483648,10,9,11,-3,-2147483648,14,12,13,12,13,-2147483648,13,14,13,14,-2147483648,14,12,14,12,-3,0,-4,25,-5,27,11,25,
 -2147483648,35,34,34,35,-2147483648,-2147483648,10,9,11,-3,-2147483648,14,13,12,13,12,-2147483648,14,13,14,13,-2147483648,12,14,12,14,-3,0,-5,26,-2,25,8,27,26,27,-2147483648,34,34,
 33,35,-8,-2147483648,14,12,13,12,13,-2147483648,13,14,13,14,-2147483648,14,12,14,12,-3,0,-2,25,1,26,-3,25,-2,27,4,26,27,-2147483648,35,-3,34,-22,-2147483648,-3,0,
--3,25,1,26,-6,25,5,-2147483648,34,35,33,33,-86,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"testTileset","path":"tilesets/testTileset/testTileset.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-3,25,1,26,-6,25,5,-2147483648,34,35,33,33,-86,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"tileTest","path":"tilesets/tileTest/tileTest.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
           ],"properties":[],"userdefinedDepth":false,"visible":true,},
         {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"ItemBelow","depth":1700,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":true,"inheritLayerSettings":true,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
         {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"TerrainBelow","depth":1800,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":true,"inheritLayerSettings":true,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[

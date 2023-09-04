@@ -6,12 +6,12 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Testbed",
+    "path": "folders/Objects/Testbed.yy",
   },
   "parentObjectId": {
-    "name": "oStaticSolid",
-    "path": "objects/oStaticSolid/oStaticSolid.yy",
+    "name": "oSolid",
+    "path": "objects/oSolid/oSolid.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

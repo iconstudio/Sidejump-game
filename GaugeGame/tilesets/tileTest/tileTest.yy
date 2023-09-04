@@ -1,7 +1,7 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "testTileset",
+  "name": "tileTest",
   "autoTileSets": [],
   "macroPageTiles": {
     "SerialiseHeight": 0,
@@ -12,12 +12,12 @@
   "out_tilehborder": 2,
   "out_tilevborder": 2,
   "parent": {
-    "name": "Tilesets",
-    "path": "folders/Tilesets.yy",
+    "name": "Testbed",
+    "path": "folders/Tilesets/Testbed.yy",
   },
   "spriteId": {
-    "name": "sGameTileset",
-    "path": "sprites/sGameTileset/sGameTileset.yy",
+    "name": "sTestTileset",
+    "path": "sprites/sTestTileset/sTestTileset.yy",
   },
   "spriteNoExport": true,
   "textureGroupId": {
