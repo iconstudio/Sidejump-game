@@ -10,8 +10,8 @@
     "path": "folders/Objects/GameObjects.yy",
   },
   "parentObjectId": {
-    "name": "oGameObject",
-    "path": "objects/oGameObject/oGameObject.yy",
+    "name": "oTerrain",
+    "path": "objects/oTerrain/oTerrain.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
