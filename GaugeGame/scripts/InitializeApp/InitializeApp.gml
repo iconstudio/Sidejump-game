@@ -14,7 +14,6 @@ function InitializeApp()
 	gameSetting.UpdateUnits()
 
 	gameInput = new GameInputs()
-	
 
 	if (_DEBUG_)
 	{
@@ -34,6 +33,7 @@ function InitializeApp()
 
 	window_set_cursor(cr_none)
 	device_mouse_dbclick_enable(false)
+	randomize()
 
 	if gamePlatform.isBrowser
 	{

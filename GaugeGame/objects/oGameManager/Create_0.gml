@@ -1,2 +1,2 @@
 /// @description 
-alarm[0] = gameSetting.Seconds(0.1)
+alarm[0] = 1
