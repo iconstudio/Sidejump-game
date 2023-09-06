@@ -59,7 +59,7 @@
   "gridX": 0,
   "gridY": 0,
   "height": 16,
-  "HTile": false,
+  "HTile": true,
   "layers": [
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"cab19832-4d13-4b55-baa0-c84f7aa241bc","blendMode":0,"displayName":"Layer 1","isLocked":false,"opacity":100.0,"visible":true,},
   ],
@@ -151,6 +151,6 @@
     "path": "texturegroups/Default",
   },
   "type": 0,
-  "VTile": false,
+  "VTile": true,
   "width": 16,
 }

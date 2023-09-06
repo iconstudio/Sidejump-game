@@ -25,6 +25,8 @@
     {"name":"Terrains","order":3,"path":"folders/Sprites/Terrains.yy",},
     {"name":"Blocks","order":1,"path":"folders/Sprites/Terrains/Blocks.yy",},
     {"name":"Doodads","order":2,"path":"folders/Sprites/Terrains/Doodads.yy",},
+    {"name":"Extensions","order":9,"path":"folders/Extensions.yy",},
+    {"name":"GMTiled2 Example","order":2,"path":"folders/Library/GMTiled2 Example.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"oGlobal","order":2,"path":"objects/oGlobal/oGlobal.yy",},

@@ -44,6 +44,8 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Terrains","folderPath":"folders/Sprites/Terrains.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Blocks","folderPath":"folders/Sprites/Terrains/Blocks.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Doodads","folderPath":"folders/Sprites/Terrains/Doodads.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Extensions","folderPath":"folders/Extensions.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"GMTiled2 Example","folderPath":"folders/Library/GMTiled2 Example.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
@@ -76,6 +78,7 @@
     {"id":{"name":"GameDisplay","path":"scripts/GameDisplay/GameDisplay.yy",},},
     {"id":{"name":"sTestBlock","path":"sprites/sTestBlock/sTestBlock.yy",},},
     {"id":{"name":"oTestSlope1","path":"objects/oTestSlope1/oTestSlope1.yy",},},
+    {"id":{"name":"GMTiled2","path":"extensions/GMTiled2/GMTiled2.yy",},},
     {"id":{"name":"sprButton","path":"sprites/sprButton/sprButton.yy",},},
     {"id":{"name":"inverse_lerp","path":"scripts/inverse_lerp/inverse_lerp.yy",},},
     {"id":{"name":"objUISliderHandle","path":"objects/objUISliderHandle/objUISliderHandle.yy",},},
@@ -103,6 +106,7 @@
     {"id":{"name":"oSystem","path":"objects/oSystem/oSystem.yy",},},
     {"id":{"name":"StateMachine","path":"scripts/StateMachine/StateMachine.yy",},},
     {"id":{"name":"oGraviton","path":"objects/oGraviton/oGraviton.yy",},},
+    {"id":{"name":"obj_gmtiled2","path":"objects/obj_gmtiled2/obj_gmtiled2.yy",},},
     {"id":{"name":"oInit","path":"objects/oInit/oInit.yy",},},
     {"id":{"name":"objUIWindow","path":"objects/objUIWindow/objUIWindow.yy",},},
     {"id":{"name":"oTerrain","path":"objects/oTerrain/oTerrain.yy",},},
@@ -131,6 +135,7 @@
   ],
   "templateType": "game",
   "TextureGroups": [
-    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":8,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Tests","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],
 }
