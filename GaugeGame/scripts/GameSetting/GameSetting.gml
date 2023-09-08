@@ -12,7 +12,16 @@ function GameSetting(meter) constructor
 	// Physics Constants
 	rawGravity = 10
 	worldGravity = 10
-	
+
+	// Terrain
+	// Chunk
+	horzTiles = 10
+	vertTiles = 8
+
+	// Room Size
+	horzChunks = 3
+	vertChunks = 3
+
 	/// @self GameSetting
 	/// @desc convert [km/h] to [pixel/step]
 	/// @param {Real} value
