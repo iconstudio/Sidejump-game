@@ -32,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sDryDirt",
-    "path": "sprites/sDryDirt/sDryDirt.yy",
+    "name": "sDryDirt1",
+    "path": "sprites/sDryDirt1/sDryDirt1.yy",
   },
   "spriteMaskId": null,
   "visible": true,
