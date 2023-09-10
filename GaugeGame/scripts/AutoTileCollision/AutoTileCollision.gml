@@ -8,7 +8,7 @@ function AutoTileCollision(category, target, checks)
 	var dir = AutotileDisjunctions.None
 	with target
 	{
-		var border = 4
+		var border = 8
 		var cy1 = bbox_top - border
 		var cy2 = bbox_bottom + border
 		var cx1 = bbox_left - border
