@@ -3,11 +3,13 @@ function GameSettings() constructor
 	masterVolume = 1.0
 	musVolume = 0.7
 	sfxVolume = 1.0
-	prevMasterVolume = 1.0
-	prevMusVolume = 1.0
-	prevSfxVolume = 1.0
-	isSfxMuted = false
-	isMusMuted = false
+	windowMode = GameWindowMode.Windowed
+
+	__prevMasterVolume = 1.0
+	__prevMusVolume = 1.0
+	__prevSfxVolume = 1.0
+	__isSfxMuted = false
+	__isMusMuted = false
 
 	settingFile = "settings.gauge"
 	tilesetRef = "test/Everything.tsx"
@@ -27,6 +29,21 @@ function GameSettings() constructor
 			musVolume = Read(data, "mus_volume", ty_real, 0.7)
 			sfxVolume = Read(data, "sfx_volume", ty_real, 1.0)
 
+			var window_mode = string_lower(Read(data, "window_mode", ty_string, "Windowed"))
+			if window_mode == "borderless"
+			{
+				windowMode = GameWindowMode.BordelessWindow
+			}
+			else if window_mode == "fullscreen"
+			{
+				windowMode = GameWindowMode.Fullscreen
+			}
+			else
+			{
+				windowMode = GameWindowMode.Windowed
+			}
+			ApplyWindowMode()
+
 			delete json
 		}
 		catch (e)
@@ -39,10 +56,13 @@ function GameSettings() constructor
 	/// @self GameSettings
 	static Save = function()
 	{
+		var make_wmd = (windowMode == GameWindowMode.Fullscreen) ? "Fullscreen" : ((windowMode == GameWindowMode.BordelessWindow) ? "Borderless" : "Windowed")
+
 		var saver =
 		{
 			mus_volume : musVolume,
 			sfx_volume : sfxVolume,
+			window_mode : make_wmd,
 		}
 
 		var json = json_stringify(saver, true)
@@ -111,12 +131,12 @@ function GameSettings() constructor
 
 		if 0 < volume
 		{
-			isSfxMuted = false
+			__isSfxMuted = false
 		}
 		else
 		{
-			prevSfxVolume = 0.1
-			isSfxMuted = true
+			__prevSfxVolume = 0.1
+			__isSfxMuted = true
 		}
 		sfxVolume = volume
 
@@ -134,11 +154,11 @@ function GameSettings() constructor
 	/// @self GameSettings
 	static MuteSfx = function()
 	{
-		if not isSfxMuted
+		if not __isSfxMuted
 		{
-			prevSfxVolume = sfxVolume
+			__prevSfxVolume = sfxVolume
 			sfxVolume = 0.0
-			isSfxMuted = true
+			__isSfxMuted = true
 		}
 		
 	}
@@ -146,10 +166,10 @@ function GameSettings() constructor
 	/// @self GameSettings
 	static UnmuteSfx = function()
 	{
-		if isSfxMuted
+		if __isSfxMuted
 		{
-			sfxVolume = prevSfxVolume
-			isSfxMuted = false
+			sfxVolume = __prevSfxVolume
+			__isSfxMuted = false
 		}
 	}
 
@@ -162,12 +182,12 @@ function GameSettings() constructor
 
 		if 0 < volume
 		{
-			isMusMuted = false
+			__isMusMuted = false
 		}
 		else
 		{
-			prevMusVolume = 0.1
-			isMusMuted = true
+			__prevMusVolume = 0.1
+			__isMusMuted = true
 		}
 		musVolume = volume
 
@@ -185,11 +205,11 @@ function GameSettings() constructor
 	/// @self GameSettings
 	static MuteMusic = function()
 	{
-		if not isMusMuted
+		if not __isMusMuted
 		{
-			prevMusVolume = musVolume
+			__prevMusVolume = musVolume
 			musVolume = 0.0
-			isMusMuted = true
+			__isMusMuted = true
 		}
 		
 	}
@@ -197,10 +217,40 @@ function GameSettings() constructor
 	/// @self GameSettings
 	static UnmuteMusic = function()
 	{
-		if isMusMuted
+		if __isMusMuted
 		{
-			musVolume = prevMusVolume
-			isMusMuted = false
+			musVolume = __prevMusVolume
+			__isMusMuted = false
+		}
+	}
+
+	/// @self GameSettings
+	static ApplyWindowMode = function()
+	{
+		if gamePlatform.isDesktop
+		{
+			switch windowMode
+			{
+				case GameWindowMode.Windowed:
+				{
+					window_set_fullscreen(false)
+					window_set_showborder(true)
+				}
+				break
+
+				case GameWindowMode.BordelessWindow:
+				{
+					window_set_fullscreen(false)
+					window_set_showborder(false)
+				}
+				break
+
+				case GameWindowMode.Fullscreen:
+				{
+					window_set_fullscreen(true)
+				}
+				break
+			}
 		}
 	}
 }

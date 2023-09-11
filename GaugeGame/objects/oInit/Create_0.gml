@@ -1,6 +1,6 @@
 /// @description Initialize the game
-#macro _DEBUG_ false
-#macro Debug:_DEBUG_ true
+#macro _DEBUG_ true
+#macro Release:_DEBUG_ false
 
 audioLoaded = false
 

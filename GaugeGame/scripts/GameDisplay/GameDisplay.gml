@@ -1,3 +1,8 @@
+enum GameWindowMode
+{
+	Windowed, BordelessWindow, Fullscreen
+}
+
 function GameDisplay() constructor
 {
 	appSurface = application_surface
