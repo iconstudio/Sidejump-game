@@ -2,7 +2,7 @@ event_inherited()
 
 SetName("Temple Brick")
 
-/// @self oDryDirt
+/// @self oTempleBrick
 /// @param {Real} index
 /// @return {Real}
 /// @pure
