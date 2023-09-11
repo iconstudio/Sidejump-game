@@ -1,13 +1,13 @@
 /// @description Create Terrains
-horzChunks = gameSetting.horzChunks
-vertChunks = gameSetting.vertChunks
+horzChunks = gameUnit.horzChunks
+vertChunks = gameUnit.vertChunks
 mySize = horzChunks * vertChunks
 
 mmapData = new Json("test/Everything.tsj")
 
 /// @self oTerrainGenerator
 /// @param {Real} _
-var creator = function(_) { return new Chunk(0, gameSetting.horzTiles, gameSetting.vertTiles) }
+var creator = function(_) { return new Chunk(0, gameUnit.horzTiles, gameUnit.vertTiles) }
 myData = array_create_ext(mySize, creator);
 
 // stores indices of chunk

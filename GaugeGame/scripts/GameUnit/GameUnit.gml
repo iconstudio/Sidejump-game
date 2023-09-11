@@ -1,5 +1,5 @@
 /// @param {Real} meter
-function GameSetting(meter) constructor
+function GameUnit(meter) constructor
 {
 	// Time Units
 	stepsPerSecond = 0

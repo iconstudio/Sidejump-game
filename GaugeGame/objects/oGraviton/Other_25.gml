@@ -44,7 +44,7 @@ if 0 != hspd
 		tgrp = myVelocity.collisionGrpRt
 	}
 
-	var tspd = gameSetting.CalcVelocity(hspd)
+	var tspd = gameUnit.CalcVelocity(hspd)
 
 	if use_slope
 	{
@@ -129,18 +129,18 @@ if 0 != hspd
 
 if 0 <= vspd
 {
-	MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpBt, use_slope, myVelocity.colliderOnBottom)
+	MoveContactY(gameUnit.CalcVelocity(vspd), myVelocity.collisionGrpBt, use_slope, myVelocity.colliderOnBottom)
 }
 else
 {
-	MoveContactY(gameSetting.CalcVelocity(vspd), myVelocity.collisionGrpTp, use_slope, myVelocity.colliderOnTop)
+	MoveContactY(gameUnit.CalcVelocity(vspd), myVelocity.collisionGrpTp, use_slope, myVelocity.colliderOnTop)
 }
 
 if not IsOnGround()
 {
 	if myVelocity.useGravity
 	{
-		myVelocity.AddSpeed(0, gameSetting.worldGravity)
+		myVelocity.AddSpeed(0, gameUnit.worldGravity)
 	}
 }
 

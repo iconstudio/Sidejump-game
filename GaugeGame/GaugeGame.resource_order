@@ -56,7 +56,7 @@
     {"name":"sprWindowPanel","order":5,"path":"sprites/sprWindowPanel/sprWindowPanel.yy",},
     {"name":"TextFile","order":3,"path":"scripts/TextFile/TextFile.yy",},
     {"name":"oGameObject","order":5,"path":"objects/oGameObject/oGameObject.yy",},
-    {"name":"GameSetting","order":2,"path":"scripts/GameSetting/GameSetting.yy",},
+    {"name":"GameUnit","order":2,"path":"scripts/GameUnit/GameUnit.yy",},
     {"name":"oGameManager","order":1,"path":"objects/oGameManager/oGameManager.yy",},
     {"name":"objUIWindowCaption","order":9,"path":"objects/objUIWindowCaption/objUIWindowCaption.yy",},
     {"name":"oTempleBrick","order":1,"path":"objects/oTempleBrick/oTempleBrick.yy",},

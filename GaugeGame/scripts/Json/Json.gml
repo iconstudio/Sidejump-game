@@ -1,8 +1,6 @@
 /// @param {String} filepath
 function Json(filepath) constructor
 {
-	myPath = filepath
-	myData = undefined
 	rawData = ""
 
 	var txt = TextFile(filepath)

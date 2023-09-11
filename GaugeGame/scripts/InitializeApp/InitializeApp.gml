@@ -1,6 +1,6 @@
 function InitializeApp()
 {
-	globalvar gamePlatform, gameDisplay, gameUnit, gameSetting, gameInput;
+	globalvar gamePlatform, gameDisplay, gameUnit, gameUnit, gameInput;
 
 	gamePlatform = new GamePlatform()
 	gamePlatform.isDesktop = (os_type == os_windows or os_type == os_macosx or os_type == os_linux)
@@ -9,9 +9,9 @@ function InitializeApp()
 
 	gameDisplay = new GameDisplay()
 
-	gameSetting = new GameSetting(18)
-	gameSetting.UpdateTimes()
-	gameSetting.UpdateUnits()
+	gameUnit = new GameUnit(18)
+	gameUnit.UpdateTimes()
+	gameUnit.UpdateUnits()
 
 	gameInput = new GameInputs()
 
@@ -37,6 +37,7 @@ function InitializeApp()
 
 	if gamePlatform.isBrowser
 	{
+		window_center()
 		window_set_fullscreen(true)
 		display_set_sleep_margin(4)
 		audio_channel_num(4)
@@ -49,6 +50,7 @@ function InitializeApp()
 	}
 	else 
 	{
+		window_center()
 		display_set_sleep_margin(10)
 		audio_channel_num(32)
 	}

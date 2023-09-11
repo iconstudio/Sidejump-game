@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "GameSetting",
+  "name": "GameUnit",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
