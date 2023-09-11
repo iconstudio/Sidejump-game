@@ -36,12 +36,29 @@
             "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "testmap.json": {
+            "scale": 1.341875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 265.30041918956687,
+                "y": 160.59618071727994
+            }
+        },
+        "testmap.tmx": {
+            "scale": 1.4784374999999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.11836820968088,
+                "y": 160.64257028112453
+            }
         }
     },
-    "last.exportedFilePath": "D:/yoyof/Documents/Git/Sidejump-game/res",
+    "last.exportedFilePath": "D:/iconer/Documents/Git/Sidejump-game/res",
     "last.externalTilesetPath": "D:/yoyof/Documents/Git/2017-Platformer/src/data",
     "last.imagePath": "D:/yoyof/Documents/Git/Sidejump-game/GaugeGame/sprites/sTempleBrick1",
     "last.worldFilePath": "D:/yoyof/Documents/Git/Sidejump-game/res",
+    "lastUsedTilesetExportFilter": "JSON tileset files (*.tsj *.json)",
     "loadedWorlds": [
         "D:/yoyof/Documents/Git/Sidejump-game/res/testworld.world"
     ],
