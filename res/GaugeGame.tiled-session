@@ -3,11 +3,15 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Everything.tsx",
+    "activeFile": "",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        ":/automap-tiles.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
         "D:/yoyof/Documents/Git/2017-Platformer/src/Vampire Exodus Tileset v0.1.json": {
             "scaleInDock": 1
         },
@@ -29,17 +33,24 @@
             "scaleInEditor": 4
         },
         "Everything.tsx": {
+            "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 1
         }
     },
+    "last.exportedFilePath": "D:/yoyof/Documents/Git/Sidejump-game/res",
     "last.externalTilesetPath": "D:/yoyof/Documents/Git/2017-Platformer/src/data",
-    "last.imagePath": "D:/yoyof/Documents/Git/2017-Platformer/src/res/img/item",
+    "last.imagePath": "D:/yoyof/Documents/Git/Sidejump-game/GaugeGame/sprites/sTempleBrick1",
+    "last.worldFilePath": "D:/yoyof/Documents/Git/Sidejump-game/res",
+    "loadedWorlds": [
+        "D:/yoyof/Documents/Git/Sidejump-game/res/testworld.world"
+    ],
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
     "map.renderOrder": null,
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "Everything.tsx"
     ],
     "project": "GaugeGame.tiled-project",
     "recentFiles": [

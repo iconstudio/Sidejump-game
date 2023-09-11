@@ -67,6 +67,7 @@
     {"id":{"name":"InitializeApp","path":"scripts/InitializeApp/InitializeApp.yy",},},
     {"id":{"name":"oChunk","path":"objects/oChunk/oChunk.yy",},},
     {"id":{"name":"oSolid","path":"objects/oSolid/oSolid.yy",},},
+    {"id":{"name":"Tiled","path":"scripts/Tiled/Tiled.yy",},},
     {"id":{"name":"sprWindowCaption","path":"sprites/sprWindowCaption/sprWindowCaption.yy",},},
     {"id":{"name":"AutoTileCollision","path":"scripts/AutoTileCollision/AutoTileCollision.yy",},},
     {"id":{"name":"ReferenceList","path":"scripts/ReferenceList/ReferenceList.yy",},},

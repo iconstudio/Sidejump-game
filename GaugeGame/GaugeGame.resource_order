@@ -36,6 +36,7 @@
     {"name":"objUICheckbox","order":4,"path":"objects/objUICheckbox/objUICheckbox.yy",},
     {"name":"oChunk","order":3,"path":"objects/oChunk/oChunk.yy",},
     {"name":"oSolid","order":1,"path":"objects/oSolid/oSolid.yy",},
+    {"name":"Tiled","order":8,"path":"scripts/Tiled/Tiled.yy",},
     {"name":"sprWindowCaption","order":4,"path":"sprites/sprWindowCaption/sprWindowCaption.yy",},
     {"name":"AutoTileCollision","order":3,"path":"scripts/AutoTileCollision/AutoTileCollision.yy",},
     {"name":"ReferenceList","order":1,"path":"scripts/ReferenceList/ReferenceList.yy",},
