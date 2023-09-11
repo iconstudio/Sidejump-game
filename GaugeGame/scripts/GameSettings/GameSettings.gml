@@ -24,29 +24,8 @@ function GameSettings() constructor
 
 			show_debug_message("Successfully loaded the setting file")
 
-			var mus_vol = 0.7
-			var raw_mus_vol = data[$ "mus_volume"]
-			if is_real(raw_mus_vol)
-			{
-				mus_vol = raw_mus_vol
-			}
-			else if not is_undefined(raw_mus_vol)
-			{
-				mus_vol = real(raw_mus_vol)
-			}
-			musVolume = mus_vol
-
-			var sfx_vol = 1.0
-			var raw_sfx_vol = data[$ "sfx_volume"]
-			if is_real(raw_sfx_vol)
-			{
-				sfx_vol = raw_sfx_vol
-			}
-			else if not is_undefined(raw_sfx_vol)
-			{
-				sfx_vol = real(raw_sfx_vol)
-			}
-			sfxVolume = sfx_vol
+			musVolume = Read(data, "mus_volume", ty_real, 0.7)
+			sfxVolume = Read(data, "sfx_volume", ty_real, 1.0)
 
 			delete json
 		}
@@ -81,6 +60,46 @@ function GameSettings() constructor
 		delete txt
 
 		return true
+	}
+
+	/// @self GameSettings
+	/// @param {Any} json_data
+	/// @param {String} value_name
+	/// @param {Constant.ExternalArgumentType} value_type
+	/// @param {Any} default_value
+	/// @return {Any}
+	static Read = function(json_data, value_name, value_type, default_value)
+	{
+		var result = json_data[$ value_name]
+		if is_undefined(result)
+		{
+			return default_value
+		}
+		else
+		{
+			if ty_real == value_type
+			{
+				if is_real(result)
+				{
+					return result
+				}
+				else
+				{
+					return real(result)
+				}
+			}
+			else
+			{
+				if is_string(result)
+				{
+					return result
+				}
+				else
+				{
+					return string(result)
+				}
+			}
+		}
 	}
 
 	/// @self GameSettings
