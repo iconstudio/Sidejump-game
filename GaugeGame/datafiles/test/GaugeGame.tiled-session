@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Everything..tsj",
+    "activeFile": "Everything.tsx",
     "expandedProjectPaths": [
         "."
     ],
@@ -50,16 +50,16 @@
             "scale": 1.341875,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 307.03306939916166,
-                "y": 154.63437354448067
+                "x": 223.94038192827202,
+                "y": 143.08337214718213
             }
         },
         "testmap.tmx": {
             "scale": 1.4784374999999998,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 275.96702599873186,
-                "y": 314.85943775100407
+                "x": 444.0498837455084,
+                "y": 307.0809554005496
             }
         }
     },
@@ -79,16 +79,15 @@
     "openFiles": [
         "Everything.tsx",
         "testmap.json",
-        "testmap.tmx",
-        "Everything..tsj"
+        "testmap.tmx"
     ],
     "project": "GaugeGame.tiled-project",
     "recentFiles": [
-        "Everything.tsj",
-        "testmap.json",
-        "Everything..tsj",
-        "Everything.tsx",
         "testmap.tmx",
+        "testmap.json",
+        "Everything.tsx",
+        "Everything.tsj",
+        "Everything..tsj",
         "D:/yoyof/Documents/Git/2017-Platformer/src/data/stage00.json",
         "D:/yoyof/Documents/Git/2017-Platformer/src/data/Vampire Exodus Tileset v0.1.json",
         "Dry Dirt.tsx"

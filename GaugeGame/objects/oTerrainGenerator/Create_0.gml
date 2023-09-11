@@ -23,6 +23,7 @@ if 0 == tmap_len
 	throw "Empty tilemap"
 }
 
+tileMap = {}
 for (var i = 0; i < tmap_len; ++i)
 {
 	var mapped_tile = tilemap[i]
@@ -30,20 +31,28 @@ for (var i = 0; i < tmap_len; ++i)
 	var tobj = mapped_tile[$ "type"]
 	if is_undefined(tobj)
 	{
-		throw $"Found a invalid tile at { i } in the tilemap { tilemap }"
+		throw $"Found a invalid tile class at { i } in the tilemap { tilemap }"
 	}
 
-	var tind = asset_get_index(tobj)
-	if -1 == tind
+	var aind = asset_get_index(tobj)
+	if -1 == aind
 	{
 		throw $"Cannot find asset at tile { i } in the tilemap { tilemap }"
 	}
 
-	var taty = asset_get_type(tobj)
-	if asset_object != taty
+	var asty = asset_get_type(tobj)
+	if asset_object != asty
 	{
-		throw $"Tile at { i } in the tilemap { tilemap } is not an object, but { taty }"
+		throw $"Tile at { i } in the tilemap { tilemap } is not an object, but { asty }"
 	}
+
+	var tind = mapped_tile[$ "id"]
+	if is_undefined(tobj)
+	{
+		throw $"Found a invalid tile id at { i } in the tilemap { tilemap }"
+	}
+
+	tileMap[$ string(tind)] = aind
 }
 
 mmapData = new JsonReader("test/testmap.json")
