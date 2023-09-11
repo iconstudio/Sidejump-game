@@ -1,8 +1,8 @@
 enum AutotileCategory
 {
 	Simple, // 17 tiles
-	SimpleDiag, // 16 tiles
-	Complex, // 47 tiles
+	SimpleDiag, // 64 tiles
+	Complex, // 256 tiles
 }
 
 enum AutotileDisjunctions

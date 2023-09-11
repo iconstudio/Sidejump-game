@@ -98,6 +98,7 @@
     {"id":{"name":"oTempleBrick","path":"objects/oTempleBrick/oTempleBrick.yy",},},
     {"id":{"name":"sTempleBrick2","path":"sprites/sTempleBrick2/sTempleBrick2.yy",},},
     {"id":{"name":"objUISlider","path":"objects/objUISlider/objUISlider.yy",},},
+    {"id":{"name":"sTempleBrick3","path":"sprites/sTempleBrick3/sTempleBrick3.yy",},},
     {"id":{"name":"sprCheckBox","path":"sprites/sprCheckBox/sprCheckBox.yy",},},
     {"id":{"name":"ui_show_popup","path":"scripts/ui_show_popup/ui_show_popup.yy",},},
     {"id":{"name":"Physics","path":"scripts/Physics/Physics.yy",},},

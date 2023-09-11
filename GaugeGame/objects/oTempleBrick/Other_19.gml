@@ -1,3 +1,3 @@
-sprite_index = choose(sTempleBrick1, sTempleBrick2)
+sprite_index = choose(sTempleBrick1, sTempleBrick2, sTempleBrick3)
 
-image_index = AutotileCreate(AutotileCategory.Complex, id, oTempleBrick, GetAutotileTable)
+image_index = AutotileCreate(AutotileCategory.SimpleDiag, id, oTempleBrick, GetAutotileTable)
