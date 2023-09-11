@@ -8,6 +8,8 @@ SetName("Temple Brick")
 /// @pure
 function GetAutotileTable(index)
 {
+	var lt = (0 != index & AutotileDisjunctions.Lt)
+	var rt = (0 != index & AutotileDisjunctions.Rt)
 	var ld = (0 != index & AutotileDisjunctions.Ld)
 	var rd = (0 != index & AutotileDisjunctions.Rd)
 	var lu = (0 != index & AutotileDisjunctions.Lu)
@@ -39,7 +41,7 @@ function GetAutotileTable(index)
 	}
 	else if not ld and rd
 	{
-		if ru
+		if ru and rt
 		{
 			return index
 		}
@@ -50,7 +52,7 @@ function GetAutotileTable(index)
 	}
 	else if ld and not rd
 	{
-		if lu
+		if lu and lt
 		{
 			return index
 		}
