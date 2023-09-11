@@ -1,9 +1,9 @@
 /// @param {String} filepath
-function Json(filepath) constructor
+function JsonReader(filepath) constructor
 {
 	rawData = ""
 
-	var txt = TextFile(filepath)
+	var txt = new ReadOnlyTextFile(filepath)
 	if not txt.IsValid()
 	{
 		throw "No Json file found"

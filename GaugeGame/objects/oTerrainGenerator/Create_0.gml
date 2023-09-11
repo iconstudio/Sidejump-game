@@ -3,7 +3,7 @@ horzChunks = gameUnit.horzChunks
 vertChunks = gameUnit.vertChunks
 mySize = horzChunks * vertChunks
 
-mmapData = new Json("test/Everything.tsj")
+mmapData = new JsonReader("test/Everything.tsj")
 
 /// @self oTerrainGenerator
 /// @param {Real} _

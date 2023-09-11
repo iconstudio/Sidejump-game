@@ -1,6 +1,6 @@
 function InitializeApp()
 {
-	globalvar gamePlatform, gameDisplay, gameUnit, gameUnit, gameInput;
+	globalvar gamePlatform, gameDisplay, gameSetting, gameUnit, gameInput;
 
 	gamePlatform = new GamePlatform()
 	gamePlatform.isDesktop = (os_type == os_windows or os_type == os_macosx or os_type == os_linux)
@@ -8,6 +8,9 @@ function InitializeApp()
 	gamePlatform.isBrowser = (os_browser != browser_not_a_browser)
 
 	gameDisplay = new GameDisplay()
+
+	gameSetting = new GameSettings()
+	gameSetting.Load()
 
 	gameUnit = new GameUnit(18)
 	gameUnit.UpdateTimes()

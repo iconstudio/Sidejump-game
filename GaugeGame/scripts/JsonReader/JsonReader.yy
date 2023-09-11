@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Json",
+  "name": "JsonReader",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
