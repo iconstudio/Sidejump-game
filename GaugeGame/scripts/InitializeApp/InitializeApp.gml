@@ -34,9 +34,6 @@ function InitializeApp()
 	surface_depth_disable(true)
 	display_reset(0, false)
 
-	window_set_cursor(cr_none)
-	device_mouse_dbclick_enable(false)
-	randomize()
 
 	if gamePlatform.isBrowser
 	{
@@ -45,16 +42,24 @@ function InitializeApp()
 		display_set_sleep_margin(4)
 		audio_channel_num(4)
 		os_powersave_enable(false)
+		window_set_cursor(cr_none)
 	}
 	else if gamePlatform.isMobile
 	{
 		display_set_sleep_margin(30)
 		audio_channel_num(16)
+		os_powersave_enable(true)
+		window_set_cursor(cr_none)
 	}
 	else 
 	{
 		window_center()
 		display_set_sleep_margin(10)
 		audio_channel_num(32)
+		window_set_cursor(cr_none)
 	}
+
+	device_mouse_dbclick_enable(false)
+
+	randomize()
 }

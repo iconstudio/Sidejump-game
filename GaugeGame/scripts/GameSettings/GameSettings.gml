@@ -4,6 +4,7 @@ function GameSettings() constructor
 	musVolume = 0.7
 	sfxVolume = 1.0
 	windowMode = GameWindowMode.Windowed
+	stayAwake = false
 
 	__prevMasterVolume = 1.0
 	__prevMusVolume = 1.0
@@ -44,6 +45,9 @@ function GameSettings() constructor
 			}
 			ApplyWindowMode()
 
+			stayAwake = bool(Read(data, "powersave", ty_real, 1))
+			ApplyPowersave()
+
 			delete json
 		}
 		catch (e)
@@ -63,6 +67,7 @@ function GameSettings() constructor
 			mus_volume : musVolume,
 			sfx_volume : sfxVolume,
 			window_mode : make_wmd,
+			powersave : real(stayAwake),
 		}
 
 		var json = json_stringify(saver, true)
@@ -252,5 +257,11 @@ function GameSettings() constructor
 				break
 			}
 		}
+	}
+
+	/// @self GameSettings
+	static ApplyPowersave = function()
+	{
+		os_powersave_enable(stayAwake)
 	}
 }
