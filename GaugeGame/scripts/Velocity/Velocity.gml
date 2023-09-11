@@ -221,7 +221,7 @@ function Velocity() constructor
 /// @param {Real} vy
 function DefaultVelocityFn(target, vx, vy)
 {
-	var delta_steps = gameSetting.pixelPerStep
+	var delta_steps = gameUnit.pixelPerStep
 
 	target.x += vx * delta_steps
 	target.y += vy * delta_steps

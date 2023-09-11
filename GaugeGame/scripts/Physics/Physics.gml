@@ -25,9 +25,9 @@ function Physics()
 
 	myVelocity.useSlope = false
 	myVelocity.slopeUpper = 50
-	myVelocity.slopeUpperDist = gameSetting.meterToPixel * 0.2
+	myVelocity.slopeUpperDist = gameUnit.meterToPixel * 0.2
 	myVelocity.slopeLower = 30
-	myVelocity.slopeLowerDist = gameSetting.meterToPixel * 0.4
+	myVelocity.slopeLowerDist = gameUnit.meterToPixel * 0.4
 }
 
 /// @self oGameObject

@@ -38,7 +38,7 @@ function AutotileCreate(category, target, checks, grps)
 		}
 		else
 		{
-			throw $"Invalid sprites argument on { dir }"
+			throw $"Invalid sprites argument on { dir}"
 		}
 	}
 	else
