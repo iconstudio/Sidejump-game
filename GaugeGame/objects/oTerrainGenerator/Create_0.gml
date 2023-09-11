@@ -5,6 +5,7 @@ mySize = horzChunks * vertChunks
 
 mmapData = new JsonReader("test/Everything.tsj")
 
+
 /// @self oTerrainGenerator
 /// @param {Real} _
 var creator = function(_) { return new Chunk(0, gameUnit.horzTiles, gameUnit.vertTiles) }

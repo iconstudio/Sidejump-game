@@ -17,8 +17,12 @@ function GameSettings() constructor
 	{
 		try
 		{
+			show_debug_message("Loading the setting file")
+
 			var json = new JsonReader(settingFile)
 			var data = json.myData
+
+			show_debug_message("Successfully loaded the setting file")
 
 			var mus_vol = 0.7
 			var raw_mus_vol = data[$ "mus_volume"]
@@ -48,6 +52,7 @@ function GameSettings() constructor
 		}
 		catch (e)
 		{
+			show_debug_message("Failed to load the setting file")
 			Save()
 		}
 	}
@@ -65,12 +70,17 @@ function GameSettings() constructor
 		var txt = new WritableTextFile(settingFile, true)
 		if not txt.IsValid()
 		{
-			throw "Cannot open the setting fie"
+			show_debug_message("Cannot open the setting file")
+
+			return false
 		}
 
 		txt.Write(json)
 
 		txt.Close()
+		delete txt
+
+		return true
 	}
 
 	/// @self GameSettings
