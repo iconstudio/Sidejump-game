@@ -14,14 +14,14 @@
  "tiles":[
         {
          "id":0,
-         "image":"..\/GaugeGame\/sprites\/sDryDirt1\/025f57e6-cdbb-4e31-af1f-b42546994b46.png",
+         "image":"..\/..\/sprites\/sDryDirt1\/025f57e6-cdbb-4e31-af1f-b42546994b46.png",
          "imageheight":16,
          "imagewidth":16,
          "type":"oDryDirt"
         }, 
         {
          "id":2,
-         "image":"..\/GaugeGame\/sprites\/sTempleBrick1\/f7202e98-9f37-4381-9633-9a10e1cbfc46.png",
+         "image":"..\/..\/sprites\/sTempleBrick1\/f7202e98-9f37-4381-9633-9a10e1cbfc46.png",
          "imageheight":16,
          "imagewidth":16,
          "type":"oTempleBrick"

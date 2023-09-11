@@ -48,7 +48,16 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tilesets","folderPath":"folders/Tilesets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Testbed","folderPath":"folders/Tilesets/Testbed.yy",},
   ],
-  "IncludedFiles": [],
+  "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Everything.tsj","CopyToMask":-1,"filePath":"datafiles/test",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Everything.tsx","CopyToMask":-1,"filePath":"datafiles/test",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"GaugeGame.tiled-project","CopyToMask":-1,"filePath":"datafiles/test",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"GaugeGame.tiled-session","CopyToMask":-1,"filePath":"datafiles/test",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"testmap.json","CopyToMask":-1,"filePath":"datafiles/test",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"testmap.tmx","CopyToMask":-1,"filePath":"datafiles/test",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"testmap.yy","CopyToMask":-1,"filePath":"datafiles/test",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"testworld.world","CopyToMask":-1,"filePath":"datafiles/test",},
+  ],
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
