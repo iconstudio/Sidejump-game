@@ -3,8 +3,50 @@ horzChunks = gameUnit.horzChunks
 vertChunks = gameUnit.vertChunks
 mySize = horzChunks * vertChunks
 
-mmapData = new JsonReader("test/Everything.tsj")
+tileData = new JsonReader("test/Everything.tsj")
 
+var tiledata = tileData.myData
+var tilemap = tiledata[$ "tiles"]
+if is_undefined(tilemap)
+{
+	throw "No tiles in the tilemap"
+}
+
+if not is_array(tilemap)
+{
+	throw "Invalid tilemap"
+}
+
+var tmap_len = array_length(tilemap)
+if 0 == tmap_len
+{
+	throw "Empty tilemap"
+}
+
+for (var i = 0; i < tmap_len; ++i)
+{
+	var mapped_tile = tilemap[i]
+
+	var tobj = mapped_tile[$ "type"]
+	if is_undefined(tobj)
+	{
+		throw $"Found a invalid tile at { i } in the tilemap { tilemap }"
+	}
+
+	var tind = asset_get_index(tobj)
+	if -1 == tind
+	{
+		throw $"Cannot find asset at tile { i } in the tilemap { tilemap }"
+	}
+
+	var taty = asset_get_type(tobj)
+	if asset_object != taty
+	{
+		throw $"Tile at { i } in the tilemap { tilemap } is not an object, but { taty }"
+	}
+}
+
+mmapData = new JsonReader("test/testmap.json")
 
 /// @self oTerrainGenerator
 /// @param {Real} _

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="10">
  <tileset firstgid="1" source="Everything.tsx"/>
  <layer id="1" name="Tile Layer 1" width="30" height="20">
   <data encoding="csv">
@@ -25,4 +25,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="2" name="Object Layer 1">
+  <object id="1" gid="3" x="236.177" y="83.0793" width="16" height="16"/>
+  <object id="3" gid="3" x="167.185" y="80.3737" width="16" height="16"/>
+  <object id="4" gid="3" x="221.296" y="49.2598" width="16" height="16"/>
+  <object id="5" gid="3" x="186.8" y="104.047" width="16" height="16"/>
+  <object id="6" gid="3" x="275.407" y="85.7848" width="16" height="16"/>
+  <object id="7" gid="3" x="313.962" y="50.6126" width="16" height="16"/>
+  <object id="8" gid="3" x="327.489" y="78.3445" width="16" height="16"/>
+  <object id="9" gid="3" x="393.776" y="39.1139" width="16" height="16"/>
+ </objectgroup>
 </map>
