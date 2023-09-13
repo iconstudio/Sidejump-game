@@ -1,25 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.InteropServices;
 
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
-
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.Shell;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace TestEditor
 {
@@ -28,6 +13,12 @@ namespace TestEditor
 	/// </summary>
 	public partial class App : Application
 	{
+		private Window m_window;
+		private SUBCLASSPROC procHooker;
+
+		private int minWidth = 600;
+		private int minHeight = 400;
+
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -44,9 +35,34 @@ namespace TestEditor
 		protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
 		{
 			m_window = new MainWindow();
+			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
+			procHooker = new(SizeHooker);
+
+			PInvoke.SetWindowSubclass((HWND) hwnd, procHooker, 0, 0);
+
 			m_window.Activate();
 		}
+		LRESULT SizeHooker(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
+		{
+			switch (uMsg)
+			{
+				case PInvoke.WM_GETMINMAXINFO:
+				{
+					var dpi = PInvoke.GetDpiForWindow(hWnd);
+					float scalingFactor = (float) dpi / 96;
 
-		private Window m_window;
+					MINMAXINFO minMaxInfo = Marshal.PtrToStructure<MINMAXINFO>(lParam);
+					minMaxInfo.ptMinTrackSize.X = (int) (minWidth * scalingFactor);
+					minMaxInfo.ptMinTrackSize.Y = (int) (minHeight * scalingFactor);
+
+					Marshal.StructureToPtr(minMaxInfo, lParam, true);
+				}
+
+				return (LRESULT) 1;
+			}
+
+			return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);
+		}
+
 	}
 }
