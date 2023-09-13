@@ -1,6 +1,8 @@
+using Microsoft.UI;
 using Microsoft.UI.Xaml.Input;
 
 using Windows.ApplicationModel;
+using Windows.Storage.Pickers;
 using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -35,6 +37,44 @@ namespace TestEditor
 		private void SettingBtn_PointerExited(object sender, PointerRoutedEventArgs e)
 		{
 			AnimatedIcon.SetState(settingBtnIcon, "Normal");
+		}
+		private async void CreateButton_Click(object sender, RoutedEventArgs e)
+		{
+			FileOpenPicker picker = new();
+			picker.FileTypeFilter.Add(".gmap");
+
+			// Clear previous returned file name, if it exists, between iterations of this scenario
+			//TextBox OutputTextBlock = new();
+			//OutputTextBlock.Text = "";
+
+			// Create a file picker
+			var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+
+			// Retrieve the window handle (HWND) of the current WinUI 3 window.
+			var window = this.GetWindow();
+			var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+			// Initialize the file picker with the window handle (HWND).
+			WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+			// Set options for your file picker
+			openPicker.ViewMode = PickerViewMode.Thumbnail;
+			openPicker.FileTypeFilter.Add("*");
+
+			// Open the picker for the user to pick a file
+			var file = await openPicker.PickSingleFileAsync();
+			if (file != null)
+			{
+				//PickAFileOutputTextBlock.Text = "Picked file: " + file.Name;
+			}
+			else
+			{
+				//PickAFileOutputTextBlock.Text = "Operation cancelled.";
+			}
+		}
+		private void OpenButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

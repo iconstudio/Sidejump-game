@@ -110,10 +110,8 @@
 				</Grid.RowDefinitions>
 
 				<StackPanel Grid.Column="1" Grid.Row="1">
-					<HyperlinkButton Content="Create a Project"/>
-					<HyperlinkButton Content="Create a Map"/>
-					<HyperlinkButton Content="Open a Project"/>
-					<HyperlinkButton Content="Open a Map"/>
+					<HyperlinkButton Content="Create a Project" Click="CreateButton_Click"/>
+					<HyperlinkButton Content="Open a Project" Click="OpenButton_Click"/>
 					<HyperlinkButton Content="Help" NavigateUri="https://github.com/iconstudio/Sidejump-game"/>
 				</StackPanel>
 			</Grid>
