@@ -12,6 +12,12 @@
 
 	<StackPanel Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Grid.Row="1">
 		<Grid>
+			<Grid.ChildrenTransitions>
+				<TransitionCollection>
+					<RepositionThemeTransition/>
+				</TransitionCollection>
+			</Grid.ChildrenTransitions>
+
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition/>
