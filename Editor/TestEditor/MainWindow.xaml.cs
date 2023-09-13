@@ -1,18 +1,24 @@
-using Microsoft.UI.Composition.SystemBackdrops;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Composition.SystemBackdrops;
 
 namespace TestEditor
 {
-	/// <summary>
-	/// An empty window that can be used on its own or navigated to within a Frame.
-	/// </summary>
 	public sealed partial class MainWindow : Window
 	{
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			Activated += Start;
+		}
+		public void Start(object sender, WindowActivatedEventArgs e)
+		{
+			if (e.WindowActivationState != WindowActivationState.CodeActivated)
+			{
+				return;
+			}
 
 			if (DesktopAcrylicController.IsSupported())
 			{
