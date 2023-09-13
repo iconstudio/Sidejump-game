@@ -1,19 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.ApplicationModel;
 using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -21,19 +8,33 @@ using Windows.UI;
 
 namespace TestEditor
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class HomePage : Page
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class HomePage : Page
     {
         private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 
+		private static readonly string appVersion = string.Format(null, "v{0}.{1}.{2}.{3}",
+					Package.Current.Id.Version.Major,
+					Package.Current.Id.Version.Minor,
+					Package.Current.Id.Version.Build,
+					Package.Current.Id.Version.Revision);
+
 		public HomePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-			//homeContent.Background = new SolidColorBrush(Transparent);
-			
+			appVersionText.Text = appVersion;
 		}
-    }
+
+		private void SettingBtn_PointerEntered(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
+		}
+		private void SettingBtn_PointerExited(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState(settingBtnIcon, "Normal");
+		}
+	}
 }
