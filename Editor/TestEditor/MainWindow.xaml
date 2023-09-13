@@ -12,10 +12,11 @@
 		<DesktopAcrylicBackdrop/>
 	</Window.SystemBackdrop>
 
-	<Grid>
+	<Grid Background="Transparent">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="32"/>
-			<RowDefinition Height="Auto" MinHeight="368"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" MinHeight="320"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
 		<Grid.BackgroundTransition>
@@ -28,12 +29,17 @@
 			</TransitionCollection>
 		</Grid.Transitions>
 
-		<Border Name="appTitleBar"
-				Background="{StaticResource AccentAcrylicBackgroundFillColorBaseBrush}"
-				Grid.Row="0">
+		<Frame Name="appTitleBar"
+			  Background="{StaticResource AccentAcrylicBackgroundFillColorBaseBrush}"
+			  Height="48"
+			  Grid.Row="0">
 
-			<TextBlock Name="appTitle" Text="Map Editor" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
-		</Border>
+			<TextBlock Name="appTitle"
+					   Text="Map Editor" Style="{StaticResource CaptionTextBlockStyle}"
+					   TextAlignment="Center"
+					   VerticalAlignment="Center"
+					   Margin="6,0,0,0"/>
+		</Frame>
 
 		<Frame Name="rootFrame" Opacity="0.0"
 			   Grid.Row="1">

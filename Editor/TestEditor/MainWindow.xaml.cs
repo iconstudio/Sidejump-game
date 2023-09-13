@@ -1,4 +1,5 @@
 using Microsoft.UI.Composition.SystemBackdrops;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 
@@ -19,8 +20,15 @@ namespace TestEditor
 				SystemBackdrop = DesktopAcrylicBackdrop;
 			}
 
-			ExtendsContentIntoTitleBar = true;
-			SetTitleBar(appTitleBar);
+			if (AppWindowTitleBar.IsCustomizationSupported())
+			{
+				ExtendsContentIntoTitleBar = true;
+				SetTitleBar(appTitleBar);
+			}
+			else
+			{
+				appTitleBar.Visibility = Visibility.Collapsed;
+			}
 
 			rootFrame.Opacity = 1.0;
 			rootFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
