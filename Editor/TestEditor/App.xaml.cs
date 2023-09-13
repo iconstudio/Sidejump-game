@@ -34,7 +34,7 @@ namespace TestEditor
 		/// </summary>
 		public App()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		/// <summary>

@@ -1,7 +1,9 @@
 {
   "profiles": {
     "TestEditor (Package)": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "alwaysReinstallApp": false,
+      "nativeDebugging": false
     },
     "TestEditor (Unpackaged)": {
       "commandName": "Project"

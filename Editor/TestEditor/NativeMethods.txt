@@ -1,0 +1,7 @@
+GetDpiForWindow
+SetWindowLong
+SetWindowSubclass
+CallWindowProc
+MINMAXINFO
+WM_GETMINMAXINFO
+DefSubclassProc

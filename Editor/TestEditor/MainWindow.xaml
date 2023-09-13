@@ -8,7 +8,48 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+	<Window.SystemBackdrop>
+		<DesktopAcrylicBackdrop/>
+	</Window.SystemBackdrop>
+	
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="32"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Grid.BackgroundTransition>
+			<BrushTransition/>
+		</Grid.BackgroundTransition>
+
+		<Grid.OpacityTransition>
+			<ScalarTransition/>
+		</Grid.OpacityTransition>
+
+		<Grid.Transitions>
+			<TransitionCollection>
+				<PopupThemeTransition/>
+				<NavigationThemeTransition/>
+			</TransitionCollection>
+		</Grid.Transitions>
+
+		<Border Name="appTitleBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0">
+			<TextBlock Name="appTitle" Text="Map Editor" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
+		</Border>
+
+		<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1">
+			<Frame Name="rootFrame" Opacity="0.0">
+				<Frame.OpacityTransition>
+					<ScalarTransition/>
+				</Frame.OpacityTransition>
+
+				<Frame.Transitions>
+					<TransitionCollection>
+						<ContentThemeTransition/>
+						<NavigationThemeTransition/>
+					</TransitionCollection>
+				</Frame.Transitions>
+			</Frame>
+		</StackPanel>
+	</Grid>
 </Window>
