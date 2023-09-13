@@ -8,19 +8,13 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
-	<Grid Background="Transparent">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="10"/>
-			<ColumnDefinition Width="*" MinWidth="100"/>
-			<ColumnDefinition Width="1.2*" MinWidth="100"/>
-			<ColumnDefinition Width="10"/>
-		</Grid.ColumnDefinitions>
+	<Grid VerticalAlignment="Stretch"
+		  Background="Transparent">
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="10"/>
-			<RowDefinition Height="*" MinHeight="200"/>
-			<RowDefinition Height="10"/>
-		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" MinWidth="80"/>
+			<ColumnDefinition Width="1.4*" MinWidth="160"/>
+		</Grid.ColumnDefinitions>
 
 		<Grid.BackgroundTransition>
 			<BrushTransition Duration="00:00:02"/>
@@ -33,22 +27,63 @@
 			</TransitionCollection>
 		</Grid.ChildrenTransitions>
 
-		<StackPanel
-			Background="Aqua"
-			Grid.Column="1" Grid.Row="1">
+		<Frame Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
+			   Grid.Column="0">
 
-			<Image Source="ms-appx:///Assets/Trademark.png" MaxWidth="200"/>
-			<TextBlock HorizontalTextAlignment="Center">Iconerworks</TextBlock>
-			<TextBlock HorizontalTextAlignment="Center">aasdasaddsd</TextBlock>
-		</StackPanel>
-		
-		<StackPanel
-			Background="Salmon"
-			Grid.Column="2" Grid.Row="1">
+			<Grid VerticalAlignment="Center">
+				<Grid.Resources>
+					<ThemeShadow x:Name="LogoShadow"/>
+				</Grid.Resources>
 
-			<Image Source="ms-appx:///Assets/Trademark.png" MaxWidth="200"/>
-			<TextBlock HorizontalTextAlignment="Center">Iconerworks</TextBlock>
-			<TextBlock HorizontalTextAlignment="Center">aasdasaddsd</TextBlock>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="20"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="20"/>
+				</Grid.ColumnDefinitions>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" MinHeight="10"/>
+					<RowDefinition Height="Auto" MinHeight="280"/>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="Auto" MinHeight="10"/>
+				</Grid.RowDefinitions>
+
+				<StackPanel
+					Grid.Column="1" Grid.Row="1">
+
+					<Image Source="ms-appx:///Assets/Trademark.png" Shadow="{StaticResource LogoShadow}" MaxWidth="160" Margin="0,0,0,24"/>
+					<TextBlock TextWrapping="WrapWholeWords" HorizontalTextAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}">Gauge Game Map Editor</TextBlock>
+					<TextBlock HorizontalTextAlignment="Center">Iconerworks</TextBlock>
+				</StackPanel>
+			</Grid>
+		</Frame>
+
+		<StackPanel
+			HorizontalAlignment="Left"
+			Grid.Column="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" MinWidth="20" MaxWidth="160"/>
+					<ColumnDefinition Width="4*" MinWidth="120"/>
+					<ColumnDefinition Width="1.2*" MinWidth="40"/>
+				</Grid.ColumnDefinitions>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="10"/>
+					<RowDefinition Height="Auto" MinHeight="100"/>
+					<RowDefinition Height="Auto" MinHeight="100"/>
+					<RowDefinition Height="Auto" MinHeight="30" MaxHeight="400"/>
+					<RowDefinition Height="10"/>
+				</Grid.RowDefinitions>
+
+				<StackPanel Grid.Column="1" Grid.Row="2">
+					<HyperlinkButton Content="Create a Project"/>
+					<HyperlinkButton Content="Create a Map"/>
+					<HyperlinkButton Content="Open a Project"/>
+					<HyperlinkButton Content="Open a Map"/>
+					<HyperlinkButton Content="Help"/>
+				</StackPanel>
+			</Grid>
 		</StackPanel>
 	</Grid>
 </Page>
