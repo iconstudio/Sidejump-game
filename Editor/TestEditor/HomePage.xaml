@@ -20,13 +20,6 @@
 			<BrushTransition Duration="00:00:02"/>
 		</Grid.BackgroundTransition>
 
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition IsStaggeringEnabled="True"/>
-				<AddDeleteThemeTransition/>
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
-
 		<Frame Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
 			   Grid.Column="0">
 

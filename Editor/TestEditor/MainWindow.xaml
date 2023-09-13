@@ -23,12 +23,6 @@
 			<BrushTransition Duration="00:00:02"/>
 		</Grid.BackgroundTransition>
 
-		<Grid.Transitions>
-			<TransitionCollection>
-				<NavigationThemeTransition/>
-			</TransitionCollection>
-		</Grid.Transitions>
-
 		<Frame Name="appTitleBar"
 			  Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"
 			  Height="48"
