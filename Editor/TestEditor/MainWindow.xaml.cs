@@ -11,15 +11,6 @@ namespace TestEditor
 		{
 			InitializeComponent();
 
-			Activated += Start;
-		}
-		public void Start(object sender, WindowActivatedEventArgs e)
-		{
-			if (e.WindowActivationState != WindowActivationState.CodeActivated)
-			{
-				return;
-			}
-
 			if (DesktopAcrylicController.IsSupported())
 			{
 				DesktopAcrylicBackdrop DesktopAcrylicBackdrop = new();
@@ -35,6 +26,8 @@ namespace TestEditor
 			{
 				appTitleBar.Visibility = Visibility.Collapsed;
 			}
+
+			this.Track();
 
 			rootFrame.Opacity = 1.0;
 			rootFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
