@@ -12,7 +12,7 @@ namespace TestEditor
 		where V : IEquatable<V>
 	{
 		internal List<KeyValuePair<T, V>> myData;
-		private KeyValuePairComparer myComparer = new();
+		private static readonly KeyValuePairComparer myComparer = new();
 
 		public static readonly bool isSortable = typeof(IComparable<T>).IsAssignableFrom(typeof(T));
 
@@ -142,16 +142,8 @@ namespace TestEditor
 		{
 			if (isSortable)
 			{
-				myData.Sort((lhs, rhs) => CompareWith(lhs.Key, rhs.Key));
+				myData.Sort((lhs, rhs) => ((IComparable<T>) lhs.Key).CompareTo(rhs.Key));
 			}
-		}
-		private static int CompareWith(KeyValuePair<T, V> lhs, KeyValuePair<T, V> rhs)
-		{
-			return ((IComparable<T>) lhs.Key).CompareTo(rhs.Key);
-		}
-		private static int CompareWith(T lhs, T rhs)
-		{
-			return ((IComparable<T>) lhs).CompareTo(rhs);
 		}
 
 		private class KeyValuePairComparer : IComparer<KeyValuePair<T, V>>
