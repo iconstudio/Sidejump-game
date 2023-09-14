@@ -4,9 +4,11 @@ namespace TestEditor
 {
 	internal static class MapStorage
 	{
-		private static StorageFile lastFile;
+		internal static StorageFile lastFile;
+		internal static readonly string mapFileExtension = ".gmap";
+		internal static List<Map> storedMaps = new();
 
-		private static List<Map> storedMaps = new();
+		public static string GetMapExtension() => mapFileExtension;
 		public static void MemoLastFile(StorageFile file)
 		{
 			lastFile = file;
