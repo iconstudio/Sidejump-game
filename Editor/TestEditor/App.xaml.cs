@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -10,28 +9,28 @@ namespace TestEditor
 {
 	public partial class App : Application
 	{
-		private Window m_window;
+		private Window myWindow;
 		private SUBCLASSPROC procHooker;
 
-		private int minWidth = 600;
-		private int minHeight = 400;
+		private const int minWidth = 600;
+		private const int minHeight = 400;
 
 		public App()
 		{
 			InitializeComponent();
 		}
 
-		protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+		protected override void OnLaunched(LaunchActivatedEventArgs args)
 		{
-			m_window = new MainWindow();
-			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
+			myWindow = new MainWindow();
+			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(myWindow);
 			procHooker = new(SizeHooker);
 
 			PInvoke.SetWindowSubclass((HWND) hwnd, procHooker, 0, 0);
 
-			m_window.Activate();
+			myWindow.Activate();
 		}
-		LRESULT SizeHooker(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
+		private LRESULT SizeHooker(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
 		{
 			switch (uMsg)
 			{
@@ -52,6 +51,5 @@ namespace TestEditor
 
 			return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);
 		}
-
 	}
 }
