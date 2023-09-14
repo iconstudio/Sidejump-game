@@ -13,7 +13,7 @@ namespace TestEditor
 		public Rectangle myResolution;
 		// tiles
 		public Tileset myTileset;
-		public uint tilehSize, tilevSize;
+		public uint tilesHrCount, tilesVtCount;
 
 		public int X { get => myResolution.X; private set => myResolution.X = value; }
 		public int Y { get => myResolution.Y; private set => myResolution.Y = value; }
