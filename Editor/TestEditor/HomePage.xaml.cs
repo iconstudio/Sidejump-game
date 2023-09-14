@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Input;
 
@@ -14,8 +16,8 @@ namespace TestEditor
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
 	public sealed partial class HomePage : Page
-    {
-        private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
+	{
+		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 
 		private static readonly string appVersion = string.Format(null, "v{0}.{1}.{2}.{3}",
 					Package.Current.Id.Version.Major,
@@ -24,15 +26,19 @@ namespace TestEditor
 					Package.Current.Id.Version.Revision);
 
 		public HomePage()
-        {
-            InitializeComponent();
+		{
+			InitializeComponent();
 
 			appVersionText.Text = appVersion;
 		}
 
 		private void SettingBtn_PointerEntered(object sender, PointerRoutedEventArgs e)
 		{
-			AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
+			var state = AnimatedIcon.GetState(settingBtnIcon);
+			if (state is not null && state != "PointerOver")
+			{
+				AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
+			}
 		}
 		private void SettingBtn_PointerExited(object sender, PointerRoutedEventArgs e)
 		{
@@ -41,25 +47,60 @@ namespace TestEditor
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
 			var picker = FilePickHelper.OpenSavePicker(this.GetWindow());
-			if (picker is not null)
-			{
-				await picker;
 
-				if (picker.IsCompletedSuccessfully)
+			var pickresult = FilePickHelper.TryOpenFile(picker);
+			var fstream = await pickresult;
+
+			if (fstream is not null)
+			{
+				if (!fstream.CanRead)
 				{
-					var file = picker.Result;
-					var name = file.Name;
+					return;
 				}
-				else
+
+				var length = fstream.Length;
+				if (0 == length)
 				{
-					// Do nothind
+					Debug.Print("Zero sized file");
+					fstream.Close();
+					return;
 				}
+
+				fstream.Seek(0, SeekOrigin.Begin);
+
+				byte[] mbuffer = new byte[length];
+				var ftask = fstream.ReadAsync(mbuffer);
+
+				var read_size = await ftask;
+				if (0 == read_size)
+				{
+					Debug.Print("Read zero size");
+					fstream.Close();
+					return;
+				}
+
+				fstream.Close();
 			}
 		}
-		private void OpenButton_Click(object sender, RoutedEventArgs e)
+		private async void OpenButton_Click(object sender, RoutedEventArgs e)
 		{
-			var file = FilePickHelper.OpenLoadPicker(this.GetWindow());
+			var picker = FilePickHelper.OpenLoadPicker(this.GetWindow());
 
+			var pickresult = FilePickHelper.TryOpenFile(picker);
+			var fstream = await pickresult;
+
+			if (fstream is not null)
+			{
+				if (!fstream.CanWrite)
+				{
+					return;
+				}
+
+				fstream.Seek(0, SeekOrigin.Begin);
+
+
+				fstream.Close();
+			}
 		}
 	}
 }
