@@ -20,7 +20,7 @@ namespace TestEditor
 			storedMaps.Clear();
 		}
 
-		public static async void LoadMap(StorageFile file)
+		public static bool LoadMap(StorageFile file)
 		{
 			if (file is null)
 			{
@@ -30,7 +30,7 @@ namespace TestEditor
 			if (!file.IsAvailable)
 			{
 				Debug.WriteLine($"Not available file '{file.Name}'");
-				return;
+				return false;
 			}
 
 			var json = File.ReadAllText(file.Path);
@@ -44,18 +44,22 @@ namespace TestEditor
 				{
 					loadedMap = map;
 					storedMaps.Add(map);
+
+					return true;
 				}
 			}
+
+			return false;
 		}
-		public static async void SaveMap(Map map, StorageFolder dest)
+		public static bool SaveMap(Map map, StorageFolder dest)
 		{
-			SaveMap(map, string.Format(null, "{0} {1} {2}", dest.Path, map.myName, GetMapExtension()));
+			return SaveMap(map, string.Format(null, "{0} {1} {2}", dest.Path, map.myName, GetMapExtension()));
 		}
-		public static async void SaveMap(Map map, StorageFile filepath)
+		public static bool SaveMap(Map map, StorageFile filepath)
 		{
-			SaveMap(map, filepath.Path);
+			return SaveMap(map, filepath.Path);
 		}
-		public static async void SaveMap(Map map, string filepath)
+		public static bool SaveMap(Map map, string filepath)
 		{
 			if (map is null)
 			{
@@ -72,11 +76,13 @@ namespace TestEditor
 			try
 			{
 				File.WriteAllText(filepath, contents);
+				return true;
 			}
 			catch
 			{
 				// Do nothing
 			}
+			return false;
 		}
 		public static void MemoLastFile(StorageFile file)
 		{
