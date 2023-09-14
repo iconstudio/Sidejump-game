@@ -1,10 +1,8 @@
 using System.Diagnostics;
 
-using Microsoft.UI;
 using Microsoft.UI.Xaml.Input;
 
 using Windows.ApplicationModel;
-using Windows.Storage.Pickers;
 using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -48,58 +46,42 @@ namespace TestEditor
 		{
 			var picker = FilePickHelper.OpenSavePicker(this.GetWindow());
 
-			var pickresult = FilePickHelper.TryOpenFile(picker);
-			var fstream = await pickresult;
+			using var fstream = await FilePickHelper.TryOpenWriteFile(picker);
 
-			if (fstream is not null)
+			if (fstream is null || !fstream.CanWrite)
 			{
-				if (!fstream.CanRead)
-				{
-					return;
-				}
-
-				var length = fstream.Length;
-				if (0 == length)
-				{
-					Debug.Print("Zero sized file");
-					fstream.Close();
-					return;
-				}
-
-				fstream.Seek(0, SeekOrigin.Begin);
-
-				byte[] mbuffer = new byte[length];
-				var ftask = fstream.ReadAsync(mbuffer);
-
-				var read_size = await ftask;
-				if (0 == read_size)
-				{
-					Debug.Print("Read zero size");
-					fstream.Close();
-					return;
-				}
-
-				fstream.Close();
+				Debug.Print("Inappropriate file stream");
+				return;
 			}
 		}
 		private async void OpenButton_Click(object sender, RoutedEventArgs e)
 		{
 			var picker = FilePickHelper.OpenLoadPicker(this.GetWindow());
 
-			var pickresult = FilePickHelper.TryOpenFile(picker);
-			var fstream = await pickresult;
+			using var fstream = await FilePickHelper.TryOpenReadOnlyFile(picker);
 
-			if (fstream is not null)
+			if (fstream is null || !fstream.CanRead)
 			{
-				if (!fstream.CanWrite)
-				{
-					return;
-				}
+				Debug.Print("Inappropriate file stream");
+				return;
+			}
 
-				fstream.Seek(0, SeekOrigin.Begin);
+			var length = fstream.Length;
+			if (0 == length)
+			{
+				Debug.Print("Zero sized file");
+				return;
+			}
 
+			fstream.Seek(0, SeekOrigin.Begin);
 
-				fstream.Close();
+			byte[] mbuffer = new byte[length];
+			var work_sz = await fstream.ReadAsync(mbuffer);
+
+			if (0 == work_sz)
+			{
+				Debug.Print("Read zero size");
+				return;
 			}
 		}
 	}
