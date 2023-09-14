@@ -1,78 +1,165 @@
 ﻿using System.Collections;
+using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace TestEditor
 {
 	internal class FlatMap<T, V>
-		: IDictionary<T, V>, IReadOnlyDictionary<T, V>, ISerializable, IDeserializationCallback
-		where T : notnull
+		: IDictionary<T, V>, IReadOnlyDictionary<T, V>
+		, IReadOnlyList<KeyValuePair<T, V>>
+		where T : notnull, IEquatable<T>
+		where V : class, IEquatable<V>
 	{
-		public List<KeyValuePair<T, V>> myData;
+		internal List<KeyValuePair<T, V>> myData;
+		private KeyValuePairComparer myComparer = new();
 
-		public int Count => throw new NotImplementedException();
-		public bool IsReadOnly => throw new NotImplementedException();
-		public ICollection<T> Keys => throw new NotImplementedException();
-		public ICollection<V> Values => throw new NotImplementedException();
-		IEnumerable<T> IReadOnlyDictionary<T, V>.Keys => throw new NotImplementedException();
-		IEnumerable<V> IReadOnlyDictionary<T, V>.Values => throw new NotImplementedException();
+		public static readonly bool isSortable = typeof(IComparable<T>).IsAssignableFrom(typeof(T));
+
+		public int Count => myData.Count;
+		public bool IsReadOnly => false;
+		public ICollection<T> Keys => myData.Select(x => x.Key).ToList();
+		public ICollection<V> Values => myData.Select(x => x.Value).ToList();
+		IEnumerable<T> IReadOnlyDictionary<T, V>.Keys => myData.Select(x => x.Key).ToList();
+		IEnumerable<V> IReadOnlyDictionary<T, V>.Values => myData.Select(x => x.Value).ToList();
 
 		public void Add(T key, V value)
 		{
-			throw new NotImplementedException();
+			myData.Add(new(key, value));
+
+			_Sort();
 		}
 		public void Add(KeyValuePair<T, V> item)
 		{
-			throw new NotImplementedException();
+			myData.Add(item);
+
+			_Sort();
 		}
-		public IEnumerator<KeyValuePair<T, V>> GetEnumerator()
-		{
-			throw new NotImplementedException();
-		}
+		public IEnumerator<KeyValuePair<T, V>> GetEnumerator() => myData.GetEnumerator();
 		public bool TryGetValue(T key, [MaybeNullWhen(false)] out V value)
 		{
-			throw new NotImplementedException();
+			foreach (var pair in myData)
+			{
+				if (pair.Key.Equals(key))
+				{
+					value = pair.Value;
+					return true;
+				}
+			}
+
+			value = default;
+			return false;
 		}
 		public V this[T key]
 		{
-			get => throw new NotImplementedException();
-			set => throw new NotImplementedException();
+			get
+			{
+				if (isSortable)
+				{
+					KeyValuePair<T, V> temp_pair = new(key, default);
+					int search = myData.BinarySearch(temp_pair);
+					if (search < 0)
+					{
+						return default;
+					}
+
+					return myData[search].Value;
+				}
+				else
+				{
+					foreach (var pair in myData)
+					{
+						if (pair.Key.Equals(key))
+						{
+							return pair.Value;
+						}
+					}
+				}
+
+				return default;
+			}
+
+			set
+			{
+				if (isSortable)
+				{
+					KeyValuePair<T, V> temp_pair = new(key, default);
+					int search = myData.BinarySearch(temp_pair, myComparer);
+					if (search < 0)
+					{
+						search = ~search;
+						myData.Insert(search, temp_pair);
+					}
+					else
+					{
+						myData[search] = KeyValuePair.Create(key, value);
+					}
+				}
+				else
+				{
+					for (var i = 0; i < Count; ++i)
+					{
+						var pair = myData[i];
+						if (pair.Key.Equals(key))
+						{
+							myData[i] = KeyValuePair.Create(key, value);
+							return;
+						}
+					}
+
+					Add(key, value);
+				}
+			}
 		}
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			throw new NotImplementedException();
-		}
-		public void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			throw new NotImplementedException();
-		}
+		KeyValuePair<T, V> IReadOnlyList<KeyValuePair<T, V>>.this[int index] => ((IReadOnlyList<KeyValuePair<T, V>>) myData)[index];
+		IEnumerator IEnumerable.GetEnumerator() => myData.GetEnumerator();
 		public bool Remove(T key)
 		{
-			throw new NotImplementedException();
+			return 0 < myData.RemoveAll((pair) => pair.Key.Equals(key));
 		}
 		public bool Remove(KeyValuePair<T, V> item)
 		{
-			throw new NotImplementedException();
+			return myData.Remove(item);
 		}
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			myData.Clear();
 		}
 		public bool Contains(KeyValuePair<T, V> item)
 		{
-			throw new NotImplementedException();
+			return myData.Contains(item);
 		}
 		public bool ContainsKey(T key)
 		{
-			throw new NotImplementedException();
+			return myData.Any((pair) => pair.Key.Equals(key));
 		}
-		public void CopyTo(KeyValuePair<T, V>[] array, int arrayIndex)
+		public void CopyTo(KeyValuePair<T, V>[] array, int array_index)
 		{
-			throw new NotImplementedException();
+			myData.CopyTo(array, array_index);
 		}
-		public void OnDeserialization(object sender)
+
+		private void _Sort()
 		{
-			throw new NotImplementedException();
+			if (isSortable)
+			{
+				myData.Sort((lhs, rhs) => CompareWith(lhs.Key, rhs.Key));
+			}
+		}
+		private static int CompareWith(KeyValuePair<T, V> lhs, KeyValuePair<T, V> rhs)
+		{
+			return ((IComparable<T>) lhs.Key).CompareTo(rhs.Key);
+		}
+		private static int CompareWith(T lhs, T rhs)
+		{
+			return ((IComparable<T>) lhs).CompareTo(rhs);
+		}
+
+		private class KeyValuePairComparer : IComparer<KeyValuePair<T, V>>
+		{
+			public int Compare(KeyValuePair<T, V> lhs, KeyValuePair<T, V> rhs)
+			{
+				return ((IComparable<T>) lhs.Key).CompareTo(rhs.Key);
+			}
 		}
 	}
 }
