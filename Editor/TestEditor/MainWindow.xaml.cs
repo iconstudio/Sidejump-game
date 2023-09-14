@@ -8,9 +8,15 @@ namespace TestEditor
 	public sealed partial class MainWindow : Window
 	{
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
+		private static MainWindow Instance;
 
 		public MainWindow()
 		{
+			if (Instance is not null)
+			{
+				throw new MainWindowDoubledException("Duplicated main window");
+			}
+
 			InitializeComponent();
 
 			if (DesktopAcrylicController.IsSupported())
@@ -36,6 +42,16 @@ namespace TestEditor
 
 			rootFrame.Opacity = 1.0;
 			rootFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
+		public Frame GetContent() => rootFrame;
+		public static MainWindow GetInstance() => Instance;
 		}
+
+	[Serializable]
+	class MainWindowDoubledException : ApplicationException
+	{
+		public MainWindowDoubledException() : base()
+		{ }
+		public MainWindowDoubledException(string message) : base(message)
+		{ }
 	}
 }
