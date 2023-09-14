@@ -22,7 +22,13 @@ namespace TestEditor
 
 		public string Serialize()
 		{
-			return JsonSerializer.Serialize(this);
+			var options = new JsonSerializerOptions
+			{
+				WriteIndented = true,
+				IgnoreReadOnlyFields = true,
+			};
+
+			return JsonSerializer.Serialize(this, options);
 		}
 	}
 }
