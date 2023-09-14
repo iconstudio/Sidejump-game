@@ -9,7 +9,7 @@ namespace TestEditor
 		: IDictionary<T, V>, IReadOnlyDictionary<T, V>
 		, IReadOnlyList<KeyValuePair<T, V>>
 		where T : notnull, IEquatable<T>
-		where V : class, IEquatable<V>
+		where V : IEquatable<V>
 	{
 		internal List<KeyValuePair<T, V>> myData;
 		private KeyValuePairComparer myComparer = new();
