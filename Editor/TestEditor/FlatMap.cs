@@ -51,6 +51,8 @@ namespace TestEditor
 			value = default;
 			return false;
 		}
+		/// <returns><typeparamref name="V"/>'s value by <paramref name="key"/></returns>
+		/// <exception cref="KeyNotFoundException"></exception>
 		public V this[T key]
 		{
 			get
@@ -59,12 +61,10 @@ namespace TestEditor
 				{
 					KeyValuePair<T, V> temp_pair = new(key, default);
 					int search = myData.BinarySearch(temp_pair);
-					if (search < 0)
+					if (0 < search)
 					{
-						return default;
+						return myData[search].Value;
 					}
-
-					return myData[search].Value;
 				}
 				else
 				{
@@ -77,7 +77,7 @@ namespace TestEditor
 					}
 				}
 
-				return default;
+				throw new KeyNotFoundException(nameof(key));
 			}
 
 			set
