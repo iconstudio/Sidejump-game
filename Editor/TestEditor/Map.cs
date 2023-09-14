@@ -1,20 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Text.Json;
 
 namespace TestEditor
 {
 	[Serializable]
 	internal class Map
 	{
+		// info
 		public string myName;
+		public string myDescription;
+		// resolution
+		public Rectangle myResolution;
+		// tiles
+		public Tileset myTileset;
+		public uint tilehSize, tilevSize;
+
+		public int X { get => myResolution.X; private set => myResolution.X = value; }
+		public int Y { get => myResolution.Y; private set => myResolution.Y = value; }
+		public int Width { get => myResolution.Width; private set => myResolution.Width = value; }
+		public int Height { get => myResolution.Height; private set => myResolution.Height = value; }
+
+		public string Serialize()
+		{
+			return JsonSerializer.Serialize(this);
+		}
 	}
 
 	[Serializable]
-	internal struct MapRecipe
+	internal class Tileset
 	{
-
+		public Dictionary<int, string> tileData;
+		public uint tileWidth;
+		public uint tileHeight;
 	}
 }
