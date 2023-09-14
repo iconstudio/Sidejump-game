@@ -46,42 +46,20 @@ namespace TestEditor
 		{
 			var picker = FilePickHelper.OpenSavePicker(this.GetWindow());
 
-			using var fstream = await FilePickHelper.TryOpenWriteFile(picker);
-
-			if (fstream is null || !fstream.CanWrite)
+			var mapfile = await picker;
+			if (mapfile is not null)
 			{
-				Debug.Print("Inappropriate file stream");
-				return;
+				MapStorage.SaveLastFile(mapfile);
 			}
 		}
 		private async void OpenButton_Click(object sender, RoutedEventArgs e)
 		{
 			var picker = FilePickHelper.OpenLoadPicker(this.GetWindow());
 
-			using var fstream = await FilePickHelper.TryOpenReadOnlyFile(picker);
-
-			if (fstream is null || !fstream.CanRead)
+			var mapfile = await picker;
+			if (mapfile is not null)
 			{
-				Debug.Print("Inappropriate file stream");
-				return;
-			}
-
-			var length = fstream.Length;
-			if (0 == length)
-			{
-				Debug.Print("Zero sized file");
-				return;
-			}
-
-			fstream.Seek(0, SeekOrigin.Begin);
-
-			byte[] mbuffer = new byte[length];
-			var work_sz = await fstream.ReadAsync(mbuffer);
-
-			if (0 == work_sz)
-			{
-				Debug.Print("Read zero size");
-				return;
+				MapStorage.SaveLastFile(mapfile);
 			}
 		}
 	}
