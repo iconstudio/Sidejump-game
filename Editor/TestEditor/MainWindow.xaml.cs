@@ -41,10 +41,14 @@ namespace TestEditor
 			this.Track();
 
 			rootFrame.Opacity = 1.0;
-			rootFrame.Navigate(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
+
+			Instance = this;
+			NavigationHelper.Goto(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
+		}
+
 		public Frame GetContent() => rootFrame;
 		public static MainWindow GetInstance() => Instance;
-		}
+	}
 
 	[Serializable]
 	class MainWindowDoubledException : ApplicationException
