@@ -40,29 +40,15 @@ namespace TestEditor
 		}
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
-			FileOpenPicker picker = new();
-			picker.FileTypeFilter.Add(".gmap");
+			FileSavePicker picker = new();
+			picker.FileTypeChoices.Add("Map File", new List<string>() { ".gmap" });
+			picker.FileTypeChoices.Add("Archieved Map File", new List<string>() { ".zip" });
 
-			// Clear previous returned file name, if it exists, between iterations of this scenario
-			//TextBox OutputTextBlock = new();
-			//OutputTextBlock.Text = "";
-
-			// Create a file picker
-			var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
-
-			// Retrieve the window handle (HWND) of the current WinUI 3 window.
 			var window = this.GetWindow();
 			var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+			WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
 
-			// Initialize the file picker with the window handle (HWND).
-			WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
-
-			// Set options for your file picker
-			openPicker.ViewMode = PickerViewMode.Thumbnail;
-			openPicker.FileTypeFilter.Add("*");
-
-			// Open the picker for the user to pick a file
-			var file = await openPicker.PickSingleFileAsync();
+			var file = await picker.PickSaveFileAsync();
 			if (file != null)
 			{
 				//PickAFileOutputTextBlock.Text = "Picked file: " + file.Name;
@@ -72,9 +58,27 @@ namespace TestEditor
 				//PickAFileOutputTextBlock.Text = "Operation cancelled.";
 			}
 		}
-		private void OpenButton_Click(object sender, RoutedEventArgs e)
+		private async void OpenButton_Click(object sender, RoutedEventArgs e)
 		{
+			FileOpenPicker picker = new()
+			{
+				ViewMode = PickerViewMode.Thumbnail
+			};
+			picker.FileTypeFilter.Add(".gmap");
 
+			var window = this.GetWindow();
+			var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+			WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+			var file = await picker.PickSingleFileAsync();
+			if (file != null)
+			{
+				//PickAFileOutputTextBlock.Text = "Picked file: " + file.Name;
+			}
+			else
+			{
+				//PickAFileOutputTextBlock.Text = "Operation cancelled.";
+			}
 		}
 	}
 }
