@@ -34,6 +34,9 @@ namespace TestEditor
 			var options = new JsonSerializerOptions
 			{
 				WriteIndented = true,
+				IncludeFields = true,
+				DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Always,
+				IgnoreReadOnlyProperties = true,
 				IgnoreReadOnlyFields = true,
 			};
 
