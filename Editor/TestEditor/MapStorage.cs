@@ -7,8 +7,7 @@ namespace TestEditor
 		private static StorageFile lastFile;
 
 		private static List<Map> storedMaps = new();
-
-		public static void SaveLastFile(StorageFile file)
+		public static void MemoLastFile(StorageFile file)
 		{
 			lastFile = file;
 		}
