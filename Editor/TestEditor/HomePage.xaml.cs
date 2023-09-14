@@ -40,45 +40,26 @@ namespace TestEditor
 		}
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
-			FileSavePicker picker = new();
-			picker.FileTypeChoices.Add("Map File", new List<string>() { ".gmap" });
-			picker.FileTypeChoices.Add("Archieved Map File", new List<string>() { ".zip" });
-
-			var window = this.GetWindow();
-			var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
-			WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
-
-			var file = await picker.PickSaveFileAsync();
-			if (file != null)
+			var picker = FilePickHelper.OpenSavePicker(this.GetWindow());
+			if (picker is not null)
 			{
-				//PickAFileOutputTextBlock.Text = "Picked file: " + file.Name;
-			}
-			else
-			{
-				//PickAFileOutputTextBlock.Text = "Operation cancelled.";
+				await picker;
+
+				if (picker.IsCompletedSuccessfully)
+				{
+					var file = picker.Result;
+					var name = file.Name;
+				}
+				else
+				{
+					// Do nothind
+				}
 			}
 		}
-		private async void OpenButton_Click(object sender, RoutedEventArgs e)
+		private void OpenButton_Click(object sender, RoutedEventArgs e)
 		{
-			FileOpenPicker picker = new()
-			{
-				ViewMode = PickerViewMode.Thumbnail
-			};
-			picker.FileTypeFilter.Add(".gmap");
+			var file = FilePickHelper.OpenLoadPicker(this.GetWindow());
 
-			var window = this.GetWindow();
-			var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
-			WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
-
-			var file = await picker.PickSingleFileAsync();
-			if (file != null)
-			{
-				//PickAFileOutputTextBlock.Text = "Picked file: " + file.Name;
-			}
-			else
-			{
-				//PickAFileOutputTextBlock.Text = "Operation cancelled.";
-			}
 		}
 	}
 }
