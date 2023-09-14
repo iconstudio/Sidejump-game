@@ -8,18 +8,20 @@ namespace TestEditor
 
 		public static
 			void
-			Goto(Type target, object parameter = null, NavigationTransitionInfo transition = null, Type current = null)
+			Goto(Type target, NavigationTransitionInfo transition, object parameter = null, Type current = null)
 		{
 			if (target != current)
 			{
-				if (transition is null)
-				{
-					CurrentWindow.GetContent().Navigate(target, parameter);
-				}
-				else
-				{
-					CurrentWindow.GetContent().Navigate(target, parameter, transition);
-				}
+				CurrentWindow.GetContent().Navigate(target, parameter, transition);
+			}
+		}
+		public static
+			void
+			Goto(Type target, object parameter = null, Type current = null)
+		{
+			if (target != current)
+			{
+				CurrentWindow.GetContent().Navigate(target, parameter);
 			}
 		}
 	}

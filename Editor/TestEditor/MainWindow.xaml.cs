@@ -38,7 +38,7 @@ namespace TestEditor
 
 			rootFrame.Opacity = 1.0;
 
-			NavigationHelper.Goto(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
+			NavigationHelper.Goto(typeof(HomePage), new DrillInNavigationTransitionInfo());
 		}
 
 		public Frame GetContent() => rootFrame;
