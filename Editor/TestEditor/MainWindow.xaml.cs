@@ -5,18 +5,12 @@ using Microsoft.UI.Composition.SystemBackdrops;
 
 namespace TestEditor
 {
-	public sealed partial class MainWindow : Window
+	public sealed partial class MainWindow : Window, ISingleton<MainWindow>
 	{
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
-		private static MainWindow Instance;
 
 		public MainWindow()
 		{
-			if (Instance is not null)
-			{
-				throw new MainWindowDoubledException("Duplicated main window");
-			}
-
 			InitializeComponent();
 
 			if (DesktopAcrylicController.IsSupported())
@@ -40,22 +34,14 @@ namespace TestEditor
 
 			this.Track();
 
+			ISingleton<MainWindow>.SetInstance(this);
+
 			rootFrame.Opacity = 1.0;
 
-			Instance = this;
 			NavigationHelper.Goto(typeof(HomePage), null, new DrillInNavigationTransitionInfo());
 		}
 
 		public Frame GetContent() => rootFrame;
-		public static MainWindow GetInstance() => Instance;
-	}
-
-	[Serializable]
-	class MainWindowDoubledException : ApplicationException
-	{
-		public MainWindowDoubledException() : base()
-		{ }
-		public MainWindowDoubledException(string message) : base(message)
-		{ }
+		public static MainWindow GetInstance() => ISingleton<MainWindow>.Instance;
 	}
 }
