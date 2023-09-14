@@ -44,6 +44,12 @@ namespace TestEditor
 			if (mapfile is not null)
 			{
 				MapHelper.MemoLastFile(mapfile);
+
+				var testmap = new Map();
+				if (MapHelper.SaveMap(testmap, mapfile))
+				{
+					NavigationHelper.Goto(typeof(EditorPage));
+				}
 			}
 		}
 		private async void OpenButton_Click(object sender, RoutedEventArgs e)
@@ -54,6 +60,11 @@ namespace TestEditor
 			if (mapfile is not null)
 			{
 				MapHelper.MemoLastFile(mapfile);
+
+				if (MapHelper.LoadMap(mapfile))
+				{
+					NavigationHelper.Goto(typeof(EditorPage));
+				}
 			}
 		}
 	}
