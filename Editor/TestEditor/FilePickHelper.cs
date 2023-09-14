@@ -35,5 +35,31 @@ namespace TestEditor
 
 			return await picker.PickSingleFileAsync();
 		}
+		public static async Task<FileStream> TryOpenFile(Task<StorageFile> ftask)
+		{
+			if (ftask is not null)
+			{
+				await ftask;
+
+				if (ftask.IsCompletedSuccessfully)
+				{
+					var file = ftask.Result;
+					if (file is null)
+					{
+						goto last;
+					}
+
+					if (!file.IsAvailable)
+					{
+						goto last;
+					}
+
+					return (FileStream) file.OpenReadAsync();
+				}
+			}
+
+		last:
+			return null;
+		}
 	}
 }
