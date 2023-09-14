@@ -36,6 +36,7 @@ namespace TestEditor
 			_Sort();
 		}
 		public IEnumerator<KeyValuePair<T, V>> GetEnumerator() => myData.GetEnumerator();
+		IEnumerator IEnumerable.GetEnumerator() => myData.GetEnumerator();
 		public bool TryGetValue(T key, [MaybeNullWhen(false)] out V value)
 		{
 			foreach (var pair in myData)
@@ -84,11 +85,10 @@ namespace TestEditor
 				if (isSortable)
 				{
 					KeyValuePair<T, V> temp_pair = new(key, default);
-					int search = myData.BinarySearch(temp_pair, myComparer);
+					var search = myData.BinarySearch(temp_pair, myComparer);
 					if (search < 0)
 					{
-						search = ~search;
-						myData.Insert(search, temp_pair);
+						myData.Insert(~search, temp_pair);
 					}
 					else
 					{
@@ -112,31 +112,15 @@ namespace TestEditor
 			}
 		}
 		KeyValuePair<T, V> IReadOnlyList<KeyValuePair<T, V>>.this[int index] => ((IReadOnlyList<KeyValuePair<T, V>>) myData)[index];
-		IEnumerator IEnumerable.GetEnumerator() => myData.GetEnumerator();
 		public bool Remove(T key)
 		{
 			return 0 < myData.RemoveAll((pair) => pair.Key.Equals(key));
 		}
-		public bool Remove(KeyValuePair<T, V> item)
-		{
-			return myData.Remove(item);
-		}
-		public void Clear()
-		{
-			myData.Clear();
-		}
-		public bool Contains(KeyValuePair<T, V> item)
-		{
-			return myData.Contains(item);
-		}
-		public bool ContainsKey(T key)
-		{
-			return myData.Any((pair) => pair.Key.Equals(key));
-		}
-		public void CopyTo(KeyValuePair<T, V>[] array, int array_index)
-		{
-			myData.CopyTo(array, array_index);
-		}
+		public bool Remove(KeyValuePair<T, V> item) => myData.Remove(item);
+		public void Clear() => myData.Clear();
+		public bool Contains(KeyValuePair<T, V> item) => myData.Contains(item);
+		public bool ContainsKey(T key) => myData.Any((pair) => pair.Key.Equals(key));
+		public void CopyTo(KeyValuePair<T, V>[] array, int array_index) => myData.CopyTo(array, array_index);
 
 		private void _Sort()
 		{
