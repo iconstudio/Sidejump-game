@@ -9,6 +9,7 @@ namespace TestEditor
 	[Serializable]
 	internal class Map
 	{
+		public string myName;
 	}
 
 	[Serializable]
