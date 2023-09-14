@@ -62,7 +62,6 @@
     {"name":"objUIWindowCaption","order":9,"path":"objects/objUIWindowCaption/objUIWindowCaption.yy",},
     {"name":"oTempleBrick","order":1,"path":"objects/oTempleBrick/oTempleBrick.yy",},
     {"name":"sTempleBrick2","order":5,"path":"sprites/sTempleBrick2/sTempleBrick2.yy",},
-    {"name":"oWorldMap","order":5,"path":"objects/oWorldMap/oWorldMap.yy",},
     {"name":"objUISlider","order":6,"path":"objects/objUISlider/objUISlider.yy",},
     {"name":"sTempleBrick3","order":6,"path":"sprites/sTempleBrick3/sTempleBrick3.yy",},
     {"name":"sprCheckBox","order":1,"path":"sprites/sprCheckBox/sprCheckBox.yy",},

@@ -110,7 +110,6 @@
     {"id":{"name":"objUIWindowCaption","path":"objects/objUIWindowCaption/objUIWindowCaption.yy",},},
     {"id":{"name":"oTempleBrick","path":"objects/oTempleBrick/oTempleBrick.yy",},},
     {"id":{"name":"sTempleBrick2","path":"sprites/sTempleBrick2/sTempleBrick2.yy",},},
-    {"id":{"name":"oWorldMap","path":"objects/oWorldMap/oWorldMap.yy",},},
     {"id":{"name":"objUISlider","path":"objects/objUISlider/objUISlider.yy",},},
     {"id":{"name":"sTempleBrick3","path":"sprites/sTempleBrick3/sTempleBrick3.yy",},},
     {"id":{"name":"sprCheckBox","path":"sprites/sprCheckBox/sprCheckBox.yy",},},
