@@ -1,7 +1,7 @@
-﻿namespace TestEditor
-{
+﻿using System.Text.Json.Serialization;
 
-	[Serializable]
+namespace TestEditor
+{
 	internal class Tileset
 	{
 		public Dictionary<int, string> tileData;
