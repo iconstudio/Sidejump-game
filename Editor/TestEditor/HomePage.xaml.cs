@@ -43,7 +43,7 @@ namespace TestEditor
 			var mapfile = await picker;
 			if (mapfile is not null)
 			{
-				MapStorage.MemoLastFile(mapfile);
+				MapHelper.MemoLastFile(mapfile);
 			}
 		}
 		private async void OpenButton_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,7 @@ namespace TestEditor
 			var mapfile = await picker;
 			if (mapfile is not null)
 			{
-				MapStorage.MemoLastFile(mapfile);
+				MapHelper.MemoLastFile(mapfile);
 			}
 		}
 	}
