@@ -20,6 +20,15 @@ namespace TestEditor
 		public int Width { get => myResolution.Width; private set => myResolution.Width = value; }
 		public int Height { get => myResolution.Height; private set => myResolution.Height = value; }
 
+		internal Map()
+		{
+			myName = "Map";
+			myDescription = "Description";
+			myTileset = new();
+			tilesHrCount = 0;
+			tilesVtCount = 0;
+		}
+
 		public string Serialize()
 		{
 			var options = new JsonSerializerOptions
