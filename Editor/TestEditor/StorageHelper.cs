@@ -7,7 +7,7 @@ namespace TestEditor
 	{
 		public static async
 			Task<Stream>
-			TryOpenReadOnlyFile(StorageFile file)
+			ReadFile(StorageFile file)
 		{
 			if (file is not null)
 			{
@@ -30,7 +30,7 @@ namespace TestEditor
 		}
 		public static async
 			Task<Stream>
-			TryOpenWriteFile(StorageFile file)
+			WriteFile(StorageFile file)
 		{
 			if (file is not null)
 			{
@@ -41,7 +41,7 @@ namespace TestEditor
 		}
 		public static async
 			Task<Stream>
-			TryOpenWriteFile(IAsyncOperation<StorageFile> ftask)
+			WriteFile(IAsyncOperation<StorageFile> ftask)
 		{
 			var file = await ftask;
 			if (file is not null)

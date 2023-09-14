@@ -20,7 +20,7 @@ namespace TestEditor
 				throw new ArgumentNullException(nameof(file));
 			}
 
-			using var fstream = await StorageHelper.TryOpenReadOnlyFile(file);
+			using var fstream = await StorageHelper.ReadFile(file);
 
 			if (fstream is null || !fstream.CanRead)
 			{
