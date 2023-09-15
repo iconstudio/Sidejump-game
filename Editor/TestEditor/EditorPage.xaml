@@ -19,19 +19,20 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="*"/>
+				<RowDefinition Height="4"/>
+				<RowDefinition Height="*" MinHeight="200"/>
 			</Grid.RowDefinitions>
 
 			<MenuBar
 				Grid.Row="0">
 
 				<MenuBarItem Title="File">
-					<MenuFlyoutItem Text="New">
+					<MenuFlyoutItem Text="New Map">
 						<MenuFlyoutItem.KeyboardAccelerators>
 							<KeyboardAccelerator Modifiers="Control" Key="N"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
 					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Open...">
+					<MenuFlyoutItem Text="Open Map">
 						<MenuFlyoutItem.KeyboardAccelerators>
 							<KeyboardAccelerator Modifiers="Control" Key="O"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
@@ -41,9 +42,21 @@
 							<KeyboardAccelerator Modifiers="Control" Key="S"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
 					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Save As ...">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control, Shift" Key="S"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutSeparator/>
+					<MenuFlyoutItem Text="Close Map">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control, Shift" Key="E"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutSeparator/>
 					<MenuFlyoutItem Text="Exit">
 						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="E"/>
+							<KeyboardAccelerator Modifiers="Menu" Key="F4"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
 					</MenuFlyoutItem>
 				</MenuBarItem>
@@ -54,11 +67,12 @@
 							<KeyboardAccelerator Modifiers="Control" Key="Z"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
 					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Cut">
+					<MenuFlyoutItem Text="Redo">
 						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="X"/>
+							<KeyboardAccelerator Modifiers="Control" Key="Y"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
 					</MenuFlyoutItem>
+					<MenuFlyoutSeparator/>
 					<MenuFlyoutItem Text="Copy">
 						<MenuFlyoutItem.KeyboardAccelerators>
 							<KeyboardAccelerator Modifiers="Control" Key="C"/>
@@ -69,12 +83,18 @@
 							<KeyboardAccelerator Modifiers="Control" Key="V"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
 					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Cut">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="X"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutSeparator/>
 				</MenuBarItem>
 
 				<MenuBarItem Title="Help">
-					<MenuFlyoutItem Text="About" >
+					<MenuFlyoutItem Text="About">
 						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="I"/>
+							<KeyboardAccelerator Modifiers="Control, Shift" Key="I"/>
 						</MenuFlyoutItem.KeyboardAccelerators>
 					</MenuFlyoutItem>
 				</MenuBarItem>
@@ -82,12 +102,22 @@
 
 			<StackPanel Orientation="Horizontal"
 				Background="Transparent"
+				HorizontalAlignment="Right" VerticalAlignment="Top"
 				Grid.Row="1">
 
 				<AppBarButton Icon="Add" Label="Add"/>
-				<AppBarButton Icon="Edit" Label="Edit"/>
 				<AppBarButton Icon="Share" Label="Share"/>
 			</StackPanel>
+
+			<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"  Grid.Row="2"/>
+
+			<Frame Name="editorContents"
+				Grid.Row="3">
+
+				<Grid>
+					
+				</Grid>
+			</Frame>
 		</Grid>
 		<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
 	</StackPanel>
