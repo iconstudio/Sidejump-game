@@ -120,7 +120,7 @@
 		<TextBlock Name="appVersionText"
 			HorizontalTextAlignment="Right"
 			HorizontalAlignment="Right" VerticalAlignment="Bottom"
-			Margin="0, 0, 10, 10"
+			Margin="0, 0, 8, 6"
 			Grid.Column="1"
 			Text="">
 		</TextBlock>
