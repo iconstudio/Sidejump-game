@@ -30,7 +30,7 @@ namespace TestEditor
 			{
 				myName = "Empty Map",
 				myDescription = "",
-				myResolution = new(),
+				myResolution = Rectangle.Empty,
 				myTileset = null,
 				tilesHrCount = 0,
 				tilesVtCount = 0,
