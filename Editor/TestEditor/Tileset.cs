@@ -13,11 +13,11 @@
 			tileHeight = 0;
 		}
 
-		public string this[int tile_id]
+		public string this[in int tile_id]
 		{
 			get { return tileData[tile_id]; }
 			set { tileData[tile_id] = value; }
 		}
-		public void Add(int id, string tile) => tileData.Add(id, tile);
+		public void Add(in int id, in string tile) => tileData.Add(id, tile);
 	}
 }

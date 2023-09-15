@@ -36,7 +36,7 @@ namespace TestEditor
 		}
 
 		[Discardable]
-		public static bool LoadMap(StorageFile file)
+		public static bool LoadMap(in StorageFile file)
 		{
 			if (file is null)
 			{
@@ -80,15 +80,15 @@ namespace TestEditor
 			return false;
 		}
 		[Discardable]
-		public static bool SaveMap(Map? map, StorageFolder dest)
+		public static bool SaveMap(in Map? map, in StorageFolder dest)
 		{
 			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.myName, GetMapExtension()));
 		}
-		public static bool SaveMap(Map? map, StorageFile filepath)
+		public static bool SaveMap(in Map? map, in StorageFile filepath)
 		{
 			return SaveMap(map, filepath.Path);
 		}
-		public static bool SaveMap(Map? map, string filepath)
+		public static bool SaveMap(in Map? map, in string filepath)
 		{
 			if (filepath is null)
 			{
@@ -119,7 +119,7 @@ namespace TestEditor
 
 			return false;
 		}
-		public static void MemoLastFile(StorageFile file)
+		public static void MemoLastFile(in StorageFile file)
 		{
 			lastFile = file;
 		}

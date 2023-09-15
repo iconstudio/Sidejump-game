@@ -38,9 +38,9 @@ namespace TestEditor
 		}
 		public Map() : this("Empty Map", null)
 		{ }
-		public Map(string name) : this(name, null)
+		public Map(in string name) : this(name, null)
 		{ }
-		public Map(string name, in Tileset tileset)
+		public Map(in string name, in Tileset tileset)
 		{
 			myName = name;
 			myDescription = "";
@@ -61,7 +61,7 @@ namespace TestEditor
 				Height = (myTileset.tileHeight * v);
 			}
 		}
-		public string Serialize()
+		public readonly string Serialize()
 		{
 			return JsonSerializer.Serialize(this, MapHelper.mapWriteSetting);
 		}
