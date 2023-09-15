@@ -3,8 +3,8 @@
 	internal class Tileset
 	{
 		public FlatMap<int, string> tileData;
-		public uint tileWidth;
-		public uint tileHeight;
+		public int tileWidth;
+		public int tileHeight;
 
 		public Tileset()
 		{
@@ -18,5 +18,6 @@
 			get { return tileData[tile_id]; }
 			set { tileData[tile_id] = value; }
 		}
+		public void Add(int id, string tile) => tileData.Add(id, tile);
 	}
 }
