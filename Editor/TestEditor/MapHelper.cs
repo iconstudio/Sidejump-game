@@ -67,7 +67,7 @@ namespace TestEditor
 		}
 		public static bool SaveMap(Map map, StorageFolder dest)
 		{
-			return SaveMap(map, string.Format(null, "{0} {1} {2}", dest.Path, map.myName, GetMapExtension()));
+			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map.myName, GetMapExtension()));
 		}
 		public static bool SaveMap(Map map, StorageFile filepath)
 		{
