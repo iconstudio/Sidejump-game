@@ -17,98 +17,78 @@
 			</Grid.ChildrenTransitions>
 
 			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 
-			<CommandBar Background="Transparent" Grid.Row="0">
+			<MenuBar
+				Grid.Row="0">
 
-			</CommandBar>
+				<MenuBarItem Title="File">
+					<MenuFlyoutItem Text="New">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="N"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Open...">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="O"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Save">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="S"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Exit">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="E"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+				</MenuBarItem>
 
-			<StackPanel Orientation="Horizontal" Grid.Row="1">
+				<MenuBarItem Title="Edit">
+					<MenuFlyoutItem Text="Undo">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="Z"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Cut">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="X"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Copy">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="C"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+					<MenuFlyoutItem Text="Paste">
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="V"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+				</MenuBarItem>
 
+				<MenuBarItem Title="Help">
+					<MenuFlyoutItem Text="About" >
+						<MenuFlyoutItem.KeyboardAccelerators>
+							<KeyboardAccelerator Modifiers="Control" Key="I"/>
+						</MenuFlyoutItem.KeyboardAccelerators>
+					</MenuFlyoutItem>
+				</MenuBarItem>
+			</MenuBar>
+
+			<StackPanel Orientation="Horizontal"
+				Background="Transparent"
+				Grid.Row="1">
+
+				<AppBarButton Icon="Add" Label="Add"/>
+				<AppBarButton Icon="Edit" Label="Edit"/>
+				<AppBarButton Icon="Share" Label="Share"/>
 			</StackPanel>
 		</Grid>
-
-		<MenuBar>
-			<MenuBarItem Title="File">
-				<MenuFlyoutItem Text="New">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="N"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-				<MenuFlyoutItem Text="Open...">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="O"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-				<MenuFlyoutItem Text="Save">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="S"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-				<MenuFlyoutItem Text="Exit">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="E"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-			</MenuBarItem>
-
-			<MenuBarItem Title="Edit">
-				<MenuFlyoutItem Text="Undo">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="Z"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-				<MenuFlyoutItem Text="Cut">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="X"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-				<MenuFlyoutItem Text="Copy">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="C"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-				<MenuFlyoutItem Text="Paste">
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="V"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-			</MenuBarItem>
-
-			<MenuBarItem Title="Help">
-				<MenuFlyoutItem Text="About" >
-					<MenuFlyoutItem.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="I"/>
-					</MenuFlyoutItem.KeyboardAccelerators>
-				</MenuFlyoutItem>
-			</MenuBarItem>
-		</MenuBar>
-
-		<CommandBar IsOpen="False"
-						DefaultLabelPosition="Collapsed"
-						Visibility="Visible">
-
-			<CommandBar.ContentTransitions>
-				<TransitionCollection>
-					<EntranceThemeTransition/>
-				</TransitionCollection>
-			</CommandBar.ContentTransitions>
-
-			<AppBarButton Icon="Add" Label="Add"/>
-			<AppBarButton Icon="Edit" Label="Edit"/>
-			<AppBarButton Icon="Share" Label="Share"/>
-
-			<CommandBar.SecondaryCommands>
-				<AppBarButton Icon="Setting" Label="Settings">
-					<AppBarButton.KeyboardAccelerators>
-						<KeyboardAccelerator Modifiers="Control" Key="I" />
-					</AppBarButton.KeyboardAccelerators>
-				</AppBarButton>
-			</CommandBar.SecondaryCommands>
-		</CommandBar>
-		
 		<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
 	</StackPanel>
 </Page>
