@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
@@ -41,7 +40,7 @@ namespace TestEditor
 		{
 			if (file is null)
 			{
-				throw new ArgumentNullException(nameof(file));
+				ErrorHelper.RaiseMissingArgumentError(nameof(file));
 			}
 
 			if (!file.IsAvailable)
@@ -93,7 +92,7 @@ namespace TestEditor
 		{
 			if (filepath is null)
 			{
-				throw new ArgumentNullException(nameof(filepath));
+				ErrorHelper.RaiseMissingArgumentError(nameof(filepath));
 			}
 
 			if (map is Map gmap)
@@ -115,7 +114,7 @@ namespace TestEditor
 			}
 			else
 			{
-				throw new ArgumentNullException(nameof(map));
+				ErrorHelper.RaiseMissingArgumentError(nameof(map));
 			}
 
 			return false;
@@ -127,10 +126,5 @@ namespace TestEditor
 		public static string GetMapExtension() => mapFileExtension;
 		public static List<Map> GetMaps() => storedMaps;
 
-		[DoesNotReturn]
-		private static void ThrowMissingArgumentError(string paramname)
-		{
-			throw new ArgumentNullException(paramname);
-		}
 	}
 }
