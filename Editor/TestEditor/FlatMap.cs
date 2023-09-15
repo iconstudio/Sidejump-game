@@ -11,7 +11,7 @@ namespace TestEditor
 		where T : notnull, IEquatable<T>
 		where V : IEquatable<V>
 	{
-		internal List<KeyValuePair<T, V>> myData;
+		internal List<KeyValuePair<T, V>> myData = new();
 		private static readonly KeyValuePairComparer myComparer = new();
 
 		public static readonly bool isSortable = typeof(IComparable<T>).IsAssignableFrom(typeof(T));
