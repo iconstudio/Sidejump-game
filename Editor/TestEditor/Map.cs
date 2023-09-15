@@ -36,9 +36,9 @@ namespace TestEditor
 				tilesVtCount = 0,
 			};
 		}
-		public Map() : this("Empty Map")
+		public Map() : this("Empty Map", null)
 		{ }
-		public Map(string name) : this("Empty Map", null)
+		public Map(string name) : this(name, null)
 		{ }
 		public Map(string name, in Tileset tileset)
 		{
