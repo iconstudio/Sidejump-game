@@ -9,18 +9,11 @@ namespace TestEditor
 	internal static class MapHelper
 	{
 		internal const string mapFileExtension = ".gmap";
-		internal static readonly JsonSerializerOptions mapWriteSetting = new()
-		{
-			WriteIndented = true,
-			IncludeFields = true,
-			DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault,
-			IgnoreReadOnlyProperties = true,
-			IgnoreReadOnlyFields = true,
-		};
 
 		internal static StorageFile lastFile;
 		internal static Map? loadedMap;
 		internal static List<Map> storedMaps;
+		internal static readonly JsonSerializerOptions mapSaveSetting;
 
 		public static StorageFile LastFile => lastFile;
 
@@ -33,6 +26,8 @@ namespace TestEditor
 #if !NET5_0_OR_GREATER
 			storedMaps.Clear();
 #endif
+
+			mapSaveSetting = new() { WriteIndented = true };
 		}
 
 		[Discardable]
