@@ -52,15 +52,14 @@ namespace TestEditor
 		{
 			var picker = FilePickHelper.OpenLoadPicker(this.GetWindow());
 
-			var mapfile = await picker;
-			if (mapfile is not null)
+			var resmapfile = await picker;
+			if (resmapfile is StorageFile mapfile)
 			{
-				MapHelper.MemoLastFile(mapfile);
-
-				var map = await MapHelper.LoadMap(mapfile);
-				if (map is not null)
+				using (MapHelper.LoadMap(mapfile))
 				{
-					NavigationHelper.Goto(typeof(EditorPage));
+					MapHelper.MemoLastFile(mapfile);
+
+					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
 				}
 			}
 		}
