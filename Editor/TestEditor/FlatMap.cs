@@ -5,7 +5,8 @@ using System.Runtime.Serialization;
 
 namespace TestEditor
 {
-	internal class FlatMap<T, V>
+	[Serializable]
+	public class FlatMap<T, V>
 		: IDictionary<T, V>, IReadOnlyDictionary<T, V>
 		, IReadOnlyList<KeyValuePair<T, V>>
 		where T : notnull, IEquatable<T>
