@@ -24,6 +24,7 @@ namespace TestEditor
 		{
 			myName = "Map";
 			myDescription = "Description";
+			myResolution = new();
 			myTileset = new();
 			tilesHrCount = 0;
 			tilesVtCount = 0;
@@ -31,16 +32,7 @@ namespace TestEditor
 
 		public string Serialize()
 		{
-			var options = new JsonSerializerOptions
-			{
-				WriteIndented = true,
-				IncludeFields = true,
-				DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Always,
-				IgnoreReadOnlyProperties = true,
-				IgnoreReadOnlyFields = true,
-			};
-
-			return JsonSerializer.Serialize(this, options);
+			return JsonSerializer.Serialize(this, MapHelper.mapWriteSetting);
 		}
 	}
 }
