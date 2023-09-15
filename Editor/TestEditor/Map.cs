@@ -29,7 +29,7 @@ namespace TestEditor
 				myName = "Empty Map",
 				myDescription = "",
 				myResolution = new(),
-				myTileset = new(),
+				myTileset = null,
 				tilesHrCount = 0,
 				tilesVtCount = 0,
 			};
