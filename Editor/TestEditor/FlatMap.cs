@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace TestEditor
 {
@@ -12,16 +12,24 @@ namespace TestEditor
 		where T : notnull, IEquatable<T>
 		where V : IEquatable<V>
 	{
-		internal List<KeyValuePair<T, V>> myData = new();
+		[JsonInclude]
+		private List<KeyValuePair<T, V>> myData = new();
+		[JsonIgnore]
 		private static readonly KeyValuePairComparer myComparer = new();
-
+		[JsonIgnore]
 		public static readonly bool isSortable = typeof(IComparable<T>).IsAssignableFrom(typeof(T));
 
+		[JsonIgnore]
 		public int Count => myData.Count;
+		[JsonIgnore]
 		public bool IsReadOnly => false;
+		[JsonIgnore]
 		public ICollection<T> Keys => myData.Select(x => x.Key).ToList();
+		[JsonIgnore]
 		public ICollection<V> Values => myData.Select(x => x.Value).ToList();
+		[JsonIgnore]
 		IEnumerable<T> IReadOnlyDictionary<T, V>.Keys => myData.Select(x => x.Key).ToList();
+		[JsonIgnore]
 		IEnumerable<V> IReadOnlyDictionary<T, V>.Values => myData.Select(x => x.Value).ToList();
 
 		public void Add(T key, V value)
