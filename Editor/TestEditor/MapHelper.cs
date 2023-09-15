@@ -11,15 +11,19 @@ namespace TestEditor
 
 		internal static StorageFile lastFile;
 		internal static Map loadedMap;
-		internal static List<Map> storedMaps = new();
+		internal static List<Map> storedMaps;
 
 		public static StorageFile LastFile => lastFile;
 
 		static MapHelper()
 		{
 			lastFile = null;
+
 			loadedMap = null;
+			storedMaps = new();
+#if !NET5_0_OR_GREATER
 			storedMaps.Clear();
+#endif
 		}
 
 		public static bool LoadMap(StorageFile file)
