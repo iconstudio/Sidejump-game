@@ -19,8 +19,6 @@ namespace TestEditor
 		[JsonInclude]
 		public string Description { readonly get => myDescription; set => myDescription = value; }
 		[JsonInclude]
-		public readonly Rectangle Resolution => myResolution;
-		[JsonInclude]
 		public int X
 		{
 			readonly get => myResolution.X; set => myResolution.X = value;
@@ -50,6 +48,10 @@ namespace TestEditor
 		{
 			readonly get => tilesVtCount; set => tilesVtCount = value;
 		}
+		[JsonInclude]
+		public readonly Tileset Tileset => myTileset;
+		[JsonIgnore]
+		public readonly Rectangle Resolution => myResolution;
 
 		static Map()
 		{
