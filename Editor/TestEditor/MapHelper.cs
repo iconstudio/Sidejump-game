@@ -13,6 +13,7 @@ namespace TestEditor
 		internal static StorageFile lastFile;
 		internal static Map? loadedMap;
 		internal static List<Map> storedMaps;
+		internal static readonly JsonSerializerOptions mapLoadSetting;
 		internal static readonly JsonSerializerOptions mapSaveSetting;
 
 		public static StorageFile LastFile => lastFile;
@@ -27,6 +28,7 @@ namespace TestEditor
 			storedMaps.Clear();
 #endif
 
+			mapLoadSetting = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
 			mapSaveSetting = new() { WriteIndented = true };
 		}
 
@@ -53,7 +55,7 @@ namespace TestEditor
 
 			try
 			{
-				var map = JsonSerializer.Deserialize<Map?>(json);
+				var map = JsonSerializer.Deserialize<Map?>(json, mapLoadSetting);
 
 				if (map is Map gmap)
 				{
