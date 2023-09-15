@@ -8,6 +8,14 @@ namespace TestEditor
 	internal static class MapHelper
 	{
 		internal const string mapFileExtension = ".gmap";
+		internal static readonly JsonSerializerOptions mapWriteSetting = new()
+		{
+			WriteIndented = true,
+			IncludeFields = true,
+			DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault,
+			IgnoreReadOnlyProperties = true,
+			IgnoreReadOnlyFields = true,
+		};
 
 		internal static StorageFile lastFile;
 		internal static Map loadedMap;
