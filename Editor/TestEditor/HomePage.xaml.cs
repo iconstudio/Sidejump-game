@@ -26,13 +26,21 @@ namespace TestEditor
 
 		private void SettingBtn_PointerEntered(object sender, PointerRoutedEventArgs e)
 		{
+			AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
+		}
+		private void settingBtn_PointerPressed(object sender, PointerRoutedEventArgs e)
+		{
 			var state = AnimatedIcon.GetState(settingBtnIcon);
-			if (state is not null && state != "PointerOver")
+			if ((state ?? "") != "Pressed")
 			{
-				AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
+				AnimatedIcon.SetState(settingBtnIcon, "Pressed");
 			}
 		}
 		private void SettingBtn_PointerExited(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState(settingBtnIcon, "Normal");
+		}
+		private void settingBtn_PointerReleased(object sender, PointerRoutedEventArgs e)
 		{
 			AnimatedIcon.SetState(settingBtnIcon, "Normal");
 		}

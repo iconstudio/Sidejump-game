@@ -70,12 +70,22 @@
 							HorizontalAlignment="Left" VerticalAlignment="Bottom"
 							Margin="10, 10, 0, 10"
 							Grid.Row="1">
+
+					<StackPanel.Transitions>
+						<TransitionCollection>
+							<AddDeleteThemeTransition/>
+							<EntranceThemeTransition/>
+							<RepositionThemeTransition IsStaggeringEnabled="True"/>
+						</TransitionCollection>
+					</StackPanel.Transitions>
 					
 					<Button Name="settingBtn"
 						Width="40" Height="40"
 						VerticalAlignment="Center"
 						PointerEntered="SettingBtn_PointerEntered"
+						PointerPressed="settingBtn_PointerPressed"
 						PointerExited="SettingBtn_PointerExited"
+						PointerReleased="settingBtn_PointerReleased"
 						AnimatedIcon.State="Normal">
 
 						<AnimatedIcon Name="settingBtnIcon">
@@ -88,7 +98,7 @@
 							</AnimatedIcon.FallbackIconSource>
 						</AnimatedIcon>
 					</Button>
-					<AppBarSeparator/>
+					<!-- <AppBarSeparator Margin="10, 0, 10, 0"/> -->
 				</StackPanel>
 			</Grid>
 		</Frame>
