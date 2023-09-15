@@ -17,10 +17,12 @@ namespace TestEditor
 		public Tileset myTileset;
 		public int tilesHrCount, tilesVtCount;
 
-		public int X { get => myResolution.X; private set => myResolution.X = value; }
-		public int Y { get => myResolution.Y; private set => myResolution.Y = value; }
-		public int Width { get => myResolution.Width; private set => myResolution.Width = value; }
-		public int Height { get => myResolution.Height; private set => myResolution.Height = value; }
+		public int X { readonly get => myResolution.X; private set => myResolution.X = value; }
+		public int Y { readonly get => myResolution.Y; private set => myResolution.Y = value; }
+		public int Width { readonly get => myResolution.Width; private set => myResolution.Width = value; }
+		public int Height { readonly get => myResolution.Height; private set => myResolution.Height = value; }
+		public int HorizontalTiles { readonly get => tilesHrCount; private set => tilesHrCount = value; }
+		public int VerticalTiles { readonly get => tilesVtCount; private set => tilesVtCount = value; }
 
 		static Map()
 		{
