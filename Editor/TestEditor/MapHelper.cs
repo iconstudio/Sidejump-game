@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 using Windows.Storage;
@@ -18,7 +20,7 @@ namespace TestEditor
 		};
 
 		internal static StorageFile lastFile;
-		internal static Map loadedMap;
+		internal static Map? loadedMap;
 		internal static List<Map> storedMaps;
 
 		public static StorageFile LastFile => lastFile;
@@ -34,6 +36,7 @@ namespace TestEditor
 #endif
 		}
 
+		[Discardable]
 		public static bool LoadMap(StorageFile file)
 		{
 			if (file is null)
@@ -56,12 +59,12 @@ namespace TestEditor
 
 			try
 			{
-				var map = JsonSerializer.Deserialize<Map>(json);
+				var map = JsonSerializer.Deserialize<Map?>(json);
 
-				if (map is not null)
+				if (map is Map gmap)
 				{
-					loadedMap = map;
-					storedMaps.Add(map);
+					loadedMap = gmap;
+					storedMaps.Add(gmap);
 
 					return true;
 				}
@@ -77,37 +80,44 @@ namespace TestEditor
 
 			return false;
 		}
-		public static bool SaveMap(Map map, StorageFolder dest)
+		[Discardable]
+		public static bool SaveMap(Map? map, StorageFolder dest)
 		{
-			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map.myName, GetMapExtension()));
+			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.myName, GetMapExtension()));
 		}
-		public static bool SaveMap(Map map, StorageFile filepath)
+		public static bool SaveMap(Map? map, StorageFile filepath)
 		{
 			return SaveMap(map, filepath.Path);
 		}
-		public static bool SaveMap(Map map, string filepath)
+		public static bool SaveMap(Map? map, string filepath)
 		{
-			if (map is null)
-			{
-				throw new ArgumentNullException(nameof(map));
-			}
-
 			if (filepath is null)
 			{
 				throw new ArgumentNullException(nameof(filepath));
 			}
 
-			//var fstream = File.OpenWrite(filepath);
-			var contents = map.Serialize();
-			try
+			if (map is Map gmap)
 			{
-				File.WriteAllText(filepath, contents);
-				return true;
+				var serial = gmap.Serialize();
+				try
+				{
+					if (serial is string contents)
+					{
+						File.WriteAllText(filepath, contents);
+
+						return true;
+					}
+				}
+				catch
+				{
+					// Do nothing
+				}
 			}
-			catch
+			else
 			{
-				// Do nothing
+				throw new ArgumentNullException(nameof(map));
 			}
+
 			return false;
 		}
 		public static void MemoLastFile(StorageFile file)
@@ -116,5 +126,11 @@ namespace TestEditor
 		}
 		public static string GetMapExtension() => mapFileExtension;
 		public static List<Map> GetMaps() => storedMaps;
+
+		[DoesNotReturn]
+		private static void ThrowMissingArgumentError(string paramname)
+		{
+			throw new ArgumentNullException(paramname);
+		}
 	}
 }
