@@ -31,7 +31,6 @@ namespace TestEditor
 			mapLoadSetting = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
 			mapSaveSetting = new() { WriteIndented = true };
 		}
-
 		public static async Task<Map?> LoadMap(StorageFile file)
 		{
 			if (file is null)
@@ -75,16 +74,15 @@ namespace TestEditor
 
 			return null;
 		}
-		[Discardable]
-		public static bool SaveMap(in Map? map, in StorageFolder dest)
+		public static Task SaveMap(Map? map, StorageFolder dest)
 		{
 			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.myName, GetMapExtension()));
 		}
-		public static bool SaveMap(in Map? map, in StorageFile filepath)
+		public static Task SaveMap(Map? map, StorageFile filepath)
 		{
 			return SaveMap(map, filepath.Path);
 		}
-		public static bool SaveMap(in Map? map, in string filepath)
+		public static Task SaveMap(Map? map, string filepath)
 		{
 			if (filepath is null)
 			{
@@ -98,9 +96,7 @@ namespace TestEditor
 				{
 					if (serial is string contents)
 					{
-						File.WriteAllText(filepath, contents);
-
-						return true;
+						return File.WriteAllTextAsync(filepath, contents);
 					}
 				}
 				catch
@@ -113,7 +109,7 @@ namespace TestEditor
 				ErrorHelper.RaiseMissingArgumentError(nameof(map));
 			}
 
-			return false;
+			return null;
 		}
 		public static void MemoLastFile(in StorageFile file)
 		{

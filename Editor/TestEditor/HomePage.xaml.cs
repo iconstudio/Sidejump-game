@@ -46,7 +46,7 @@ namespace TestEditor
 				MapHelper.MemoLastFile(mapfile);
 
 				var testmap = new Map();
-				if (MapHelper.SaveMap(testmap, mapfile))
+				using (MapHelper.SaveMap(testmap, mapfile))
 				{
 					NavigationHelper.Goto(typeof(EditorPage));
 				}
