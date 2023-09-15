@@ -74,15 +74,15 @@ namespace TestEditor
 
 			return null;
 		}
-		public static Task SaveMap(Map? map, StorageFolder dest)
+		public static Task SaveMap(in Map? map, in StorageFolder dest)
 		{
 			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.myName, GetMapExtension()));
 		}
-		public static Task SaveMap(Map? map, StorageFile filepath)
+		public static Task SaveMap(in Map? map, in StorageFile filepath)
 		{
 			return SaveMap(map, filepath.Path);
 		}
-		public static Task SaveMap(Map? map, string filepath)
+		public static Task SaveMap(in Map? map, in string filepath)
 		{
 			if (filepath is null)
 			{
