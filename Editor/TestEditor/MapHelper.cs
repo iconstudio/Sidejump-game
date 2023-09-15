@@ -13,6 +13,8 @@ namespace TestEditor
 		internal static Map loadedMap;
 		internal static List<Map> storedMaps = new();
 
+		public static StorageFile LastFile => lastFile;
+
 		static MapHelper()
 		{
 			lastFile = null;
@@ -34,10 +36,14 @@ namespace TestEditor
 			}
 
 			var json = File.ReadAllText(file.Path);
-			if (json is not null)
+			if (json is null || 0 == json.Length)
 			{
-				lastFile = file;
+				Debug.Print("Empty file");
+				return false;
+			}
 
+			try
+			{
 				var map = JsonSerializer.Deserialize<Map>(json);
 
 				if (map is not null)
@@ -47,6 +53,14 @@ namespace TestEditor
 
 					return true;
 				}
+			}
+			catch (JsonException e)
+			{
+				Debug.Print("JsonException: {0}", e.Message);
+			}
+			catch (Exception e)
+			{
+				Debug.Print("Exception when reading map {0}: {0}", e.GetType(), e.Message);
 			}
 
 			return false;
