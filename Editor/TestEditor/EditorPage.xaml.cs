@@ -20,6 +20,35 @@ namespace TestEditor
 		}
 		private void OnTransition(EditorTransitionCategory cat)
 		{
+			switch (cat)
+			{
+				case EditorTransitionCategory.Home:
+				{
+
+				}
+				break;
+
+				case EditorTransitionCategory.Create:
+				{
+
+				}
+				break;
+
+				case EditorTransitionCategory.Load:
+				{
+
+				}
+				break;
+
+				case EditorTransitionCategory.Exit:
+				{
+
+				}
+				break;
+
+				default:
+				break;
+			}
 			//var testmap = new Map();
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
