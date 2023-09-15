@@ -61,7 +61,8 @@ namespace TestEditor
 			{
 				MapHelper.MemoLastFile(mapfile);
 
-				if (MapHelper.LoadMap(mapfile))
+				var map = await MapHelper.LoadMap(mapfile);
+				if (map is not null)
 				{
 					NavigationHelper.Goto(typeof(EditorPage));
 				}

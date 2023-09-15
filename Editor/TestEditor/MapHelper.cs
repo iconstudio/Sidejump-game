@@ -32,8 +32,7 @@ namespace TestEditor
 			mapSaveSetting = new() { WriteIndented = true };
 		}
 
-		[Discardable]
-		public static bool LoadMap(in StorageFile file)
+		public static async Task<Map?> LoadMap(StorageFile file)
 		{
 			if (file is null)
 			{
@@ -43,14 +42,14 @@ namespace TestEditor
 			if (!file.IsAvailable)
 			{
 				Debug.WriteLine($"Not available file '{file.Name}'");
-				return false;
+				return null;
 			}
 
-			var json = File.ReadAllText(file.Path);
+			var json = await File.ReadAllTextAsync(file.Path);
 			if (json is null || 0 == json.Length)
 			{
 				Debug.Print("Empty file");
-				return false;
+				return null;
 			}
 
 			try
@@ -62,7 +61,7 @@ namespace TestEditor
 					loadedMap = gmap;
 					storedMaps.Add(gmap);
 
-					return true;
+					return gmap;
 				}
 			}
 			catch (JsonException e)
@@ -74,7 +73,7 @@ namespace TestEditor
 				Debug.Print("Exception when reading map {0}: {0}", e.GetType(), e.Message);
 			}
 
-			return false;
+			return null;
 		}
 		[Discardable]
 		public static bool SaveMap(in Map? map, in StorageFolder dest)
