@@ -4,8 +4,10 @@ using System.Text.Json;
 namespace TestEditor
 {
 	[Serializable]
-	internal class Map
+	internal struct Map
 	{
+		public static readonly Map emptyMap;
+
 		// info
 		public string myName;
 		public string myDescription;
@@ -13,23 +15,50 @@ namespace TestEditor
 		public Rectangle myResolution;
 		// tiles
 		public Tileset myTileset;
-		public uint tilesHrCount, tilesVtCount;
+		public int tilesHrCount, tilesVtCount;
 
 		public int X { get => myResolution.X; private set => myResolution.X = value; }
 		public int Y { get => myResolution.Y; private set => myResolution.Y = value; }
 		public int Width { get => myResolution.Width; private set => myResolution.Width = value; }
 		public int Height { get => myResolution.Height; private set => myResolution.Height = value; }
 
-		internal Map()
+		static Map()
 		{
-			myName = "Map";
-			myDescription = "Description";
+			emptyMap = new()
+			{
+				myName = "Empty Map",
+				myDescription = "",
+				myResolution = new(),
+				myTileset = new(),
+				tilesHrCount = 0,
+				tilesVtCount = 0,
+			};
+		}
+		public Map() : this("Empty Map")
+		{ }
+		public Map(string name) : this("Empty Map", null)
+		{ }
+		public Map(string name, in Tileset tileset)
+		{
+			myName = name;
+			myDescription = "";
 			myResolution = new();
-			myTileset = new();
+			myTileset = tileset;
 			tilesHrCount = 0;
 			tilesVtCount = 0;
 		}
 
+		public void SetTilesCount(int h, int v)
+		{
+			tilesHrCount = h;
+			tilesVtCount = v;
+
+			if (myTileset is not null)
+			{
+				Width = (myTileset.tileWidth * h);
+				Height = (myTileset.tileHeight * v);
+			}
+		}
 		public string Serialize()
 		{
 			return JsonSerializer.Serialize(this, MapHelper.mapWriteSetting);
