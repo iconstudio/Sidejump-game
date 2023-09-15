@@ -45,10 +45,7 @@ namespace TestEditor
 			{
 				MapHelper.MemoLastFile(mapfile);
 
-				var transition = new EditorTransitionInfo(EditorTransitionCategory.Create);
-				{
-					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), transition);
-				}
+				NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.saveTransition);
 			}
 		}
 		private async void OpenButton_Click(object sender, RoutedEventArgs e)
