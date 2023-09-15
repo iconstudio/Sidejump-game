@@ -1,8 +1,8 @@
-using System.Diagnostics;
-
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Animation;
 
 using Windows.ApplicationModel;
+using Windows.Storage;
 using Windows.UI;
 
 namespace TestEditor
@@ -40,15 +40,14 @@ namespace TestEditor
 		{
 			var picker = FilePickHelper.OpenSavePicker(this.GetWindow());
 
-			var mapfile = await picker;
-			if (mapfile is not null)
+			var resmapfile = await picker;
+			if (resmapfile is StorageFile mapfile)
 			{
 				MapHelper.MemoLastFile(mapfile);
 
-				var testmap = new Map();
-				using (MapHelper.SaveMap(testmap, mapfile))
+				var transition = new EditorTransitionInfo(EditorTransitionCategory.Create);
 				{
-					NavigationHelper.Goto(typeof(EditorPage));
+					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), transition);
 				}
 			}
 		}
