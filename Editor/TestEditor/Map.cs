@@ -1,28 +1,55 @@
 ﻿using System.Drawing;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace TestEditor
 {
 	[Serializable]
 	internal struct Map
 	{
-		public static readonly Map emptyMap;
+		[JsonIgnore] public static readonly Map emptyMap;
+		[JsonIgnore] internal string myName;
+		[JsonIgnore] internal string myDescription;
+		[JsonIgnore] internal Rectangle myResolution;
+		[JsonIgnore] internal Tileset myTileset;
+		[JsonIgnore] internal int tilesHrCount, tilesVtCount;
 
-		// info
-		public string myName;
-		public string myDescription;
-		// resolution
-		public Rectangle myResolution;
-		// tiles
-		public Tileset myTileset;
-		public int tilesHrCount, tilesVtCount;
-
-		public int X { readonly get => myResolution.X; private set => myResolution.X = value; }
-		public int Y { readonly get => myResolution.Y; private set => myResolution.Y = value; }
-		public int Width { readonly get => myResolution.Width; private set => myResolution.Width = value; }
-		public int Height { readonly get => myResolution.Height; private set => myResolution.Height = value; }
-		public int HorizontalTiles { readonly get => tilesHrCount; private set => tilesHrCount = value; }
-		public int VerticalTiles { readonly get => tilesVtCount; private set => tilesVtCount = value; }
+		[JsonInclude]
+		public string Name { readonly get => myName; set => myName = value; }
+		[JsonInclude]
+		public string Description { readonly get => myDescription; set => myDescription = value; }
+		[JsonInclude]
+		public readonly Rectangle Resolution => myResolution;
+		[JsonInclude]
+		public int X
+		{
+			readonly get => myResolution.X; set => myResolution.X = value;
+		}
+		[JsonInclude]
+		public int Y
+		{
+			readonly get => myResolution.Y; set => myResolution.Y = value;
+		}
+		[JsonInclude]
+		public int Width
+		{
+			readonly get => myResolution.Width; set => myResolution.Width = value;
+		}
+		[JsonInclude]
+		public int Height
+		{
+			readonly get => myResolution.Height; set => myResolution.Height = value;
+		}
+		[JsonInclude]
+		public int HorizontalTiles
+		{
+			readonly get => tilesHrCount; set => tilesHrCount = value;
+		}
+		[JsonInclude]
+		public int VerticalTiles
+		{
+			readonly get => tilesVtCount; set => tilesVtCount = value;
+		}
 
 		static Map()
 		{
@@ -72,7 +99,7 @@ namespace TestEditor
 		}
 		public readonly string Serialize()
 		{
-			return JsonSerializer.Serialize(this, MapHelper.mapWriteSetting);
+			return JsonSerializer.Serialize(this, MapHelper.mapSaveSetting);
 		}
 	}
 }
