@@ -45,6 +45,15 @@ namespace TestEditor
 			myName = name;
 			myDescription = "";
 			myResolution = new();
+			myTileset = (Tileset) tileset.Clone();
+			tilesHrCount = 0;
+			tilesVtCount = 0;
+		}
+		public Map(in string name, Tileset tileset)
+		{
+			myName = name;
+			myDescription = "";
+			myResolution = new();
 			myTileset = tileset;
 			tilesHrCount = 0;
 			tilesVtCount = 0;
