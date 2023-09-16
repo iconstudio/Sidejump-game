@@ -83,9 +83,7 @@
 						Width="40" Height="40"
 						VerticalAlignment="Center"
 						PointerEntered="SettingBtn_PointerEntered"
-						PointerPressed="settingBtn_PointerPressed"
 						PointerExited="SettingBtn_PointerExited"
-						PointerReleased="settingBtn_PointerReleased"
 						AnimatedIcon.State="Normal">
 
 						<AnimatedIcon Name="settingBtnIcon">

@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Navigation;
 
 using Windows.ApplicationModel;
 using Windows.Storage;
@@ -23,33 +24,35 @@ namespace TestEditor
 
 			appVersionText.Text = appVersion;
 		}
-
-		private void SettingBtn_PointerEntered(object sender, PointerRoutedEventArgs e)
+		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
-			AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
+			settingBtn.AddHandler(PointerPressedEvent,
+				new PointerEventHandler(settingBtn_PointerPressed), true);
+			settingBtn.AddHandler(PointerReleasedEvent,
+				new PointerEventHandler(settingBtn_PointerReleased), true);
+
+			base.OnNavigatedTo(e);
 		}
 		private void settingBtn_PointerPressed(object sender, PointerRoutedEventArgs e)
 		{
-			var state = AnimatedIcon.GetState(settingBtnIcon);
-			if ((state ?? "") != "Pressed")
-			{
-				AnimatedIcon.SetState(settingBtnIcon, "Pressed");
-			}
-		}
-		private void SettingBtn_PointerExited(object sender, PointerRoutedEventArgs e)
-		{
-			AnimatedIcon.SetState(settingBtnIcon, "Normal");
+			AnimatedIcon.SetState(settingBtnIcon, "Pressed");
 		}
 		private void settingBtn_PointerReleased(object sender, PointerRoutedEventArgs e)
 		{
 			AnimatedIcon.SetState(settingBtnIcon, "Normal");
 		}
+		private void SettingBtn_PointerEntered(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
+		}
+		private void SettingBtn_PointerExited(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState(settingBtnIcon, "Normal");
+		}
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
-			var picker = FilePickHelper.OpenSavePicker(this.GetWindow());
-
-			var resmapfile = await picker;
-			if (resmapfile is StorageFile mapfile)
+			var picker = await FilePickHelper.OpenSavePicker(this.GetWindow());
+			if (picker is StorageFile mapfile)
 			{
 				MapHelper.MemoLastFile(mapfile);
 
@@ -58,17 +61,12 @@ namespace TestEditor
 		}
 		private async void OpenButton_Click(object sender, RoutedEventArgs e)
 		{
-			var picker = FilePickHelper.OpenLoadPicker(this.GetWindow());
-
-			var resmapfile = await picker;
-			if (resmapfile is StorageFile mapfile)
+			var picker = await FilePickHelper.OpenLoadPicker(this.GetWindow());
+			if (picker is StorageFile mapfile)
 			{
-				using (MapHelper.LoadMap(mapfile))
-				{
-					MapHelper.MemoLastFile(mapfile);
+				MapHelper.MemoLastFile(mapfile);
 
-					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
-				}
+				NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
 			}
 		}
 	}
