@@ -24,36 +24,6 @@ namespace TestEditor
 
 			appVersionText.Text = appVersion;
 		}
-		protected override void OnNavigatedTo(NavigationEventArgs e)
-		{
-			settingBtn.AddHandler(PointerPressedEvent,
-				new PointerEventHandler(settingBtn_PointerPressed), true);
-			settingBtn.AddHandler(PointerReleasedEvent,
-				new PointerEventHandler(settingBtn_PointerReleased), true);
-
-			base.OnNavigatedTo(e);
-		}
-		protected override void OnNavigatedFrom(NavigationEventArgs e)
-		{
-			settingBtn.RemoveHandler(PointerPressedEvent,
-				(PointerEventHandler) settingBtn_PointerPressed);
-			settingBtn.RemoveHandler(PointerReleasedEvent,
-				(PointerEventHandler) settingBtn_PointerReleased);
-
-			base.OnNavigatedFrom(e);
-		}
-		private void settingBtn_PointerPressed(object sender, PointerRoutedEventArgs e)
-		{
-			AnimatedIcon.SetState((UIElement) sender, "Pressed");
-		}
-		private void settingBtn_PointerReleased(object sender, PointerRoutedEventArgs e)
-		{
-			AnimatedIcon.SetState((UIElement) sender, "Normal");
-		}
-		private void SettingBtn_PointerEntered(object sender, PointerRoutedEventArgs e)
-		{
-			AnimatedIcon.SetState((UIElement) sender, "PointerOver");
-		}
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
 			var picker = await FilePickHelper.OpenSavePicker(this.GetWindow());
@@ -73,6 +43,36 @@ namespace TestEditor
 
 				NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
 			}
+		}
+		private void AnimationButton_PointerPressed(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState((UIElement) sender, "Pressed");
+		}
+		private void AnimationButton_PointerReleased(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState((UIElement) sender, "Normal");
+		}
+		private void AnimationButton_PointerEntered(object sender, PointerRoutedEventArgs e)
+		{
+			AnimatedIcon.SetState((UIElement) sender, "PointerOver");
+		}
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			settingBtn.AddHandler(PointerPressedEvent,
+				new PointerEventHandler(AnimationButton_PointerPressed), true);
+			settingBtn.AddHandler(PointerReleasedEvent,
+				new PointerEventHandler(AnimationButton_PointerReleased), true);
+
+			base.OnNavigatedTo(e);
+		}
+		protected override void OnNavigatedFrom(NavigationEventArgs e)
+		{
+			settingBtn.RemoveHandler(PointerPressedEvent,
+				(PointerEventHandler) AnimationButton_PointerPressed);
+			settingBtn.RemoveHandler(PointerReleasedEvent,
+				(PointerEventHandler) AnimationButton_PointerReleased);
+
+			base.OnNavigatedFrom(e);
 		}
 	}
 }
