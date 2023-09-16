@@ -44,19 +44,15 @@ namespace TestEditor
 		}
 		private void settingBtn_PointerPressed(object sender, PointerRoutedEventArgs e)
 		{
-			AnimatedIcon.SetState(settingBtnIcon, "Pressed");
+			AnimatedIcon.SetState((UIElement) sender, "Pressed");
 		}
 		private void settingBtn_PointerReleased(object sender, PointerRoutedEventArgs e)
 		{
-			AnimatedIcon.SetState(settingBtnIcon, "Normal");
+			AnimatedIcon.SetState((UIElement) sender, "Normal");
 		}
 		private void SettingBtn_PointerEntered(object sender, PointerRoutedEventArgs e)
 		{
-			AnimatedIcon.SetState(settingBtnIcon, "PointerOver");
-		}
-		private void SettingBtn_PointerExited(object sender, PointerRoutedEventArgs e)
-		{
-			AnimatedIcon.SetState(settingBtnIcon, "Normal");
+			AnimatedIcon.SetState((UIElement) sender, "PointerOver");
 		}
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
