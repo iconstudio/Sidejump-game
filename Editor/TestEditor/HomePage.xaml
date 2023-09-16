@@ -65,11 +65,12 @@
 					</StackPanel>
 				</Grid>
 
-				<StackPanel Orientation="Horizontal"
-							Height="40"
-							HorizontalAlignment="Left" VerticalAlignment="Bottom"
-							Margin="10, 10, 0, 10"
-							Grid.Row="1">
+				<StackPanel Name="panelFooter"
+					Orientation="Horizontal"
+					Height="40"
+					HorizontalAlignment="Left" VerticalAlignment="Bottom"
+					Margin="10, 10, 0, 10"
+					Grid.Row="1">
 
 					<StackPanel.Transitions>
 						<TransitionCollection>
@@ -78,11 +79,10 @@
 							<RepositionThemeTransition IsStaggeringEnabled="True"/>
 						</TransitionCollection>
 					</StackPanel.Transitions>
-					
+
 					<Button Name="settingBtn"
 						Width="40" Height="40"
-						VerticalAlignment="Center"
-						PointerEntered="SettingBtn_PointerEntered"
+						PointerEntered="AnimationButton_PointerEntered"
 						AnimatedIcon.State="Normal">
 
 						<AnimatedIcon>
