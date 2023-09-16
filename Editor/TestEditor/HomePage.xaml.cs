@@ -33,6 +33,15 @@ namespace TestEditor
 
 			base.OnNavigatedTo(e);
 		}
+		protected override void OnNavigatedFrom(NavigationEventArgs e)
+		{
+			settingBtn.RemoveHandler(PointerPressedEvent,
+				(PointerEventHandler) settingBtn_PointerPressed);
+			settingBtn.RemoveHandler(PointerReleasedEvent,
+				(PointerEventHandler) settingBtn_PointerReleased);
+
+			base.OnNavigatedFrom(e);
+		}
 		private void settingBtn_PointerPressed(object sender, PointerRoutedEventArgs e)
 		{
 			AnimatedIcon.SetState(settingBtnIcon, "Pressed");
