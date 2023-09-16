@@ -95,7 +95,28 @@
 							</AnimatedIcon.FallbackIconSource>
 						</AnimatedIcon>
 					</Button>
-					<!-- <AppBarSeparator Margin="10, 0, 10, 0"/> -->
+
+					<AppBarSeparator Name="settingSap"
+						Visibility="Collapsed"
+						Margin="10, 0, 10, 0"/>
+
+					<Button Name="backBtn"
+						Visibility="Collapsed"
+						x:Load="False"
+						PointerEntered="AnimationButton_PointerEntered"
+						AnimatedIcon.State="Normal"
+						Width="40" Height="40">
+
+						<AnimatedIcon>
+							<AnimatedIcon.Source>
+								<animatedvisuals:AnimatedBackVisualSource/>
+							</AnimatedIcon.Source>
+
+							<AnimatedIcon.FallbackIconSource>
+								<FontIconSource Glyph="&#xE72B;"/>
+							</AnimatedIcon.FallbackIconSource>
+						</AnimatedIcon>
+					</Button>
 				</StackPanel>
 			</Grid>
 		</Frame>
