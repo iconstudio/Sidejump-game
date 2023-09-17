@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA1822: 멤버를 static으로 표시하세요.
+dotnet_diagnostic.CA1822.severity = silent
