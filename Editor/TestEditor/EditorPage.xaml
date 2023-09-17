@@ -19,7 +19,7 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="4"/>
+				<RowDefinition Height="2"/>
 				<RowDefinition Height="*" MinHeight="200"/>
 			</Grid.RowDefinitions>
 
@@ -109,7 +109,7 @@
 				<AppBarButton Icon="Share" Label="Share"/>
 			</StackPanel>
 
-			<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"  Grid.Row="2"/>
+			<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Grid.Row="2"/>
 
 			<Frame Name="editorContents"
 				Grid.Row="3">
