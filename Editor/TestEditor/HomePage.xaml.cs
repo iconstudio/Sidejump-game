@@ -7,7 +7,6 @@ using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.System.Threading;
 using Windows.UI;
-using Windows.UI.Core;
 
 namespace TestEditor
 {
@@ -56,18 +55,14 @@ namespace TestEditor
 				panelFooter.Children.Remove(settingBtn);
 				panelFooter.Children.Add(backBtn);
 
-				var task_timer = DispatcherQueue.CreateTimer();
+				var task_timer = DispatcherQueue.CreateTask((s, _) =>
+				{
+					isSettingOpened = true;
+					isSettingTransitioning = false;
+				}, settingTransitionDuration);
+
 				if (task_timer != null)
 				{
-					task_timer.Interval = settingTransitionDuration;
-					task_timer.IsRepeating = false;
-					task_timer.Tick += (s, _) =>
-					{
-						isSettingOpened = true;
-						isSettingTransitioning = false;
-
-						s.Stop();
-					};
 					task_timer.Start();
 				}
 				else
@@ -89,18 +84,14 @@ namespace TestEditor
 				panelFooter.Children.Remove(backBtn);
 				panelFooter.Children.Add(settingBtn);
 
-				var task_timer = DispatcherQueue.CreateTimer();
+				var task_timer = DispatcherQueue.CreateTask((s, _) =>
+				{
+					isSettingOpened = true;
+					isSettingTransitioning = false;
+				}, settingTransitionDuration);
+
 				if (task_timer != null)
 				{
-					task_timer.Interval = settingTransitionDuration;
-					task_timer.IsRepeating = false;
-					task_timer.Tick += (s, _) =>
-					{
-						isSettingOpened = false;
-						isSettingTransitioning = false;
-
-						s.Stop();
-					};
 					task_timer.Start();
 				}
 				else
