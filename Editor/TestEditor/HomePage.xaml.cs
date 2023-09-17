@@ -1,12 +1,13 @@
-using System.Diagnostics;
-
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 using Windows.ApplicationModel;
 using Windows.Storage;
+using Windows.System.Threading;
 using Windows.UI;
+using Windows.UI.Core;
 
 namespace TestEditor
 {
@@ -21,6 +22,9 @@ namespace TestEditor
 					Package.Current.Id.Version.Revision);
 
 		private bool isSettingOpened;
+		private bool isSettingTransitioning;
+		private ThreadPoolTimer settingTransitionTimer;
+		private readonly TimeSpan settingTransitionDuration;
 
 		public HomePage()
 		{
@@ -30,7 +34,87 @@ namespace TestEditor
 
 			panelFooter.Children.Remove(settingSap);
 			panelFooter.Children.Remove(backBtn);
+
+			var duration = Resources["SettingTransitionDuration"];
+			if (duration is string represent)
+			{
+				settingTransitionDuration = TimeSpan.Parse(represent, null);
+			}
+			else
+			{
+				settingTransitionDuration = TimeSpan.FromSeconds(1);
+			}
 		}
+
+#pragma warning disable CS4014
+		private void OpenSetting()
+		{
+			if (!isSettingOpened && !isSettingTransitioning)
+			{
+				isSettingTransitioning = true;
+
+				panelFooter.Children.Remove(settingBtn);
+				panelFooter.Children.Add(backBtn);
+
+				var task_timer = DispatcherQueue.CreateTimer();
+				if (task_timer != null)
+				{
+					task_timer.Interval = settingTransitionDuration;
+					task_timer.IsRepeating = false;
+					task_timer.Tick += (s, _) =>
+					{
+						isSettingOpened = true;
+						isSettingTransitioning = false;
+
+						s.Stop();
+					};
+					task_timer.Start();
+				}
+				else
+				{
+					DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, () =>
+					{
+						isSettingOpened = true;
+						isSettingTransitioning = false;
+					});
+				}
+			}
+		}
+		private void QuitSetting()
+		{
+			if (isSettingOpened && !isSettingTransitioning)
+			{
+				isSettingTransitioning = true;
+
+				panelFooter.Children.Remove(backBtn);
+				panelFooter.Children.Add(settingBtn);
+
+				var task_timer = DispatcherQueue.CreateTimer();
+				if (task_timer != null)
+				{
+					task_timer.Interval = settingTransitionDuration;
+					task_timer.IsRepeating = false;
+					task_timer.Tick += (s, _) =>
+					{
+						isSettingOpened = false;
+						isSettingTransitioning = false;
+
+						s.Stop();
+					};
+					task_timer.Start();
+				}
+				else
+				{
+					DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, () =>
+					{
+						isSettingOpened = true;
+						isSettingTransitioning = false;
+					});
+				}
+			}
+		}
+#pragma warning restore CS4014
+
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
 			var picker = await FilePickHelper.OpenSavePicker(this.GetWindow());
@@ -53,28 +137,16 @@ namespace TestEditor
 		}
 		private void SettingButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (!isSettingOpened)
+			lock (panelFooter)
 			{
-				isSettingOpened = true;
-
-				//settingSap.Opacity = 1;
-				//backBtn.Opacity = 1;
-				//panelFooter.Children.Add(settingSap);
-				panelFooter.Children.Remove(settingBtn);
-				panelFooter.Children.Add(backBtn);
+				OpenSetting();
 			}
 		}
 		private void BackButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (isSettingOpened)
+			lock (panelFooter)
 			{
-				isSettingOpened = false;
-
-				//settingSap.Opacity = 0;
-				//backBtn.Opacity = 0;
-				//panelFooter.Children.Remove(settingSap);
-				panelFooter.Children.Remove(backBtn);
-				panelFooter.Children.Add(settingBtn);
+				QuitSetting();
 			}
 		}
 		private void AnimationButton_PointerPressed(object sender, PointerRoutedEventArgs e)
@@ -104,6 +176,12 @@ namespace TestEditor
 				(PointerEventHandler) AnimationButton_PointerPressed);
 			settingBtn.RemoveHandler(PointerReleasedEvent,
 				(PointerEventHandler) AnimationButton_PointerReleased);
+
+			if (0 < (settingTransitionTimer?.Delay.Milliseconds ?? 0))
+			{
+				settingTransitionTimer?.Cancel();
+			}
+			isSettingTransitioning = false;
 
 			base.OnNavigatedFrom(e);
 		}

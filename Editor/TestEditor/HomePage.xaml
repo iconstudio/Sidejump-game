@@ -10,7 +10,7 @@
 	mc:Ignorable="d">
 
 	<Page.Resources>
-		<x:String x:Key="TransitionAnimationDuration">00:00:01.600</x:String>
+		<x:String x:Key="SettingTransitionDuration">00:00:01.600</x:String>
 	</Page.Resources>
 
 	<Grid VerticalAlignment="Stretch"
@@ -22,7 +22,7 @@
 		</Grid.ColumnDefinitions>
 
 		<Grid.BackgroundTransition>
-			<BrushTransition Duration="00:00:02"/>
+			<BrushTransition Duration="00:00:01"/>
 		</Grid.BackgroundTransition>
 
 		<Frame Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
