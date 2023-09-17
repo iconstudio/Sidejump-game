@@ -55,24 +55,11 @@ namespace TestEditor
 				panelFooter.Children.Remove(settingBtn);
 				panelFooter.Children.Add(backBtn);
 
-				var task_timer = DispatcherQueue.CreateTask((s, _) =>
+				DispatcherQueue.StartTask(DispatcherFailurePolicy.ExcuteAnyway, () =>
 				{
 					isSettingOpened = true;
 					isSettingTransitioning = false;
 				}, settingTransitionDuration);
-
-				if (task_timer != null)
-				{
-					task_timer.Start();
-				}
-				else
-				{
-					DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, () =>
-					{
-						isSettingOpened = true;
-						isSettingTransitioning = false;
-					});
-				}
 			}
 		}
 		private void QuitSetting()
@@ -84,24 +71,11 @@ namespace TestEditor
 				panelFooter.Children.Remove(backBtn);
 				panelFooter.Children.Add(settingBtn);
 
-				var task_timer = DispatcherQueue.CreateTask((s, _) =>
+				DispatcherQueue.StartTask(DispatcherFailurePolicy.ExcuteAnyway, () =>
 				{
-					isSettingOpened = true;
+					isSettingOpened = false;
 					isSettingTransitioning = false;
 				}, settingTransitionDuration);
-
-				if (task_timer != null)
-				{
-					task_timer.Start();
-				}
-				else
-				{
-					DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, () =>
-					{
-						isSettingOpened = true;
-						isSettingTransitioning = false;
-					});
-				}
 			}
 		}
 #pragma warning restore CS4014
