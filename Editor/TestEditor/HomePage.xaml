@@ -9,6 +9,10 @@
 	xmlns:local="using:TestEditor"
 	mc:Ignorable="d">
 
+	<Page.Resources>
+		<x:String x:Key="TransitionAnimationDuration">00:00:01.600</x:String>
+	</Page.Resources>
+
 	<Grid VerticalAlignment="Stretch"
 		  Background="Transparent">
 
@@ -72,18 +76,27 @@
 					Margin="10, 10, 0, 10"
 					Grid.Row="1">
 
-					<StackPanel.Transitions>
+					<StackPanel.BackgroundTransition>
+						<BrushTransition/>
+					</StackPanel.BackgroundTransition>
+
+					<StackPanel.ChildrenTransitions>
 						<TransitionCollection>
+							<NavigationThemeTransition/>
+							<RepositionThemeTransition IsStaggeringEnabled="False"/>
 							<AddDeleteThemeTransition/>
-							<EntranceThemeTransition/>
-							<RepositionThemeTransition IsStaggeringEnabled="True"/>
 						</TransitionCollection>
-					</StackPanel.Transitions>
+					</StackPanel.ChildrenTransitions>
 
 					<Button Name="settingBtn"
-						Width="40" Height="40"
+						Click="SettingButton_Click"
 						PointerEntered="AnimationButton_PointerEntered"
-						AnimatedIcon.State="Normal">
+						AnimatedIcon.State="Normal"
+						Width="40" Height="40">
+
+						<Button.OpacityTransition>
+							<ScalarTransition Duration ="00:00:01.600"/>
+						</Button.OpacityTransition>
 
 						<AnimatedIcon>
 							<AnimatedIcon.Source>
@@ -97,15 +110,17 @@
 					</Button>
 
 					<AppBarSeparator Name="settingSap"
-						Visibility="Collapsed"
 						Margin="10, 0, 10, 0"/>
 
 					<Button Name="backBtn"
-						Visibility="Collapsed"
-						x:Load="False"
+						Click="BackButton_Click"
 						PointerEntered="AnimationButton_PointerEntered"
 						AnimatedIcon.State="Normal"
 						Width="40" Height="40">
+
+						<Button.OpacityTransition>
+							<ScalarTransition Duration ="00:00:01.600"/>
+						</Button.OpacityTransition>
 
 						<AnimatedIcon>
 							<AnimatedIcon.Source>
@@ -137,7 +152,8 @@
 					<RowDefinition Height="Auto" MinHeight="30" MaxHeight="400"/>
 				</Grid.RowDefinitions>
 
-				<StackPanel Grid.Column="1" Grid.Row="1">
+				<StackPanel Name="homeContents"
+					Grid.Column="1" Grid.Row="1">
 					<HyperlinkButton Content="Create a Project" Click="CreateButton_Click"/>
 					<HyperlinkButton Content="Open a Project" Click="OpenButton_Click"/>
 					<HyperlinkButton Content="Help" NavigateUri="https://github.com/iconstudio/Sidejump-game"/>

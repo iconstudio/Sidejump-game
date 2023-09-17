@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
@@ -18,11 +20,16 @@ namespace TestEditor
 					Package.Current.Id.Version.Build,
 					Package.Current.Id.Version.Revision);
 
+		private bool isSettingOpened;
+
 		public HomePage()
 		{
 			InitializeComponent();
 
 			appVersionText.Text = appVersion;
+
+			panelFooter.Children.Remove(settingSap);
+			panelFooter.Children.Remove(backBtn);
 		}
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -44,13 +51,39 @@ namespace TestEditor
 				NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
 			}
 		}
+		private void SettingButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (!isSettingOpened)
+			{
+				isSettingOpened = true;
+
+				//settingSap.Opacity = 1;
+				//backBtn.Opacity = 1;
+				//panelFooter.Children.Add(settingSap);
+				panelFooter.Children.Remove(settingBtn);
+				panelFooter.Children.Add(backBtn);
+			}
+		}
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (isSettingOpened)
+			{
+				isSettingOpened = false;
+
+				//settingSap.Opacity = 0;
+				//backBtn.Opacity = 0;
+				//panelFooter.Children.Remove(settingSap);
+				panelFooter.Children.Remove(backBtn);
+				panelFooter.Children.Add(settingBtn);
+			}
+		}
 		private void AnimationButton_PointerPressed(object sender, PointerRoutedEventArgs e)
 		{
 			AnimatedIcon.SetState((UIElement) sender, "Pressed");
 		}
 		private void AnimationButton_PointerReleased(object sender, PointerRoutedEventArgs e)
 		{
-			AnimatedIcon.SetState((UIElement) sender, "Normal");
+			AnimatedIcon.SetState((UIElement) sender, "PressedToNormal");
 		}
 		private void AnimationButton_PointerEntered(object sender, PointerRoutedEventArgs e)
 		{
