@@ -52,12 +52,14 @@ namespace TestEditor
 			{
 				isSettingTransitioning = true;
 
+				panelFooter.IsHitTestVisible = false;
 				panelFooter.Children.Remove(settingBtn);
 				panelFooter.Children.Add(backBtn);
 
 				DispatcherQueue.StartTask(DispatcherFailurePolicy.ExcuteAnyway, () =>
 				{
 					isSettingOpened = true;
+					panelFooter.IsHitTestVisible = true;
 					isSettingTransitioning = false;
 				}, settingTransitionDuration);
 			}
@@ -68,12 +70,14 @@ namespace TestEditor
 			{
 				isSettingTransitioning = true;
 
+				panelFooter.IsHitTestVisible = false;
 				panelFooter.Children.Remove(backBtn);
 				panelFooter.Children.Add(settingBtn);
 
 				DispatcherQueue.StartTask(DispatcherFailurePolicy.ExcuteAnyway, () =>
 				{
 					isSettingOpened = false;
+					panelFooter.IsHitTestVisible = true;
 					isSettingTransitioning = false;
 				}, settingTransitionDuration);
 			}
