@@ -24,7 +24,7 @@ namespace TestEditor
 		}
 		public static
 			void
-			AddEventHandler(this DispatcherQueueTimer timer, [DisallowNull] ref DispatcherQueueTimerTicket handler)
+			AddEventHandler(this DispatcherQueueTimer timer, [DisallowNull] DispatcherQueueTimerTicket handler)
 		{
 			if (timer is not null)
 			{
@@ -33,7 +33,7 @@ namespace TestEditor
 		}
 		public static
 			void
-			RemoveEventHandler(this DispatcherQueueTimer timer, [DisallowNull] ref DispatcherQueueTimerTicket handler)
+			RemoveEventHandler(this DispatcherQueueTimer timer, [DisallowNull] DispatcherQueueTimerTicket handler)
 		{
 			if (timer is not null)
 			{

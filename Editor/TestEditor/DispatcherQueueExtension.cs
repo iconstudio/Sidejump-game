@@ -17,7 +17,7 @@ namespace TestEditor
 	{
 		public static
 			DispatcherQueueTimer
-			CreateTask([DisallowNull] this DispatcherQueue queue)
+			CreateStaticTask(this DispatcherQueue queue)
 		{
 			var task_timer = queue.CreateTimer();
 			task_timer?.SetLoop(false);
@@ -26,17 +26,17 @@ namespace TestEditor
 		}
 		public static
 			DispatcherQueueTimer
-			CreateTask([DisallowNull] this DispatcherQueue queue, [DisallowNull] ref DispatcherQueueTimerTicket ticket)
+			CreateStaticTask(this DispatcherQueue queue, [DisallowNull] DispatcherQueueTimerTicket ticket)
 		{
 			var task_timer = queue.CreateTimer();
 			task_timer?.SetLoop(false);
-			task_timer?.AddEventHandler(ref ticket);
+			task_timer?.AddEventHandler(ticket);
 
 			return task_timer;
 		}
 		public static
 			DispatcherQueueTimer
-			CreateTask([DisallowNull] this DispatcherQueue queue, in TimeSpan duration, bool loop = false)
+			CreateTask(this DispatcherQueue queue, in TimeSpan duration, bool loop = false)
 		{
 			var task_timer = queue.CreateTimer();
 			task_timer?.SetLoop(loop);
@@ -46,12 +46,12 @@ namespace TestEditor
 		}
 		public static
 			DispatcherQueueTimer
-			CreateTask([DisallowNull] this DispatcherQueue queue, [DisallowNull] ref DispatcherQueueTimerTicket ticket, in TimeSpan duration, bool loop = false)
+			CreateTask(this DispatcherQueue queue, [DisallowNull] DispatcherQueueTimerTicket ticket, in TimeSpan duration, bool loop = false)
 		{
 			var task_timer = queue.CreateTimer();
 			task_timer?.SetLoop(loop);
 			task_timer?.SetInterval(duration);
-			task_timer?.AddEventHandler(ref ticket);
+			task_timer?.AddEventHandler(ticket);
 
 			return task_timer;
 		}
