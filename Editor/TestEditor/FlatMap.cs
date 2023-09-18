@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using System.Text.Json.Serialization;
 
 namespace TestEditor
@@ -20,8 +20,10 @@ namespace TestEditor
 		public static readonly bool isSortable = typeof(IComparable<T>).IsAssignableFrom(typeof(T));
 
 		[JsonIgnore]
+		[Pure]
 		public int Count => myData.Count;
 		[JsonIgnore]
+		[Pure]
 		public bool IsReadOnly => false;
 		[JsonIgnore]
 		public ICollection<T> Keys => myData.Select(x => x.Key).ToList();
@@ -46,6 +48,7 @@ namespace TestEditor
 		}
 		public IEnumerator<KeyValuePair<T, V>> GetEnumerator() => myData.GetEnumerator();
 		IEnumerator IEnumerable.GetEnumerator() => myData.GetEnumerator();
+		[Pure]
 		public bool TryGetValue(T key, [MaybeNullWhen(false)] out V value)
 		{
 			foreach (var pair in myData)
@@ -127,9 +130,11 @@ namespace TestEditor
 		}
 		public bool Remove(KeyValuePair<T, V> item) => myData.Remove(item);
 		public void Clear() => myData.Clear();
+		[Pure]
 		public bool Contains(KeyValuePair<T, V> item) => myData.Contains(item);
+		[Pure]
 		public bool ContainsKey(T key) => myData.Any((pair) => pair.Key.Equals(key));
-		public void CopyTo(KeyValuePair<T, V>[] array, int array_index) => myData.CopyTo(array, array_index);
+		public void CopyTo(KeyValuePair<T, V>[] array, int arrayIndex) => myData.CopyTo(array, arrayIndex);
 
 		private void _Sort()
 		{
@@ -141,6 +146,7 @@ namespace TestEditor
 
 		private class KeyValuePairComparer : IComparer<KeyValuePair<T, V>>
 		{
+			[Pure]
 			public int Compare(KeyValuePair<T, V> lhs, KeyValuePair<T, V> rhs)
 			{
 				return ((IComparable<T>) lhs.Key).CompareTo(rhs.Key);
