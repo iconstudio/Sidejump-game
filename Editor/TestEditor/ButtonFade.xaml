@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ControlTemplate TargetType="Button"
+	x:Name="ButtonFade"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:TestEditor"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<Grid>
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="CommonStates">
+
+				<VisualStateGroup.Transitions>
+					<VisualTransition To="PointerOver" GeneratedDuration="0:0:0.5"/>
+				</VisualStateGroup.Transitions>
+
+				<VisualState x:Name="Normal" />
+
+				<VisualState x:Name="PointerOver">
+					<Storyboard>
+						<ColorAnimation Storyboard.TargetName="ButtonBrush"  Storyboard.TargetProperty="Color" To="Red" />
+					</Storyboard>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+		
+		<Grid.Background>
+			<SolidColorBrush x:Name="ButtonBrush" Color="Green"/>
+		</Grid.Background>
+	</Grid>
+</ControlTemplate>
