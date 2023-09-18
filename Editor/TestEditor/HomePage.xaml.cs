@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
@@ -22,7 +24,6 @@ namespace TestEditor
 
 		private bool isSettingOpened;
 		private bool isSettingTransitioning;
-		private ThreadPoolTimer settingTransitionTimer;
 		private readonly TimeSpan settingTransitionDuration;
 
 		public HomePage()
@@ -31,11 +32,7 @@ namespace TestEditor
 
 			appVersionText.Text = appVersion;
 
-			panelFooter.Children.Remove(settingSap);
-			panelFooter.Children.Remove(backBtn);
-
-			var duration = Resources["SettingTransitionDuration"];
-			if (duration is string represent)
+			if (Resources["SettingTransitionDuration"] is string represent)
 			{
 				settingTransitionDuration = TimeSpan.Parse(represent, null);
 			}
@@ -43,6 +40,9 @@ namespace TestEditor
 			{
 				settingTransitionDuration = TimeSpan.FromSeconds(1);
 			}
+
+			menuStateHome.Duration = settingTransitionDuration;
+			menuStateSetting.Duration = settingTransitionDuration;
 		}
 
 #pragma warning disable CS4014
@@ -52,16 +52,11 @@ namespace TestEditor
 			{
 				isSettingTransitioning = true;
 
+				menuStateSetting.Begin();
 				panelFooter.IsHitTestVisible = false;
-				panelFooter.Children.Remove(settingBtn);
-				panelFooter.Children.Add(backBtn);
+				backBtn.Visibility = Visibility.Visible;
 
-				DispatcherQueue.StartTask(DispatcherFailurePolicy.ExcuteAnyway, () =>
-				{
-					isSettingOpened = true;
-					panelFooter.IsHitTestVisible = true;
-					isSettingTransitioning = false;
-				}, settingTransitionDuration);
+				//homeContents.Navigate()
 			}
 		}
 		private void QuitSetting()
@@ -70,16 +65,11 @@ namespace TestEditor
 			{
 				isSettingTransitioning = true;
 
+				menuStateHome.Begin();
 				panelFooter.IsHitTestVisible = false;
-				panelFooter.Children.Remove(backBtn);
-				panelFooter.Children.Add(settingBtn);
+				settingBtn.Visibility = Visibility.Visible;
 
-				DispatcherQueue.StartTask(DispatcherFailurePolicy.ExcuteAnyway, () =>
-				{
-					isSettingOpened = false;
-					panelFooter.IsHitTestVisible = true;
-					isSettingTransitioning = false;
-				}, settingTransitionDuration);
+				//homeContents.Navigate()
 			}
 		}
 #pragma warning restore CS4014
@@ -118,6 +108,46 @@ namespace TestEditor
 				QuitSetting();
 			}
 		}
+		private void settingBtnFadeOutAnimation_Complete(object sender, object _)
+		{
+			if (sender is DoubleAnimation)
+			{
+				settingBtn.Visibility = Visibility.Collapsed;
+			}
+		}
+		private void backBtnFadeOutAnimation_Complete(object sender, object _)
+		{
+			if (sender is DoubleAnimation)
+			{
+				backBtn.Visibility = Visibility.Collapsed;
+			}
+		}
+		private void menuStateSetting_Completed(object sender, object _)
+		{
+			if (sender is Storyboard)
+			{
+				lock (panelFooter)
+				{
+					panelFooter.IsHitTestVisible = true;
+
+					isSettingOpened = true;
+					isSettingTransitioning = false;
+				}
+			}
+		}
+		private void menuStateHome_Completed(object sender, object _)
+		{
+			if (sender is Storyboard)
+			{
+				lock (panelFooter)
+				{
+					panelFooter.IsHitTestVisible = true;
+
+					isSettingOpened = false;
+					isSettingTransitioning = false;
+				}
+			}
+		}
 		private void AnimationButton_PointerPressed(object sender, PointerRoutedEventArgs e)
 		{
 			AnimatedIcon.SetState((UIElement) sender, "Pressed");
@@ -146,10 +176,6 @@ namespace TestEditor
 			settingBtn.RemoveHandler(PointerReleasedEvent,
 				(PointerEventHandler) AnimationButton_PointerReleased);
 
-			if (0 < (settingTransitionTimer?.Delay.Milliseconds ?? 0))
-			{
-				settingTransitionTimer?.Cancel();
-			}
 			isSettingTransitioning = false;
 
 			base.OnNavigatedFrom(e);

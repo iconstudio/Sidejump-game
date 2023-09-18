@@ -10,7 +10,29 @@
 	mc:Ignorable="d">
 
 	<Page.Resources>
-		<x:String x:Key="SettingTransitionDuration">00:00:01.600</x:String>
+		<x:String x:Key="SettingTransitionDuration">00:00:00.800</x:String>
+
+		<Storyboard x:Name="menuStateSetting" Completed="menuStateSetting_Completed">
+			<DoubleAnimation Storyboard.TargetName="backBtn"
+				Storyboard.TargetProperty="Opacity"
+				From="0.0" To="1.0"/>
+
+			<DoubleAnimation Storyboard.TargetName="settingBtn"
+				Storyboard.TargetProperty="Opacity"
+				BeginTime="00:00:00.3"
+				From="1.0" To="0.0" Completed="settingBtnFadeOutAnimation_Complete"/>
+		</Storyboard>
+
+		<Storyboard x:Name="menuStateHome" Completed="menuStateHome_Completed">
+			<DoubleAnimation Storyboard.TargetName="settingBtn"
+				Storyboard.TargetProperty="Opacity"
+				From="0.0" To="1.0"/>
+
+			<DoubleAnimation Storyboard.TargetName="backBtn"
+				Storyboard.TargetProperty="Opacity"
+				BeginTime="00:00:00.3"
+				From="1.0" To="0.0" Completed="backBtnFadeOutAnimation_Complete"/>
+		</Storyboard>
 	</Page.Resources>
 
 	<Grid VerticalAlignment="Stretch"
@@ -69,7 +91,7 @@
 					</StackPanel>
 				</Grid>
 
-				<StackPanel Name="panelFooter"
+				<StackPanel x:Name="panelFooter"
 					Orientation="Horizontal"
 					Height="40"
 					HorizontalAlignment="Left" VerticalAlignment="Bottom"
@@ -83,20 +105,17 @@
 					<StackPanel.ChildrenTransitions>
 						<TransitionCollection>
 							<NavigationThemeTransition/>
-							<RepositionThemeTransition IsStaggeringEnabled="False"/>
 							<AddDeleteThemeTransition/>
 						</TransitionCollection>
 					</StackPanel.ChildrenTransitions>
 
-					<Button Name="settingBtn"
+					<Button x:Name="settingBtn"
 						Click="SettingButton_Click"
 						PointerEntered="AnimationButton_PointerEntered"
 						AnimatedIcon.State="Normal"
+						Visibility="Visible"
+						Margin="0, 0, 16, 0"
 						Width="40" Height="40">
-
-						<Button.OpacityTransition>
-							<ScalarTransition Duration ="00:00:01.600"/>
-						</Button.OpacityTransition>
 
 						<AnimatedIcon>
 							<AnimatedIcon.Source>
@@ -109,18 +128,17 @@
 						</AnimatedIcon>
 					</Button>
 
-					<AppBarSeparator Name="settingSap"
-						Margin="10, 0, 10, 0"/>
+					<AppBarSeparator x:Name="settingSap"
+						Visibility="Collapsed"
+						Margin="10, 0, 10, 0">
+					</AppBarSeparator>
 
-					<Button Name="backBtn"
+					<Button x:Name="backBtn"
 						Click="BackButton_Click"
 						PointerEntered="AnimationButton_PointerEntered"
 						AnimatedIcon.State="Normal"
+						Visibility="Collapsed"
 						Width="40" Height="40">
-
-						<Button.OpacityTransition>
-							<ScalarTransition Duration ="00:00:01.600"/>
-						</Button.OpacityTransition>
 
 						<AnimatedIcon>
 							<AnimatedIcon.Source>
@@ -136,7 +154,7 @@
 			</Grid>
 		</Frame>
 
-		<StackPanel
+		<Frame Name="homeContents"
 			HorizontalAlignment="Left"
 			Grid.Column="1">
 			<Grid>
@@ -152,14 +170,14 @@
 					<RowDefinition Height="Auto" MinHeight="30" MaxHeight="400"/>
 				</Grid.RowDefinitions>
 
-				<StackPanel Name="homeContents"
+				<StackPanel
 					Grid.Column="1" Grid.Row="1">
 					<HyperlinkButton Content="Create a Project" Click="CreateButton_Click"/>
 					<HyperlinkButton Content="Open a Project" Click="OpenButton_Click"/>
 					<HyperlinkButton Content="Help" NavigateUri="https://github.com/iconstudio/Sidejump-game"/>
 				</StackPanel>
 			</Grid>
-		</StackPanel>
+		</Frame>
 
 		<TextBlock Name="appVersionText"
 			HorizontalTextAlignment="Right"
