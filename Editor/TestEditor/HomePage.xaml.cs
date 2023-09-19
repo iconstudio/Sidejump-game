@@ -9,8 +9,6 @@ namespace TestEditor
 {
 	public sealed partial class HomePage : Page
 	{
-		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
-
 		private static readonly string appVersion = string.Format(null, "v{0}.{1}.{2}.{3}",
 					Package.Current.Id.Version.Major,
 					Package.Current.Id.Version.Minor,
