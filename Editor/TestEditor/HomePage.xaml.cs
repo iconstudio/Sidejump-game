@@ -4,7 +4,7 @@ using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
-
+using TestEditor.Contents;
 using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.System.Threading;
@@ -12,7 +12,7 @@ using Windows.UI;
 
 namespace TestEditor
 {
-	public sealed partial class HomePage : Page
+    public sealed partial class HomePage : Page
 	{
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 

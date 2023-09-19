@@ -1,10 +1,11 @@
-﻿using Windows.Foundation;
+﻿using TestEditor.Contents;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 
 namespace TestEditor
 {
-	internal static class FilePickHelper
+    internal static class FilePickHelper
 	{
 		public static IAsyncOperation<StorageFile> OpenLoadPicker(Window window)
 		{
