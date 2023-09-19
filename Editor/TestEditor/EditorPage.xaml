@@ -11,6 +11,7 @@
 
 	<StackPanel
 		Orientation="Vertical"
+		SizeChanged="OnContentsSizeChanged"
 		HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
 		<StackPanel.ChildrenTransitions>
@@ -120,7 +121,6 @@
 				x:Load="False"
 				Loaded="OnCanvasLoaded"
 				Unloaded="OnCanvasUnloaded"
-				SizeChanged="OnCanvasSizeChanged"
 				Draw="OnDraw"/>
 		</Grid>
 	</StackPanel>

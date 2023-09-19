@@ -19,25 +19,6 @@ namespace TestEditor
 
 		private WindowView clientView;
 
-		public float CanvasHeight
-		{
-			get
-			{
-				var by = (double) (MainWindow.GetInstance()?.AppWindow.ClientSize.Height ?? 500.0) - 32;
-
-				var h1 = editorCommands?.Height ?? 48;
-				by -= double.IsNormal(h1) ? h1 : 48; // command
-
-				var h2 = editorMenu?.Height ?? 32;
-				by -= double.IsNormal(h2) ? h2 : 32; // menubar
-
-				by -= 32; // titlebar
-				by -= 16; // padding
-
-				return (float) by * 0.5f;
-			}
-		}
-
 		public EditorPage()
 		{
 			InitializeComponent();
@@ -105,8 +86,22 @@ namespace TestEditor
 			Window window = this.GetWindow();
 			clientView = new(window);
 		}
-		private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
+		private void OnContentsSizeChanged(object sender, SizeChangedEventArgs e)
 		{
+			if (sender is StackPanel panel)
+			{
+				var h1 = panel.ActualHeight;
+				var height = double.IsNormal(h1) ? h1 : 300;
+
+				var h2 = editorCommands?.ActualHeight ?? 64;
+				height -= double.IsNormal(h2) ? h2 : 64; // command
+
+				var h3 = editorMenu?.ActualHeight ?? 40;
+				height -= double.IsNormal(h3) ? h3 : 40; // menubar
+
+				editorContents.Height = height;
+			}
+
 			//editorContents.Width = e.NewSize.Width;
 			//editorContents.Height = e.NewSize.Height;
 			//editorContents.Height = CanvasHeight;
