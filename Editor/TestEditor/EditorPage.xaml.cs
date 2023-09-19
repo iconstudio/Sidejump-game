@@ -19,6 +19,17 @@ namespace TestEditor
 		private CanvasSwapChain mySurface;
 		private WindowView clientView;
 
+		public float CanvasHeight
+		{
+			get
+			{
+				var bound = ActualSize;
+				var pos = editorContents.ActualOffset;
+
+				return bound.Y - pos.Y;
+			}
+		}
+
 		public EditorPage()
 		{
 			InitializeComponent();
@@ -32,22 +43,22 @@ namespace TestEditor
 				session.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
 
-			mySurface.Present(1);
+			mySurface.Present(0);
 		}
-		[Pure]
-		private Size AcquireClientSize()
-		{
-			return editorContents.ActualSize.ToSize();
-		}
-		private void UpdateSwapChain(Size raw_size)
+		private void UpdateSwapChain(Size actual_size)
 		{
 			if (mySurface is not null)
 			{
-				float scaling = (float) clientView.Dpi / 96;
-				raw_size.Width *= scaling;
-				raw_size.Height *= scaling;
+				mySurface.ResizeBuffers(actual_size);
 
-				mySurface.ResizeBuffers(raw_size);
+				Render();
+			}
+		}
+		private void UpdateSwapChain(float hr, float vt)
+		{
+			if (mySurface is not null)
+			{
+				mySurface.ResizeBuffers(hr, vt);
 
 				Render();
 			}
@@ -97,7 +108,7 @@ namespace TestEditor
 			}
 
 			// load the canvas
-			FindName(nameof(editorContents));
+			//FindName(nameof(editorContents));
 		}
 		private void OnCanvasLoaded(object sender, RoutedEventArgs _)
 		{
@@ -114,8 +125,9 @@ namespace TestEditor
 			var size = clientView.AppWindow.ClientSize;
 			size.Height -= (int) editorCommands.ActualHeight;
 			size.Height -= (int) editorMenu.ActualHeight;
-
 			CanvasSwapChain surface = new(device, (float) size.Width, (float) size.Height, dpi);
+
+			//CanvasSwapChain surface = new(device, bound.X, bound.Y, dpi);
 			if (surface is null)
 			{
 				throw new CanvasCreationException(nameof(surface));
@@ -123,7 +135,7 @@ namespace TestEditor
 
 			editorCanvas.SwapChain = mySurface = surface;
 
-			UpdateSwapChain(AcquireClientSize());
+			Render();
 		}
 		private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
 		{
@@ -133,7 +145,9 @@ namespace TestEditor
 			}
 			else
 			{
-				UpdateSwapChain(AcquireClientSize());
+				UpdateSwapChain(e.NewSize);
+
+				Render();
 			}
 		}
 		private void OnCanvasUnloaded(object sender, RoutedEventArgs _)

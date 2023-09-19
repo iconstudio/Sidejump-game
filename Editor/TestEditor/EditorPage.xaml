@@ -9,128 +9,117 @@
 	xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
 	mc:Ignorable="d">
 
-	<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-		<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-			<Grid.ChildrenTransitions>
-				<TransitionCollection>
-					<RepositionThemeTransition/>
-				</TransitionCollection>
-			</Grid.ChildrenTransitions>
+	<StackPanel
+		Orientation="Vertical"
+		HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="2"/>
-				<RowDefinition Height="Auto" MinHeight="200"/>
-			</Grid.RowDefinitions>
+		<StackPanel.ChildrenTransitions>
+			<TransitionCollection>
+				<RepositionThemeTransition/>
+			</TransitionCollection>
+		</StackPanel.ChildrenTransitions>
 
-			<MenuBar Name="editorMenu"
-				Grid.Row="0">
+		<MenuBar Name="editorMenu">
+			<MenuBarItem Title="File">
+				<MenuFlyoutItem Text="New Map">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="N"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutItem Text="Open Map">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="O"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutItem Text="Save">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="S"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutItem Text="Save As ...">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control, Shift" Key="S"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutSeparator/>
+				<MenuFlyoutItem Text="Close Map">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control, Shift" Key="E"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutSeparator/>
+				<MenuFlyoutItem Text="Exit">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Menu" Key="F4"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+			</MenuBarItem>
 
-				<MenuBarItem Title="File">
-					<MenuFlyoutItem Text="New Map">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="N"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Open Map">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="O"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Save">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="S"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Save As ...">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control, Shift" Key="S"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutSeparator/>
-					<MenuFlyoutItem Text="Close Map">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control, Shift" Key="E"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutSeparator/>
-					<MenuFlyoutItem Text="Exit">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Menu" Key="F4"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-				</MenuBarItem>
+			<MenuBarItem Title="Edit">
+				<MenuFlyoutItem Text="Undo">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="Z"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutItem Text="Redo">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="Y"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutSeparator/>
+				<MenuFlyoutItem Text="Copy">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="C"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutItem Text="Paste">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="V"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutItem Text="Cut">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="X"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+				<MenuFlyoutSeparator/>
+			</MenuBarItem>
 
-				<MenuBarItem Title="Edit">
-					<MenuFlyoutItem Text="Undo">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="Z"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Redo">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="Y"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutSeparator/>
-					<MenuFlyoutItem Text="Copy">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="C"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Paste">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="V"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutItem Text="Cut">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control" Key="X"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-					<MenuFlyoutSeparator/>
-				</MenuBarItem>
+			<MenuBarItem Title="Help">
+				<MenuFlyoutItem Text="About">
+					<MenuFlyoutItem.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control, Shift" Key="I"/>
+					</MenuFlyoutItem.KeyboardAccelerators>
+				</MenuFlyoutItem>
+			</MenuBarItem>
+		</MenuBar>
 
-				<MenuBarItem Title="Help">
-					<MenuFlyoutItem Text="About">
-						<MenuFlyoutItem.KeyboardAccelerators>
-							<KeyboardAccelerator Modifiers="Control, Shift" Key="I"/>
-						</MenuFlyoutItem.KeyboardAccelerators>
-					</MenuFlyoutItem>
-				</MenuBarItem>
-			</MenuBar>
-
-			<StackPanel Name="editorCommands"
+		<StackPanel Name="editorCommands"
 				Orientation="Horizontal"
 				Background="Transparent"
-				HorizontalAlignment="Right" VerticalAlignment="Top"
-				Grid.Row="1">
+				HorizontalAlignment="Right" VerticalAlignment="Top">
 
-				<AppBarButton Icon="Add" Label="Add">
-					<AppBarButton.Flyout>
-						<MenuFlyout>
+			<AppBarButton Icon="Add" Label="Add">
+				<AppBarButton.Flyout>
+					<MenuFlyout>
 
-						</MenuFlyout>
-					</AppBarButton.Flyout>
-				</AppBarButton>
-					
-				<AppBarButton Icon="Share" Label="Share"/>
-			</StackPanel>
+					</MenuFlyout>
+				</AppBarButton.Flyout>
+			</AppBarButton>
 
-			<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Grid.Row="2"/>
+			<AppBarButton Icon="Share" Label="Share"/>
+		</StackPanel>
 
-			<Grid Name="editorContents"
-				x:Load="False"
-				Loaded="OnCanvasLoaded"
-				SizeChanged="OnCanvasSizeChanged"
-				Unloaded="OnCanvasUnloaded"
-				HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-				Grid.Row="3">
+		<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"/>
 
-				<canvas:CanvasSwapChainPanel Name="editorCanvas"/>
-			</Grid>
-		</Grid>
-		<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
+		<Frame Name="editorContents"
+			Loaded="OnCanvasLoaded"
+			SizeChanged="OnCanvasSizeChanged"
+			Unloaded="OnCanvasUnloaded"
+			HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+			<canvas:CanvasSwapChainPanel Name="editorCanvas"/>
+		</Frame>
 	</StackPanel>
+	<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
 </Page>
