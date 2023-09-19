@@ -16,6 +16,7 @@ namespace TestEditor
 	public sealed partial class EditorPage : Page
 	{
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
+		private Color flushColour = Transparent;
 
 		private WindowView clientView;
 
@@ -28,8 +29,7 @@ namespace TestEditor
 		{
 			using (context)
 			{
-				//context.Clear(Colors.Blue);
-				context.Clear(Transparent);
+				context.Clear(flushColour);
 
 				context.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
 				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
@@ -102,10 +102,6 @@ namespace TestEditor
 
 				editorContents.Height = height;
 			}
-
-			//editorContents.Width = e.NewSize.Width;
-			//editorContents.Height = e.NewSize.Height;
-			//editorContents.Height = CanvasHeight;
 		}
 		private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
 		{
