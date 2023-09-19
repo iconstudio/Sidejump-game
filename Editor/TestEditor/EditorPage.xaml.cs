@@ -28,7 +28,8 @@ namespace TestEditor
 		{
 			using (context)
 			{
-				context.Clear(Colors.Blue);
+				//context.Clear(Colors.Blue);
+				context.Clear(Transparent);
 
 				context.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
 				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
