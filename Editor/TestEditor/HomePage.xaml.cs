@@ -53,7 +53,7 @@ namespace TestEditor
 				panelFooter.IsHitTestVisible = false;
 				backBtn.Visibility = Visibility.Visible;
 
-				//homeContents.Navigate()
+				homeContents.Navigate(typeof(SettingPage));
 			}
 		}
 		private void QuitSetting()
@@ -66,7 +66,7 @@ namespace TestEditor
 				panelFooter.IsHitTestVisible = false;
 				settingBtn.Visibility = Visibility.Visible;
 
-				//homeContents.Navigate()
+				homeContents.Navigate(typeof(ProjectOpenPage));
 			}
 		}
 #pragma warning restore CS4014
