@@ -21,6 +21,7 @@ namespace TestEditor
 					Package.Current.Id.Version.Build,
 					Package.Current.Id.Version.Revision);
 
+		private bool isPickerOpening;
 		private bool isSettingOpened;
 		private bool isSettingTransitioning;
 		private readonly TimeSpan settingTransitionDuration;
@@ -75,22 +76,34 @@ namespace TestEditor
 
 		private async void CreateButton_Click(object sender, RoutedEventArgs e)
 		{
-			var picker = await FilePickHelper.OpenSavePicker(this.GetWindow());
-			if (picker is StorageFile mapfile)
+			if (!isPickerOpening)
 			{
-				MapHelper.MemoLastFile(mapfile);
+				isPickerOpening = true;
 
-				NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.saveTransition);
+				var picker = await FilePickHelper.OpenSavePicker(this.GetWindow());
+
+				if (picker is StorageFile mapfile)
+				{
+					MapHelper.MemoLastFile(mapfile);
+
+					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.saveTransition);
+				}
 			}
 		}
 		private async void OpenButton_Click(object sender, RoutedEventArgs e)
 		{
-			var picker = await FilePickHelper.OpenLoadPicker(this.GetWindow());
-			if (picker is StorageFile mapfile)
+			if (!isPickerOpening)
 			{
-				MapHelper.MemoLastFile(mapfile);
+				isPickerOpening = true;
 
-				NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
+				var picker = await FilePickHelper.OpenLoadPicker(this.GetWindow());
+
+				if (picker is StorageFile mapfile)
+				{
+					MapHelper.MemoLastFile(mapfile);
+
+					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
+				}
 			}
 		}
 		private void SettingButton_Click(object sender, RoutedEventArgs e)
@@ -175,6 +188,7 @@ namespace TestEditor
 			settingBtn.RemoveHandler(PointerReleasedEvent,
 				(PointerEventHandler) AnimationButton_PointerReleased);
 
+			isPickerOpening = false;
 			isSettingTransitioning = false;
 
 			base.OnNavigatedFrom(e);
