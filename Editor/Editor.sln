@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEditor", "TestEditor\TestEditor.csproj", "{E6966D42-250E-4D1B-BFD2-29ECD55D67C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E2985A6-ABAB-4071-9610-CBDD35FFE301}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9CAA6226-4E37-4C01-A8A4-BC2D1DC0BDCB}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
