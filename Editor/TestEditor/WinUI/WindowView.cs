@@ -112,6 +112,7 @@ namespace TestEditor.WinUI
 		public readonly DispatcherQueue DispatcherQueue => Implement.DispatcherQueue;
 		public readonly string Title { get => Implement.Title; set => Implement.Title = value; }
 		public readonly Rect Bounds => Implement.Bounds;
+		public readonly uint Dpi => PInvoke.GetDpiForWindow(NativeHandle);
 		public readonly bool ExtendsContentIntoTitleBar { get => Implement.ExtendsContentIntoTitleBar; set => Implement.ExtendsContentIntoTitleBar = value; }
 		public readonly SystemBackdrop SystemBackdrop { get => Implement.SystemBackdrop; set => Implement.SystemBackdrop = value; }
 		public readonly bool Visible => Implement.Visible;
