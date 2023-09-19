@@ -3,11 +3,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 using Windows.ApplicationModel;
-using Windows.Storage;
 using Windows.UI;
-
-using TestEditor.Contents;
-using TestEditor.Utility;
 
 namespace TestEditor
 {
@@ -21,7 +17,6 @@ namespace TestEditor
 					Package.Current.Id.Version.Build,
 					Package.Current.Id.Version.Revision);
 
-		private bool isPickerOpening;
 		private bool isSettingOpened;
 		private bool isSettingTransitioning;
 		private readonly TimeSpan settingTransitionDuration;
@@ -43,6 +38,8 @@ namespace TestEditor
 
 			menuStateHome.Duration = settingTransitionDuration;
 			menuStateSetting.Duration = settingTransitionDuration;
+
+			homeContents.Navigate(typeof(ProjectOpenPage));
 		}
 
 #pragma warning disable CS4014
@@ -73,39 +70,6 @@ namespace TestEditor
 			}
 		}
 #pragma warning restore CS4014
-
-		private async void CreateButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (!isPickerOpening)
-			{
-				isPickerOpening = true;
-
-				var picker = await FilePickHelper.OpenSavePicker(this.GetWindow());
-
-				if (picker is StorageFile mapfile)
-				{
-					MapHelper.MemoLastFile(mapfile);
-
-					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.saveTransition);
-				}
-			}
-		}
-		private async void OpenButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (!isPickerOpening)
-			{
-				isPickerOpening = true;
-
-				var picker = await FilePickHelper.OpenLoadPicker(this.GetWindow());
-
-				if (picker is StorageFile mapfile)
-				{
-					MapHelper.MemoLastFile(mapfile);
-
-					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
-				}
-			}
-		}
 		private void SettingButton_Click(object sender, RoutedEventArgs e)
 		{
 			lock (panelFooter)
@@ -188,7 +152,6 @@ namespace TestEditor
 			settingBtn.RemoveHandler(PointerReleasedEvent,
 				(PointerEventHandler) AnimationButton_PointerReleased);
 
-			isPickerOpening = false;
 			isSettingTransitioning = false;
 
 			base.OnNavigatedFrom(e);
