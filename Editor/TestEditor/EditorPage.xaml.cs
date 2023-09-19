@@ -112,8 +112,10 @@ namespace TestEditor
 
 			var dpi = clientView.Dpi;
 			var size = clientView.AppWindow.ClientSize;
+			size.Height -= (int) editorCommands.ActualHeight;
+			size.Height -= (int) editorMenu.ActualHeight;
 
-			CanvasSwapChain surface = new(device, size.Width, size.Height, dpi);
+			CanvasSwapChain surface = new(device, (float) size.Width, (float) size.Height, dpi);
 			if (surface is null)
 			{
 				throw new CanvasCreationException(nameof(surface));
