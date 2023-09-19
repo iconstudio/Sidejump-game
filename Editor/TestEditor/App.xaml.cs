@@ -14,7 +14,6 @@ namespace TestEditor
 	{
 		private Window myWindow;
 		private WindowView myView;
-		private HWND MyHandle;
 		private SUBCLASSPROC msgHooker;
 
 		private const int minWidth = 600;
@@ -30,6 +29,7 @@ namespace TestEditor
 			try
 			{
 				myWindow = new MainWindow();
+				myView = new(myWindow);
 			}
 			catch (Exception e)
 			{
@@ -37,18 +37,16 @@ namespace TestEditor
 				return;
 			}
 
-			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(myWindow);
 			msgHooker = new(SizeHooker);
 
-			MyHandle = new(hwnd);
-			PInvoke.SetWindowSubclass(MyHandle, msgHooker, 0, 0);
+			PInvoke.SetWindowSubclass(myView, msgHooker, 0, 0);
 
-			var xstyle = PInvoke.GetWindowLongPtr(MyHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
+			var xstyle = PInvoke.GetWindowLongPtr(myView, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
 			xstyle |= (nint) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
 
-			PInvoke.SetWindowLongPtr(MyHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, xstyle);
+			PInvoke.SetWindowLongPtr(myView, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, xstyle);
 
-			myWindow.Activate();
+			myView.Activate();
 		}
 		private LRESULT SizeHooker(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
 		{
