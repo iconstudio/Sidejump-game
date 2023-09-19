@@ -20,6 +20,11 @@ namespace TestEditor
 				OnTransition(info.transitionCategory);
 			}
 		}
+		private void OnUnloaded(object sender, RoutedEventArgs _)
+		{
+			editorCanvas.RemoveFromVisualTree();
+			editorCanvas = null;
+		}
 		private void OnTransition(EditorTransitionCategory cat)
 		{
 			switch (cat)
@@ -54,8 +59,7 @@ namespace TestEditor
 			//var testmap = new Map();
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
-
-		private void editorCanvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
+		private void OnRender(CanvasControl sender, CanvasDrawEventArgs args)
 		{
 			args.DrawingSession.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
 			args.DrawingSession.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
