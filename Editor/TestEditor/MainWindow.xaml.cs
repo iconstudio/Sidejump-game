@@ -3,9 +3,11 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Composition.SystemBackdrops;
 
+using TestEditor.Utility;
+
 namespace TestEditor
 {
-	public sealed partial class MainWindow : Window, ISingleton<MainWindow>
+    public sealed partial class MainWindow : Window, ISingleton<MainWindow>
 	{
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 

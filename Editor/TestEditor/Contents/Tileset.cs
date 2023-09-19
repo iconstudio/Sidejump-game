@@ -1,4 +1,6 @@
-﻿namespace TestEditor.Contents
+﻿using TestEditor.Utility;
+
+namespace TestEditor.Contents
 {
     internal class Tileset : ICloneable
     {
