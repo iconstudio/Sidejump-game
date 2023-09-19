@@ -20,6 +20,7 @@
     <None Remove="EditorPage.xaml" />
     <None Remove="HomePage.xaml" />
     <None Remove="SettingPage.xaml" />
+    <None Remove="WinUI\ToolWindow.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,6 +76,11 @@
     <Using Include="Microsoft.UI.Xaml.Controls.Primitives" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="WinUI\ToolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="SettingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,9 +89,6 @@
     <Page Update="ButtonFade.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WinUI\" />
   </ItemGroup>
 
   <!-- 
