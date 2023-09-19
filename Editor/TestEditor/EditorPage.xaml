@@ -105,19 +105,26 @@
 				HorizontalAlignment="Right" VerticalAlignment="Top"
 				Grid.Row="1">
 
-				<AppBarButton Icon="Add" Label="Add"/>
+				<AppBarButton Icon="Add" Label="Add">
+					<AppBarButton.Flyout>
+						<MenuFlyout>
+
+						</MenuFlyout>
+					</AppBarButton.Flyout>
+				</AppBarButton>
+					
 				<AppBarButton Icon="Share" Label="Share"/>
 			</StackPanel>
 
 			<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Grid.Row="2"/>
 
-			<Frame Name="editorContents"
+			<ContentControl Name="editorContents"
 				Grid.Row="3">
 
 				<Grid>
 					
 				</Grid>
-			</Frame>
+			</ContentControl>
 		</Grid>
 		<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
 	</StackPanel>

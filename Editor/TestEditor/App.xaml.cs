@@ -14,7 +14,6 @@ namespace TestEditor
 	{
 		private Window myWindow;
 		private WindowView myView;
-		private SUBCLASSPROC msgHooker;
 
 		private const int minWidth = 600;
 		private const int minHeight = 400;
@@ -38,11 +37,6 @@ namespace TestEditor
 			}
 
 			myView.SubRoutine = SizeHooker;
-
-			var xstyle = PInvoke.GetWindowLongPtr(myView, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
-			xstyle |= (nint) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
-
-			PInvoke.SetWindowLongPtr(myView, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, xstyle);
 
 			myView.Activate();
 		}
