@@ -21,7 +21,7 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="2"/>
-				<RowDefinition Height="*" MinHeight="200"/>
+				<RowDefinition Height="Auto" MinHeight="200"/>
 			</Grid.RowDefinitions>
 
 			<MenuBar
@@ -126,6 +126,7 @@
 				Unloaded="OnCanvasUnloaded"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
+				Height="Auto"
 				Grid.Row="3">
 
 				<canvas:CanvasSwapChainPanel Name="editorCanvas"/>
