@@ -24,7 +24,7 @@
 				<RowDefinition Height="Auto" MinHeight="200"/>
 			</Grid.RowDefinitions>
 
-			<MenuBar
+			<MenuBar Name="editorMenu"
 				Grid.Row="0">
 
 				<MenuBarItem Title="File">
@@ -101,7 +101,8 @@
 				</MenuBarItem>
 			</MenuBar>
 
-			<StackPanel Orientation="Horizontal"
+			<StackPanel Name="editorCommands"
+				Orientation="Horizontal"
 				Background="Transparent"
 				HorizontalAlignment="Right" VerticalAlignment="Top"
 				Grid.Row="1">
