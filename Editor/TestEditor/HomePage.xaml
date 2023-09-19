@@ -157,26 +157,37 @@
 		<Frame Name="homeContents"
 			HorizontalAlignment="Left"
 			Grid.Column="1">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" MinWidth="20" MaxWidth="160"/>
-					<ColumnDefinition Width="4*" MinWidth="120"/>
-					<ColumnDefinition Width="1.2*" MinWidth="40"/>
-				</Grid.ColumnDefinitions>
 
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" MinHeight="100"/>
-					<RowDefinition Height="Auto" MinHeight="100"/>
-					<RowDefinition Height="Auto" MinHeight="30" MaxHeight="400"/>
-				</Grid.RowDefinitions>
+			<Frame.ContentTransitions>
+				<TransitionCollection>
+					<NavigationThemeTransition>
+						<SlideNavigationTransitionInfo/>
+					</NavigationThemeTransition>
+				</TransitionCollection>
+			</Frame.ContentTransitions>
 
-				<StackPanel
+			<Page Name="HomePageHome">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" MinWidth="20" MaxWidth="160"/>
+						<ColumnDefinition Width="4*" MinWidth="120"/>
+						<ColumnDefinition Width="1.2*" MinWidth="40"/>
+					</Grid.ColumnDefinitions>
+
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" MinHeight="100"/>
+						<RowDefinition Height="Auto" MinHeight="100"/>
+						<RowDefinition Height="Auto" MinHeight="30" MaxHeight="400"/>
+					</Grid.RowDefinitions>
+
+					<StackPanel
 					Grid.Column="1" Grid.Row="1">
-					<HyperlinkButton Content="Create a Project" Click="CreateButton_Click"/>
-					<HyperlinkButton Content="Open a Project" Click="OpenButton_Click"/>
-					<HyperlinkButton Content="Help" NavigateUri="https://github.com/iconstudio/Sidejump-game"/>
-				</StackPanel>
-			</Grid>
+						<HyperlinkButton Content="Create a Project" Click="CreateButton_Click"/>
+						<HyperlinkButton Content="Open a Project" Click="OpenButton_Click"/>
+						<HyperlinkButton Content="Help" NavigateUri="https://github.com/iconstudio/Sidejump-game"/>
+					</StackPanel>
+				</Grid>
+			</Page>
 		</Frame>
 
 		<TextBlock Name="appVersionText"
