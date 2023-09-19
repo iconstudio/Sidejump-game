@@ -11,21 +11,7 @@ namespace TestEditor
 			InitializeComponent();
 		}
 
-		protected override void OnNavigatedTo(NavigationEventArgs e)
-		{
-			base.OnNavigatedTo(e);
-
-			if (e.Parameter is EditorTransitionInfo info)
-			{
-				OnTransition(info.transitionCategory);
-			}
-		}
-		private void OnUnloaded(object sender, RoutedEventArgs _)
-		{
-			editorCanvas.RemoveFromVisualTree();
-			editorCanvas = null;
-		}
-		private void OnTransition(EditorTransitionCategory cat)
+		private void ProcessTransition(EditorTransitionCategory cat)
 		{
 			switch (cat)
 			{
@@ -59,10 +45,25 @@ namespace TestEditor
 			//var testmap = new Map();
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
+
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+
+			if (e.Parameter is EditorTransitionInfo info)
+			{
+				ProcessTransition(info.transitionCategory);
+			}
+		}
 		private void OnRender(CanvasControl sender, CanvasDrawEventArgs args)
 		{
 			args.DrawingSession.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
 			args.DrawingSession.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
+		}
+		private void OnUnloaded(object sender, RoutedEventArgs _)
+		{
+			editorCanvas.RemoveFromVisualTree();
+			editorCanvas = null;
 		}
 	}
 }
