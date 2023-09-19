@@ -36,7 +36,7 @@ namespace TestEditor
 				return;
 			}
 
-			myView.SubRoutine = SizeHooker;
+			myView.SubRoutine += SizeHooker;
 
 			myView.Activate();
 		}
