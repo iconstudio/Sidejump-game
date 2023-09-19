@@ -87,6 +87,14 @@ namespace TestEditor.WinUI
 			return Implement.GetHashCode();
 		}
 
+		public static implicit operator Window(WindowView view)
+		{
+			return view.Implement;
+		}
+		public static implicit operator HWND(WindowView view)
+		{
+			return view.NativeHandle;
+		}
 		[Pure]
 		public static bool operator ==(WindowView x, WindowView y)
 		{
