@@ -39,15 +39,15 @@ namespace TestEditor
 		{
 			return editorContents.ActualSize.ToSize();
 		}
-		private void UpdateSwapChain(Size size)
+		private void UpdateSwapChain(Size raw_size)
 		{
 			if (mySurface is not null)
 			{
 				float scaling = (float) clientView.Dpi / 96;
-				size.Width *= scaling;
-				size.Height *= scaling;
+				raw_size.Width *= scaling;
+				raw_size.Height *= scaling;
 
-				mySurface.ResizeBuffers(size);
+				mySurface.ResizeBuffers(raw_size);
 
 				Render();
 			}
@@ -104,7 +104,7 @@ namespace TestEditor
 			Window window = this.GetWindow();
 			clientView = new(window);
 
-			var device = CanvasDevice.GetSharedDevice();
+			CanvasDevice device = CanvasDevice.GetSharedDevice();
 			if (device is null)
 			{
 				throw new DriveNotFoundException(nameof(device));
@@ -113,10 +113,10 @@ namespace TestEditor
 			var dpi = clientView.Dpi;
 			var size = clientView.AppWindow.ClientSize;
 
-			var surface = new CanvasSwapChain(device, size.Width, size.Height, dpi);
+			CanvasSwapChain surface = new(device, size.Width, size.Height, dpi);
 			if (surface is null)
 			{
-				throw new NullReferenceException(nameof(surface));
+				throw new CanvasCreationException(nameof(surface));
 			}
 
 			editorCanvas.SwapChain = mySurface = surface;
@@ -142,5 +142,12 @@ namespace TestEditor
 			editorCanvas.RemoveFromVisualTree();
 			editorCanvas = null;
 		}
+	}
+
+	public class CanvasCreationException : Exception
+	{
+		public CanvasCreationException(string message)
+			: base(message)
+		{ }
 	}
 }
