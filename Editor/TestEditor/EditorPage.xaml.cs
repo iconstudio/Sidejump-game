@@ -1,3 +1,5 @@
+using Microsoft.Graphics.Canvas.UI.Xaml;
+using Microsoft.UI;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace TestEditor
@@ -51,6 +53,12 @@ namespace TestEditor
 			}
 			//var testmap = new Map();
 			//using (MapHelper.SaveMap(testmap, mapfile))
+		}
+
+		private void editorCanvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
+		{
+			args.DrawingSession.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
+			args.DrawingSession.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 		}
 	}
 }
