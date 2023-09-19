@@ -113,12 +113,15 @@
 		<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"/>
 
 		<Frame Name="editorContents"
-			Loaded="OnCanvasLoaded"
-			SizeChanged="OnCanvasSizeChanged"
-			Unloaded="OnCanvasUnloaded"
-			HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			HorizontalAlignment="Stretch" VerticalAlignment="Center"
+			MinHeight="{x:Bind CanvasHeight}">
 
-			<canvas:CanvasSwapChainPanel Name="editorCanvas"/>
+			<canvas:CanvasControl Name="editorCanvas"
+				x:Load="False"
+				Loaded="OnCanvasLoaded"
+				Unloaded="OnCanvasUnloaded"
+				SizeChanged="OnCanvasSizeChanged"
+				Draw="OnDraw"/>
 		</Frame>
 	</StackPanel>
 	<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->

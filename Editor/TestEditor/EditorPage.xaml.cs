@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.UI;
 
 using TestEditor.WinUI;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 
 namespace TestEditor
 {
@@ -16,17 +17,21 @@ namespace TestEditor
 	{
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 
-		private CanvasSwapChain mySurface;
 		private WindowView clientView;
 
 		public float CanvasHeight
 		{
 			get
 			{
-				var bound = ActualSize;
-				var pos = editorContents.ActualOffset;
+				var by = (double) (MainWindow.GetInstance()?.AppWindow.ClientSize.Height ?? 500.0) - 32;
 
-				return bound.Y - pos.Y;
+				var h1 = editorCommands?.Height ?? 48;
+				by -= double.IsNormal(h1) ? h1 : 48;
+
+				var h2 = editorMenu?.Height ?? 32;
+				by -= double.IsNormal(h2) ? h2 : 32;
+
+				return (float) by;
 			}
 		}
 
@@ -35,32 +40,14 @@ namespace TestEditor
 			InitializeComponent();
 		}
 
-		private void Render()
+		private void Render(CanvasDrawingSession context)
 		{
-			using (var session = mySurface.CreateDrawingSession(Colors.Aquamarine))
+			using (context)
 			{
-				session.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
-				session.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
-			}
+				context.Clear(Colors.Blue);
 
-			mySurface.Present(0);
-		}
-		private void UpdateSwapChain(Size actual_size)
-		{
-			if (mySurface is not null)
-			{
-				mySurface.ResizeBuffers(actual_size);
-
-				Render();
-			}
-		}
-		private void UpdateSwapChain(float hr, float vt)
-		{
-			if (mySurface is not null)
-			{
-				mySurface.ResizeBuffers(hr, vt);
-
-				Render();
+				context.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
+				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
 		}
 		private void ProcessTransition(EditorTransitionCategory cat)
@@ -108,53 +95,22 @@ namespace TestEditor
 			}
 
 			// load the canvas
-			//FindName(nameof(editorContents));
+			FindName(nameof(editorCanvas));
 		}
 		private void OnCanvasLoaded(object sender, RoutedEventArgs _)
 		{
 			Window window = this.GetWindow();
 			clientView = new(window);
-
-			CanvasDevice device = CanvasDevice.GetSharedDevice();
-			if (device is null)
-			{
-				throw new DriveNotFoundException(nameof(device));
-			}
-
-			var dpi = clientView.Dpi;
-			var size = clientView.AppWindow.ClientSize;
-			size.Height -= (int) editorCommands.ActualHeight;
-			size.Height -= (int) editorMenu.ActualHeight;
-			CanvasSwapChain surface = new(device, (float) size.Width, (float) size.Height, dpi);
-
-			//CanvasSwapChain surface = new(device, bound.X, bound.Y, dpi);
-			if (surface is null)
-			{
-				throw new CanvasCreationException(nameof(surface));
-			}
-
-			editorCanvas.SwapChain = mySurface = surface;
-
-			Render();
 		}
 		private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
 		{
-			if (mySurface is null)
-			{
-				OnCanvasLoaded(sender, null);
-			}
-			else
-			{
-				UpdateSwapChain(e.NewSize);
-
-				Render();
-			}
+		}
+		private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
+		{
+			Render(args.DrawingSession);
 		}
 		private void OnCanvasUnloaded(object sender, RoutedEventArgs _)
 		{
-			mySurface?.Dispose();
-			mySurface = null;
-
 			editorCanvas.RemoveFromVisualTree();
 			editorCanvas = null;
 		}
