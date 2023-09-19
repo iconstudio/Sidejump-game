@@ -26,12 +26,15 @@ namespace TestEditor
 				var by = (double) (MainWindow.GetInstance()?.AppWindow.ClientSize.Height ?? 500.0) - 32;
 
 				var h1 = editorCommands?.Height ?? 48;
-				by -= double.IsNormal(h1) ? h1 : 48;
+				by -= double.IsNormal(h1) ? h1 : 48; // command
 
 				var h2 = editorMenu?.Height ?? 32;
-				by -= double.IsNormal(h2) ? h2 : 32;
+				by -= double.IsNormal(h2) ? h2 : 32; // menubar
 
-				return (float) by;
+				by -= 32; // titlebar
+				by -= 16; // padding
+
+				return (float) by * 0.5f;
 			}
 		}
 
@@ -104,6 +107,9 @@ namespace TestEditor
 		}
 		private void OnCanvasSizeChanged(object sender, SizeChangedEventArgs e)
 		{
+			//editorContents.Width = e.NewSize.Width;
+			//editorContents.Height = e.NewSize.Height;
+			//editorContents.Height = CanvasHeight;
 		}
 		private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
 		{
