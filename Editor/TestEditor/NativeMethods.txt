@@ -1,7 +1,12 @@
 GetDpiForWindow
 SetWindowLong
+SetWindowLongPtr
+GetWindowLong
+GetWindowLongPtr
 SetWindowSubclass
 CallWindowProc
+DefSubclassProc
 MINMAXINFO
 WM_GETMINMAXINFO
-DefSubclassProc
+WINDOW_LONG_PTR_INDEX
+WINDOW_EX_STYLE
