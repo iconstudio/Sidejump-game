@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.Win32;
 using Windows.Win32.Foundation;
+using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace TestEditor.WinUI
@@ -98,7 +99,7 @@ namespace TestEditor.WinUI
 			}
 		}
 
-		private WindowSubRoutine mySubRoutine;
+		private List<WindowSubRoutine> mySubRoutines;
 		private Style myStyles;
 		private Option myOptions;
 
@@ -135,13 +136,34 @@ namespace TestEditor.WinUI
 			add => Implement.VisibilityChanged += value;
 			remove => Implement.VisibilityChanged -= value;
 		}
-		public WindowSubRoutine SubRoutine
+		public event WindowSubRoutine SubRoutine
 		{
-			readonly get => mySubRoutine;
-			set
+			add
 			{
-				mySubRoutine = new(value);
-				PInvoke.SetWindowSubclass(NativeHandle, mySubRoutine, 0, 0);
+				if (value is not null)
+				{
+					lock (mySubRoutines)
+					{
+						SUBCLASSPROC routine = new(value);
+
+						PInvoke.SetWindowSubclass(NativeHandle, routine, (nuint) mySubRoutines.Count, 0);
+						mySubRoutines.Add(routine);
+					}
+				}
+			}
+			remove
+			{
+				lock (mySubRoutines)
+				{
+					var id = mySubRoutines.FindIndex(0, mySubRoutines.Count
+					, (rhs) => { return rhs == value; });
+					if (-1 != id)
+					{
+						PInvoke.RemoveWindowSubclass(NativeHandle, mySubRoutines[id], (nuint) id);
+
+						mySubRoutines.RemoveAt(id);
+					}
+				}
 			}
 		}
 		public Style Styles
@@ -169,7 +191,7 @@ namespace TestEditor.WinUI
 
 			IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Implement);
 			NativeHandle = new(hwnd);
-			mySubRoutine = null;
+			mySubRoutines = new();
 
 			myStyles = new(PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE));
 			myOptions = new(PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE));

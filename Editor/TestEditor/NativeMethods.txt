@@ -4,6 +4,7 @@ SetWindowLongPtr
 GetWindowLong
 GetWindowLongPtr
 SetWindowSubclass
+RemoveWindowSubclass
 CallWindowProc
 DefSubclassProc
 MINMAXINFO
