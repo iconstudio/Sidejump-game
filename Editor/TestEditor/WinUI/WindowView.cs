@@ -6,27 +6,33 @@ using Microsoft.UI.Xaml.Media;
 
 using Windows.Foundation;
 using Windows.UI.Core;
+using Windows.Win32;
 using Windows.Win32.Foundation;
-
-using WindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
-using WindowSizeChangedEventArgs = Microsoft.UI.Xaml.WindowSizeChangedEventArgs;
+using Windows.Win32.UI;
+using Windows.Win32.UI.Shell;
 
 namespace TestEditor.WinUI
 {
-	internal readonly struct WindowView : IEquatable<WindowView>
+	using WindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
+	using WindowSizeChangedEventArgs = Microsoft.UI.Xaml.WindowSizeChangedEventArgs;
+	using WindowSubRoutine = Windows.Win32.UI.Shell.SUBCLASSPROC;
+
+	internal struct WindowView : IEquatable<WindowView>
 	{
-		public Window Implement { get; init; }
-		public HWND NativeHandle { get; init; }
-		public AppWindow AppWindow => Implement.AppWindow;
-		public CoreWindow CoreWindow => Implement.CoreWindow;
+		private WindowSubRoutine mySubRoutine;
+
+		public readonly Window Implement { get; init; }
+		public readonly HWND NativeHandle { get; init; }
+		public readonly AppWindow AppWindow => Implement.AppWindow;
+		public readonly CoreWindow CoreWindow => Implement.CoreWindow;
 		public static Window Current => Window.Current;
-		public UIElement Content { get => Implement.Content; set => Implement.Content = value; }
-		public DispatcherQueue DispatcherQueue => Implement.DispatcherQueue;
-		public string Title { get => Implement.Title; set => Implement.Title = value; }
-		public Rect Bounds => Implement.Bounds;
-		public bool ExtendsContentIntoTitleBar { get => Implement.ExtendsContentIntoTitleBar; set => Implement.ExtendsContentIntoTitleBar = value; }
-		public SystemBackdrop SystemBackdrop { get => Implement.SystemBackdrop; set => Implement.SystemBackdrop = value; }
-		public bool Visible => Implement.Visible;
+		public readonly UIElement Content { get => Implement.Content; set => Implement.Content = value; }
+		public readonly DispatcherQueue DispatcherQueue => Implement.DispatcherQueue;
+		public readonly string Title { get => Implement.Title; set => Implement.Title = value; }
+		public readonly Rect Bounds => Implement.Bounds;
+		public readonly bool ExtendsContentIntoTitleBar { get => Implement.ExtendsContentIntoTitleBar; set => Implement.ExtendsContentIntoTitleBar = value; }
+		public readonly SystemBackdrop SystemBackdrop { get => Implement.SystemBackdrop; set => Implement.SystemBackdrop = value; }
+		public readonly bool Visible => Implement.Visible;
 
 		public event TypedEventHandler<object, WindowActivatedEventArgs> Activated
 		{
@@ -48,6 +54,15 @@ namespace TestEditor.WinUI
 			add => Implement.VisibilityChanged += value;
 			remove => Implement.VisibilityChanged -= value;
 		}
+		public WindowSubRoutine SubRoutine
+		{
+			readonly get => mySubRoutine;
+			set
+			{
+				mySubRoutine = new(value);
+                PInvoke.SetWindowSubclass(NativeHandle, mySubRoutine, 0, 0);
+			}
+		}
 
 		public WindowView(Window target)
 		{
@@ -55,6 +70,7 @@ namespace TestEditor.WinUI
 
 			IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Implement);
 			NativeHandle = new(hwnd);
+			mySubRoutine = null;
 		}
 
 		public void Activate() => Implement?.Activate();

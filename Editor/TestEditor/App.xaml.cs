@@ -37,9 +37,7 @@ namespace TestEditor
 				return;
 			}
 
-			msgHooker = new(SizeHooker);
-
-			PInvoke.SetWindowSubclass(myView, msgHooker, 0, 0);
+			myView.SubRoutine = SizeHooker;
 
 			var xstyle = PInvoke.GetWindowLongPtr(myView, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
 			xstyle |= (nint) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
