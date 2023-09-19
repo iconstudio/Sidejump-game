@@ -115,13 +115,14 @@
 
 		<Grid Name="editorContents"
 			HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-			MinHeight="226" Padding="8">
+			MinHeight="226" Padding="5">
 
 			<canvas:CanvasControl Name="editorCanvas"
 				x:Load="False"
 				Loaded="OnCanvasLoaded"
 				Unloaded="OnCanvasUnloaded"
-				Draw="OnDraw"/>
+				Draw="OnDraw">
+			</canvas:CanvasControl>
 		</Grid>
 	</StackPanel>
 	<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
