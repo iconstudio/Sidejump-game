@@ -9,8 +9,8 @@
 	xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
 	mc:Ignorable="d">
 
-	<StackPanel>
-		<Grid>
+	<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 			<Grid.ChildrenTransitions>
 				<TransitionCollection>
 					<RepositionThemeTransition/>
@@ -119,18 +119,16 @@
 
 			<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Grid.Row="2"/>
 
-			<Frame Name="editorContents"
+			<Grid Name="editorContents"
 				x:Load="False"
 				Loaded="OnCanvasLoaded"
 				SizeChanged="OnCanvasSizeChanged"
 				Unloaded="OnCanvasUnloaded"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch"
-				Height="Auto"
+				HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 				Grid.Row="3">
 
 				<canvas:CanvasSwapChainPanel Name="editorCanvas"/>
-			</Frame>
+			</Grid>
 		</Grid>
 		<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
 	</StackPanel>
