@@ -7,7 +7,7 @@ using Windows.Storage;
 using Windows.UI;
 
 using TestEditor.Contents;
-using TestEditor.Utilities;
+using TestEditor.Utility;
 
 namespace TestEditor
 {

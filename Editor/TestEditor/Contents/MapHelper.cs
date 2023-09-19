@@ -4,7 +4,7 @@ using System.Text.Json;
 
 using Windows.Storage;
 
-using TestEditor.Utilities;
+using TestEditor.Utility;
 
 namespace TestEditor.Contents
 {

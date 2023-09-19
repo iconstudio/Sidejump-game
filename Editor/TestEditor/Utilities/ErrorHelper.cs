@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TestEditor.Utilities
+namespace TestEditor.Utility
 {
     public static class ErrorHelper
     {

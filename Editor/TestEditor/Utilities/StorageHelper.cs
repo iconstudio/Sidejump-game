@@ -1,7 +1,7 @@
 ﻿using Windows.Foundation;
 using Windows.Storage;
 
-namespace TestEditor.Utilities
+namespace TestEditor.Utility
 {
     internal static class StorageHelper
     {
