@@ -1,15 +1,10 @@
 ﻿namespace TestEditor.Utility
 {
-	internal interface ISingleton<T> where T : class
+	public interface ISingleton<T> where T : class, new()
 	{
 		private static T _Instance;
 
-		public static T Instance
-		{
-			get => _Instance;
-
-			internal set => SetInstance(value);
-		}
+		public static T SingleInstance => _Instance;
 
 		public static void SetInstance(T instance)
 		{
@@ -32,9 +27,9 @@
 		}
 		public static T GetInstance()
 		{
-			lock (Instance)
+			lock (SingleInstance)
 			{
-				return Instance;
+				return SingleInstance;
 			}
 		}
 	}

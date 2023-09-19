@@ -6,7 +6,7 @@ using TestEditor.Contents;
 
 namespace TestEditor.Utility
 {
-	internal static class FilePickHelper
+	public static class FilePickHelper
 	{
 		public static IAsyncOperation<StorageFile> OpenLoadPicker(Window window)
 		{
