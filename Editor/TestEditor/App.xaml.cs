@@ -1,16 +1,21 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.WindowsAndMessaging;
 
+using TestEditor.WinUI;
+
 namespace TestEditor
 {
 	public partial class App : Application
 	{
 		private Window myWindow;
-		private SUBCLASSPROC procHooker;
+		private WindowView myView;
+		private HWND MyHandle;
+		private SUBCLASSPROC msgHooker;
 
 		private const int minWidth = 600;
 		private const int minHeight = 400;
@@ -22,11 +27,26 @@ namespace TestEditor
 
 		protected override void OnLaunched(LaunchActivatedEventArgs args)
 		{
-			myWindow = new MainWindow();
-			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(myWindow);
-			procHooker = new(SizeHooker);
+			try
+			{
+				myWindow = new MainWindow();
+			}
+			catch (Exception e)
+			{
+				Debug.Print(e.ToString());
+				return;
+			}
 
-			PInvoke.SetWindowSubclass((HWND) hwnd, procHooker, 0, 0);
+			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(myWindow);
+			msgHooker = new(SizeHooker);
+
+			MyHandle = new(hwnd);
+			PInvoke.SetWindowSubclass(MyHandle, msgHooker, 0, 0);
+
+			var xstyle = PInvoke.GetWindowLongPtr(MyHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
+			xstyle |= (nint) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
+
+			PInvoke.SetWindowLongPtr(MyHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, xstyle);
 
 			myWindow.Activate();
 		}
