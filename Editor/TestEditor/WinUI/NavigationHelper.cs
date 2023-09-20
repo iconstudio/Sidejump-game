@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Media.Animation;
 
-namespace TestEditor
+namespace TestEditor.WinUI
 {
 	internal static class NavigationHelper
 	{

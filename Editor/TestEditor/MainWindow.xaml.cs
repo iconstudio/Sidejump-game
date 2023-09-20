@@ -4,6 +4,7 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Composition.SystemBackdrops;
 
 using TestEditor.Utility;
+using TestEditor.WinUI;
 
 namespace TestEditor
 {
