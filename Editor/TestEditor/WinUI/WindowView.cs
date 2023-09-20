@@ -16,92 +16,14 @@ namespace TestEditor.WinUI
 	using WindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
 	using WindowSizeChangedEventArgs = Microsoft.UI.Xaml.WindowSizeChangedEventArgs;
 	using WindowSubRoutine = Windows.Win32.UI.Shell.SUBCLASSPROC;
+	using WindowStyle = WINDOW_STYLE;
+	using WindowOption = WINDOW_EX_STYLE;
 
 	internal struct WindowView : IEquatable<WindowView>
 	{
-		internal class Style : IEquatable<Style>, IComparable<Style>
-		{
-			internal nint value;
-
-			public Style(nint style = 0)
-			{
-				value = style;
-			}
-
-			[Pure]
-			public override bool Equals(object other)
-			{
-				if (other is null)
-					return false;
-
-				return other.Equals(this);
-			}
-			[Pure]
-			public bool Equals(Style other)
-			{
-				return value == other.value;
-			}
-			[Pure]
-			public int CompareTo(Style other)
-			{
-				return value.CompareTo(other.value);
-			}
-			[Pure]
-			public override int GetHashCode()
-			{
-				return value.GetHashCode();
-			}
-
-			public static explicit operator nint(Style style)
-			{
-				return style.value;
-			}
-		}
-		internal class Option : IEquatable<Option>, IComparable<Option>
-		{
-			internal nint value;
-
-			public Option(WINDOW_EX_STYLE options)
-				: this((nint) options)
-			{ }
-			public Option(nint options = 0)
-			{
-				value = options;
-			}
-
-			[Pure]
-			public override bool Equals(object other)
-			{
-				if (other is null)
-					return false;
-
-				return other.Equals(this);
-			}
-			[Pure]
-			public bool Equals(Option other)
-			{
-				return value == other.value;
-			}
-			[Pure]
-			public int CompareTo(Option other)
-			{
-				return value.CompareTo(other.value);
-			}
-			[Pure]
-			public override int GetHashCode()
-			{
-				return value.GetHashCode();
-			}
-
-			public static explicit operator nint(Option option)
-			{
-				return option.value;
-			}
-		}
-
 		private List<WindowSubRoutine> mySubRoutines;
-		private Style myStyles;
-		private Option myOptions;
+		private WindowStyle myStyles;
+		private WindowOption myOptions;
 
 		public readonly Window Implement { get; init; }
 		public readonly HWND NativeHandle { get; init; }
@@ -167,22 +89,24 @@ namespace TestEditor.WinUI
 				}
 			}
 		}
-		public Style Styles
+		public WindowStyle Styles
 		{
 			readonly get => myStyles;
 			set
 			{
 				myStyles = value;
-				PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE, (nint) value);
+
+				PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE, (nint) myStyles);
 			}
 		}
-		public Option Options
+		public WindowOption WindowOptions
 		{
 			readonly get => myOptions;
 			set
 			{
 				myOptions = value;
-				PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, (nint) value);
+
+				PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, (nint) myOptions);
 			}
 		}
 
@@ -194,32 +118,28 @@ namespace TestEditor.WinUI
 			NativeHandle = new(hwnd);
 			mySubRoutines = new();
 
-			myStyles = new(PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE));
-			myOptions = new(PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE));
+			myStyles = (WindowStyle) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
+			myOptions = (WindowOption) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
 		}
 
 		public readonly void Activate() => Implement?.Activate();
 		public readonly void Close() => Implement?.Activate();
 		public readonly void SetTitleBar(UIElement titleBar) => Implement?.SetTitleBar(titleBar);
-		public readonly void AddStyle(nint style)
+		public void AddStyle(WindowStyle style)
 		{
-			myStyles.value |= style;
-			PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE, myStyles.value);
+			myStyles = myStyles | style;
 		}
-		public readonly void RemoveStyle(nint style)
+		public void RemoveStyle(WindowStyle style)
 		{
-			myStyles.value &= ~style;
-			PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE, myStyles.value);
+			myStyles = myStyles & (~style);
 		}
-		public readonly void AddOption(WINDOW_EX_STYLE option)
+		public void AddWindowOption(WindowOption option)
 		{
-			myOptions.value |= (nint) option;
-			PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, myOptions.value);
+			WindowOptions = myOptions | option;
 		}
-		public readonly void RemoveOption(WINDOW_EX_STYLE option)
+		public void RemoveWindowOption(WindowOption option)
 		{
-			myOptions.value &= ~(nint) option;
-			PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, myOptions.value);
+			WindowOptions = myOptions & (~option);
 		}
 
 		public static I As<I>()
