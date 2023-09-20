@@ -67,7 +67,7 @@ namespace TestEditor.WinUI
 				{
 					lock (mySubRoutines)
 					{
-						SUBCLASSPROC routine = new(value);
+						WindowSubRoutine routine = new(value);
 
 						PInvoke.SetWindowSubclass(NativeHandle, routine, (nuint) mySubRoutines.Count, 0);
 						mySubRoutines.Add(routine);
@@ -99,7 +99,7 @@ namespace TestEditor.WinUI
 				PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE, (nint) myStyles);
 			}
 		}
-		public WindowOption WindowOptions
+		public WindowOption Options
 		{
 			readonly get => myOptions;
 			set
@@ -125,21 +125,21 @@ namespace TestEditor.WinUI
 		public readonly void Activate() => Implement?.Activate();
 		public readonly void Close() => Implement?.Activate();
 		public readonly void SetTitleBar(UIElement titleBar) => Implement?.SetTitleBar(titleBar);
-		public void AddStyle(WindowStyle style)
+		public void AttachStyle(WindowStyle style)
 		{
-			myStyles = myStyles | style;
+			Styles |= style;
 		}
-		public void RemoveStyle(WindowStyle style)
+		public void DetachStyle(WindowStyle style)
 		{
-			myStyles = myStyles & (~style);
+			Styles &= ~style;
 		}
-		public void AddWindowOption(WindowOption option)
+		public void SetWindowOption(WindowOption option)
 		{
-			WindowOptions = myOptions | option;
+			Options |= option;
 		}
-		public void RemoveWindowOption(WindowOption option)
+		public void UnsetWindowOption(WindowOption option)
 		{
-			WindowOptions = myOptions & (~option);
+			Options &= ~option;
 		}
 
 		public static I As<I>()
