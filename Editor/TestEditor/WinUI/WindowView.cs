@@ -117,6 +117,7 @@ namespace TestEditor.WinUI
 			IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Implement);
 			NativeHandle = new(hwnd);
 			mySubRoutines = new();
+			mySubRoutines.Capacity = 0;
 
 			myStyles = (WindowStyle) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
 			myOptions = (WindowOption) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
