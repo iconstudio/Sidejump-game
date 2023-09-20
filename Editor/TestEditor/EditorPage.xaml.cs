@@ -1,15 +1,10 @@
-using System.Diagnostics.Contracts;
-using System.Numerics;
-
 using Microsoft.Graphics.Canvas;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Navigation;
 
-using Windows.Foundation;
 using Windows.UI;
 
 using TestEditor.WinUI;
-using Microsoft.Graphics.Canvas.UI.Xaml;
 
 namespace TestEditor
 {

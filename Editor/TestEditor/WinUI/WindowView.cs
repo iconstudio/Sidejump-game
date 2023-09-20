@@ -8,7 +8,6 @@ using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.Win32;
 using Windows.Win32.Foundation;
-using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace TestEditor.WinUI
@@ -116,8 +115,10 @@ namespace TestEditor.WinUI
 
 			IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Implement);
 			NativeHandle = new(hwnd);
-			mySubRoutines = new();
-			mySubRoutines.Capacity = 0;
+			mySubRoutines = new()
+			{
+				Capacity = 0
+			};
 
 			myStyles = (WindowStyle) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
 			myOptions = (WindowOption) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
