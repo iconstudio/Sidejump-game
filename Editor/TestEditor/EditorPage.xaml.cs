@@ -1,4 +1,5 @@
 using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Navigation;
 
@@ -65,6 +66,11 @@ namespace TestEditor
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
 
+		private void OnLoaded(object sender, RoutedEventArgs e)
+		{
+			Window window = this.GetWindow();
+			clientView = new(window);
+		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
@@ -77,11 +83,8 @@ namespace TestEditor
 			// load the canvas
 			FindName(nameof(editorCanvas));
 		}
-		private void OnCanvasLoaded(object sender, RoutedEventArgs _)
-		{
-			Window window = this.GetWindow();
-			clientView = new(window);
-		}
+		private void OnCanvasLoaded(object sender, RoutedEventArgs e)
+		{}
 		private void OnContentsSizeChanged(object sender, SizeChangedEventArgs e)
 		{
 			if (sender is StackPanel panel)
