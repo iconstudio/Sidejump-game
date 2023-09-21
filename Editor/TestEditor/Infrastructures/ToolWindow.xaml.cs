@@ -1,4 +1,5 @@
 using Microsoft.UI.Composition.SystemBackdrops;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Media;
 
 using Windows.Win32.UI.WindowsAndMessaging;
@@ -7,8 +8,8 @@ using TestEditor.WinUI;
 
 namespace TestEditor
 {
-	using WindowStyle = WINDOW_STYLE;
 	using WindowOption = WINDOW_EX_STYLE;
+	using WindowStyle = WINDOW_STYLE;
 
 	public sealed partial class ToolWindow : Window
 	{
@@ -32,6 +33,15 @@ namespace TestEditor
 			myView = new(this);
 			myView.Styles |= defaultStyle;
 			myView.Options |= defaultOption;
+
+			var presenter = OverlappedPresenter.Create();
+			presenter.SetBorderAndTitleBar(true, true);
+			presenter.IsAlwaysOnTop = false;
+			presenter.IsResizable = false;
+			presenter.IsMaximizable = false;
+			presenter.IsMinimizable = false;
+
+			AppWindow.SetPresenter(presenter);
 		}
 	}
 }

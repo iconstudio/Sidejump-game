@@ -4,12 +4,8 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml.Navigation;
 
 using Windows.UI;
-using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
-using Microsoft.UI.Windowing;
-using Windows.ApplicationModel.Preview.Notes;
-using Windows.Graphics;
 
 namespace TestEditor
 {
@@ -20,8 +16,6 @@ namespace TestEditor
 
 		private WindowView clientView;
 
-		private static readonly SizeInt32 defaultToolSize = new(200, 300);
-		private SizeInt32 toolSize;
 		private ToolWindow paletteWindow, layerWindow;
 
 		public EditorPage()
@@ -79,25 +73,9 @@ namespace TestEditor
 			Window window = this.GetWindow();
 			clientView = new(window);
 
-			var dpi = clientView.Dpi;
-			var scale = (float) dpi / 96;
-			toolSize = defaultToolSize;
-			toolSize.Width = (int) (Width * scale);
-			toolSize.Height = (int) (Height * scale);
-
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
 			if (paletteWindow is not null)
 			{
-				var presenter = OverlappedPresenter.Create();
-				presenter.SetBorderAndTitleBar(true, true);
-				presenter.IsAlwaysOnTop = false;
-				presenter.IsResizable = false;
-				presenter.IsMaximizable = false;
-				presenter.IsMinimizable = false;
-
-				paletteWindow.AppWindow.SetPresenter(presenter);
-				paletteWindow.AppWindow.Resize(toolSize);
-
 				paletteWindow.Activate();
 			}
 		}
