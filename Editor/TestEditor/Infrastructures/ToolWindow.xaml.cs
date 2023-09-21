@@ -12,6 +12,7 @@ namespace TestEditor
 
 	public sealed partial class ToolWindow : Window
 	{
+		private const WindowStyle defaultStyle = WindowStyle.WS_POPUP;
 		private const WindowOption defaultOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED;
 
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
@@ -28,10 +29,9 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
-			myView = new(this)
-			{
-				Options = defaultOption
-			};
+			myView = new(this);
+			myView.Styles |= defaultStyle;
+			myView.Options |= defaultOption;
 		}
 	}
 }
