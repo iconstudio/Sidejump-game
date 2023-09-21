@@ -1,12 +1,22 @@
 using Microsoft.UI.Composition.SystemBackdrops;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Media;
+
+using Windows.Win32.UI.WindowsAndMessaging;
+
+using TestEditor.WinUI;
 
 namespace TestEditor
 {
+	using WindowStyle = WINDOW_STYLE;
+	using WindowOption = WINDOW_EX_STYLE;
+
 	public sealed partial class ToolWindow : Window
 	{
+		private const WindowOption defaultOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED;
+
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
+
+		private WindowView myView;
 
 		public ToolWindow()
 		{
@@ -17,6 +27,11 @@ namespace TestEditor
 				acrylicBackdrop = new();
 				SystemBackdrop = acrylicBackdrop;
 			}
+
+			myView = new(this)
+			{
+				Options = defaultOption
+			};
 		}
 	}
 }
