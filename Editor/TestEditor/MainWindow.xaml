@@ -15,7 +15,7 @@
 	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 		  Background="Transparent">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="32"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*" MinHeight="320"/>
 		</Grid.RowDefinitions>
 
@@ -23,17 +23,10 @@
 			<BrushTransition Duration="00:00:02"/>
 		</Grid.BackgroundTransition>
 
-		<Frame Name="appTitleBar"
-			  Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"
-			  Height="32"
-			  Grid.Row="0">
-
-			<TextBlock Name="appTitle"
-					   Text="Map Editor" Style="{ThemeResource BodyTextBlockStyle}"
-					   TextAlignment="Center"
-					   VerticalAlignment="Center"
-					   Margin="6,0,0,0"/>
-		</Frame>
+		<local:EditorTitleBar x:Name="appTitleBar"
+							  Text="Map Editor"
+							  HorizontalTextAlignment="Center">
+		</local:EditorTitleBar>
 
 		<Frame Name="rootFrame" Opacity="0.0"
 			   Grid.Row="1">
