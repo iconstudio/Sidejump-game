@@ -14,7 +14,8 @@ namespace TestEditor
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 		private Color flushColour = Transparent;
 
-		private WindowView clientView;
+		private Window paletteWindow, layerWindow;
+		private WindowView clientView, paletteView, layerView;
 
 		public EditorPage()
 		{
@@ -70,6 +71,20 @@ namespace TestEditor
 		{
 			Window window = this.GetWindow();
 			clientView = new(window);
+
+			var homepage = new HomePage
+			{
+				RequestedTheme = RequestedTheme
+			};
+
+			paletteWindow = new()
+			{
+				Content = homepage
+			};
+			paletteView = new(paletteWindow);
+
+			paletteWindow?.Track();
+			paletteWindow?.Activate();
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
