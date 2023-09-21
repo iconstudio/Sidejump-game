@@ -9,7 +9,22 @@
 	mc:Ignorable="d">
 
 	<Frame Name="toolContents"
-		Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}">
+		Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}"
+		HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+		<Frame.Transitions>
+			<TransitionCollection>
+				<NavigationThemeTransition>
+					<EntranceNavigationTransitionInfo/>
+				</NavigationThemeTransition>
+			</TransitionCollection>
+		</Frame.Transitions>
 		
+		<Frame.ContentTransitions>
+			<TransitionCollection>
+				<ContentThemeTransition/>
+				<NavigationThemeTransition/>
+			</TransitionCollection>
+		</Frame.ContentTransitions>
 	</Frame>
 </Window>
