@@ -8,23 +8,34 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
-	<Frame Name="toolContents"
-		Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}"
-		HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-		<Frame.Transitions>
-			<TransitionCollection>
-				<NavigationThemeTransition>
-					<EntranceNavigationTransitionInfo/>
-				</NavigationThemeTransition>
-			</TransitionCollection>
-		</Frame.Transitions>
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*" MinHeight="100"/>
+		</Grid.RowDefinitions>
 		
-		<Frame.ContentTransitions>
-			<TransitionCollection>
-				<ContentThemeTransition/>
-				<NavigationThemeTransition/>
-			</TransitionCollection>
-		</Frame.ContentTransitions>
-	</Frame>
+		<Frame Name="toolContents"
+			Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}"
+			HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+			Grid.Row="1">
+
+			<Frame.Transitions>
+				<TransitionCollection>
+					<NavigationThemeTransition>
+						<EntranceNavigationTransitionInfo/>
+					</NavigationThemeTransition>
+				</TransitionCollection>
+			</Frame.Transitions>
+
+			<Frame.ContentTransitions>
+				<TransitionCollection>
+					<ContentThemeTransition/>
+					<NavigationThemeTransition/>
+				</TransitionCollection>
+			</Frame.ContentTransitions>
+		</Frame>
+
+		<local:EditorTitleBar x:Name="toolTitleBar" Grid.Row="0">
+		</local:EditorTitleBar>
+	</Grid>
 </Window>

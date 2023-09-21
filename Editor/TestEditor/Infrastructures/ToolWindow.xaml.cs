@@ -30,10 +30,6 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
-			myView = new(this);
-			myView.Styles |= defaultStyle;
-			myView.Options |= defaultOption;
-
 			var presenter = OverlappedPresenter.Create();
 			presenter.SetBorderAndTitleBar(true, true);
 			presenter.IsAlwaysOnTop = false;
@@ -42,6 +38,20 @@ namespace TestEditor
 			presenter.IsMinimizable = false;
 
 			AppWindow.SetPresenter(presenter);
+
+			ExtendsContentIntoTitleBar = true;
+			if (AppWindowTitleBar.IsCustomizationSupported())
+			{
+				SetTitleBar(toolTitleBar);
+			}
+			else
+			{
+				toolTitleBar.Visibility = Visibility.Collapsed;
+			}
+
+			myView = new(this);
+			myView.Styles |= defaultStyle;
+			myView.Options |= defaultOption;
 		}
 	}
 }
