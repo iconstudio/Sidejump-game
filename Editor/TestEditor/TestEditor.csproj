@@ -25,6 +25,7 @@
     <None Remove="ButtonFade.xaml" />
     <None Remove="EditorPage.xaml" />
     <None Remove="HomePage.xaml" />
+    <None Remove="Infrastructures\ToolWindow.xaml" />
     <None Remove="ProjectOpenPage.xaml" />
     <None Remove="SettingPage.xaml" />
   </ItemGroup>
@@ -125,5 +126,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PRIResource Remove="Extensions\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Infrastructures\ToolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
