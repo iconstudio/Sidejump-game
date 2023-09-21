@@ -18,9 +18,11 @@ namespace TestEditor
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 		private Color flushColour = Transparent;
 
-		private static readonly SizeInt32 toolSize = new(100, 300);
-		private Window paletteWindow, layerWindow;
-		private WindowView clientView, paletteView, layerView;
+		private WindowView clientView;
+
+		private static readonly SizeInt32 defaultToolSize = new(200, 300);
+		private SizeInt32 toolSize;
+		private ToolWindow paletteWindow, layerWindow;
 
 		public EditorPage()
 		{
@@ -77,17 +79,18 @@ namespace TestEditor
 			Window window = this.GetWindow();
 			clientView = new(window);
 
+			var dpi = clientView.Dpi;
+			var scale = (float) dpi / 96;
+			toolSize = defaultToolSize;
+			toolSize.Width = (int) (Width * scale);
+			toolSize.Height = (int) (Height * scale);
+
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
 			if (paletteWindow is not null)
 			{
-				paletteView = new(paletteWindow);
-				//paletteView.Styles |= WINDOW_STYLE.WS_POPUPWINDOW;
-				//paletteView.Options |= WINDOW_EX_STYLE.WS_EX_PALETTEWINDOW;
-				//paletteView.Options |= WINDOW_EX_STYLE.WS_EX_CONTEXTHELP;
-
 				var presenter = OverlappedPresenter.Create();
 				presenter.SetBorderAndTitleBar(true, true);
-				presenter.IsAlwaysOnTop = true;
+				presenter.IsAlwaysOnTop = false;
 				presenter.IsResizable = false;
 				presenter.IsMaximizable = false;
 				presenter.IsMinimizable = false;
