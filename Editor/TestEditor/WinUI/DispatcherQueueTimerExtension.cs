@@ -4,7 +4,7 @@ using Microsoft.UI.Dispatching;
 
 using Windows.Foundation;
 
-namespace TestEditor
+namespace TestEditor.WinUI
 {
 	using DispatcherQueueTimerTicket = TypedEventHandler<DispatcherQueueTimer, object>;
 

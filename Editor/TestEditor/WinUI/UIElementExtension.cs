@@ -1,6 +1,4 @@
-﻿using TestEditor.WinUI;
-
-namespace TestEditor
+﻿namespace TestEditor.WinUI
 {
 	internal static class UIElementExtension
 	{

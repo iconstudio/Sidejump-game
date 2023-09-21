@@ -4,10 +4,10 @@ using Microsoft.UI.Dispatching;
 
 using Windows.Foundation;
 
-namespace TestEditor
+namespace TestEditor.WinUI
 {
-	using DispatcherQueueTimerTicket = TypedEventHandler<DispatcherQueueTimer, object>;
 	using DispatcherQueueTimerAlterTicket = DispatcherQueueHandler;
+	using DispatcherQueueTimerTicket = TypedEventHandler<DispatcherQueueTimer, object>;
 
 	internal enum DispatcherFailurePolicy
 	{

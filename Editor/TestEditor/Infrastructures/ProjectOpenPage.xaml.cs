@@ -8,7 +8,7 @@ using TestEditor.WinUI;
 
 namespace TestEditor
 {
-    public sealed partial class ProjectOpenPage : Page
+	public sealed partial class ProjectOpenPage : Page
 	{
 		private volatile bool isPickerOpened;
 
