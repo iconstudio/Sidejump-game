@@ -23,11 +23,6 @@
 			<BrushTransition Duration="00:00:02"/>
 		</Grid.BackgroundTransition>
 
-		<local:EditorTitleBar x:Name="appTitleBar"
-							  Text="Map Editor"
-							  HorizontalTextAlignment="Center">
-		</local:EditorTitleBar>
-
 		<Frame Name="rootFrame" Opacity="0.0"
 			Grid.Row="1">
 
@@ -41,5 +36,10 @@
 				</TransitionCollection>
 			</Frame.Transitions>
 		</Frame>
+
+		<local:EditorTitleBar x:Name="appTitleBar"
+			HorizontalTextAlignment="Center"
+			Grid.Row="0">
+		</local:EditorTitleBar>
 	</Grid>
 </Window>
