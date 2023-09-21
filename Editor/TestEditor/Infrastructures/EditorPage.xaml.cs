@@ -7,6 +7,9 @@ using Windows.UI;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
+using Microsoft.UI.Windowing;
+using Windows.ApplicationModel.Preview.Notes;
+using Windows.Graphics;
 
 namespace TestEditor
 {
@@ -15,6 +18,7 @@ namespace TestEditor
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 		private Color flushColour = Transparent;
 
+		private static readonly SizeInt32 toolSize = new(100, 300);
 		private Window paletteWindow, layerWindow;
 		private WindowView clientView, paletteView, layerView;
 
@@ -73,13 +77,23 @@ namespace TestEditor
 			Window window = this.GetWindow();
 			clientView = new(window);
 
-			paletteWindow = WindowHelper.CreateWindow();
+			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
 			if (paletteWindow is not null)
 			{
 				paletteView = new(paletteWindow);
-				paletteView.Styles |= WINDOW_STYLE.WS_POPUPWINDOW;
-				paletteView.Options |= WINDOW_EX_STYLE.WS_EX_PALETTEWINDOW;
-				paletteView.Options |= WINDOW_EX_STYLE.WS_EX_CONTEXTHELP;;
+				//paletteView.Styles |= WINDOW_STYLE.WS_POPUPWINDOW;
+				//paletteView.Options |= WINDOW_EX_STYLE.WS_EX_PALETTEWINDOW;
+				//paletteView.Options |= WINDOW_EX_STYLE.WS_EX_CONTEXTHELP;
+
+				var presenter = OverlappedPresenter.Create();
+				presenter.SetBorderAndTitleBar(true, true);
+				presenter.IsAlwaysOnTop = true;
+				presenter.IsResizable = false;
+				presenter.IsMaximizable = false;
+				presenter.IsMinimizable = false;
+
+				paletteWindow.AppWindow.SetPresenter(presenter);
+				paletteWindow.AppWindow.Resize(toolSize);
 
 				paletteWindow.Activate();
 			}
