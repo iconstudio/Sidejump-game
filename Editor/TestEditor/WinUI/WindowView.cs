@@ -109,6 +109,14 @@ namespace TestEditor.WinUI
 			}
 		}
 
+		public WindowView()
+		{
+			Implement = null;
+			NativeHandle = HWND.Null;
+			mySubRoutines = null;
+			myStyles = 0;
+			myOptions = 0;
+		}
 		public WindowView(Window target)
 		{
 			Implement = target;
