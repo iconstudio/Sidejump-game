@@ -8,7 +8,7 @@ using TestEditor.WinUI;
 
 namespace TestEditor
 {
-    public sealed partial class MainWindow : Window, ISingleton<MainWindow>
+	public sealed partial class MainWindow : Window, ISingleton<MainWindow>
 	{
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 
@@ -34,8 +34,6 @@ namespace TestEditor
 
 				appTitleBar.Visibility = Visibility.Collapsed;
 			}
-
-			this.Track();
 
 			ISingleton<MainWindow>.SetInstance(this);
 

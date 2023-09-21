@@ -4,6 +4,7 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml.Navigation;
 
 using Windows.UI;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
 
@@ -77,14 +78,24 @@ namespace TestEditor
 				RequestedTheme = RequestedTheme
 			};
 
-			paletteWindow = new()
+			paletteWindow = WindowHelper.CreateWindow();
+			if (paletteWindow is not null)
 			{
-				Content = homepage
-			};
-			paletteView = new(paletteWindow);
+				paletteView = new(paletteWindow);
+				paletteView.AttachStyle(WINDOW_STYLE.WS_CHILD);
+				paletteView.AttachStyle(WINDOW_STYLE.WS_POPUP);
+				paletteView.SetWindowOption(WINDOW_EX_STYLE.WS_EX_PALETTEWINDOW);
 
-			paletteWindow?.Track();
-			paletteWindow?.Activate();
+				paletteWindow.Content = homepage;
+				paletteWindow.Activate();
+
+				Unloaded += OnUnloaded;
+			}
+		}
+
+		private void OnUnloaded(object sender, RoutedEventArgs e)
+		{
+			paletteWindow.Close();
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{

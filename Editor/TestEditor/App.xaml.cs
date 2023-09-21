@@ -27,7 +27,7 @@ namespace TestEditor
 		{
 			try
 			{
-				myWindow = new MainWindow();
+				myWindow = WindowHelper.CreateWindow<MainWindow>();
 				myView = new(myWindow);
 			}
 			catch (Exception e)
