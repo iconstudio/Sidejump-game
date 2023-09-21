@@ -74,10 +74,7 @@ namespace TestEditor
 			clientView = new(window);
 
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
-			if (paletteWindow is not null)
-			{
-				paletteWindow.Activate();
-			}
+			paletteWindow?.Activate();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
