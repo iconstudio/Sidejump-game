@@ -15,6 +15,12 @@
     <AnalysisLevel>6.0-recommended</AnalysisLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Extensions\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <None Remove="Extensions\**" />
+    <Page Remove="Extensions\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="AboutPage.xaml" />
     <None Remove="ButtonFade.xaml" />
     <None Remove="EditorPage.xaml" />
@@ -90,9 +96,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
 
   <!-- 
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
@@ -120,4 +123,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <WarningLevel>7</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <PRIResource Remove="Extensions\**" />
+  </ItemGroup>
 </Project>

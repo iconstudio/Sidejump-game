@@ -68,7 +68,7 @@ namespace TestEditor
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
 
-		private void OnLoaded(object sender, RoutedEventArgs e)
+		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
 			Window window = this.GetWindow();
 			clientView = new(window);
@@ -82,20 +82,17 @@ namespace TestEditor
 			if (paletteWindow is not null)
 			{
 				paletteView = new(paletteWindow);
-				paletteView.AttachStyle(WINDOW_STYLE.WS_CHILD);
-				paletteView.AttachStyle(WINDOW_STYLE.WS_POPUP);
-				paletteView.SetWindowOption(WINDOW_EX_STYLE.WS_EX_PALETTEWINDOW);
+				paletteView.Styles |= WINDOW_STYLE.WS_POPUPWINDOW;
+				paletteView.Options |= WINDOW_EX_STYLE.WS_EX_PALETTEWINDOW;
+				paletteView.Options |= WINDOW_EX_STYLE.WS_EX_CONTEXTHELP;;
 
 				paletteWindow.Content = homepage;
 				paletteWindow.Activate();
-
-				Unloaded += OnUnloaded;
 			}
 		}
-
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
-			paletteWindow.Close();
+			paletteWindow?.Close();
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{

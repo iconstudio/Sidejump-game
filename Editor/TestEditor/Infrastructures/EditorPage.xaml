@@ -8,7 +8,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
 	mc:Ignorable="d"
-	Loaded="OnLoaded">
+	Loaded="OnLoaded" Unloaded="OnUnloaded">
 
 	<StackPanel
 		Orientation="Vertical"
@@ -118,7 +118,7 @@
 			HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
 			MinHeight="226" Padding="5">
 
-			<canvas:CanvasControl Name="editorCanvas"
+			<canvas:CanvasControl x:Name="editorCanvas"
 				x:Load="False"
 				Loaded="OnCanvasLoaded"
 				Unloaded="OnCanvasUnloaded"

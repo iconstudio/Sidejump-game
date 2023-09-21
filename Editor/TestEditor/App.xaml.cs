@@ -36,11 +36,11 @@ namespace TestEditor
 				return;
 			}
 
-			myView.SubRoutine += SizeHooker;
+			myView.SubRoutine += MainHook;
 
 			myView.Activate();
 		}
-		private LRESULT SizeHooker(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
+		private LRESULT MainHook(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
 		{
 			switch (uMsg)
 			{
