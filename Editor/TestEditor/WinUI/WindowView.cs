@@ -18,7 +18,7 @@ namespace TestEditor.WinUI
 	using WindowStyle = WINDOW_STYLE;
 	using WindowOption = WINDOW_EX_STYLE;
 
-	internal struct WindowView : IEquatable<WindowView>
+	internal struct WindowView : IEquatable<WindowView>, IDisposable
 	{
 		private List<WindowSubRoutine> mySubRoutines;
 		private WindowStyle myStyles;
@@ -143,6 +143,8 @@ namespace TestEditor.WinUI
 		{
 			Options &= ~option;
 		}
+		public void Dispose()
+		{ }
 
 		public static I As<I>()
 		{
