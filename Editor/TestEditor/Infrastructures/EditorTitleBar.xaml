@@ -9,10 +9,16 @@
 	mc:Ignorable="d"
 	DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-	<Frame Name="titleContents"
+	<Grid Name="titleContents"
 		Background="{Binding Background, FallbackValue={ThemeResource AccentFillColorSelectedTextBackgroundBrush}}"
 		HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-		Margin="0,-1,0,0">
+		Margin="0,0,0,-1">
+
+		<ContentControl>
+			<ContentPresenter>
+				
+			</ContentPresenter>
+		</ContentControl>
 
 		<TextBlock Name="titleText"
 			Text="{Binding Text, FallbackValue=Application}"
@@ -21,6 +27,6 @@
 			TextAlignment="{Binding TextAlignment, FallbackValue=Left}"
 			HorizontalTextAlignment="{Binding HorizontalTextAlignment, FallbackValue=Left}"
 			VerticalAlignment="Center"
-			Margin="6,0,6,1"/>
-	</Frame>
+			Margin="6,1,6,0"/>
+	</Grid>
 </UserControl>
