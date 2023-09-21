@@ -73,11 +73,6 @@ namespace TestEditor
 			Window window = this.GetWindow();
 			clientView = new(window);
 
-			var homepage = new HomePage
-			{
-				RequestedTheme = RequestedTheme
-			};
-
 			paletteWindow = WindowHelper.CreateWindow();
 			if (paletteWindow is not null)
 			{
@@ -86,7 +81,6 @@ namespace TestEditor
 				paletteView.Options |= WINDOW_EX_STYLE.WS_EX_PALETTEWINDOW;
 				paletteView.Options |= WINDOW_EX_STYLE.WS_EX_CONTEXTHELP;;
 
-				paletteWindow.Content = homepage;
 				paletteWindow.Activate();
 			}
 		}
