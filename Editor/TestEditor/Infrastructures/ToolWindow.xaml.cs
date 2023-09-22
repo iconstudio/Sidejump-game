@@ -2,9 +2,12 @@ using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Media;
 
+using Windows.Win32;
+using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
+using WinUIEx;
 
 namespace TestEditor
 {
@@ -57,6 +60,10 @@ namespace TestEditor
 			myPresenter.IsMinimizable = false;
 
 			AppWindow.SetPresenter(myPresenter);
+		}
+
+		private void OnLoaded(object sender, RoutedEventArgs _)
+		{
 		}
 	}
 }
