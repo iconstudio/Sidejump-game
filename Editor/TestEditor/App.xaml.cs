@@ -7,6 +7,7 @@ using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
+using WinUIEx;
 
 namespace TestEditor
 {
@@ -28,7 +29,9 @@ namespace TestEditor
 			try
 			{
 				myWindow = WindowHelper.CreateWindow<MainWindow>();
-				myView = new(myWindow);
+				myWindow.CenterOnScreen();
+
+				myProject = new(myWindow);
 			}
 			catch (Exception e)
 			{
@@ -36,9 +39,9 @@ namespace TestEditor
 				return;
 			}
 
-			myView.SubRoutine += MainHook;
+			myProject.SubRoutine += MainHook;
 
-			myView.Activate();
+			myProject.Activate();
 		}
 		private LRESULT MainHook(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
 		{

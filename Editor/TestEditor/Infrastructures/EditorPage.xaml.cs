@@ -5,8 +5,10 @@ using Microsoft.UI.Xaml.Navigation;
 
 using Windows.UI;
 using Windows.UI.WindowManagement;
+using Windows.Win32;
 
 using TestEditor.WinUI;
+using WinUIEx;
 
 namespace TestEditor
 {
@@ -73,9 +75,9 @@ namespace TestEditor
 		{
 			Window window = this.GetWindow();
 			clientView = new(window);
-			
+
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
-			paletteWindow.AppWindow.Resize(new(400, 600));
+			paletteWindow.SetWindowSize(240, 400);
 
 			paletteWindow?.Activate();
 		}
@@ -102,7 +104,7 @@ namespace TestEditor
 			FindName(nameof(editorCanvas));
 		}
 		private void OnCanvasLoaded(object sender, RoutedEventArgs e)
-		{}
+		{ }
 		private void OnContentsSizeChanged(object sender, SizeChangedEventArgs e)
 		{
 			if (sender is StackPanel panel)
