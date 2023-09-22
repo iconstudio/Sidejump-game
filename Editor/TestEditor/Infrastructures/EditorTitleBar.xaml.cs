@@ -7,11 +7,11 @@ namespace TestEditor
 		public static readonly Style defaultStyle;
 		public static readonly Brush defaultBackground;
 
-		public static readonly DependencyProperty TextProperty;
-		public static readonly DependencyProperty ColorProperty;
-		public static readonly DependencyProperty TextStyleProperty;
-		public static readonly DependencyProperty TextAlignmentProperty;
-		public static readonly DependencyProperty HorizontalTextAlignmentProperty;
+		public static DependencyProperty TextProperty { get; }
+		public static DependencyProperty ColorProperty { get; }
+		public static DependencyProperty TextStyleProperty { get; }
+		public static DependencyProperty TextAlignmentProperty { get; }
+		public static DependencyProperty HorizontalTextAlignmentProperty { get; }
 
 		public string Text
 		{
