@@ -74,7 +74,7 @@ namespace TestEditor
 			HorizontalTextAlignmentProperty = DependencyProperty.Register("HorizontalTextAlignment", typeof(TextAlignment), my_type, new PropertyMetadata(TextAlignment.Center));
 			IconProperty = DependencyProperty.Register("IconSource", typeof(IconSource), my_type, new PropertyMetadata(null));
 			IconAlignmentProperty = DependencyProperty.Register("IconAlignment", typeof(AppTitleBarIconAlignment), my_type, new PropertyMetadata(AppTitleBarIconAlignment.Left, SetIconAlignment));
-			IconMarginProperty = DependencyProperty.Register("IconMargin", typeof(Thickness), my_type, new PropertyMetadata(new Thickness()));
+			IconMarginProperty = DependencyProperty.Register("IconMargin", typeof(Thickness), my_type, new PropertyMetadata(new Thickness(0, 2, 0, 0)));
 		}
 
 		public AppTitleBar()
@@ -88,8 +88,9 @@ namespace TestEditor
 
 		private static void SetIconAlignment(DependencyObject obj, DependencyPropertyChangedEventArgs e)
 		{
-			if (obj.GetValue(IconProperty) is IconSourceElement icon)
+			if (obj is AppTitleBar title)
 			{
+				var icon = title.titleIcon;
 				var alignment = (AppTitleBarIconAlignment) e.NewValue;
 
 				switch (alignment)
@@ -103,7 +104,7 @@ namespace TestEditor
 
 					case AppTitleBarIconAlignment.Left:
 					{
-						Grid.SetColumn(icon, 2);
+						Grid.SetColumn(icon, 1);
 						icon.HorizontalAlignment = HorizontalAlignment.Right;
 					}
 					break;
@@ -111,18 +112,21 @@ namespace TestEditor
 					case AppTitleBarIconAlignment.Center:
 					{
 						Grid.SetColumn(icon, 2);
+						icon.HorizontalAlignment = HorizontalAlignment.Center;
 					}
 					break;
 
 					case AppTitleBarIconAlignment.Right:
 					{
-						Grid.SetColumn(icon, 4);
+						Grid.SetColumn(icon, 3);
+						icon.HorizontalAlignment = HorizontalAlignment.Left;
 					}
 					break;
 
 					case AppTitleBarIconAlignment.FarRight:
 					{
-						Grid.SetColumn(icon, 5);
+						Grid.SetColumn(icon, 3);
+						icon.HorizontalAlignment = HorizontalAlignment.Right;
 					}
 					break;
 

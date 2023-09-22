@@ -35,7 +35,10 @@
 			</Frame.ContentTransitions>
 		</Frame>
 
-		<local:AppTitleBar x:Name="toolTitleBar" Grid.Row="0">
+		<local:AppTitleBar x:Name="toolTitleBar"
+			IconAlignment="FarLeft"
+			Grid.Row="0">
+
 			<local:AppTitleBar.IconSource>
 				<SymbolIconSource Symbol="CalendarDay"/>
 			</local:AppTitleBar.IconSource>

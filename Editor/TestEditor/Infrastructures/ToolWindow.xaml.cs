@@ -37,17 +37,7 @@ namespace TestEditor
 			presenter.IsMaximizable = false;
 			presenter.IsMinimizable = false;
 
-			AppWindow.SetPresenter(presenter);
-
-			ExtendsContentIntoTitleBar = true;
-			if (AppWindowTitleBar.IsCustomizationSupported())
-			{
-				SetTitleBar(toolTitleBar);
-			}
-			else
-			{
-				toolTitleBar.Visibility = Visibility.Collapsed;
-			}
+			//AppWindow.SetPresenter(presenter);
 
 			myView = new(this);
 			myView.Styles |= defaultStyle;
