@@ -13,6 +13,7 @@
 		Background="{Binding Background, FallbackValue={ThemeResource AccentFillColorSelectedTextBackgroundBrush}}"
 		HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 		Margin="0,0,0,-1">
+
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="0"/>
 			<ColumnDefinition Width="Auto"/>
@@ -26,7 +27,9 @@
 		<IconSourceElement Name="titleIcon"
 			IconSource="{Binding IconSource, FallbackValue={x:Null}}"
 			HorizontalAlignment="Center" VerticalAlignment="Center"
-			Grid.Column="1"/>
+			Margin="{Binding IconMargin}"
+			Grid.Column="1">
+		</IconSourceElement>
 
 		<TextBlock Name="titleText"
 			Text="{Binding Text, FallbackValue=Application}"

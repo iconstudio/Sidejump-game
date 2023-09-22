@@ -13,7 +13,7 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*" MinHeight="100"/>
 		</Grid.RowDefinitions>
-		
+
 		<Frame Name="toolContents"
 			Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}"
 			HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -36,6 +36,9 @@
 		</Frame>
 
 		<local:AppTitleBar x:Name="toolTitleBar" Grid.Row="0">
+			<local:AppTitleBar.IconSource>
+				<SymbolIconSource Symbol="CalendarDay"/>
+			</local:AppTitleBar.IconSource>
 		</local:AppTitleBar>
 	</Grid>
 </Window>

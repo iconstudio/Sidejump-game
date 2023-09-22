@@ -16,6 +16,7 @@ namespace TestEditor
 		public static DependencyProperty HorizontalTextAlignmentProperty { get; }
 		public static DependencyProperty IconProperty { get; }
 		public static DependencyProperty IconAlignmentProperty { get; }
+		public static DependencyProperty IconMarginProperty { get; }
 
 		public string Text
 		{
@@ -50,47 +51,14 @@ namespace TestEditor
 		public AppTitleBarIconAlignment IconAlignment
 		{
 			get => (AppTitleBarIconAlignment) GetValue(IconAlignmentProperty);
-			set
-			{
-				SetValue(IconAlignmentProperty, value);
-
-				switch (value)
-				{
-					case AppTitleBarIconAlignment.FarLeft:
-					{
-						//titleIcon
-					}
-					break;
-
-					case AppTitleBarIconAlignment.Left:
-					{
-
-					}
-					break;
-
-					case AppTitleBarIconAlignment.Center:
-					{
-
-					}
-					break;
-
-					case AppTitleBarIconAlignment.Right:
-					{
-
-					}
-					break;
-
-					case AppTitleBarIconAlignment.FarRight:
-					{
-
-					}
-					break;
-
-					default:
-					break;
-				}
-			}
+			set => SetValue(IconAlignmentProperty, value);
 		}
+		public Thickness IconMargin
+		{
+			get => (Thickness) GetValue(IconMarginProperty);
+			set => SetValue(IconMarginProperty, value);
+		}
+		public bool IsIconAvailable => IconSource != null;
 
 		static AppTitleBar()
 		{
@@ -105,8 +73,10 @@ namespace TestEditor
 			TextAlignmentProperty = DependencyProperty.Register("TextAlignment", typeof(TextAlignment), my_type, new PropertyMetadata(TextAlignment.Center));
 			HorizontalTextAlignmentProperty = DependencyProperty.Register("HorizontalTextAlignment", typeof(TextAlignment), my_type, new PropertyMetadata(TextAlignment.Center));
 			IconProperty = DependencyProperty.Register("IconSource", typeof(IconSource), my_type, new PropertyMetadata(null));
-			IconAlignmentProperty = DependencyProperty.Register("IconAlignment", typeof(AppTitleBarIconAlignment), my_type, new PropertyMetadata(AppTitleBarIconAlignment.Left));
+			IconAlignmentProperty = DependencyProperty.Register("IconAlignment", typeof(AppTitleBarIconAlignment), my_type, new PropertyMetadata(AppTitleBarIconAlignment.Left, SetIconAlignment));
+			IconMarginProperty = DependencyProperty.Register("IconMargin", typeof(Thickness), my_type, new PropertyMetadata(new Thickness()));
 		}
+
 		public AppTitleBar()
 		{
 			InitializeComponent();
@@ -114,6 +84,52 @@ namespace TestEditor
 			Background = defaultBackground;
 			Height = 32;
 			MinHeight = 32;
+		}
+
+		private static void SetIconAlignment(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+		{
+			if (obj.GetValue(IconProperty) is IconSourceElement icon)
+			{
+				var alignment = (AppTitleBarIconAlignment) e.NewValue;
+
+				switch (alignment)
+				{
+					case AppTitleBarIconAlignment.FarLeft:
+					{
+						Grid.SetColumn(icon, 1);
+						icon.HorizontalAlignment = HorizontalAlignment.Left;
+					}
+					break;
+
+					case AppTitleBarIconAlignment.Left:
+					{
+						Grid.SetColumn(icon, 2);
+						icon.HorizontalAlignment = HorizontalAlignment.Right;
+					}
+					break;
+
+					case AppTitleBarIconAlignment.Center:
+					{
+						Grid.SetColumn(icon, 2);
+					}
+					break;
+
+					case AppTitleBarIconAlignment.Right:
+					{
+						Grid.SetColumn(icon, 4);
+					}
+					break;
+
+					case AppTitleBarIconAlignment.FarRight:
+					{
+						Grid.SetColumn(icon, 5);
+					}
+					break;
+
+					default:
+					break;
+				}
+			}
 		}
 	}
 }
