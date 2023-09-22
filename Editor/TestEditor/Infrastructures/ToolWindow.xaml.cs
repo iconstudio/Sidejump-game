@@ -24,8 +24,9 @@ namespace TestEditor
 
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 
-		private WindowProjection myProject;
-		private OverlappedPresenter myPresenter;
+		internal WindowProjection myProject;
+		internal WindowView myParent;
+		internal OverlappedPresenter myPresenter;
 
 		public ToolWindow()
 		{
