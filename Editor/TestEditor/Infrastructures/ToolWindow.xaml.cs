@@ -22,8 +22,8 @@ namespace TestEditor
 			{ }
 		}
 
-		private const WindowStyle defaultStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU | WindowStyle.WS_CHILD;
-		private const WindowOption defaultOption = WindowOption.WS_EX_NOACTIVATE | WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_LAYERED | WindowOption.WS_EX_TRANSPARENT;
+		private const WindowStyle defaultStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU;
+		private const WindowOption defaultOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED;
 
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 
@@ -64,6 +64,16 @@ namespace TestEditor
 
 		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
+			if (myParent.NativeHandle != HWND.Null)
+			{
+				myProject.Styles |= WindowStyle.WS_CHILD;
+				//PInvoke.SetParent(myProject, myParent);
+			}
+			myProject.Options |= WindowOption.WS_EX_NOACTIVATE;
+		}
+		private void OnFocused(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

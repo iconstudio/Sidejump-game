@@ -20,7 +20,7 @@
 			Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}"
 			HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			Grid.Row="1"
-			Loaded="OnLoaded">
+			Loaded="OnLoaded" GotFocus="OnFocused">
 
 			<Frame.Transitions>
 				<TransitionCollection>

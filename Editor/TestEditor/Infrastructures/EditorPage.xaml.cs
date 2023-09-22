@@ -78,18 +78,21 @@ namespace TestEditor
 
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
 			paletteWindow.SetWindowSize(240, 400);
+			paletteWindow.myParent = clientView;
 
-			paletteWindow?.Activate();
+			paletteWindow.Activate();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
-			paletteWindow?.Close();
+			paletteWindow.Close();
 		}
 		private void OnFocused(object sender, RoutedEventArgs e)
 		{
+			paletteWindow.Show();
 		}
 		private void OnLostFocus(object sender, RoutedEventArgs e)
 		{
+			paletteWindow.Hide();
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
