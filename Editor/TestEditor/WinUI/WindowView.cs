@@ -20,7 +20,8 @@ namespace TestEditor.WinUI
 
 	internal struct WindowView : IEquatable<WindowView>, IDisposable
 	{
-		private List<WindowSubRoutine> mySubRoutines;
+		private readonly Dictionary<nuint, WindowSubRoutine> mySubRoutines;
+		private nuint lastSubRoutineId = 0;
 		private WindowStyle myStyles;
 		private WindowOption myOptions;
 
@@ -68,8 +69,10 @@ namespace TestEditor.WinUI
 					{
 						WindowSubRoutine routine = new(value);
 
-						PInvoke.SetWindowSubclass(NativeHandle, routine, (nuint) mySubRoutines.Count, 0);
-						mySubRoutines.Add(routine);
+						if (PInvoke.SetWindowSubclass(NativeHandle, routine, lastSubRoutineId, 0))
+						{
+							mySubRoutines.Add(lastSubRoutineId++, routine);
+						}
 					}
 				}
 			}
@@ -77,13 +80,15 @@ namespace TestEditor.WinUI
 			{
 				lock (mySubRoutines)
 				{
-					var id = mySubRoutines.FindIndex(0, mySubRoutines.Count
-					, (rhs) => { return rhs == value; });
-					if (-1 != id)
+					foreach (var pair in mySubRoutines)
 					{
-						PInvoke.RemoveWindowSubclass(NativeHandle, mySubRoutines[id], (nuint) id);
+						if (pair.Value == value)
+						{
+							PInvoke.RemoveWindowSubclass(NativeHandle, pair.Value, pair.Key);
+							mySubRoutines.Remove(pair.Key);
 
-						mySubRoutines.RemoveAt(id);
+							break;
+						}
 					}
 				}
 			}
@@ -123,10 +128,8 @@ namespace TestEditor.WinUI
 
 			IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Implement);
 			NativeHandle = new(hwnd);
-			mySubRoutines = new()
-			{
-				Capacity = 0
-			};
+
+			mySubRoutines = new();
 
 			myStyles = (WindowStyle) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
 			myOptions = (WindowOption) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
