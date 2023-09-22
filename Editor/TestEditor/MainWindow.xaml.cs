@@ -24,7 +24,7 @@ namespace TestEditor
 
 			if (AppWindowTitleBar.IsCustomizationSupported())
 			{
-				ExtendsContentIntoTitleBar = true;
+				AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
 
 				SetTitleBar(appTitleBar);
 			}
