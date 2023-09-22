@@ -2,7 +2,7 @@ using Microsoft.UI.Xaml.Media;
 
 namespace TestEditor
 {
-	public sealed partial class EditorTitleBar : UserControl
+	public sealed partial class AppTitleBar : UserControl
 	{
 		public static readonly Style defaultStyle;
 		public static readonly Brush defaultBackground;
@@ -39,12 +39,12 @@ namespace TestEditor
 			set => SetValue(HorizontalTextAlignmentProperty, value);
 		}
 
-		static EditorTitleBar()
+		static AppTitleBar()
 		{
 			defaultStyle = Application.Current.Resources["BodyTextBlockStyle"] as Style;
 			defaultBackground = Application.Current.Resources["AccentFillColorSelectedTextBackgroundBrush"] as Brush;
 
-			Type my_type = typeof(EditorTitleBar);
+			Type my_type = typeof(AppTitleBar);
 
 			TextProperty = DependencyProperty.Register("Text", typeof(string), my_type, new PropertyMetadata("Application"));
 			ColorProperty = DependencyProperty.Register("TextColor", typeof(Brush), my_type, new PropertyMetadata(null));
@@ -52,7 +52,7 @@ namespace TestEditor
 			TextAlignmentProperty = DependencyProperty.Register("TextAlignment", typeof(TextAlignment), my_type, new PropertyMetadata(TextAlignment.Center));
 			HorizontalTextAlignmentProperty = DependencyProperty.Register("HorizontalTextAlignment", typeof(TextAlignment), my_type, new PropertyMetadata(TextAlignment.Center));
 		}
-		public EditorTitleBar()
+		public AppTitleBar()
 		{
 			InitializeComponent();
 

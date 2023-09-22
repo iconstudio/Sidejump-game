@@ -35,7 +35,7 @@
 			</Frame.ContentTransitions>
 		</Frame>
 
-		<local:EditorTitleBar x:Name="toolTitleBar" Grid.Row="0">
-		</local:EditorTitleBar>
+		<local:AppTitleBar x:Name="toolTitleBar" Grid.Row="0">
+		</local:AppTitleBar>
 	</Grid>
 </Window>

@@ -25,7 +25,7 @@
     <None Remove="ButtonFade.xaml" />
     <None Remove="EditorPage.xaml" />
     <None Remove="HomePage.xaml" />
-    <None Remove="Infrastructures\EditorTitleBar.xaml" />
+    <None Remove="Infrastructures\AppTitleBar.xaml" />
     <None Remove="Infrastructures\ToolWindow.xaml" />
     <None Remove="ProjectOpenPage.xaml" />
     <None Remove="SettingPage.xaml" />
@@ -129,7 +129,7 @@
     <PRIResource Remove="Extensions\**" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Infrastructures\EditorTitleBar.xaml">
+    <Page Update="Infrastructures\AppTitleBar.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

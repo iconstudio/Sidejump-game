@@ -37,9 +37,9 @@
 			</Frame.Transitions>
 		</Frame>
 
-		<local:EditorTitleBar x:Name="appTitleBar"
+		<local:AppTitleBar x:Name="appTitleBar"
 			HorizontalTextAlignment="Center"
 			Grid.Row="0">
-		</local:EditorTitleBar>
+		</local:AppTitleBar>
 	</Grid>
 </Window>
