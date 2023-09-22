@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 
 using Windows.Win32;
 using Windows.Win32.Foundation;
-using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
@@ -13,11 +12,11 @@ namespace TestEditor
 {
 	public partial class App : Application
 	{
-		private Window myWindow;
-		private WindowProjection myView;
-
 		private const int minWidth = 600;
 		private const int minHeight = 400;
+
+		private Window myWindow;
+		private WindowProjection myProject;
 
 		public App()
 		{
