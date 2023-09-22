@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices;
 
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
@@ -6,15 +7,11 @@ using Microsoft.UI.Xaml.Media;
 
 using Windows.Foundation;
 using Windows.UI.Core;
-using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace TestEditor.WinUI
 {
-	using WindowActivatedEventArgs = Microsoft.UI.Xaml.WindowActivatedEventArgs;
-	using WindowSizeChangedEventArgs = Microsoft.UI.Xaml.WindowSizeChangedEventArgs;
-	using WindowSubRoutine = Windows.Win32.UI.Shell.SUBCLASSPROC;
 	using WindowStyle = WINDOW_STYLE;
 	using WindowOption = WINDOW_EX_STYLE;
 
@@ -43,7 +40,10 @@ namespace TestEditor.WinUI
 		}
 
 		public void Dispose()
-		{ }
+		{
+			Marshal.DestroyStructure(NativeHandle, typeof(HWND));
+			GC.SuppressFinalize(this);
+		}
 
 		[Pure]
 		public override readonly bool Equals(object obj)

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices;
 
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
@@ -24,6 +25,7 @@ namespace TestEditor.WinUI
 		private nuint lastSubRoutineId = 0;
 		private WindowStyle myStyles = 0;
 		private WindowOption myOptions = 0;
+		private bool isDisposed = false;
 
 		public Window Implement { get; }
 		public HWND NativeHandle { get; }
@@ -163,8 +165,25 @@ namespace TestEditor.WinUI
 		{
 			Options &= ~option;
 		}
+		private void Dispose(bool disposing)
+		{
+			if (isDisposed)
+			{
+				return;
+			}
+
+			if (disposing)
+			{
+				Marshal.DestroyStructure(NativeHandle, typeof(HWND));
+			}
+
+			isDisposed = true;
+		}
 		public void Dispose()
-		{ }
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 
 		[Pure]
 		public override readonly bool Equals(object obj)
