@@ -8,7 +8,9 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
-	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+	<Grid
+		HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*" MinHeight="100"/>
@@ -34,14 +36,5 @@
 				</TransitionCollection>
 			</Frame.ContentTransitions>
 		</Frame>
-
-		<local:AppTitleBar x:Name="toolTitleBar"
-			IconAlignment="FarLeft"
-			Grid.Row="0">
-
-			<local:AppTitleBar.IconSource>
-				<SymbolIconSource Symbol="CalendarDay"/>
-			</local:AppTitleBar.IconSource>
-		</local:AppTitleBar>
 	</Grid>
 </Window>

@@ -82,6 +82,12 @@ namespace TestEditor
 		{
 			paletteWindow?.Close();
 		}
+		private void OnFocused(object sender, RoutedEventArgs e)
+		{
+		}
+		private void OnLostFocus(object sender, RoutedEventArgs e)
+		{
+		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);

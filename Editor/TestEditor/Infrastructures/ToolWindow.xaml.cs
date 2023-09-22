@@ -13,7 +13,7 @@ namespace TestEditor
 
 	public sealed partial class ToolWindow : Window
 	{
-		private const WindowStyle defaultStyle = WindowStyle.WS_POPUP;
+		private const WindowStyle defaultStyle = WindowStyle.WS_POPUPWINDOW;
 		private const WindowOption defaultOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED;
 
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
@@ -30,18 +30,17 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
-			var presenter = OverlappedPresenter.Create();
-			presenter.SetBorderAndTitleBar(true, true);
-			presenter.IsAlwaysOnTop = false;
-			presenter.IsResizable = false;
-			presenter.IsMaximizable = false;
-			presenter.IsMinimizable = false;
-
-			//AppWindow.SetPresenter(presenter);
-
 			myView = new(this);
-			myView.Styles |= defaultStyle;
-			myView.Options |= defaultOption;
+			myView.Styles = defaultStyle;
+			myView.Options = defaultOption;
+		}
+
+		public void ShowOnTopMost()
+		{
+		}
+		public void HideFromTopMost()
+		{
+			//AppWindow.MoveInZOrderAtBottom();
 		}
 	}
 }

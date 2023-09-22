@@ -38,8 +38,12 @@
 		</Frame>
 
 		<local:AppTitleBar x:Name="appTitleBar"
-			HorizontalTextAlignment="Center"
+			IconAlignment="Left"
 			Grid.Row="0">
+			
+			<local:AppTitleBar.IconSource>
+				<SymbolIconSource Symbol="CalendarDay"/>
+			</local:AppTitleBar.IconSource>
 		</local:AppTitleBar>
 	</Grid>
 </Window>

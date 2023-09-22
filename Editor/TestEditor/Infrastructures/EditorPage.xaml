@@ -9,7 +9,8 @@
 	xmlns:local="using:TestEditor"
 	xmlns:winui="using:TestEditor.WinUI"
 	mc:Ignorable="d"
-	Loaded="OnLoaded" Unloaded="OnUnloaded">
+	Loaded="OnLoaded" Unloaded="OnUnloaded"
+	GotFocus="OnFocused" LostFocus="OnLostFocus">
 
 	<StackPanel
 		Orientation="Vertical"
