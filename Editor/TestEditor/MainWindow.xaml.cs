@@ -24,14 +24,12 @@ namespace TestEditor
 
 			if (AppWindowTitleBar.IsCustomizationSupported())
 			{
-				AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
+				ExtendsContentIntoTitleBar = true;
 
 				SetTitleBar(appTitleBar);
 			}
 			else
 			{
-				ExtendsContentIntoTitleBar = true;
-
 				appTitleBar.Visibility = Visibility.Collapsed;
 			}
 
