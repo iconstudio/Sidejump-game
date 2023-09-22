@@ -33,9 +33,11 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
-			myView = new(this);
-			myView.Styles = defaultStyle;
-			myView.Options = defaultOption;
+			myView = new(this)
+			{
+				Styles = defaultStyle,
+				Options = defaultOption
+			};
 		}
 
 		public void ShowOnTopMost()
@@ -44,28 +46,6 @@ namespace TestEditor
 		public void HideFromTopMost()
 		{
 			//AppWindow.MoveInZOrderAtBottom();
-		}
-
-		private static LRESULT MainHook(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
-		{
-			switch (uMsg)
-			{
-				case PInvoke.WM_GETMINMAXINFO:
-				{
-					var dpi = PInvoke.GetDpiForWindow(hWnd);
-					float scalingFactor = (float) dpi / 96;
-
-					MINMAXINFO minMaxInfo = Marshal.PtrToStructure<MINMAXINFO>(lParam);
-					minMaxInfo.ptMinTrackSize.X = (int) (minWidth * scalingFactor);
-					minMaxInfo.ptMinTrackSize.Y = (int) (minHeight * scalingFactor);
-
-					Marshal.StructureToPtr(minMaxInfo, lParam, true);
-				}
-
-				return (LRESULT) 1;
-			}
-
-			return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);
 		}
 	}
 }

@@ -4,6 +4,7 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml.Navigation;
 
 using Windows.UI;
+using Windows.UI.WindowManagement;
 
 using TestEditor.WinUI;
 
