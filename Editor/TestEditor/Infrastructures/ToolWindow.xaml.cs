@@ -8,6 +8,7 @@ using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
+using Microsoft.UI.Windowing;
 
 namespace TestEditor
 {
@@ -16,12 +17,19 @@ namespace TestEditor
 
 	public sealed partial class ToolWindow : Window
 	{
+		private class ToolPresenterCreationFailedException : NullReferenceException
+		{
+			public ToolPresenterCreationFailedException(string message) : base(message)
+			{ }
+		}
+
 		private const WindowStyle defaultStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU | WindowStyle.WS_CHILD;
 		private const WindowOption defaultOption = WindowOption.WS_EX_NOACTIVATE | WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_LAYERED | WindowOption.WS_EX_TRANSPARENT;
 
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 
 		private WindowView myView;
+		private OverlappedPresenter myPresenter;
 
 		public ToolWindow()
 		{
@@ -38,14 +46,20 @@ namespace TestEditor
 				Styles = defaultStyle,
 				Options = defaultOption
 			};
-		}
 
-		public void ShowOnTopMost()
-		{
-		}
-		public void HideFromTopMost()
-		{
-			//AppWindow.MoveInZOrderAtBottom();
+			myPresenter = OverlappedPresenter.Create();
+			if (myPresenter is null)
+			{
+				throw new ToolPresenterCreationFailedException(nameof(myPresenter));
+			}
+
+			myPresenter.SetBorderAndTitleBar(true, true);
+			myPresenter.IsAlwaysOnTop = true;
+			myPresenter.IsResizable = false;
+			myPresenter.IsMaximizable = false;
+			myPresenter.IsMinimizable = false;
+
+			AppWindow.SetPresenter(myPresenter);
 		}
 	}
 }
