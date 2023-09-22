@@ -72,8 +72,10 @@ namespace TestEditor
 		{
 			Window window = this.GetWindow();
 			clientView = new(window);
-
+			
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
+			paletteWindow.AppWindow.Resize(new(400, 600));
+
 			paletteWindow?.Activate();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
