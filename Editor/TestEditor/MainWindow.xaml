@@ -40,10 +40,12 @@
 		<local:AppTitleBar x:Name="appTitleBar"
 			IconAlignment="Left"
 			Grid.Row="0">
-			
+
 			<local:AppTitleBar.IconSource>
 				<SymbolIconSource Symbol="CalendarDay"/>
 			</local:AppTitleBar.IconSource>
+
+			Map Editor
 		</local:AppTitleBar>
 	</Grid>
 </Window>
