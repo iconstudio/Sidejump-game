@@ -1,14 +1,10 @@
-using System.Runtime.InteropServices;
-
 using Microsoft.UI.Composition.SystemBackdrops;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Media;
 
-using Windows.Win32;
-using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
-using Microsoft.UI.Windowing;
 
 namespace TestEditor
 {
