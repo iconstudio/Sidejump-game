@@ -13,7 +13,7 @@ namespace TestEditor
 	public partial class App : Application
 	{
 		private Window myWindow;
-		private WindowView myView;
+		private WindowProjection myView;
 
 		private const int minWidth = 600;
 		private const int minHeight = 400;

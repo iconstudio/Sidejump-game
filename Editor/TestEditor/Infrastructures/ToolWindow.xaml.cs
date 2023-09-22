@@ -28,7 +28,7 @@ namespace TestEditor
 
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 
-		private WindowView myView;
+		private WindowProjection myProject;
 		private OverlappedPresenter myPresenter;
 
 		public ToolWindow()
@@ -41,7 +41,7 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
-			myView = new(this)
+			myProject = new(this)
 			{
 				Styles = defaultStyle,
 				Options = defaultOption
