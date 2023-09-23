@@ -102,7 +102,10 @@ namespace TestEditor
 						PInvoke.PostMessage(clientView, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
 						paletteWindow.ForceActiveBar = false;
-						PInvoke.PostMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+						if (paletteWindow.Visible)
+						{
+							PInvoke.PostMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+						}
 
 						ignoreNcActivate = true;
 
@@ -113,7 +116,10 @@ namespace TestEditor
 						PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
 						paletteWindow.ForceActiveBar = true;
-						PInvoke.SendMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						if (paletteWindow.Visible)
+						{
+							PInvoke.SendMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						}
 
 						return (LRESULT) 1;
 					}
