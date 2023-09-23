@@ -79,7 +79,7 @@ namespace TestEditor
 			{
 				case PInvoke.WM_NCACTIVATE:
 				{
-					if (wparam == 0)
+					if (wparam == 0) // diactivated
 					{
 						if (ignoreNcActivate)
 						{
@@ -87,6 +87,7 @@ namespace TestEditor
 						}
 						else
 						{
+							// Send this msg again, but onto activated
 							PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 						}
 
@@ -97,10 +98,11 @@ namespace TestEditor
 
 				case PInvoke.WM_ACTIVATEAPP:
 				{
-					if (wparam == 0)
+					if (wparam == 0) // diactivated
 					{
 						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
+						// diactivate children
 						paletteWindow.ForceActiveBar = false;
 						if (paletteWindow.Visible)
 						{
@@ -111,10 +113,11 @@ namespace TestEditor
 
 						return (LRESULT) 1;
 					}
-					else if (wparam == 1)
+					else if (wparam == 1) // activated
 					{
 						PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
+						// activate children
 						paletteWindow.ForceActiveBar = true;
 						if (paletteWindow.Visible)
 						{
@@ -153,7 +156,6 @@ namespace TestEditor
 			paletteWindow.SetWindowSize(240, 400);
 
 			paletteWindow.Activate();
-			//PInvoke.SetActiveWindow(paletteWindow.myProject);
 
 			App.GetInstance().SubRoutines += EditorHook;
 			paletteWindow.myProject.SubRoutines += ToolWindowHook;
