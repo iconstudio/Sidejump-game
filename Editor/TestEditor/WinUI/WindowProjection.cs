@@ -19,45 +19,68 @@ namespace TestEditor.WinUI
 	using WindowStyle = WINDOW_STYLE;
 	using WindowOption = WINDOW_EX_STYLE;
 
-	internal struct WindowProjection : IWindowView
+	internal class WindowProjection : IWindowView
 	{
 		private Dictionary<nuint, WindowSubRoutine> mySubRoutines = new();
 		private nuint lastSubRoutineId = 0;
-		private WindowStyle myStyles = 0;
-		private WindowOption myOptions = 0;
-		private bool isDisposed = false;
+		private bool isVisible;
+		private WindowStyle myStyles;
+		private WindowOption myOptions;
+		private bool isDisposed;
 
 		public Window Implement { get; }
 		public HWND NativeHandle { get; }
-		public readonly AppWindow AppWindow => Implement.AppWindow;
-		public readonly CoreWindow CoreWindow => Implement.CoreWindow;
-		public readonly UIElement Content
+		public AppWindow AppWindow => Implement.AppWindow;
+		public CoreWindow CoreWindow => Implement.CoreWindow;
+		public UIElement Content
 		{
 			get => Implement.Content;
 			set => Implement.Content = value;
 		}
-		public readonly DispatcherQueue DispatcherQueue => Implement.DispatcherQueue;
-		public readonly bool Visible => ((IWindowView) this).Visible;
-		public readonly Rect Bounds => Implement.Bounds;
-		public readonly uint Dpi => ((IWindowView) this).Dpi;
-		public readonly string Title
+		public DispatcherQueue DispatcherQueue => Implement.DispatcherQueue;
+		public bool Visible
+		{
+			get => isVisible;
+			set
+			{
+				if (value)
+				{
+					if (!isVisible)
+					{
+						Implement.AppWindow.Show();
+						isVisible = true;
+					}
+				}
+				else
+				{
+					if (isVisible)
+					{
+						Implement.AppWindow.Hide();
+						isVisible = false;
+					}
+				}
+			}
+		}
+		public Rect Bounds => Implement.Bounds;
+		public uint Dpi => ((IWindowView) this).Dpi;
+		public string Title
 		{
 			get => Implement.Title;
 			set => Implement.Title = value;
 		}
-		public readonly bool ExtendsContentIntoTitleBar
+		public bool ExtendsContentIntoTitleBar
 		{
 			get => Implement.ExtendsContentIntoTitleBar;
 			set => Implement.ExtendsContentIntoTitleBar = value;
 		}
-		public readonly SystemBackdrop SystemBackdrop
+		public SystemBackdrop SystemBackdrop
 		{
 			get => Implement.SystemBackdrop;
 			set => Implement.SystemBackdrop = value;
 		}
 		public WindowStyle Styles
 		{
-			readonly get => myStyles;
+			get => myStyles;
 			set
 			{
 				myStyles = value;
@@ -67,7 +90,7 @@ namespace TestEditor.WinUI
 		}
 		public WindowOption Options
 		{
-			readonly get => myOptions;
+			get => myOptions;
 			set
 			{
 				myOptions = value;
@@ -142,13 +165,14 @@ namespace TestEditor.WinUI
 			IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Implement);
 			NativeHandle = new(hwnd);
 
+			isVisible = Implement.Visible;
 			myStyles = (WindowStyle) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
 			myOptions = (WindowOption) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
 		}
 
-		public readonly void Activate() => Implement.Activate();
-		public readonly void Close() => Implement.Activate();
-		public readonly void SetTitleBar(UIElement titleBar) => Implement.SetTitleBar(titleBar);
+		public void Activate() => Implement.Activate();
+		public void Close() => Implement.Activate();
+		public void SetTitleBar(UIElement titleBar) => Implement.SetTitleBar(titleBar);
 		public void AttachStyle(WindowStyle style)
 		{
 			Styles |= style;
@@ -186,7 +210,7 @@ namespace TestEditor.WinUI
 		}
 
 		[Pure]
-		public override readonly bool Equals(object obj)
+		public override bool Equals(object obj)
 		{
 			if (obj is null)
 			{
@@ -201,12 +225,12 @@ namespace TestEditor.WinUI
 			return obj.Equals(Implement);
 		}
 		[Pure]
-		public readonly bool Equals(IWindowView other)
+		public bool Equals(IWindowView other)
 		{
 			return Implement == other.Implement;
 		}
 		[Pure]
-		public readonly override int GetHashCode()
+		public override int GetHashCode()
 		{
 			return Implement.GetHashCode();
 		}
