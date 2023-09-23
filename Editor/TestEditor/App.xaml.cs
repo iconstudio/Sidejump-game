@@ -41,7 +41,7 @@ namespace TestEditor
 				return;
 			}
 
-			myProject.SubRoutine += MainHook;
+			myProject.SubRoutines += MainHook;
 
 			myProject.Activate();
 		}

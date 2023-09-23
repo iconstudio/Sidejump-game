@@ -118,7 +118,7 @@ namespace TestEditor.WinUI
 			add => Implement.VisibilityChanged += value;
 			remove => Implement.VisibilityChanged -= value;
 		}
-		public event WindowSubRoutine SubRoutine
+		public event WindowSubRoutine SubRoutines
 		{
 			add
 			{

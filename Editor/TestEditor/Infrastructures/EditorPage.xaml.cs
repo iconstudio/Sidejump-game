@@ -155,8 +155,8 @@ namespace TestEditor
 			paletteWindow.Activate();
 			//PInvoke.SetActiveWindow(paletteWindow.myProject);
 
-			App.GetInstance().myProject.SubRoutine += EditorHook;
-			paletteWindow.myProject.SubRoutine += ToolWindowHook;
+			App.GetInstance().myProject.SubRoutines += EditorHook;
+			paletteWindow.myProject.SubRoutines += ToolWindowHook;
 
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
