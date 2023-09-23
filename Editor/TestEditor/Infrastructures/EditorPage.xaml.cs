@@ -111,11 +111,11 @@ namespace TestEditor
 
 						ignoreNcActivate = true;
 
-						return (LRESULT) 1;
+						return (LRESULT) 0;
 					}
 					else if (wparam == 1) // activated
 					{
-						PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
 						// activate children
 						paletteWindow.ForceActiveBar = true;
@@ -124,7 +124,7 @@ namespace TestEditor
 							PInvoke.SendMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 						}
 
-						return (LRESULT) 1;
+						return (LRESULT) 0;
 					}
 				}
 				break;
