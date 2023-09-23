@@ -108,6 +108,7 @@ namespace TestEditor
 						{
 							PInvoke.PostMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 						}
+						paletteWindow.myPresenter.IsAlwaysOnTop = false;
 
 						ignoreNcActivate = true;
 
@@ -123,6 +124,7 @@ namespace TestEditor
 						{
 							PInvoke.SendMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 						}
+						paletteWindow.myPresenter.IsAlwaysOnTop = true;
 
 						return (LRESULT) 0;
 					}
