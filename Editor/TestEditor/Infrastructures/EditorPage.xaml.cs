@@ -87,7 +87,7 @@ namespace TestEditor
 						}
 						else
 						{
-							PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+							PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 						}
 
 						return (LRESULT) 1;
@@ -99,7 +99,7 @@ namespace TestEditor
 				{
 					if (wparam == 0)
 					{
-						PInvoke.PostMessage(clientView, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
 						paletteWindow.ForceActiveBar = false;
 						if (paletteWindow.Visible)
