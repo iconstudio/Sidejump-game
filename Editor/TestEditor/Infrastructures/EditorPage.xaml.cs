@@ -89,9 +89,11 @@ namespace TestEditor
 						{
 							PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 						}
+
+						return (LRESULT) 1;
 					}
 				}
-				return (LRESULT) 1;
+				break;
 
 				case PInvoke.WM_ACTIVATEAPP:
 				{
@@ -103,6 +105,8 @@ namespace TestEditor
 						PInvoke.PostMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
 						ignoreNcActivate = true;
+
+						return (LRESULT) 1;
 					}
 					else if (wparam == 1)
 					{
@@ -110,9 +114,11 @@ namespace TestEditor
 
 						paletteWindow.ForceActiveBar = true;
 						PInvoke.SendMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+
+						return (LRESULT) 1;
 					}
 				}
-				return (LRESULT) 1;
+				break;
 			}
 
 			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
@@ -124,9 +130,9 @@ namespace TestEditor
 				if (paletteWindow.ForceActiveBar && wparam == 0)
 				{
 					PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-				}
 
-				return (LRESULT) 1;
+					return (LRESULT) 1;
+				}
 			}
 
 			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
