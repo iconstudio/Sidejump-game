@@ -11,6 +11,8 @@ using WinUIEx;
 
 namespace TestEditor
 {
+	using WindowSubRoutine = Windows.Win32.UI.Shell.SUBCLASSPROC;
+
 	public partial class App : Application, ISingleton<App>
 	{
 		public const int minWidth = 600;
@@ -18,6 +20,12 @@ namespace TestEditor
 
 		internal Window myWindow;
 		internal WindowProjection myProject;
+
+		internal event WindowSubRoutine SubRoutines
+		{
+			add => myProject.SubRoutines += value;
+			remove => myProject.SubRoutines -= value;
+		}
 
 		public App()
 		{
