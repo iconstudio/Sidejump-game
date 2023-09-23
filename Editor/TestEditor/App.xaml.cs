@@ -5,12 +5,13 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
+using TestEditor.Utility;
 using TestEditor.WinUI;
 using WinUIEx;
 
 namespace TestEditor
 {
-	public partial class App : Application
+	public partial class App : Application, ISingleton<App>
 	{
 		private const int minWidth = 600;
 		private const int minHeight = 400;
@@ -21,6 +22,8 @@ namespace TestEditor
 		public App()
 		{
 			InitializeComponent();
+
+			ISingleton<App>.SetInstance(this);
 		}
 
 		protected override void OnLaunched(LaunchActivatedEventArgs args)
@@ -63,5 +66,7 @@ namespace TestEditor
 
 			return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);
 		}
+
+		public static App GetInstance() => ISingleton<App>.SingleInstance;
 	}
 }
