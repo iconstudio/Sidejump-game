@@ -6,6 +6,8 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.UI;
 using Windows.UI.WindowManagement;
 using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.WinUI;
 using WinUIEx;
@@ -18,8 +20,8 @@ namespace TestEditor
 		private Color flushColour = Transparent;
 
 		private WindowView clientView;
-
 		private ToolWindow paletteWindow, layerWindow;
+		private bool ignoreNcActivate;
 
 		public EditorPage()
 		{
@@ -71,6 +73,65 @@ namespace TestEditor
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
 
+		private LRESULT EditorHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
+		{
+			switch (msg)
+			{
+				case PInvoke.WM_NCACTIVATE:
+				{
+					if (wparam == 0)
+					{
+						if (ignoreNcActivate)
+						{
+							ignoreNcActivate = false;
+						}
+						else
+						{
+							PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						}
+					}
+				}
+				return (LRESULT) 1;
+
+				case PInvoke.WM_ACTIVATEAPP:
+				{
+					if (wparam == 0)
+					{
+						PInvoke.PostMessage(clientView, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+
+						paletteWindow.ForceActiveBar = false;
+						PInvoke.PostMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+
+						ignoreNcActivate = true;
+					}
+					else if (wparam == 1)
+					{
+						PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+
+						paletteWindow.ForceActiveBar = true;
+						PInvoke.SendMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+					}
+				}
+				return (LRESULT) 1;
+			}
+
+			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
+		}
+		private LRESULT ToolWindowHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
+		{
+			if (msg == PInvoke.WM_NCACTIVATE)
+			{
+				if (paletteWindow.ForceActiveBar && wparam == 0)
+				{
+					PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+				}
+
+				return (LRESULT) 1;
+			}
+
+			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
+		}
+
 		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
 			Window window = this.GetWindow();
@@ -80,6 +141,11 @@ namespace TestEditor
 			paletteWindow.SetWindowSize(240, 400);
 
 			paletteWindow.Activate();
+			//PInvoke.SetActiveWindow(paletteWindow.myProject);
+
+			App.GetInstance().myProject.SubRoutine += EditorHook;
+			paletteWindow.myProject.SubRoutine += ToolWindowHook;
+
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
@@ -87,11 +153,9 @@ namespace TestEditor
 		}
 		private void OnFocused(object sender, RoutedEventArgs e)
 		{
-			paletteWindow.Show();
 		}
 		private void OnLostFocus(object sender, RoutedEventArgs e)
 		{
-			paletteWindow.Hide();
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
