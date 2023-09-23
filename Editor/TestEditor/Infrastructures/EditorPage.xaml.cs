@@ -19,7 +19,6 @@ namespace TestEditor
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 		private Color flushColour = Transparent;
 
-		private WindowView clientView;
 		private ToolWindow paletteWindow, layerWindow;
 		private bool ignoreNcActivate;
 
@@ -142,7 +141,7 @@ namespace TestEditor
 				{
 					if (paletteWindow.ForceActiveBar)
 					{
-						PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 					}
 
 					return (LRESULT) 1;
@@ -154,9 +153,6 @@ namespace TestEditor
 
 		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
-			Window window = this.GetWindow();
-			clientView = new(window);
-
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
 			paletteWindow.SetWindowSize(240, 400);
 
