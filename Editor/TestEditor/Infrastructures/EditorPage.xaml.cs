@@ -136,9 +136,12 @@ namespace TestEditor
 		{
 			if (msg == PInvoke.WM_NCACTIVATE)
 			{
-				if (paletteWindow.ForceActiveBar && wparam == 0)
+				if (wparam == 0)
 				{
-					PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+					if (paletteWindow.ForceActiveBar)
+					{
+						PInvoke.SendMessage(clientView, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+					}
 
 					return (LRESULT) 1;
 				}
