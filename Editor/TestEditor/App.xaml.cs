@@ -13,11 +13,11 @@ namespace TestEditor
 {
 	public partial class App : Application, ISingleton<App>
 	{
-		private const int minWidth = 600;
-		private const int minHeight = 400;
+		public const int minWidth = 600;
+		public const int minHeight = 400;
 
-		private Window myWindow;
-		private WindowProjection myProject;
+		internal Window myWindow;
+		internal WindowProjection myProject;
 
 		public App()
 		{
