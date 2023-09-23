@@ -78,7 +78,6 @@ namespace TestEditor
 
 			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
 			paletteWindow.SetWindowSize(240, 400);
-			paletteWindow.myParent = clientView;
 
 			paletteWindow.Activate();
 		}

@@ -23,12 +23,11 @@ namespace TestEditor
 		}
 
 		private const WindowStyle defaultStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU;
-		private const WindowOption defaultOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED;
+		private const WindowOption defaultOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_NOACTIVATE;
 
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 
 		internal WindowProjection myProject;
-		internal WindowView myParent;
 		internal OverlappedPresenter myPresenter;
 
 		public ToolWindow()
@@ -69,12 +68,6 @@ namespace TestEditor
 
 		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
-			if (myParent.NativeHandle != HWND.Null)
-			{
-				myProject.Styles |= WindowStyle.WS_CHILD;
-				//PInvoke.SetParent(myProject, myParent);
-			}
-			myProject.Options |= WindowOption.WS_EX_NOACTIVATE;
 		}
 		private void OnFocused(object sender, RoutedEventArgs e)
 		{
