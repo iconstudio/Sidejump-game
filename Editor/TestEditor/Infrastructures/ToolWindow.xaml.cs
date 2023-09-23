@@ -14,7 +14,7 @@ namespace TestEditor
 	using WindowOption = WINDOW_EX_STYLE;
 	using WindowStyle = WINDOW_STYLE;
 
-	public sealed partial class ToolWindow : Window
+	public sealed partial class ToolWindow : Window, IDisposable
 	{
 		private class ToolPresenterCreationFailedException : NullReferenceException
 		{
@@ -60,6 +60,11 @@ namespace TestEditor
 			myPresenter.IsMinimizable = false;
 
 			AppWindow.SetPresenter(myPresenter);
+		}
+
+		public void Dispose()
+		{
+			myProject.Dispose();
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs _)
