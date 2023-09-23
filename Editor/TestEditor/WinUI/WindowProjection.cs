@@ -28,8 +28,8 @@ namespace TestEditor.WinUI
 		private WindowOption myOptions;
 		private bool isDisposed;
 
-		public Window Implement { get; }
-		public HWND NativeHandle { get; }
+		public Window Implement { get; private set; }
+		public HWND NativeHandle { get; private set; }
 		public AppWindow AppWindow => Implement.AppWindow;
 		public CoreWindow CoreWindow => Implement.CoreWindow;
 		public UIElement Content
@@ -169,6 +169,10 @@ namespace TestEditor.WinUI
 			myStyles = (WindowStyle) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
 			myOptions = (WindowOption) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
 		}
+		~WindowProjection()
+		{
+			Dispose(false);
+		}
 
 		public void Activate() => Implement.Activate();
 		public void Close() => Implement.Activate();
@@ -198,8 +202,22 @@ namespace TestEditor.WinUI
 
 			if (disposing)
 			{
-				Marshal.DestroyStructure(NativeHandle, typeof(HWND));
+				Implement = null;
 			}
+
+			lock (mySubRoutines)
+			{
+				foreach (var pair in mySubRoutines)
+				{
+					PInvoke.RemoveWindowSubclass(NativeHandle, pair.Value, pair.Key);
+				}
+
+				mySubRoutines.Clear();
+			}
+
+			Marshal.DestroyStructure(NativeHandle, typeof(HWND));
+			Marshal.FreeHGlobal(NativeHandle);
+			NativeHandle = HWND.Null;
 
 			isDisposed = true;
 		}
