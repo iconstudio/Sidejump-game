@@ -14,17 +14,26 @@ using WinUIEx;
 
 namespace TestEditor
 {
+	using WindowOption = WINDOW_EX_STYLE;
+	using WindowStyle = WINDOW_STYLE;
+
 	public sealed partial class EditorPage : Page
 	{
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 		private Color flushColour = Transparent;
 
-		private ToolWindow paletteWindow, layerWindow;
+		private const WindowStyle toolStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU;
+		private const WindowOption toolOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_NOACTIVATE;
+		private ChildWindowCollection childWindows;
 		private bool ignoreNcActivate;
+
+		internal ChildWindowCollection Children => childWindows;
 
 		public EditorPage()
 		{
 			InitializeComponent();
+
+			childWindows = new();
 		}
 
 		private void Render(CanvasDrawingSession context)
@@ -102,12 +111,19 @@ namespace TestEditor
 						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
 						// diactivate children
-						paletteWindow.ForceActiveBar = false;
-						if (paletteWindow.Visible)
+						foreach (var child in Children)
 						{
-							PInvoke.PostMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+							if (child.Window is ToolWindow toolwindow)
+							{
+								toolwindow.ForceActiveBar = false;
+								if (toolwindow.Visible)
+								{
+									PInvoke.PostMessage(child.Projection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+								}
+
+								toolwindow.myPresenter.IsAlwaysOnTop = false;
+							}
 						}
-						paletteWindow.myPresenter.IsAlwaysOnTop = false;
 
 						ignoreNcActivate = true;
 
@@ -118,12 +134,19 @@ namespace TestEditor
 						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
 						// activate children
-						paletteWindow.ForceActiveBar = true;
-						if (paletteWindow.Visible)
+						foreach (var child in Children)
 						{
-							PInvoke.SendMessage(paletteWindow.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+							if (child.Window is ToolWindow toolwindow)
+							{
+								toolwindow.ForceActiveBar = true;
+								if (toolwindow.Visible)
+								{
+									PInvoke.SendMessage(child.Projection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+								}
+
+								toolwindow.myPresenter.IsAlwaysOnTop = true;
+							}
 						}
-						paletteWindow.myPresenter.IsAlwaysOnTop = true;
 
 						return (LRESULT) 0;
 					}
@@ -139,9 +162,15 @@ namespace TestEditor
 			{
 				if (wparam == 0)
 				{
-					if (paletteWindow.ForceActiveBar)
+					foreach (var child in Children)
 					{
-						PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						if (child.Window is ToolWindow toolwindow)
+						{
+							if (toolwindow.ForceActiveBar)
+							{
+								PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+							}
+						}
 					}
 
 					return (LRESULT) 1;
@@ -153,18 +182,27 @@ namespace TestEditor
 
 		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
-			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
-			paletteWindow.SetWindowSize(240, 400);
+			var palette = WindowHelper.CreateWindow<ToolWindow>();
+			if (palette is not null)
+			{
+				var proj = Children.Emplace(palette);
+				palette.SetWindowSize(240, 400);
 
-			paletteWindow.Activate();
+				proj.SubRoutines += ToolWindowHook;
+				proj.Styles = toolStyle;
+				proj.Options = toolOption;
+
+				palette.Activate();
+			}
 
 			App.GetInstance().SubRoutines += EditorHook;
-			paletteWindow.myProject.SubRoutines += ToolWindowHook;
-
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
-			paletteWindow.Close();
+			foreach (var child in Children)
+			{
+				child.Window.Close();
+			}
 		}
 		private void OnFocused(object sender, RoutedEventArgs e)
 		{
