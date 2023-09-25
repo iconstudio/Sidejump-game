@@ -19,13 +19,17 @@ namespace TestEditor
 
 	public sealed partial class EditorPage : Page
 	{
-		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
-		private Color flushColour = Transparent;
-
+		private const int toolWidth = 200;
+		private const int toolHeight = 400;
 		private const WindowStyle toolStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU;
 		private const WindowOption toolOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_NOACTIVATE;
+
+		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
+
 		private ChildWindowCollection childWindows;
+		private ToolWindow layerPanel, palettePanel;
 		private bool ignoreNcActivate;
+		private Color flushColour = Transparent;
 
 		internal ChildWindowCollection Children => childWindows;
 
@@ -45,6 +49,21 @@ namespace TestEditor
 				context.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
 				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
+		}
+		private ToolWindow CreateToolPanel()
+		{
+			var panel = WindowHelper.CreateWindow<ToolWindow>();
+			if (panel is not null)
+			{
+				var proj = Children.Emplace(panel);
+				panel.SetWindowSize(toolWidth, toolHeight);
+
+				proj.SubRoutines += ToolWindowHook;
+				proj.Styles = toolStyle;
+				proj.Options = toolOption;
+			}
+
+			return panel;
 		}
 		private void ProcessTransition(EditorTransitionCategory cat)
 		{
@@ -79,6 +98,72 @@ namespace TestEditor
 			}
 			//var testmap = new Map();
 			//using (MapHelper.SaveMap(testmap, mapfile))
+		}
+
+		private void OnLoaded(object sender, RoutedEventArgs _)
+		{
+			palettePanel = CreateToolPanel();
+			palettePanel?.Activate();
+
+			layerPanel = CreateToolPanel();
+			layerPanel?.Activate();
+
+			if (palettePanel is not null || layerPanel is not null)
+			{
+				App.GetInstance().SubRoutines += EditorHook;
+			}
+		}
+		private void OnUnloaded(object sender, RoutedEventArgs e)
+		{
+			foreach (var child in Children)
+			{
+				child.Window.Close();
+			}
+		}
+		private void OnFocused(object sender, RoutedEventArgs e)
+		{
+		}
+		private void OnLostFocus(object sender, RoutedEventArgs e)
+		{
+		}
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+
+			if (e.Parameter is EditorTransitionInfo info)
+			{
+				ProcessTransition(info.transitionCategory);
+			}
+
+			// load the canvas
+			FindName(nameof(editorCanvas));
+		}
+		private void OnCanvasLoaded(object sender, RoutedEventArgs e)
+		{ }
+		private void OnContentsSizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			if (sender is StackPanel panel)
+			{
+				var h1 = panel.ActualHeight;
+				var height = double.IsNormal(h1) ? h1 : 300;
+
+				var h2 = editorCommands?.ActualHeight ?? 64;
+				height -= double.IsNormal(h2) ? h2 : 64; // command
+
+				var h3 = editorMenu?.ActualHeight ?? 40;
+				height -= double.IsNormal(h3) ? h3 : 40; // menubar
+
+				editorContents.Height = height;
+			}
+		}
+		private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
+		{
+			Render(args.DrawingSession);
+		}
+		private void OnCanvasUnloaded(object sender, RoutedEventArgs _)
+		{
+			editorCanvas.RemoveFromVisualTree();
+			editorCanvas = null;
 		}
 
 		private LRESULT EditorHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
@@ -178,76 +263,6 @@ namespace TestEditor
 			}
 
 			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
-		}
-
-		private void OnLoaded(object sender, RoutedEventArgs _)
-		{
-			var palette = WindowHelper.CreateWindow<ToolWindow>();
-			if (palette is not null)
-			{
-				var proj = Children.Emplace(palette);
-				palette.SetWindowSize(240, 400);
-
-				proj.SubRoutines += ToolWindowHook;
-				proj.Styles = toolStyle;
-				proj.Options = toolOption;
-
-				palette.Activate();
-			}
-
-			App.GetInstance().SubRoutines += EditorHook;
-		}
-		private void OnUnloaded(object sender, RoutedEventArgs e)
-		{
-			foreach (var child in Children)
-			{
-				child.Window.Close();
-			}
-		}
-		private void OnFocused(object sender, RoutedEventArgs e)
-		{
-		}
-		private void OnLostFocus(object sender, RoutedEventArgs e)
-		{
-		}
-		protected override void OnNavigatedTo(NavigationEventArgs e)
-		{
-			base.OnNavigatedTo(e);
-
-			if (e.Parameter is EditorTransitionInfo info)
-			{
-				ProcessTransition(info.transitionCategory);
-			}
-
-			// load the canvas
-			FindName(nameof(editorCanvas));
-		}
-		private void OnCanvasLoaded(object sender, RoutedEventArgs e)
-		{ }
-		private void OnContentsSizeChanged(object sender, SizeChangedEventArgs e)
-		{
-			if (sender is StackPanel panel)
-			{
-				var h1 = panel.ActualHeight;
-				var height = double.IsNormal(h1) ? h1 : 300;
-
-				var h2 = editorCommands?.ActualHeight ?? 64;
-				height -= double.IsNormal(h2) ? h2 : 64; // command
-
-				var h3 = editorMenu?.ActualHeight ?? 40;
-				height -= double.IsNormal(h3) ? h3 : 40; // menubar
-
-				editorContents.Height = height;
-			}
-		}
-		private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)
-		{
-			Render(args.DrawingSession);
-		}
-		private void OnCanvasUnloaded(object sender, RoutedEventArgs _)
-		{
-			editorCanvas.RemoveFromVisualTree();
-			editorCanvas = null;
 		}
 	}
 
