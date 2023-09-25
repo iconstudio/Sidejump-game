@@ -8,10 +8,7 @@ using TestEditor.WinUI;
 
 namespace TestEditor
 {
-	using WindowOption = WINDOW_EX_STYLE;
-	using WindowStyle = WINDOW_STYLE;
-
-	public sealed partial class ToolWindow : Window, IDisposable
+	public sealed partial class ToolWindow : Window
 	{
 		private class ToolPresenterCreationFailedException : NullReferenceException
 		{
@@ -19,12 +16,7 @@ namespace TestEditor
 			{ }
 		}
 
-		private const WindowStyle defaultStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU;
-		private const WindowOption defaultOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_NOACTIVATE;
-
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
-
-		internal WindowProjection myProject;
 		internal OverlappedPresenter myPresenter;
 		internal bool ForceActiveBar = true;
 
@@ -37,12 +29,6 @@ namespace TestEditor
 				acrylicBackdrop = new();
 				SystemBackdrop = acrylicBackdrop;
 			}
-
-			myProject = new(this)
-			{
-				Styles = defaultStyle,
-				Options = defaultOption
-			};
 
 			myPresenter = OverlappedPresenter.Create();
 			if (myPresenter is null)
@@ -57,11 +43,6 @@ namespace TestEditor
 			myPresenter.IsMinimizable = false;
 
 			AppWindow.SetPresenter(myPresenter);
-		}
-
-		public void Dispose()
-		{
-			myProject.Dispose();
 		}
 	}
 }
