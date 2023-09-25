@@ -18,19 +18,19 @@ namespace TestEditor.WinUI
 		}
 		ChildWindow IReadOnlyList<ChildWindow>.this[int index] => ((IReadOnlyList<ChildWindow>) myChildren)[index];
 
-		public Window Emplace(ChildWindow item)
+		public WindowProjection Emplace(ChildWindow item)
 		{
 			myChildren.Add(item);
 
-			return item.Window;
+			return item.Projection;
 		}
-		public Window Emplace(in ChildWindow item)
+		public WindowProjection Emplace(in ChildWindow item)
 		{
 			myChildren.Add(item);
 
-			return item.Window;
+			return item.Projection;
 		}
-		public Window Emplace([NotNull] in Window window)
+		public WindowProjection Emplace([NotNull] in Window window)
 		{
 			return Emplace(new ChildWindow(window, new(window)));
 		}
