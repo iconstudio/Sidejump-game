@@ -63,13 +63,5 @@ namespace TestEditor
 		{
 			myProject.Dispose();
 		}
-
-		private void OnLoaded(object sender, RoutedEventArgs _)
-		{
-		}
-		private void OnFocused(object sender, RoutedEventArgs e)
-		{
-
-		}
 	}
 }

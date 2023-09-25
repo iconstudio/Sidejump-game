@@ -19,8 +19,7 @@
 		<Frame Name="toolContents"
 			Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}"
 			HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-			Grid.Row="1"
-			Loaded="OnLoaded" GotFocus="OnFocused">
+			Grid.Row="1">
 
 			<Frame.Transitions>
 				<TransitionCollection>
