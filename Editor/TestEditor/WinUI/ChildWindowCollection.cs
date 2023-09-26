@@ -33,7 +33,7 @@ namespace TestEditor.WinUI
 		}
 		public WindowProjection Emplace([NotNull] in Window window)
 		{
-			return Emplace(new ChildWindow(window, new(window)));
+			return Emplace(new ChildWindow(window));
 		}
 		void ICollection<ChildWindow>.Add(ChildWindow item)
 		{
