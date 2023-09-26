@@ -19,8 +19,8 @@ namespace TestEditor
 
 	public sealed partial class EditorPage : Page
 	{
-		private const int toolWidth = 200;
-		private const int toolHeight = 400;
+		private const int toolWidth = 240;
+		private const int toolHeight = 300;
 		private const WindowStyle toolStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU;
 		private const WindowOption toolOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_NOACTIVATE;
 
