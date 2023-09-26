@@ -45,15 +45,11 @@ namespace TestEditor
 			GC.SuppressFinalize(this);
 		}
 
-		protected override void OnLaunched(LaunchActivatedEventArgs args)
+		protected override async void OnLaunched(LaunchActivatedEventArgs args)
 		{
-			var display_task = AcquireDisplaySize();
-			display_task.Start();
-
 			try
 			{
-				display_task.Wait();
-				DisplaySize = display_task.Result;
+				DisplaySize = await AcquireDisplaySize();
 			}
 			catch (ObjectDisposedException e)
 			{
