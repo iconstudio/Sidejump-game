@@ -13,6 +13,7 @@ DefSubclassProc
 SetActiveWindow
 ShowWindow
 GetDpiForWindow
+MonitorFromWindow
 MINMAXINFO
 WM_GETMINMAXINFO
 WM_SIZE
