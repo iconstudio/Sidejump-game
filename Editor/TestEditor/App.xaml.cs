@@ -21,7 +21,7 @@ namespace TestEditor
 		public const int minWidth = 600;
 		public const int minHeight = 400;
 		internal static readonly SizeInt32 minSize = new(minWidth, minHeight);
-		internal static readonly SizeInt32 displaySize;
+		internal static SizeInt32 DisplaySize { get; private set; }
 
 		internal Window myWindow;
 		internal WindowProjection myProject;
@@ -32,13 +32,6 @@ namespace TestEditor
 			remove => myProject.SubRoutines -= value;
 		}
 
-		static App()
-		{
-			var display_task = AcquireDisplaySize();
-			display_task.Wait();
-
-			displaySize = display_task.Result;
-		}
 		public App()
 		{
 			InitializeComponent();
@@ -54,6 +47,11 @@ namespace TestEditor
 
 		protected override void OnLaunched(LaunchActivatedEventArgs args)
 		{
+			var display_task = AcquireDisplaySize();
+			display_task.Wait();
+
+			DisplaySize = display_task.Result;
+
 			try
 			{
 				myWindow = WindowHelper.CreateWindow<MainWindow>();
