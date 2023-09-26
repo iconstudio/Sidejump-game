@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
+using Windows.Devices.Display;
+using Windows.Devices.Enumeration;
+using Windows.Graphics;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
@@ -17,6 +20,8 @@ namespace TestEditor
 	{
 		public const int minWidth = 600;
 		public const int minHeight = 400;
+		internal static readonly SizeInt32 minSize = new(minWidth, minHeight);
+		internal static readonly SizeInt32 displaySize;
 
 		internal Window myWindow;
 		internal WindowProjection myProject;
@@ -27,6 +32,13 @@ namespace TestEditor
 			remove => myProject.SubRoutines -= value;
 		}
 
+		static App()
+		{
+			var display_task = AcquireDisplaySize();
+			display_task.Wait();
+
+			displaySize = display_task.Result;
+		}
 		public App()
 		{
 			InitializeComponent();
@@ -53,7 +65,10 @@ namespace TestEditor
 
 			myProject.Activate();
 		}
-		private LRESULT MainHook(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
+
+		public static App GetInstance() => ISingleton<App>.SingleInstance;
+
+		private static LRESULT MainHook(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
 		{
 			switch (uMsg)
 			{
@@ -74,7 +89,31 @@ namespace TestEditor
 
 			return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);
 		}
+		public static async Task<SizeInt32> AcquireDisplaySize()
+		{
+			var displays = await DeviceInformation.FindAllAsync(DisplayMonitor.GetDeviceSelector());
 
-		public static App GetInstance() => ISingleton<App>.SingleInstance;
+			if (0 < displays.Count)
+			{
+				throw new InvalidOperationException();
+			}
+
+			var monitor = await DisplayMonitor.FromInterfaceIdAsync(displays[0].Id);
+
+			var result = new SizeInt32();
+			if (monitor is null)
+			{
+				// these are app's size
+				result.Width = minWidth;
+				result.Height = minHeight;
+			}
+			else
+			{
+				result.Width = monitor.NativeResolutionInRawPixels.Width;
+				result.Height = monitor.NativeResolutionInRawPixels.Height;
+			}
+
+			return result;
+		}
 	}
 }
