@@ -16,8 +16,8 @@ namespace TestEditor.WinUI
 
 	internal struct ChildWindow : IWindowView, IDisposable
 	{
-		public readonly Window Window { get; }
-		public readonly WindowProjection Projection { get; }
+		public Window Window { get; internal set; }
+		public WindowProjection Projection { get; internal set; }
 		public readonly Window Implement => ((IWindowView) Projection).Implement;
 		public readonly HWND NativeHandle => ((IWindowView) Projection).NativeHandle;
 		public readonly AppWindow AppWindow => ((IWindowView) this).AppWindow;
@@ -33,20 +33,13 @@ namespace TestEditor.WinUI
 		public readonly WindowStyle Styles => ((IWindowView) this).Styles;
 		public readonly WindowOption Options => ((IWindowView) this).Options;
 
-		public ChildWindow()
+		public static ChildWindow CreateFrom(Window target)
 		{
-			Window = null;
-			Projection = null;
-		}
-		public ChildWindow(Window window)
-		{
-			Window = window;
-			Projection = WindowProjection.CreateFrom(Window);
-		}
-		public ChildWindow(Window window, WindowProjection projection)
-		{
-			Window = window;
-			Projection = projection;
+			return new()
+			{
+				Window = target,
+				Projection = WindowProjection.CreateFrom(target)
+			};
 		}
 
 		public void Dispose()
