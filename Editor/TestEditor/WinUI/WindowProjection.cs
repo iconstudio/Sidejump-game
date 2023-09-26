@@ -153,12 +153,17 @@ namespace TestEditor.WinUI
 			}
 		}
 
-		public WindowProjection()
+		public static WindowProjection CreateFrom(Window target)
+		{
+			return new(target);
+		}
+
+		private WindowProjection()
 		{
 			Implement = null;
 			NativeHandle = HWND.Null;
 		}
-		public WindowProjection(Window target)
+		private WindowProjection(Window target)
 		{
 			Implement = target;
 

@@ -53,7 +53,7 @@ namespace TestEditor
 				myWindow = WindowHelper.CreateWindow<MainWindow>();
 				myWindow.CenterOnScreen();
 
-				myProject = new(myWindow);
+				myProject = WindowProjection.CreateFrom(myWindow);
 			}
 			catch (Exception e)
 			{
