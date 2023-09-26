@@ -33,6 +33,16 @@ namespace TestEditor.WinUI
 		public readonly WindowStyle Styles => ((IWindowView) this).Styles;
 		public readonly WindowOption Options => ((IWindowView) this).Options;
 
+		public ChildWindow()
+		{
+			Window = null;
+			Projection = null;
+		}
+		public ChildWindow(Window window)
+		{
+			Window = window;
+			Projection = WindowProjection.CreateFrom(Window);
+		}
 		public ChildWindow(Window window, WindowProjection projection)
 		{
 			Window = window;
