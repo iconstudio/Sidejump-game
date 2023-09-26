@@ -6,6 +6,7 @@ namespace TestEditor.WinUI
 {
 	internal class ChildWindowCollection
 		: IList<ChildWindow>, IReadOnlyList<ChildWindow>
+		, IReadOnlyCollection<ChildWindow>
 	{
 		private List<ChildWindow> myChildren = new();
 		public int Count => myChildren.Count;
