@@ -111,7 +111,7 @@ namespace TestEditor
 		{
 			var displays = await DeviceInformation.FindAllAsync(DisplayMonitor.GetDeviceSelector());
 
-			if (0 < displays.Count)
+			if (0 == displays.Count)
 			{
 				throw new InvalidOperationException();
 			}
