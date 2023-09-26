@@ -14,7 +14,7 @@ namespace TestEditor.WinUI
 	using WindowStyle = WINDOW_STYLE;
 	using WindowOption = WINDOW_EX_STYLE;
 
-	internal readonly struct ChildWindow : IWindowView, IDisposable
+	internal struct ChildWindow : IWindowView, IDisposable
 	{
 		public readonly Window Window { get; }
 		public readonly WindowProjection Projection { get; }
