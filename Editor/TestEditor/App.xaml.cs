@@ -48,20 +48,34 @@ namespace TestEditor
 		protected override void OnLaunched(LaunchActivatedEventArgs args)
 		{
 			var display_task = AcquireDisplaySize();
-			display_task.Wait();
+			display_task.Start();
 
-			DisplaySize = display_task.Result;
+			try
+			{
+				display_task.Wait();
+				DisplaySize = display_task.Result;
+			}
+			catch (ObjectDisposedException e)
+			{
+				Debug.Fail("ObjectDisposedException" + e.ToString());
+				return;
+			}
+			catch (InvalidOperationException e)
+			{
+				Debug.Fail("InvalidOperationException" + e.ToString());
+				return;
+			}
 
 			try
 			{
 				myWindow = WindowHelper.CreateWindow<MainWindow>();
-				myWindow.CenterOnScreen();
-
 				myProject = WindowProjection.CreateFrom(myWindow);
+
+				myWindow.CenterOnScreen();
 			}
 			catch (Exception e)
 			{
-				Debug.Print(e.ToString());
+				Debug.Fail(e.ToString());
 				return;
 			}
 
