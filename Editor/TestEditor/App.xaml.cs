@@ -16,7 +16,7 @@ namespace TestEditor
 {
 	using WindowSubRoutine = Windows.Win32.UI.Shell.SUBCLASSPROC;
 
-	public partial class App : Application, ISingleton<App>
+	public partial class App : Application, ISingleton<App>, IDisposable
 	{
 		public const int minWidth = 600;
 		public const int minHeight = 400;
@@ -44,6 +44,12 @@ namespace TestEditor
 			InitializeComponent();
 
 			ISingleton<App>.SetInstance(this);
+		}
+
+		public void Dispose()
+		{
+			myProject.Dispose();
+			GC.SuppressFinalize(this);
 		}
 
 		protected override void OnLaunched(LaunchActivatedEventArgs args)
