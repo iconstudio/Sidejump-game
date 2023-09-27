@@ -27,7 +27,8 @@ namespace TestEditor
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 
 		private ChildWindowCollection childWindows;
-		private ToolWindow layerPanel, palettePanel;
+		private AppWindow layerPanel, palettePanel;
+		private Frame layerPanelContent, palettePanelContent;
 		private bool ignoreNcActivate;
 		private Color flushColour = Transparent;
 
@@ -100,31 +101,25 @@ namespace TestEditor
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
 
-		private void OnLoaded(object sender, RoutedEventArgs _)
+		private async void OnLoaded(object sender, RoutedEventArgs _)
 		{
-			var client_pos = App.GetInstance().myWindow.AppWindow.Position;
-			var client_bnd = App.GetInstance().myWindow.AppWindow.Size;
-			client_pos.X += client_bnd.Width;
+			var client = App.GetInstance().myWindow.AppWindow;
+			var client_pos = client.Position;
+			var client_bnd = client.Size;
+			client_pos.X += Math.Max(client_bnd.Width - toolWidth - 10, 0);
+			client_pos.Y += 20;
 
-			palettePanel = CreateToolPanel();
-			if (palettePanel is not null)
-			{
-				palettePanel.AppWindow.Move(client_pos);
-				client_pos.Y += toolHeight;
+			palettePanel = await AppWindow.TryCreateAsync();
+			palettePanel.Frame.SetFrameStyle(AppWindowFrameStyle.NoFrame);
 
-			}
-
-			//layerPanel = CreateToolPanel();
-			if (layerPanel is not null)
-			{
-				layerPanel.AppWindow.Move(client_pos);
-				client_pos.Y += toolHeight;
-			}
+			//layerPanel = await AppWindow.TryCreateAsync();
+			//layerPanel.Frame.SetFrameStyle(AppWindowFrameStyle.NoFrame);
 
 			//App.GetInstance().SubRoutines += EditorHook;
 
-			palettePanel?.Activate();
+			palettePanel.
 			//layerPanel?.Activate();
+			//bbb.Activate();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
