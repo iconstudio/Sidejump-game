@@ -121,7 +121,7 @@ namespace TestEditor
 				client_pos.Y += toolHeight;
 			}
 
-			App.GetInstance().SubRoutines += EditorHook;
+			//App.GetInstance().SubRoutines += EditorHook;
 
 			palettePanel?.Activate();
 			//layerPanel?.Activate();
@@ -133,7 +133,7 @@ namespace TestEditor
 				child.Window.Close();
 			}
 
-			App.GetInstance().SubRoutines -= EditorHook;
+			//App.GetInstance().SubRoutines -= EditorHook;
 		}
 		private void OnFocused(object sender, RoutedEventArgs e)
 		{
@@ -196,10 +196,10 @@ namespace TestEditor
 						else
 						{
 							// Send this msg again, but onto activated
-							//PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+							PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 						}
 
-						//return (LRESULT) 1;
+						return (LRESULT) 1;
 					}
 				}
 				break;
@@ -218,7 +218,7 @@ namespace TestEditor
 								toolwindow.ForceActiveBar = false;
 								if (toolwindow.Visible)
 								{
-									//PInvoke.PostMessage(child.Projection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+									PInvoke.PostMessage(child.Projection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 								}
 
 								toolwindow.myPresenter.IsAlwaysOnTop = false;
@@ -227,11 +227,11 @@ namespace TestEditor
 
 						ignoreNcActivate = true;
 
-						//return (LRESULT) 0;
+						return (LRESULT) 0;
 					}
 					else if (wparam == 1) // activated
 					{
-						//PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
 						// activate children
 						foreach (var child in Children)
@@ -241,14 +241,14 @@ namespace TestEditor
 								toolwindow.ForceActiveBar = true;
 								if (toolwindow.Visible)
 								{
-									//PInvoke.SendMessage(child.Projection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+									PInvoke.SendMessage(child.Projection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 								}
 
 								toolwindow.myPresenter.IsAlwaysOnTop = true;
 							}
 						}
 
-						//return (LRESULT) 0;
+						return (LRESULT) 0;
 					}
 				}
 				break;
