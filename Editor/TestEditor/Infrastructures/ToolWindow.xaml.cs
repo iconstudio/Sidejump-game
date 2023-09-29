@@ -38,5 +38,10 @@ namespace TestEditor
 
 			AppWindow.SetPresenter(myPresenter);
 		}
+
+		public void SetAlwaysOnTop(bool flag)
+		{
+			myPresenter.IsAlwaysOnTop = flag;
+		}
 	}
 }
