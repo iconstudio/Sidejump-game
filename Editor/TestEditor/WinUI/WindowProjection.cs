@@ -85,7 +85,7 @@ namespace TestEditor.WinUI
 			{
 				myStyles = value;
 
-				PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE, (nint) myStyles);
+				IWindowViewMethods.SetStyle(NativeHandle, myStyles);
 			}
 		}
 		public WindowOption Options
@@ -95,7 +95,7 @@ namespace TestEditor.WinUI
 			{
 				myOptions = value;
 
-				PInvoke.SetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, (nint) myOptions);
+				IWindowViewMethods.SetExStyle(NativeHandle, myOptions);
 			}
 		}
 		public event TypedEventHandler<object, WindowActivatedEventArgs> Activated
@@ -171,8 +171,8 @@ namespace TestEditor.WinUI
 			NativeHandle = new(hwnd);
 
 			isVisible = Implement.Visible;
-			myStyles = (WindowStyle) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
-			myOptions = (WindowOption) PInvoke.GetWindowLongPtr(NativeHandle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
+			myStyles = IWindowViewMethods.GetStyle(NativeHandle);
+			myOptions = IWindowViewMethods.GetExStyle(NativeHandle);
 		}
 		~WindowProjection()
 		{
