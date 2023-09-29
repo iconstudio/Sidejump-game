@@ -13,6 +13,7 @@ namespace TestEditor
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 		internal OverlappedPresenter myPresenter;
 		internal bool ForceActiveBar = true;
+		internal WindowProjection myProject;
 
 		public ToolWindow()
 		{
@@ -37,6 +38,10 @@ namespace TestEditor
 			myPresenter.IsMinimizable = false;
 
 			AppWindow.SetPresenter(myPresenter);
+			AppWindow.IsShownInSwitchers = false;
+
+			myProject = WindowProjection.CreateFrom(this);
+			myProject.Options |= WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
 		}
 
 		public void SetAlwaysOnTop(bool flag)

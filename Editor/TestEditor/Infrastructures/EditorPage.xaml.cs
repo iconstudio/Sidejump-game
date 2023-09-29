@@ -54,17 +54,7 @@ namespace TestEditor
 			var client = App.GetInstance().myWindow.AppWindow;
 			var client_id = client.Id;
 
-			var presenter = OverlappedPresenter.Create();
-			if (presenter is null)
-			{
-				throw new ToolPresenterCreationFailedException(nameof(presenter));
-			}
-
-			presenter.SetBorderAndTitleBar(true, true);
-			presenter.IsAlwaysOnTop = true;
-			presenter.IsResizable = false;
-			presenter.IsMaximizable = false;
-			presenter.IsMinimizable = false;
+			var result = new ToolWindow();
 
 			AppWindow panel = AppWindow.Create(presenter, client_id, dispatcherQueueController.DispatcherQueue);
 			if (panel is not null)
