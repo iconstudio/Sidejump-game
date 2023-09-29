@@ -1,6 +1,7 @@
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Navigation;
 
@@ -10,7 +11,6 @@ using Windows.Win32.UI.WindowsAndMessaging;
 using Windows.UI;
 
 using TestEditor.WinUI;
-using Microsoft.UI.Xaml.Hosting;
 
 namespace TestEditor
 {
@@ -26,19 +26,17 @@ namespace TestEditor
 
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 
-		private ChildWindowCollection childWindows;
-		private AppWindow layerPanel, palettePanel;
-		private Frame layerPanelContent, palettePanelContent;
+		private ToolWindow palettePanel;
+		private Frame palettePanelContent;
+		private DispatcherQueueController dispatcherQueueController;
 		private bool ignoreNcActivate;
 		private Color flushColour = Transparent;
-
-		internal ChildWindowCollection Children => childWindows;
 
 		public EditorPage()
 		{
 			InitializeComponent();
 
-			childWindows = new();
+			dispatcherQueueController = DispatcherQueueController.CreateOnDedicatedThread();
 		}
 
 		private void Render(CanvasDrawingSession context)
@@ -68,10 +66,10 @@ namespace TestEditor
 			presenter.IsMaximizable = false;
 			presenter.IsMinimizable = false;
 
-			AppWindow panel = AppWindow.Create(presenter, client_id);
+			AppWindow panel = AppWindow.Create(presenter, client_id, dispatcherQueueController.DispatcherQueue);
 			if (panel is not null)
 			{
-				panel.Resize(new(toolWidth, toolHeight));
+				panel.ResizeClient(new(toolWidth, toolHeight));
 				panel.IsShownInSwitchers = false;
 				panel.Show();
 			}
@@ -113,37 +111,33 @@ namespace TestEditor
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
 
-		private async void OnLoaded(object sender, RoutedEventArgs _)
+		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
-			var client = App.GetInstance().myWindow.AppWindow;
+			var app = App.GetInstance();
+			var client = app.myWindow.AppWindow;
 			var client_pos = client.Position;
 			var client_bnd = client.Size;
-			client_pos.X += Math.Max(client_bnd.Width - toolWidth - 10, 0);
-			client_pos.Y += 20;
+
+			if (client.Presenter is OverlappedPresenter presenter)
+			{
+				if (presenter.State == OverlappedPresenterState.Maximized)
+				{
+
+				}
+				else
+				{
+					client_pos.X += Math.Max(client_bnd.Width - toolWidth - 10, 0);
+					client_pos.Y += 20;
+				}
+			}
 
 			palettePanel = CreateToolPanel();
 			palettePanel?.Move(client_pos);
-
-			layerPanelContent = new();
-			//palettePanel.Content;
-
-			//ElementCompositionPreview.SetElementChildVisual(palettePanel.Title, layerPanelContent);
-
-			//layerPanel = await AppWindow.TryCreateAsync();
-			//layerPanel.Frame.SetFrameStyle(AppWindowFrameStyle.NoFrame);
-
-			//layerPanel = await CreateToolPanel();
-
-			//await palettePanel?.TryShowAsync();
-			//await layerPanel?.TryShowAsync();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
 			palettePanel?.Destroy();
 			palettePanel = null;
-
-			layerPanel?.Destroy();
-			layerPanel = null;
 
 			//App.GetInstance().SubRoutines -= EditorHook;
 		}
@@ -223,18 +217,15 @@ namespace TestEditor
 						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
 						// diactivate children
-						foreach (var child in Children)
+						if (palettePanel.Window is ToolWindow toolwindow)
 						{
-							if (child.Window is ToolWindow toolwindow)
+							toolwindow.ForceActiveBar = false;
+							if (toolwindow.Visible)
 							{
-								toolwindow.ForceActiveBar = false;
-								if (toolwindow.Visible)
-								{
-									PInvoke.PostMessage(child.Projection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
-								}
-
-								toolwindow.myPresenter.IsAlwaysOnTop = false;
+								PInvoke.PostMessage(palettePanel.Projection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 							}
+
+							toolwindow.myPresenter.IsAlwaysOnTop = false;
 						}
 
 						ignoreNcActivate = true;
@@ -246,18 +237,15 @@ namespace TestEditor
 						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
 						// activate children
-						foreach (var child in Children)
+						if (palettePanel.Window is ToolWindow toolwindow)
 						{
-							if (child.Window is ToolWindow toolwindow)
+							toolwindow.ForceActiveBar = true;
+							if (toolwindow.Visible)
 							{
-								toolwindow.ForceActiveBar = true;
-								if (toolwindow.Visible)
-								{
-									PInvoke.SendMessage(child.Projection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-								}
-
-								toolwindow.myPresenter.IsAlwaysOnTop = true;
+								PInvoke.SendMessage(palettePanel.Projection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 							}
+
+							toolwindow.myPresenter.IsAlwaysOnTop = true;
 						}
 
 						return (LRESULT) 0;
@@ -274,18 +262,15 @@ namespace TestEditor
 			{
 				if (wparam == 0)
 				{
-					foreach (var child in Children)
+					if (palettePanel.Window is ToolWindow toolwindow)
 					{
-						if (child.Window is ToolWindow toolwindow)
+						if (toolwindow.ForceActiveBar)
 						{
-							if (toolwindow.ForceActiveBar)
-							{
-								//PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-							}
+							PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 						}
 					}
 
-					//return (LRESULT) 1;
+					return (LRESULT) 1;
 				}
 			}
 
