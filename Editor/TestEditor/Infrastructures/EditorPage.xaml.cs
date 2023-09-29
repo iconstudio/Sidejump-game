@@ -1,16 +1,16 @@
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Navigation;
 
-using Windows.UI;
-using Windows.UI.WindowManagement;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
+using Windows.UI;
 
 using TestEditor.WinUI;
-using WinUIEx;
+using Microsoft.UI.Xaml.Hosting;
 
 namespace TestEditor
 {
@@ -51,17 +51,29 @@ namespace TestEditor
 				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
 		}
-		private ToolWindow CreateToolPanel()
+		private AppWindow CreateToolPanel()
 		{
-			var panel = WindowHelper.CreateWindow<ToolWindow>();
+			var client = App.GetInstance().myWindow.AppWindow;
+			var client_id = client.Id;
+
+			var presenter = OverlappedPresenter.Create();
+			if (presenter is null)
+			{
+				throw new ToolPresenterCreationFailedException(nameof(presenter));
+			}
+
+			presenter.SetBorderAndTitleBar(true, true);
+			presenter.IsAlwaysOnTop = true;
+			presenter.IsResizable = false;
+			presenter.IsMaximizable = false;
+			presenter.IsMinimizable = false;
+
+			AppWindow panel = AppWindow.Create(presenter, client_id);
 			if (panel is not null)
 			{
-				var proj = Children.Emplace(panel);
-				panel.SetWindowSize(toolWidth, toolHeight);
-
-				proj.SubRoutines += ToolWindowHook;
-				proj.Styles = toolStyle;
-				proj.Options = toolOption;
+				panel.Resize(new(toolWidth, toolHeight));
+				panel.IsShownInSwitchers = false;
+				panel.Show();
 			}
 
 			return panel;
@@ -109,24 +121,29 @@ namespace TestEditor
 			client_pos.X += Math.Max(client_bnd.Width - toolWidth - 10, 0);
 			client_pos.Y += 20;
 
-			palettePanel = await AppWindow.TryCreateAsync();
-			palettePanel.Frame.SetFrameStyle(AppWindowFrameStyle.NoFrame);
+			palettePanel = CreateToolPanel();
+			palettePanel?.Move(client_pos);
+
+			layerPanelContent = new();
+			//palettePanel.Content;
+
+			//ElementCompositionPreview.SetElementChildVisual(palettePanel.Title, layerPanelContent);
 
 			//layerPanel = await AppWindow.TryCreateAsync();
 			//layerPanel.Frame.SetFrameStyle(AppWindowFrameStyle.NoFrame);
 
-			//App.GetInstance().SubRoutines += EditorHook;
+			//layerPanel = await CreateToolPanel();
 
-			palettePanel.
-			//layerPanel?.Activate();
-			//bbb.Activate();
+			//await palettePanel?.TryShowAsync();
+			//await layerPanel?.TryShowAsync();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
-			foreach (var child in Children)
-			{
-				child.Window.Close();
-			}
+			palettePanel?.Destroy();
+			palettePanel = null;
+
+			layerPanel?.Destroy();
+			layerPanel = null;
 
 			//App.GetInstance().SubRoutines -= EditorHook;
 		}
@@ -276,6 +293,11 @@ namespace TestEditor
 		}
 	}
 
+	public class ToolPresenterCreationFailedException : NullReferenceException
+	{
+		public ToolPresenterCreationFailedException(string message) : base(message)
+		{ }
+	}
 	public class CanvasCreationException : Exception
 	{
 		public CanvasCreationException(string message)
