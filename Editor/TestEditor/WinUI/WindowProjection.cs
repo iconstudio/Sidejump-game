@@ -62,7 +62,7 @@ namespace TestEditor.WinUI
 			}
 		}
 		public Rect Bounds => Implement.Bounds;
-		public uint Dpi => ((IWindowView) this).Dpi;
+		public uint Dpi => IWindowViewMethods.GetDPI(NativeHandle);
 		public string Title
 		{
 			get => Implement.Title;
