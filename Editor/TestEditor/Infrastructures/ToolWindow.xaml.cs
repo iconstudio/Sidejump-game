@@ -10,12 +10,6 @@ namespace TestEditor
 {
 	public sealed partial class ToolWindow : Window
 	{
-		private class ToolPresenterCreationFailedException : NullReferenceException
-		{
-			public ToolPresenterCreationFailedException(string message) : base(message)
-			{ }
-		}
-
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 		internal OverlappedPresenter myPresenter;
 		internal bool ForceActiveBar = true;
