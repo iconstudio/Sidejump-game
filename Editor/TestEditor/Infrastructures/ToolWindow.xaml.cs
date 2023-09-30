@@ -44,6 +44,10 @@ namespace TestEditor
 			myProject.Options |= WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
 		}
 
+		public void SetPresenter(OverlappedPresenter presenter)
+		{
+			myPresenter = presenter;
+		}
 		public void SetAlwaysOnTop(bool flag)
 		{
 			myPresenter.IsAlwaysOnTop = flag;
