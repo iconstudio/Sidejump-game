@@ -27,8 +27,6 @@ namespace TestEditor
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 
 		private ToolWindow palettePanel;
-		private AppWindow layerPanel;
-		private Frame palettePanelContent;
 		private bool ignoreNcActivate;
 		private Color flushColour = Colors.Plum;
 
@@ -107,21 +105,6 @@ namespace TestEditor
 			palettePanel.SetPresenter(pal_presenter);
 			palettePanel.AppWindow.IsShownInSwitchers = false;
 
-			var lay_presenter = OverlappedPresenter.Create();
-			if (lay_presenter is null)
-			{
-				throw new ToolPresenterCreationFailedException(nameof(lay_presenter));
-			}
-
-			lay_presenter.SetBorderAndTitleBar(true, true);
-			lay_presenter.IsAlwaysOnTop = true;
-			lay_presenter.IsResizable = false;
-			lay_presenter.IsMaximizable = false;
-			lay_presenter.IsMinimizable = false;
-
-			layerPanel = AppWindow.Create(lay_presenter, client.Id);
-			layerPanel.IsShownInSwitchers = false;
-
 			var client_pos = client.Position;
 			var client_bnd = client.Size;
 
@@ -144,17 +127,11 @@ namespace TestEditor
 				}
 				client_pos.Y += 48;
 				palettePanel.AppWindow.Move(client_pos);
-
-				client_pos.Y += toolHeight;
-				layerPanel.Move(client_pos);
 			}
 
 			palettePanel.AppWindow.ResizeClient(new(w, h));
 			palettePanel.AddOptions(toolOption);
 			palettePanel.Activate();
-
-			layerPanel.ResizeClient(new(w, h));
-			//layerPanel.Show();
 
 			app.SubRoutines += EditorHook;
 			palettePanel.myProjection.SubRoutines += ToolWindowHook;
@@ -163,9 +140,6 @@ namespace TestEditor
 		{
 			palettePanel?.Close();
 			palettePanel = null;
-
-			//layerPanel?.Destroy();
-			//layerPanel = null;
 
 			App.GetInstance().SubRoutines -= EditorHook;
 		}
