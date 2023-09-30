@@ -8,7 +8,7 @@ using TestEditor.WinUI;
 
 namespace TestEditor
 {
-	public sealed partial class ToolWindow : Window
+	internal sealed partial class ToolWindow : Window
 	{
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 		internal OverlappedPresenter myPresenter;
@@ -47,6 +47,18 @@ namespace TestEditor
 		public void SetAlwaysOnTop(bool flag)
 		{
 			myPresenter.IsAlwaysOnTop = flag;
+		}
+		public void SetOptions(WINDOW_EX_STYLE flag)
+		{
+			myProject.Options = flag;
+		}
+		public void AddOptions(WINDOW_EX_STYLE flag)
+		{
+			myProject.Options |= flag;
+		}
+		public void RemoveOptions(WINDOW_EX_STYLE flag)
+		{
+			myProject.Options &= ~flag;
 		}
 	}
 }
