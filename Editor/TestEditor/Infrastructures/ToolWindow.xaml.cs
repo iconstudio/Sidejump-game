@@ -26,23 +26,7 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
-			myPresenter = OverlappedPresenter.Create();
-			if (myPresenter is null)
-			{
-				throw new ToolPresenterCreationFailedException(nameof(myPresenter));
-			}
-
-			myPresenter.SetBorderAndTitleBar(true, true);
-			myPresenter.IsAlwaysOnTop = true;
-			myPresenter.IsResizable = false;
-			myPresenter.IsMaximizable = false;
-			myPresenter.IsMinimizable = false;
-
-			AppWindow.SetPresenter(myPresenter);
-			AppWindow.IsShownInSwitchers = false;
-
 			myProject = WindowProjection.CreateFrom(this);
-			myProject.Options |= WINDOW_EX_STYLE.WS_EX_TOOLWINDOW;
 		}
 
 		public void SetPresenter(OverlappedPresenter presenter)
