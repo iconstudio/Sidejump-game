@@ -1,16 +1,17 @@
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
-using Microsoft.UI.Dispatching;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Navigation;
 
+using Windows.UI;
+using Windows.UI.WindowManagement;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
-using Windows.UI;
 
 using TestEditor.WinUI;
+using WinUIEx;
+using Microsoft.UI.Windowing;
 
 namespace TestEditor
 {
@@ -25,10 +26,10 @@ namespace TestEditor
 		private const WindowOption toolOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_NOACTIVATE;
 
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
-
-		private ToolWindow palettePanel;
-		private bool ignoreNcActivate;
 		private Color flushColour = Colors.Plum;
+
+		private ToolWindow paletteWindow;
+		private bool ignoreNcActivate;
 
 		public EditorPage()
 		{
@@ -44,10 +45,6 @@ namespace TestEditor
 				context.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
 				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
-		}
-		private static ToolWindow CreateToolPanel()
-		{
-			return WindowHelper.CreateWindow<ToolWindow>();
 		}
 		private void ProcessTransition(EditorTransitionCategory cat)
 		{
@@ -84,27 +81,81 @@ namespace TestEditor
 			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
 
+		private LRESULT EditorHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
+		{
+			switch (msg)
+			{
+				case PInvoke.WM_NCACTIVATE:
+				{
+					if (wparam == 0) // diactivated
+					{
+						if (ignoreNcActivate)
+						{
+							ignoreNcActivate = false;
+						}
+						else
+						{
+							// Send this msg again, but onto activated
+							PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						}
+
+						return (LRESULT) 1;
+					}
+				}
+				break;
+
+				case PInvoke.WM_ACTIVATEAPP:
+				{
+					if (wparam == 0) // diactivated
+					{
+						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+
+						// diactivate children
+						paletteWindow.LoseActivate();
+
+						ignoreNcActivate = true;
+
+						return (LRESULT) 0;
+					}
+					else if (wparam == 1) // activated
+					{
+						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+
+						// activate children
+						paletteWindow.ForceActivate();
+
+						return (LRESULT) 0;
+					}
+				}
+				break;
+			}
+
+			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
+		}
+		private LRESULT ToolWindowHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
+		{
+			if (msg == PInvoke.WM_NCACTIVATE)
+			{
+				if (wparam == 0)
+				{
+					if (paletteWindow.ForceActiveBar)
+					{
+						PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+					}
+
+					return (LRESULT) 1;
+				}
+			}
+
+			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
+		}
+
 		private void OnLoaded(object sender, RoutedEventArgs _)
 		{
 			var app = App.GetInstance();
+			app.SubRoutines += EditorHook;
+
 			var client = app.myWindow.AppWindow;
-
-			var pal_presenter = OverlappedPresenter.Create();
-			if (pal_presenter is null)
-			{
-				throw new ToolPresenterCreationFailedException(nameof(pal_presenter));
-			}
-
-			pal_presenter.SetBorderAndTitleBar(true, true);
-			pal_presenter.IsAlwaysOnTop = true;
-			pal_presenter.IsResizable = false;
-			pal_presenter.IsMaximizable = false;
-			pal_presenter.IsMinimizable = false;
-
-			palettePanel = CreateToolPanel();
-			palettePanel.SetPresenter(pal_presenter);
-			palettePanel.AppWindow.IsShownInSwitchers = false;
-
 			var client_pos = client.Position;
 			var client_bnd = client.Size;
 
@@ -112,6 +163,8 @@ namespace TestEditor
 			float scaling = (float) dpi / 96f;
 			var w = (int) (toolWidth * scaling);
 			var h = (int) (toolHeight * scaling);
+
+			paletteWindow = WindowHelper.CreateWindow<ToolWindow>();
 
 			if (client.Presenter is OverlappedPresenter client_presenter)
 			{
@@ -126,28 +179,26 @@ namespace TestEditor
 					client_pos.X = Math.Min(max_x, client_pos.X + Math.Max(client_bnd.Width - gap, 0));
 				}
 				client_pos.Y += 48;
-				palettePanel.AppWindow.Move(client_pos);
+				paletteWindow.AppWindow.Move(client_pos);
 			}
 
-			palettePanel.AppWindow.ResizeClient(new(w, h));
-			palettePanel.AddOptions(toolOption);
-			palettePanel.Activate();
+			paletteWindow.AppWindow.ResizeClient(new(w, h));
 
-			app.SubRoutines += EditorHook;
-			palettePanel.myProjection.SubRoutines += ToolWindowHook;
+			paletteWindow.myProjection.SubRoutines += ToolWindowHook;
+			paletteWindow.SetOptions(toolOption);
+			paletteWindow.Activate();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
-			palettePanel?.Close();
-			palettePanel = null;
-
-			App.GetInstance().SubRoutines -= EditorHook;
+			paletteWindow.Close();
 		}
 		private void OnFocused(object sender, RoutedEventArgs e)
 		{
+			//paletteWindow.SetAlwaysOnTop(true);
 		}
 		private void OnLostFocus(object sender, RoutedEventArgs e)
 		{
+			//paletteWindow.SetAlwaysOnTop(false);
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
@@ -188,82 +239,8 @@ namespace TestEditor
 			editorCanvas.RemoveFromVisualTree();
 			editorCanvas = null;
 		}
-
-		private LRESULT EditorHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
-		{
-			switch (msg)
-			{
-				case PInvoke.WM_NCACTIVATE:
-				{
-					if (wparam == 0) // diactivated
-					{
-						if (ignoreNcActivate)
-						{
-							ignoreNcActivate = false;
-						}
-						else
-						{
-							// Send this msg again, but onto activated
-							PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-						}
-
-						return (LRESULT) 1;
-					}
-				}
-				break;
-
-				case PInvoke.WM_ACTIVATEAPP:
-				{
-					if (wparam == 0) // diactivated
-					{
-						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
-
-						// diactivate children
-						palettePanel.LoseActivate();
-
-						ignoreNcActivate = true;
-
-						return (LRESULT) 0;
-					}
-					else if (wparam == 1) // activated
-					{
-						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-
-						// activate children
-						palettePanel.ForceActivate();
-
-						return (LRESULT) 0;
-					}
-				}
-				break;
-			}
-
-			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
-		}
-		private LRESULT ToolWindowHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
-		{
-			if (msg == PInvoke.WM_NCACTIVATE)
-			{
-				if (wparam == 0)
-				{
-					if (palettePanel.ForceActiveBar)
-					{
-						PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-					}
-
-					return (LRESULT) 1;
-				}
-			}
-
-			return PInvoke.DefSubclassProc(hwnd, msg, wparam, lparam);
-		}
 	}
 
-	public class ToolPresenterCreationFailedException : NullReferenceException
-	{
-		public ToolPresenterCreationFailedException(string message) : base(message)
-		{ }
-	}
 	public class CanvasCreationException : Exception
 	{
 		public CanvasCreationException(string message)
