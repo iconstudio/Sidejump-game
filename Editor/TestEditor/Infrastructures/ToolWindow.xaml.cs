@@ -56,6 +56,8 @@ namespace TestEditor
 			{
 				PInvoke.SendMessage(myProjection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 			}
+			SetAlwaysOnTop(true);
+
 		}
 		public void LoseActivate()
 		{
@@ -64,6 +66,8 @@ namespace TestEditor
 			{
 				PInvoke.PostMessage(myProjection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 			}
+			SetAlwaysOnTop(false);
+
 		}
 	}
 }

@@ -246,7 +246,6 @@ namespace TestEditor
 
 						// diactivate children
 						palettePanel.LoseActivate();
-						palettePanel.SetAlwaysOnTop(false);
 
 						ignoreNcActivate = true;
 
@@ -258,7 +257,6 @@ namespace TestEditor
 
 						// activate children
 						palettePanel.ForceActivate();
-						palettePanel.SetAlwaysOnTop(true);
 
 						return (LRESULT) 0;
 					}
