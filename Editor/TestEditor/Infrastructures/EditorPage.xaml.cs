@@ -155,6 +155,9 @@ namespace TestEditor
 
 			layerPanel.ResizeClient(new(w, h));
 			//layerPanel.Show();
+
+			app.SubRoutines += EditorHook;
+			palettePanel.myProjection.SubRoutines += ToolWindowHook;
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
@@ -164,7 +167,7 @@ namespace TestEditor
 			//layerPanel?.Destroy();
 			//layerPanel = null;
 
-			//App.GetInstance().SubRoutines -= EditorHook;
+			App.GetInstance().SubRoutines -= EditorHook;
 		}
 		private void OnFocused(object sender, RoutedEventArgs e)
 		{
