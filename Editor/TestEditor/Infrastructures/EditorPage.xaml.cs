@@ -27,16 +27,19 @@ namespace TestEditor
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
 
 		private ToolWindow palettePanel;
+		private AppWindow layerPanel;
 		private Frame palettePanelContent;
 		private DispatcherQueueController dispatcherQueueController;
 		private bool ignoreNcActivate;
-		private Color flushColour = Transparent;
+		private Color flushColour = Colors.Plum;
 
 		public EditorPage()
 		{
 			InitializeComponent();
 
 			dispatcherQueueController = DispatcherQueueController.CreateOnDedicatedThread();
+
+			palettePanel = CreateToolPanel();
 		}
 
 		private void Render(CanvasDrawingSession context)
@@ -49,22 +52,9 @@ namespace TestEditor
 				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
 		}
-		private AppWindow CreateToolPanel()
+		private static ToolWindow CreateToolPanel()
 		{
-			var client = App.GetInstance().myWindow.AppWindow;
-			var client_id = client.Id;
-
-			var result = new ToolWindow();
-
-			AppWindow panel = AppWindow.Create(presenter, client_id, dispatcherQueueController.DispatcherQueue);
-			if (panel is not null)
-			{
-				panel.ResizeClient(new(toolWidth, toolHeight));
-				panel.IsShownInSwitchers = false;
-				panel.Show();
-			}
-
-			return panel;
+			return WindowHelper.CreateWindow<ToolWindow>();
 		}
 		private void ProcessTransition(EditorTransitionCategory cat)
 		{
@@ -110,24 +100,40 @@ namespace TestEditor
 
 			if (client.Presenter is OverlappedPresenter presenter)
 			{
+				var gap = toolWidth + 10;
+				var max_x = App.DisplaySize.Width - gap;
 				if (presenter.State == OverlappedPresenterState.Maximized)
 				{
-
+					client_pos.X = max_x;
 				}
 				else
 				{
-					client_pos.X += Math.Max(client_bnd.Width - toolWidth - 10, 0);
-					client_pos.Y += 20;
+					client_pos.X = Math.Min(max_x, client_pos.X + Math.Max(client_bnd.Width - gap, 0));
 				}
+				client_pos.Y += 48;
+
+				palettePanel?.AppWindow.Move(client_pos);
 			}
 
-			palettePanel = CreateToolPanel();
-			palettePanel?.Move(client_pos);
+			uint dpi = app.myProject.Dpi;
+			float scaling = (float) dpi / 96f;
+			var w = (int) (toolWidth * scaling);
+			var h = (int) (toolHeight * scaling);
+
+			palettePanel?.AppWindow.ResizeClient(new(w, h));
+			palettePanel?.SetOptions(toolOption);
+			palettePanel?.Activate();
+
+			layerPanel = AppWindow.Create();
+			//layerPanel?.Show();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
-			palettePanel?.Destroy();
+			palettePanel?.Close();
 			palettePanel = null;
+
+			layerPanel?.Destroy();
+			layerPanel = null;
 
 			//App.GetInstance().SubRoutines -= EditorHook;
 		}
@@ -207,13 +213,11 @@ namespace TestEditor
 						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
 						// diactivate children
-						if (palettePanel.Window is ToolWindow toolwindow)
+						palettePanel.ForceActiveBar = false;
+						if (palettePanel.Visible)
 						{
-							toolwindow.ForceActiveBar = false;
-							if (toolwindow.Visible)
-							{
-								PInvoke.PostMessage(palettePanel.Projection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
-							}
+							PInvoke.PostMessage(palettePanel.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+						}
 
 						palettePanel.SetAlwaysOnTop(false);
 
@@ -226,13 +230,11 @@ namespace TestEditor
 						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
 						// activate children
-						if (palettePanel.Window is ToolWindow toolwindow)
+						palettePanel.ForceActiveBar = true;
+						if (palettePanel.Visible)
 						{
-							toolwindow.ForceActiveBar = true;
-							if (toolwindow.Visible)
-							{
-								PInvoke.SendMessage(palettePanel.Projection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-							}
+							PInvoke.SendMessage(palettePanel.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+						}
 
 						palettePanel.SetAlwaysOnTop(true);
 
@@ -250,12 +252,9 @@ namespace TestEditor
 			{
 				if (wparam == 0)
 				{
-					if (palettePanel.Window is ToolWindow toolwindow)
+					if (palettePanel.ForceActiveBar)
 					{
-						if (toolwindow.ForceActiveBar)
-						{
-							PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-						}
+						PInvoke.SendMessage(App.GetInstance().myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 					}
 
 					return (LRESULT) 1;
