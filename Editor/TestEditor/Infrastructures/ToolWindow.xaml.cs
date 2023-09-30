@@ -26,6 +26,16 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
+			myPresenter = OverlappedPresenter.Create();
+			myPresenter.SetBorderAndTitleBar(true, true);
+			myPresenter.IsAlwaysOnTop = true;
+			myPresenter.IsResizable = false;
+			myPresenter.IsMaximizable = false;
+			myPresenter.IsMinimizable = false;
+
+			AppWindow.SetPresenter(myPresenter);
+			AppWindow.IsShownInSwitchers = false;
+
 			myProjection = WindowProjection.CreateFrom(this);
 		}
 
@@ -57,7 +67,6 @@ namespace TestEditor
 				PInvoke.SendMessage(myProjection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 			}
 			SetAlwaysOnTop(true);
-
 		}
 		public void LoseActivate()
 		{
@@ -67,7 +76,6 @@ namespace TestEditor
 				PInvoke.PostMessage(myProjection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 			}
 			SetAlwaysOnTop(false);
-
 		}
 	}
 }
