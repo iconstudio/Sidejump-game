@@ -13,10 +13,10 @@ namespace TestEditor
 	{
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
 		private OverlappedPresenter myPresenter;
-		private WindowProjection myProject;
+		internal WindowProjection myProjection;
 		internal bool ForceActiveBar = true;
 
-		public ToolWindow()
+		public ToolWindow() : base()
 		{
 			InitializeComponent();
 
@@ -26,7 +26,7 @@ namespace TestEditor
 				SystemBackdrop = acrylicBackdrop;
 			}
 
-			myProject = WindowProjection.CreateFrom(this);
+			myProjection = WindowProjection.CreateFrom(this);
 		}
 
 		public void SetPresenter(OverlappedPresenter presenter)
@@ -39,22 +39,22 @@ namespace TestEditor
 		}
 		public void SetOptions(WINDOW_EX_STYLE flag)
 		{
-			myProject.Options = flag;
+			myProjection.Options = flag;
 		}
 		public void AddOptions(WINDOW_EX_STYLE flag)
 		{
-			myProject.Options |= flag;
+			myProjection.Options |= flag;
 		}
 		public void RemoveOptions(WINDOW_EX_STYLE flag)
 		{
-			myProject.Options &= ~flag;
+			myProjection.Options &= ~flag;
 		}
 		public void ForceActivate()
 		{
 			ForceActiveBar = true;
 			if (Visible)
 			{
-				PInvoke.SendMessage(myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
+				PInvoke.SendMessage(myProjection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 			}
 		}
 		public void LoseActivate()
@@ -62,7 +62,7 @@ namespace TestEditor
 			ForceActiveBar = false;
 			if (Visible)
 			{
-				PInvoke.PostMessage(myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
+				PInvoke.PostMessage(myProjection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 			}
 		}
 	}
