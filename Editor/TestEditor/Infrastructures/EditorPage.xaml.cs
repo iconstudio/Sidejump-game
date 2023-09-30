@@ -29,17 +29,12 @@ namespace TestEditor
 		private ToolWindow palettePanel;
 		private AppWindow layerPanel;
 		private Frame palettePanelContent;
-		private DispatcherQueueController dispatcherQueueController;
 		private bool ignoreNcActivate;
 		private Color flushColour = Colors.Plum;
 
 		public EditorPage()
 		{
 			InitializeComponent();
-
-			dispatcherQueueController = DispatcherQueueController.CreateOnDedicatedThread();
-
-			palettePanel = CreateToolPanel();
 		}
 
 		private void Render(CanvasDrawingSession context)
@@ -95,14 +90,51 @@ namespace TestEditor
 		{
 			var app = App.GetInstance();
 			var client = app.myWindow.AppWindow;
+
+			var pal_presenter = OverlappedPresenter.Create();
+			if (pal_presenter is null)
+			{
+				throw new ToolPresenterCreationFailedException(nameof(pal_presenter));
+			}
+
+			pal_presenter.SetBorderAndTitleBar(true, true);
+			pal_presenter.IsAlwaysOnTop = true;
+			pal_presenter.IsResizable = false;
+			pal_presenter.IsMaximizable = false;
+			pal_presenter.IsMinimizable = false;
+
+			palettePanel = CreateToolPanel();
+			palettePanel.SetPresenter(pal_presenter);
+			palettePanel.AppWindow.IsShownInSwitchers = false;
+
+			var lay_presenter = OverlappedPresenter.Create();
+			if (lay_presenter is null)
+			{
+				throw new ToolPresenterCreationFailedException(nameof(lay_presenter));
+			}
+
+			lay_presenter.SetBorderAndTitleBar(true, true);
+			lay_presenter.IsAlwaysOnTop = true;
+			lay_presenter.IsResizable = false;
+			lay_presenter.IsMaximizable = false;
+			lay_presenter.IsMinimizable = false;
+
+			layerPanel = AppWindow.Create(lay_presenter, client.Id);
+			layerPanel.IsShownInSwitchers = false;
+
 			var client_pos = client.Position;
 			var client_bnd = client.Size;
 
-			if (client.Presenter is OverlappedPresenter presenter)
+			uint dpi = app.myProject.Dpi;
+			float scaling = (float) dpi / 96f;
+			var w = (int) (toolWidth * scaling);
+			var h = (int) (toolHeight * scaling);
+
+			if (client.Presenter is OverlappedPresenter client_presenter)
 			{
 				var gap = toolWidth + 10;
 				var max_x = App.DisplaySize.Width - gap;
-				if (presenter.State == OverlappedPresenterState.Maximized)
+				if (client_presenter.State == OverlappedPresenterState.Maximized)
 				{
 					client_pos.X = max_x;
 				}
@@ -111,29 +143,26 @@ namespace TestEditor
 					client_pos.X = Math.Min(max_x, client_pos.X + Math.Max(client_bnd.Width - gap, 0));
 				}
 				client_pos.Y += 48;
+				palettePanel.AppWindow.Move(client_pos);
 
-				palettePanel?.AppWindow.Move(client_pos);
+				client_pos.Y += toolHeight;
+				layerPanel.Move(client_pos);
 			}
 
-			uint dpi = app.myProject.Dpi;
-			float scaling = (float) dpi / 96f;
-			var w = (int) (toolWidth * scaling);
-			var h = (int) (toolHeight * scaling);
+			palettePanel.AppWindow.ResizeClient(new(w, h));
+			palettePanel.AddOptions(toolOption);
+			palettePanel.Activate();
 
-			palettePanel?.AppWindow.ResizeClient(new(w, h));
-			palettePanel?.SetOptions(toolOption);
-			palettePanel?.Activate();
-
-			layerPanel = AppWindow.Create();
-			//layerPanel?.Show();
+			layerPanel.ResizeClient(new(w, h));
+			//layerPanel.Show();
 		}
 		private void OnUnloaded(object sender, RoutedEventArgs e)
 		{
 			palettePanel?.Close();
 			palettePanel = null;
 
-			layerPanel?.Destroy();
-			layerPanel = null;
+			//layerPanel?.Destroy();
+			//layerPanel = null;
 
 			//App.GetInstance().SubRoutines -= EditorHook;
 		}
@@ -213,12 +242,7 @@ namespace TestEditor
 						PInvoke.PostMessage(hwnd, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 
 						// diactivate children
-						palettePanel.ForceActiveBar = false;
-						if (palettePanel.Visible)
-						{
-							PInvoke.PostMessage(palettePanel.myProject, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
-						}
-
+						palettePanel.LoseActivate();
 						palettePanel.SetAlwaysOnTop(false);
 
 						ignoreNcActivate = true;
@@ -230,12 +254,7 @@ namespace TestEditor
 						PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 
 						// activate children
-						palettePanel.ForceActiveBar = true;
-						if (palettePanel.Visible)
-						{
-							PInvoke.SendMessage(palettePanel.myProject, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
-						}
-
+						palettePanel.ForceActivate();
 						palettePanel.SetAlwaysOnTop(true);
 
 						return (LRESULT) 0;
