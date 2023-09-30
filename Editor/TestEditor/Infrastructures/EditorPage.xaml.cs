@@ -215,8 +215,7 @@ namespace TestEditor
 								PInvoke.PostMessage(palettePanel.Projection, PInvoke.WM_NCACTIVATE, 0, IntPtr.Zero);
 							}
 
-							toolwindow.myPresenter.IsAlwaysOnTop = false;
-						}
+						palettePanel.SetAlwaysOnTop(false);
 
 						ignoreNcActivate = true;
 
@@ -235,8 +234,7 @@ namespace TestEditor
 								PInvoke.SendMessage(palettePanel.Projection, PInvoke.WM_NCACTIVATE, 1, IntPtr.Zero);
 							}
 
-							toolwindow.myPresenter.IsAlwaysOnTop = true;
-						}
+						palettePanel.SetAlwaysOnTop(true);
 
 						return (LRESULT) 0;
 					}

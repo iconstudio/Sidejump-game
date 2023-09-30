@@ -11,9 +11,9 @@ namespace TestEditor
 	internal sealed partial class ToolWindow : Window
 	{
 		private readonly DesktopAcrylicBackdrop acrylicBackdrop;
-		internal OverlappedPresenter myPresenter;
+		private OverlappedPresenter myPresenter;
+		private WindowProjection myProject;
 		internal bool ForceActiveBar = true;
-		internal WindowProjection myProject;
 
 		public ToolWindow()
 		{
