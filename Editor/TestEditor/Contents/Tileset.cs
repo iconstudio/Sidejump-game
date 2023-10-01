@@ -4,9 +4,9 @@ namespace TestEditor.Contents
 {
 	internal class Tileset
 	{
-		private Dictionary<int, Tile> tileData;
-		private int tileWidth;
-		private int tileHeight;
+		private readonly Dictionary<int, Tile> tileData;
+		private readonly int tileWidth;
+		private readonly int tileHeight;
 
 		private Tileset()
 		{
