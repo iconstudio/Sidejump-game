@@ -2,6 +2,7 @@
 
 namespace TestEditor.Contents
 {
+	[Serializable]
 	internal readonly struct SerializedTile : IEquatable<SerializedTile>
 	{
 		private readonly int tileID;

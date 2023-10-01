@@ -2,9 +2,9 @@
 
 namespace TestEditor.Contents
 {
+	[Serializable]
 	internal readonly ref struct SerializedTileset
 	{
-
 		public readonly IList<SerializedTile> tileData;
 		public readonly int tileWidth;
 		public readonly int tileHeight;
