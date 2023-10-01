@@ -21,5 +21,14 @@ namespace TestEditor.Contents
 			tileWidth = w;
 			tileHeight = h;
 		}
+
+		public readonly IEnumerable<SerializedTile> GetData()
+		{
+			return tileData;
+		}
+		public readonly IEnumerator<SerializedTile> GetEnumerator()
+		{
+			return tileData.GetEnumerator();
+		}
 	}
 }
