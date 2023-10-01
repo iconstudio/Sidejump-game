@@ -1,12 +1,8 @@
-﻿using TestEditor.Utility;
-
-using Windows.Storage;
-
-namespace TestEditor.Contents
+﻿namespace TestEditor.Contents
 {
-	internal struct SerializedTileset : ICloneable
+	internal ref struct SerializedTileset
 	{
-		public FlatMap<int, SerializedTile> tileData;
+		public List<KeyValuePair<int, string>> tileData;
 		public int tileWidth;
 		public int tileHeight;
 
@@ -17,26 +13,9 @@ namespace TestEditor.Contents
 			tileHeight = 0;
 		}
 
-		public readonly SerializedTile this[in int tile_id]
+		public readonly void Add(in int id, in string tile)
 		{
-			get => tileData[tile_id];
-			set => tileData[tile_id] = value;
-		}
-		public void Add(in int id, in SerializedTile tile) => tileData.Add(id, tile);
-		public object Clone()
-		{
-			var result = new SerializedTileset()
-			{
-				tileWidth = tileWidth,
-				tileHeight = tileHeight,
-			};
-
-			foreach (var tile in tileData)
-			{
-				result.tileData.Add(tile);
-			}
-
-			return result;
+			tileData.Add(new(id, tile));
 		}
 	}
 }
