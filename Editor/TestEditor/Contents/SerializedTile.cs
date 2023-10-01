@@ -2,42 +2,59 @@
 
 namespace TestEditor.Contents
 {
-	internal ref struct SerializedTile
+	internal readonly struct SerializedTile : IEquatable<SerializedTile>
 	{
-		private string tileImageFile;
+		private readonly int tileID;
+		private readonly string tileFile;
 
-		public SerializedTile()
+		public SerializedTile(int id, in string filepath)
 		{
-			tileImageFile = null;
+			tileID = id;
+			tileFile = filepath;
+		}
+		public SerializedTile(int id, string filepath)
+		{
+			tileID = id;
+			tileFile = filepath;
 		}
 		public SerializedTile(in SerializedTile other)
 		{
-			tileImageFile = other.tileImageFile;
+			tileID = other.tileID;
+			tileFile = other.tileFile;
 		}
 		public SerializedTile(SerializedTile other)
 		{
-			tileImageFile = other.tileImageFile;
-		}
-		public SerializedTile(in string filepath)
-		{
-			tileImageFile = filepath;
-		}
-		public SerializedTile(string filepath)
-		{
-			tileImageFile = filepath;
+			tileID = other.tileID;
+			tileFile = other.tileFile;
 		}
 
-		public readonly string GetFilePath() => tileImageFile;
+		public readonly int GetID() => tileID;
+		public readonly string GetFilePath() => tileFile;
 
 		[Pure]
 		public readonly bool Equals(SerializedTile other)
 		{
-			return tileImageFile == other.tileImageFile;
+			return tileID == other.tileID && tileFile == other.tileFile;
+		}
+		[Pure]
+		public override bool Equals(object obj)
+		{
+			return obj is SerializedTile other && Equals(other);
 		}
 		[Pure]
 		public readonly override int GetHashCode()
 		{
-			return tileImageFile.GetHashCode();
+			return tileID.GetHashCode();
+		}
+		[Pure]
+		public static bool operator==(SerializedTile lhs, SerializedTile rhs)
+		{
+			return lhs.Equals(rhs);
+		}
+		[Pure]
+		public static bool operator !=(SerializedTile lhs, SerializedTile rhs)
+		{
+			return !lhs.Equals(rhs);
 		}
 	}
 }
