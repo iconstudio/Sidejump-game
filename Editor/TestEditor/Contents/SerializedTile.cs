@@ -1,12 +1,10 @@
 ﻿using System.Diagnostics.Contracts;
 
-using Windows.Storage;
-
 namespace TestEditor.Contents
 {
-	internal struct SerializedTile : IEquatable<SerializedTile>
+	internal ref struct SerializedTile
 	{
-		private StorageFile tileImageFile;
+		private string tileImageFile;
 
 		public SerializedTile()
 		{
@@ -20,26 +18,21 @@ namespace TestEditor.Contents
 		{
 			tileImageFile = other.tileImageFile;
 		}
-		public SerializedTile(in StorageFile filepath)
+		public SerializedTile(in string filepath)
 		{
 			tileImageFile = filepath;
 		}
-		public SerializedTile(StorageFile filepath)
+		public SerializedTile(string filepath)
 		{
 			tileImageFile = filepath;
 		}
 
-		public readonly StorageFile GetFilePath() => tileImageFile;
+		public readonly string GetFilePath() => tileImageFile;
 
 		[Pure]
 		public readonly bool Equals(SerializedTile other)
 		{
 			return tileImageFile == other.tileImageFile;
-		}
-		[Pure]
-		public readonly override bool Equals(object obj)
-		{
-			return obj is SerializedTile other && Equals(other);
 		}
 		[Pure]
 		public readonly override int GetHashCode()
