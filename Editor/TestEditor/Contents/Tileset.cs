@@ -1,4 +1,6 @@
-﻿namespace TestEditor.Contents
+﻿using System.Diagnostics;
+
+namespace TestEditor.Contents
 {
 	internal class Tileset
 	{
@@ -12,17 +14,25 @@
 			tileWidth = 0;
 			tileHeight = 0;
 		}
-		public Tileset(in SerializedTileset data) : this()
+		public Tileset(in SerializedTileset serialized_tileset) : this()
 		{
-			foreach (var tile in data)
-			{
-				//tileData.Add(tile.GetID(), tile.)
-			}
-
-			tileWidth = data.tileWidth;
-			tileHeight = data.tileHeight;
+			Load(serialized_tileset);
+			tileWidth = serialized_tileset.tileWidth;
+			tileHeight = serialized_tileset.tileHeight;
 		}
 
+		public void Load(SerializedTileset serialized_tileset)
+		{
+			foreach (var serialized_tile in serialized_tileset)
+			{
+				var task = Tile.LoadTile(serialized_tile);
+				task.RunSynchronously();
+
+				var tile = task.Result;
+				Debug.Print("Tile Loaded: " + tile.ToString());
+				tileData.Add(serialized_tile.GetID(), tile);
+			}
+		}
 		public SerializedTileset Serialize()
 		{
 			List<SerializedTile> serialized_tiles = new();
