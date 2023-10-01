@@ -8,7 +8,7 @@ namespace TestEditor.Contents
 		private int tileWidth;
 		private int tileHeight;
 
-		public Tileset()
+		private Tileset()
 		{
 			tileData = new();
 			tileWidth = 0;
