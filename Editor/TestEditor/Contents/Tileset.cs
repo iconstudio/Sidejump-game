@@ -32,7 +32,7 @@
 			{
 				var tile = data.Value;
 
-				SerializedTile serialized = new(data.Key, tile.ImageFile.Path);
+				SerializedTile serialized = new(data.Key, tile.ImageFile);
 
 				serialized_tiles.Add(serialized);
 			}
