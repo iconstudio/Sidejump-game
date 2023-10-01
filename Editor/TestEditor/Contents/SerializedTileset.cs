@@ -1,21 +1,25 @@
-﻿namespace TestEditor.Contents
+﻿using System.Collections.Immutable;
+
+namespace TestEditor.Contents
 {
-	internal ref struct SerializedTileset
+	internal readonly ref struct SerializedTileset
 	{
-		public List<KeyValuePair<int, string>> tileData;
-		public int tileWidth;
-		public int tileHeight;
 
-		public SerializedTileset()
+		public readonly IList<SerializedTile> tileData;
+		public readonly int tileWidth;
+		public readonly int tileHeight;
+
+		public SerializedTileset(IList<SerializedTile> data, int w, int h)
 		{
-			tileData = new();
-			tileWidth = 0;
-			tileHeight = 0;
+			tileData = data;
+			tileWidth = w;
+			tileHeight = h;
 		}
-
-		public readonly void Add(in int id, in string tile)
+		public SerializedTileset(in IEnumerable<SerializedTile> data, int w, int h)
 		{
-			tileData.Add(new(id, tile));
+			tileData = data.ToImmutableArray();
+			tileWidth = w;
+			tileHeight = h;
 		}
 	}
 }
