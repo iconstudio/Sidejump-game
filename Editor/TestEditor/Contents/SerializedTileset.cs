@@ -1,14 +1,19 @@
 ﻿using System.Collections.Immutable;
+using System.Text.Json.Serialization;
 
 namespace TestEditor.Contents
 {
 	[Serializable]
 	internal readonly ref struct SerializedTileset
 	{
+		[JsonInclude]
 		public readonly IList<SerializedTile> tileData;
+		[JsonInclude]
 		public readonly int tileWidth;
+		[JsonInclude]
 		public readonly int tileHeight;
 
+		[JsonConstructor]
 		public SerializedTileset(IList<SerializedTile> data, int w, int h)
 		{
 			tileData = data;
