@@ -1,19 +1,18 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Text.Json.Serialization;
 
 namespace TestEditor.Contents
 {
 	[Serializable]
 	internal readonly struct SerializedTile : IEquatable<SerializedTile>
 	{
+		[JsonInclude]
 		private readonly int tileID;
+		[JsonInclude]
 		private readonly string tileFile;
 
-		public SerializedTile(int id, in string filepath)
-		{
-			tileID = id;
-			tileFile = filepath;
-		}
-		public SerializedTile(int id, string filepath)
+		[JsonConstructor]
+		public SerializedTile(in int id, in string filepath)
 		{
 			tileID = id;
 			tileFile = filepath;
