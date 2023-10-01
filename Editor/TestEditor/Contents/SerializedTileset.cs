@@ -1,29 +1,31 @@
 ﻿using TestEditor.Utility;
 
+using Windows.Storage;
+
 namespace TestEditor.Contents
 {
-	internal class Tileset : ICloneable
+	internal struct SerializedTileset : ICloneable
 	{
-		public FlatMap<int, string> tileData;
+		public FlatMap<int, StorageFile> tileData;
 		public int tileWidth;
 		public int tileHeight;
 
-		public Tileset()
+		public SerializedTileset()
 		{
 			tileData = new();
 			tileWidth = 0;
 			tileHeight = 0;
 		}
 
-		public string this[in int tile_id]
+		public readonly StorageFile this[in int tile_id]
 		{
-			get { return tileData[tile_id]; }
-			set { tileData[tile_id] = value; }
+			get => tileData[tile_id];
+			set => tileData[tile_id] = value;
 		}
-		public void Add(in int id, in string tile) => tileData.Add(id, tile);
+		public void Add(in int id, in StorageFile filepath) => tileData.Add(id, filepath);
 		public object Clone()
 		{
-			var result = new Tileset()
+			var result = new SerializedTileset()
 			{
 				tileWidth = tileWidth,
 				tileHeight = tileHeight,

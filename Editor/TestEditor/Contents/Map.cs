@@ -11,7 +11,7 @@ namespace TestEditor.Contents
 		[JsonIgnore] internal string myName;
 		[JsonIgnore] internal string myDescription;
 		[JsonIgnore] internal Rectangle myResolution;
-		[JsonIgnore] internal Tileset myTileset;
+		[JsonIgnore] internal SerializedTileset myTileset;
 		[JsonIgnore] internal int tilesHrCount, tilesVtCount;
 
 		[JsonInclude]
@@ -49,7 +49,7 @@ namespace TestEditor.Contents
 			readonly get => tilesVtCount; set => tilesVtCount = value;
 		}
 		[JsonInclude]
-		public readonly Tileset Tileset => myTileset;
+		public readonly SerializedTileset Tileset => myTileset;
 		[JsonIgnore]
 		public readonly Rectangle Resolution => myResolution;
 
@@ -69,16 +69,16 @@ namespace TestEditor.Contents
 		{ }
 		public Map(in string name) : this(name, null)
 		{ }
-		public Map(in string name, in Tileset tileset)
+		public Map(in string name, in SerializedTileset tileset)
 		{
 			myName = name;
 			myDescription = "";
 			myResolution = new();
-			myTileset = (Tileset)tileset.Clone();
+			myTileset = (SerializedTileset)tileset.Clone();
 			tilesHrCount = 0;
 			tilesVtCount = 0;
 		}
-		public Map(in string name, Tileset tileset)
+		public Map(in string name, SerializedTileset tileset)
 		{
 			myName = name;
 			myDescription = "";
