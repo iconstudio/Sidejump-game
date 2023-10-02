@@ -78,7 +78,7 @@ namespace TestEditor.Contents
 		}
 		public static Task SaveMap(in Map? map, in StorageFolder dest)
 		{
-			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.myName, GetMapExtension()));
+			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.Name, GetMapExtension()));
 		}
 		public static Task SaveMap(in Map? map, in StorageFile filepath)
 		{

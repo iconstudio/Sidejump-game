@@ -7,17 +7,26 @@ namespace TestEditor.Contents
 	[Serializable]
 	internal struct Map
 	{
-		[JsonIgnore] public static readonly Map emptyMap;
-		[JsonIgnore] internal string myName;
-		[JsonIgnore] internal string myDescription;
+		[JsonIgnore] public static Map EmptyMap { get; }
+		[JsonIgnore] internal Tileset myTileset;
 		[JsonIgnore] internal Rectangle myResolution;
-		[JsonIgnore] internal SerializedTileset myTileset;
-		[JsonIgnore] internal int tilesHrCount, tilesVtCount;
 
 		[JsonInclude]
-		public string Name { readonly get => myName; set => myName = value; }
+		public string Name { readonly get; set; }
 		[JsonInclude]
-		public string Description { readonly get => myDescription; set => myDescription = value; }
+		public string Description { readonly get; set; }
+		[JsonInclude]
+		public Tileset Tileset
+		{
+			readonly get => myTileset;
+			set => myTileset = value;
+		}
+		[JsonIgnore]
+		public Rectangle Resolution
+		{
+			readonly get => myResolution;
+			set => myResolution = value;
+		}
 		[JsonInclude]
 		public int X
 		{
@@ -39,64 +48,45 @@ namespace TestEditor.Contents
 			readonly get => myResolution.Height; set => myResolution.Height = value;
 		}
 		[JsonInclude]
-		public int HorizontalTiles
-		{
-			readonly get => tilesHrCount; set => tilesHrCount = value;
-		}
+		public int HorizontalTiles { readonly get; set; }
 		[JsonInclude]
-		public int VerticalTiles
-		{
-			readonly get => tilesVtCount; set => tilesVtCount = value;
-		}
-		[JsonInclude]
-		public readonly SerializedTileset Tileset => myTileset;
-		[JsonIgnore]
-		public readonly Rectangle Resolution => myResolution;
+		public int VerticalTiles { readonly get; set; }
 
 		static Map()
 		{
-			emptyMap = new()
+			EmptyMap = new()
 			{
-				myName = "Empty Map",
-				myDescription = "",
 				myResolution = Rectangle.Empty,
 				myTileset = null,
-				tilesHrCount = 0,
-				tilesVtCount = 0,
+				Name = "Empty Map",
+				Description = "",
+				HorizontalTiles = 0,
+				VerticalTiles = 0,
 			};
 		}
 		public Map() : this("Empty Map", null)
 		{ }
 		public Map(in string name) : this(name, null)
 		{ }
-		public Map(in string name, in SerializedTileset tileset)
+		public Map(in string name, in Tileset tileset)
 		{
-			myName = name;
-			myDescription = "";
-			myResolution = new();
-			myTileset = (SerializedTileset)tileset.Clone();
-			tilesHrCount = 0;
-			tilesVtCount = 0;
-		}
-		public Map(in string name, SerializedTileset tileset)
-		{
-			myName = name;
-			myDescription = "";
 			myResolution = new();
 			myTileset = tileset;
-			tilesHrCount = 0;
-			tilesVtCount = 0;
+			Name = name;
+			Description = "";
+			HorizontalTiles = 0;
+			VerticalTiles = 0;
 		}
 
 		public void SetTilesCount(int h, int v)
 		{
-			tilesHrCount = h;
-			tilesVtCount = v;
+			HorizontalTiles = h;
+			VerticalTiles = v;
 
 			if (myTileset is not null)
 			{
-				Width = myTileset.tileWidth * h;
-				Height = myTileset.tileHeight * v;
+				Width = myTileset.TileWidth * h;
+				Height = myTileset.TileHeight * v;
 			}
 		}
 		public readonly string Serialize()
