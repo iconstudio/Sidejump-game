@@ -12,6 +12,8 @@ using Windows.Win32.UI.WindowsAndMessaging;
 using TestEditor.WinUI;
 using WinUIEx;
 using Microsoft.UI.Windowing;
+using TestEditor.Contents;
+using System.Diagnostics;
 
 namespace TestEditor
 {
@@ -46,25 +48,40 @@ namespace TestEditor
 				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
 		}
-		private void ProcessTransition(EditorTransitionCategory cat)
+		private async void ProcessTransition(EditorTransitionCategory cat)
 		{
 			switch (cat)
 			{
 				case EditorTransitionCategory.Home:
-				{
-
-				}
+				{ }
 				break;
 
 				case EditorTransitionCategory.Create:
 				{
-
+					try
+					{
+						using (MapHelper.SaveMap(Map.EmptyMap, MapHelper.LastFile))
+						{
+							Debug.Print("Map is saved");
+						}
+					}
+					catch
+					{
+						Debug.Fail($"Cannot save the map to {MapHelper.LastFile}");
+					}
 				}
 				break;
 
 				case EditorTransitionCategory.Load:
 				{
-
+					if (await MapHelper.LoadMap(MapHelper.LastFile) is Map map)
+					{
+						Debug.Print($"A map '{map.Name}' is loaded");
+					}
+					else
+					{
+						Debug.Fail($"Cannot load the map from {MapHelper.LastFile}");
+					}
 				}
 				break;
 
@@ -77,8 +94,6 @@ namespace TestEditor
 				default:
 				break;
 			}
-			//var testmap = new Map();
-			//using (MapHelper.SaveMap(testmap, mapfile))
 		}
 
 		private LRESULT EditorHook(HWND hwnd, uint msg, WPARAM wparam, LPARAM lparam, nuint id, nuint refdata)
