@@ -38,5 +38,14 @@ namespace TestEditor.Contents
 		{
 			return LoadTile(tile.GetFilePath());
 		}
+		public static Tile? FindTile([NotNull] string filepath)
+		{
+			if (managedTiles.TryGetValue(filepath, out var tile))
+			{
+				return tile;
+			}
+
+			return null;
+		}
 	}
 }
