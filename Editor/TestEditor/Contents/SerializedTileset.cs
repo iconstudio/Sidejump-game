@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Diagnostics.Contracts;
 using System.Text.Json.Serialization;
 
 namespace TestEditor.Contents
@@ -21,10 +22,18 @@ namespace TestEditor.Contents
 			tileHeight = h;
 		}
 
+		[Pure]
+		public readonly Tileset Deserialize()
+		{
+
+		}
+
+		[Pure]
 		public readonly IEnumerable<SerializedTile> GetData()
 		{
 			return tileData;
 		}
+		[Pure]
 		public readonly IEnumerator<SerializedTile> GetEnumerator()
 		{
 			return tileData.GetEnumerator();
