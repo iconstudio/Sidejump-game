@@ -91,12 +91,12 @@ namespace TestEditor.Contents
 				ErrorHelper.RaiseMissingArgumentError(nameof(filepath));
 			}
 
-			if (map is Map gmap)
+			if (map is Map gamemap)
 			{
-				var serial = gmap.Serialize();
+				var serialized_map = gamemap.Serialize();
 				try
 				{
-					if (serial is string contents)
+					if (serialized_map.ToString() is string contents)
 					{
 						return File.WriteAllTextAsync(filepath, contents);
 					}
