@@ -11,6 +11,8 @@ namespace TestEditor.Contents
 		public readonly string ImageFile { get; }
 		public readonly CanvasBitmap Source { get; }
 
+		public bool IsDeserializable => false;
+
 		public Tile(string filepath, CanvasBitmap source)
 		{
 			ImageFile = filepath;

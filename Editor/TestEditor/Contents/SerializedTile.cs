@@ -12,6 +12,8 @@ namespace TestEditor.Contents
 		[JsonInclude]
 		private readonly string tileFile;
 
+		public bool IsDeserializable => false;
+
 		[JsonConstructor]
 		public SerializedTile(in int id, in string filepath)
 		{

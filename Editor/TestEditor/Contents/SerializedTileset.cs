@@ -15,6 +15,8 @@ namespace TestEditor.Contents
 		[JsonInclude]
 		public readonly int tileHeight;
 
+		public bool IsDeserializable => false;
+
 		[JsonConstructor]
 		public SerializedTileset(in IEnumerable<SerializedTile> data, int w, int h)
 		{

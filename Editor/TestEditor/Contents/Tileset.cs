@@ -9,6 +9,7 @@ namespace TestEditor.Contents
 		private Dictionary<int, Tile> TileMap { get; }
 		public int TileWidth { [Pure] get; private set; }
 		public int TileHeight { [Pure] get; private set; }
+		public bool IsDeserializable => false;
 
 		public Tileset()
 		{
