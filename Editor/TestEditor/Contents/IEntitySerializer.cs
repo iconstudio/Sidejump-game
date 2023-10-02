@@ -2,7 +2,7 @@
 {
 	internal interface IEntitySerializer<in T, out S>
 		where T : notnull
-		where S : notnull, ISerializedEntity<T>
+		where S : notnull, IMapSerial<T>
 	{
 		S Serialize(T entity);
 	}
