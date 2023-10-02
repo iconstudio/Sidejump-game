@@ -6,6 +6,6 @@
 	internal interface IMapEntity<out S> : IMapObject, IMapEntity
 		where S : notnull, IMapSerial
 	{
-		S Serialize() => throw new NotImplementedException();
+		S Serialize();
 	}
 }
