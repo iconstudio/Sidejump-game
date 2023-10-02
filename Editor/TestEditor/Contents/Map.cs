@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal struct Map
+	internal struct Map : IMapEntity<SerializedMap>
 	{
 		[JsonIgnore] public static Map EmptyMap { get; }
 		[JsonIgnore] internal Tileset myTileset;
@@ -51,6 +51,7 @@ namespace TestEditor.Contents
 		public int HorizontalTiles { readonly get; set; }
 		[JsonInclude]
 		public int VerticalTiles { readonly get; set; }
+		public bool IsDeserializable => false;
 
 		static Map()
 		{
@@ -92,6 +93,10 @@ namespace TestEditor.Contents
 		public readonly string Serialize()
 		{
 			return JsonSerializer.Serialize(this, MapHelper.mapSaveSetting);
+		}
+		SerializedMap IMapEntity<SerializedMap>.Serialize()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
