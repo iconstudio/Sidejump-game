@@ -14,7 +14,7 @@ namespace TestEditor.Contents
 			tileWidth = 0;
 			tileHeight = 0;
 		}
-		internal Tileset(in SerializedTileset serialized_tileset) : this()
+		public Tileset(in SerializedTileset serialized_tileset) : this()
 		{
 			Load(serialized_tileset);
 			tileWidth = serialized_tileset.tileWidth;
