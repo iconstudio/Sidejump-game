@@ -6,10 +6,10 @@ namespace TestEditor.Contents
 	[Serializable]
 	internal class Tileset : IMapEntity<SerializedTileset>
 	{
-		public string Name { get; set; }
-		private Dictionary<int, Tile> TileMap { get; }
-		public int TileWidth { [Pure] get; private set; }
-		public int TileHeight { [Pure] get; private set; }
+		public string Name { [Pure] get; }
+		private Dictionary<int, Tile> TileMap { [Pure] get; }
+		public int TileWidth { [Pure] get; }
+		public int TileHeight { [Pure] get; }
 		public bool IsDeserializable => false;
 
 		public Tileset([NotNull] string name, int tw, int th)
