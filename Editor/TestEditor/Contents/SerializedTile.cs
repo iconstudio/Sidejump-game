@@ -5,7 +5,7 @@ namespace TestEditor.Contents
 {
 	[Serializable]
 	internal readonly struct SerializedTile
-		: IEquatable<SerializedTile>, ISerializedEntity<Tile>
+		: IEquatable<SerializedTile>, IMapSerial<Tile>
 	{
 		[JsonInclude]
 		private readonly int tileID;
@@ -18,17 +18,11 @@ namespace TestEditor.Contents
 			tileID = id;
 			tileFile = filepath;
 		}
-		public SerializedTile(in SerializedTile other)
-		{
-			tileID = other.tileID;
-			tileFile = other.tileFile;
-		}
-		public SerializedTile(SerializedTile other)
-		{
-			tileID = other.tileID;
-			tileFile = other.tileFile;
-		}
 
+		public Tile Deserialize()
+		{
+			throw new NotImplementedException();
+		}
 		public readonly int GetID() => tileID;
 		public readonly string GetFilePath() => tileFile;
 
@@ -47,6 +41,7 @@ namespace TestEditor.Contents
 		{
 			return tileID.GetHashCode();
 		}
+
 		[Pure]
 		public static bool operator==(SerializedTile lhs, SerializedTile rhs)
 		{
