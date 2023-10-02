@@ -1,6 +1,6 @@
 ﻿namespace TestEditor.Contents
 {
-	internal class TileImageStorage
+	internal class TileManager
 	{
 	}
 }
