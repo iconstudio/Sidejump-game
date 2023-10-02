@@ -2,7 +2,7 @@
 
 namespace TestEditor.Contents
 {
-	internal class Tileset
+	internal class Tileset : IEntitySerializer<Tileset, SerializedTileset>
 	{
 		private readonly Dictionary<int, Tile> tileData;
 		private readonly int tileWidth;
