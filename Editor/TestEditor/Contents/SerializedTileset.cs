@@ -14,12 +14,6 @@ namespace TestEditor.Contents
 		public readonly int tileHeight;
 
 		[JsonConstructor]
-		public SerializedTileset(IList<SerializedTile> data, int w, int h)
-		{
-			tileData = data;
-			tileWidth = w;
-			tileHeight = h;
-		}
 		public SerializedTileset(in IEnumerable<SerializedTile> data, int w, int h)
 		{
 			tileData = data.ToImmutableArray();
