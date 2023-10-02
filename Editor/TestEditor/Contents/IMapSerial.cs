@@ -3,7 +3,8 @@
 	internal interface IMapSerial : IMapObject
 	{
 	}
-	internal interface IMapSerial<in T> : IMapObject, IMapSerial
+	internal interface IMapSerial<out T> : IMapObject, IMapSerial
 	{
+		T Deserialize();
 	}
 }
