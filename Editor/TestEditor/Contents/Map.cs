@@ -1,57 +1,47 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics.Contracts;
+using System.Drawing;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace TestEditor.Contents
 {
 	[Serializable]
 	internal struct Map : IMapEntity<SerializedMap>
 	{
-		[JsonIgnore] internal Tileset myTileset;
-		[JsonIgnore] internal Rectangle myResolution;
-		[JsonIgnore] public static Map EmptyMap { get; }
+		internal Tileset myTileset;
+		internal Rectangle myResolution;
+		public static Map EmptyMap { get; }
 
-		[JsonInclude]
 		public string Name { readonly get; set; }
-		[JsonInclude]
 		public string Description { readonly get; set; }
-		[JsonInclude]
 		public Tileset Tileset
 		{
 			readonly get => myTileset;
 			set => myTileset = value;
 		}
-		[JsonIgnore]
 		public Rectangle Resolution
 		{
 			readonly get => myResolution;
 			set => myResolution = value;
 		}
-		[JsonInclude]
 		public int X
 		{
 			readonly get => myResolution.X; set => myResolution.X = value;
 		}
-		[JsonInclude]
 		public int Y
 		{
 			readonly get => myResolution.Y; set => myResolution.Y = value;
 		}
-		[JsonInclude]
 		public int Width
 		{
 			readonly get => myResolution.Width; set => myResolution.Width = value;
 		}
-		[JsonInclude]
 		public int Height
 		{
 			readonly get => myResolution.Height; set => myResolution.Height = value;
 		}
-		[JsonInclude]
 		public int HorizontalTiles { readonly get; set; }
-		[JsonInclude]
 		public int VerticalTiles { readonly get; set; }
-		public bool IsDeserializable => false;
+		public readonly bool IsDeserializable => false;
 
 		static Map()
 		{
@@ -90,11 +80,8 @@ namespace TestEditor.Contents
 				Height = myTileset.TileHeight * v;
 			}
 		}
-		public readonly string Serialize()
-		{
-			return JsonSerializer.Serialize(this, MapHelper.mapSaveSetting);
-		}
-		SerializedMap IMapEntity<SerializedMap>.Serialize()
+		[Pure]
+		public readonly SerializedMap Serialize()
 		{
 			throw new NotImplementedException();
 		}
