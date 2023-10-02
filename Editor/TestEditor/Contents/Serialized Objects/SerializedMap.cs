@@ -5,10 +5,9 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal struct SerializedMap
-		: IEquatable<SerializedMap>, IMapSerial<Map>
+	internal struct SerializedMap : IMapSerial<Map>
 	{
-		[JsonInclude] public string Tileset { get; set; }
+		[JsonInclude] public SerializedTileset Tileset { get; set; }
 		[JsonInclude] public string Name { get; set; }
 		[JsonInclude] public string Description { get; set; }
 		[JsonInclude] public int X { get; set; }
@@ -28,21 +27,6 @@ namespace TestEditor.Contents
 		public override readonly string ToString()
 		{
 			return JsonSerializer.Serialize(this, MapHelper.mapSaveSetting);
-		}
-		[Pure]
-		public readonly bool Equals(SerializedMap other)
-		{
-			throw new NotImplementedException();
-		}
-		[Pure]
-		public readonly override bool Equals(object obj)
-		{
-			return obj is SerializedMap other && Equals(other);
-		}
-		[Pure]
-		public readonly override int GetHashCode()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
