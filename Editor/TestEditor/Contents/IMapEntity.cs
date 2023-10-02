@@ -1,6 +1,6 @@
 ﻿namespace TestEditor.Contents
 {
-	internal interface IMapEntity
+	internal interface IMapEntity : IMapObject
 	{
 	}
 }
