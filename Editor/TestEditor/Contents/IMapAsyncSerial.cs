@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestEditor.Contents
 {
-	internal interface IMapAsyncSerial<T> : IMapObject, IMapSerial
-	{
-		Task<T> Deserialize();
-	}
+	internal interface IMapAsyncSerial<T>
+		: IMapObject, IMapSerial, IMapSerial<Task<T>>
+	{}
 }
