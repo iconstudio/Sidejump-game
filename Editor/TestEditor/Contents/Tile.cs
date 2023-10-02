@@ -5,7 +5,8 @@ using Microsoft.Graphics.Canvas;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal readonly struct Tile : IEquatable<Tile>
+	internal readonly struct Tile
+		: IMapEntity<SerializedTile, int>, IEquatable<Tile>
 	{
 		public readonly string ImageFile { get; }
 		public readonly CanvasBitmap Source { get; }
@@ -14,6 +15,12 @@ namespace TestEditor.Contents
 		{
 			ImageFile = filepath;
 			Source = source;
+		}
+
+		[Pure]
+		public readonly SerializedTile Serialize(int id)
+		{
+			return new(id, ImageFile);
 		}
 
 		[Pure]
