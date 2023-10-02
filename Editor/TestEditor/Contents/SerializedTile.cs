@@ -19,11 +19,14 @@ namespace TestEditor.Contents
 			tileFile = filepath;
 		}
 
-		public Tile Deserialize()
+		[Pure]
+		public readonly Tile Deserialize()
 		{
 			throw new NotImplementedException();
 		}
+		[Pure]
 		public readonly int GetID() => tileID;
+		[Pure]
 		public readonly string GetFilePath() => tileFile;
 
 		[Pure]
