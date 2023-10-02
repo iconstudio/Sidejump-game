@@ -9,31 +9,24 @@ namespace TestEditor.Contents
 		private readonly int tileWidth;
 		private readonly int tileHeight;
 
-		private Tileset()
+		public Tileset()
 		{
 			tileData = new();
 			tileWidth = 0;
 			tileHeight = 0;
 		}
-		public Tileset(in SerializedTileset serialized_tileset) : this()
+		public Tileset(Dictionary<int, Tile> data, int tw, int th)
 		{
-			Load(serialized_tileset);
-			tileWidth = serialized_tileset.tileWidth;
-			tileHeight = serialized_tileset.tileHeight;
+			tileData = new(data);
+			tileWidth = tw;
+			tileHeight = th;
 		}
 
-		public void Load(SerializedTileset serialized_tileset)
+		public void Add(int id, Tile tile)
 		{
-			foreach (var serialized_tile in serialized_tileset)
-			{
-				var task = TileManager.LoadTile(serialized_tile);
-				task.RunSynchronously();
-
-				var tile = task.Result;
-				Debug.Print("Tile Loaded: " + tile.ToString());
-				tileData.Add(serialized_tile.GetID(), tile);
-			}
+			tileData[id] = tile;
 		}
+
 		[Pure]
 		public SerializedTileset Serialize()
 		{
