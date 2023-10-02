@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestEditor.Contents
+﻿namespace TestEditor.Contents
 {
 	internal interface IMapObject
 	{
+		public bool IsSerializable { get; }
+		public bool IsDeserializable { get; }
 	}
 }
