@@ -4,7 +4,8 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal readonly struct SerializedTile : IEquatable<SerializedTile>
+	internal readonly struct SerializedTile
+		: IEquatable<SerializedTile>, ISerializedEntity<Tile>
 	{
 		[JsonInclude]
 		private readonly int tileID;
