@@ -31,7 +31,7 @@ namespace TestEditor.Contents
 		[Pure]
 		public readonly async Task<Tileset> Deserialize()
 		{
-			Tileset tileset = new();
+			Tileset tileset = new(tilesetName, tileWidth, tileHeight);
 			foreach (var serialized_tile in tileData)
 			{
 				var tile = await TileManager.LoadTile(serialized_tile);

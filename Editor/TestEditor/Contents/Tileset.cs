@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 
 namespace TestEditor.Contents
@@ -12,14 +12,16 @@ namespace TestEditor.Contents
 		public int TileHeight { [Pure] get; private set; }
 		public bool IsDeserializable => false;
 
-		public Tileset()
+		public Tileset([NotNull] string name, int tw, int th)
 		{
+			Name = name;
 			TileMap = new();
-			TileWidth = 0;
-			TileHeight = 0;
+			TileWidth = tw;
+			TileHeight = th;
 		}
-		public Tileset(Dictionary<int, Tile> data, int tw, int th)
+		public Tileset([NotNull] string name, [NotNull] Dictionary<int, Tile> data, int tw, int th)
 		{
+			Name = name;
 			TileMap = new(data);
 			TileWidth = tw;
 			TileHeight = th;
