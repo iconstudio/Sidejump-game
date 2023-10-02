@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.Contracts;
 
 namespace TestEditor.Contents
 {
@@ -33,6 +34,7 @@ namespace TestEditor.Contents
 				tileData.Add(serialized_tile.GetID(), tile);
 			}
 		}
+		[Pure]
 		public SerializedTileset Serialize()
 		{
 			List<SerializedTile> serialized_tiles = new();
@@ -41,8 +43,7 @@ namespace TestEditor.Contents
 			foreach (var data in tileData)
 			{
 				var tile = data.Value;
-
-				SerializedTile serialized = new(data.Key, tile.ImageFile);
+				var serialized = tile.Serialize(data.Key);
 
 				serialized_tiles.Add(serialized);
 			}
