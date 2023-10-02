@@ -25,7 +25,7 @@ namespace TestEditor.Contents
 		{
 			foreach (var serialized_tile in serialized_tileset)
 			{
-				var task = Tile.LoadTile(serialized_tile);
+				var task = TileManager.LoadTile(serialized_tile);
 				task.RunSynchronously();
 
 				var tile = task.Result;
