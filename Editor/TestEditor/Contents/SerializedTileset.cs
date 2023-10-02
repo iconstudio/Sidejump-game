@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text.Json.Serialization;
 
@@ -23,9 +24,18 @@ namespace TestEditor.Contents
 		}
 
 		[Pure]
-		public readonly Tileset Deserialize()
+		public readonly async Task<Tileset> Deserialize()
 		{
+			Tileset tileset = new();
+			foreach (var serialized_tile in tileData)
+			{
+				var tile = await TileManager.LoadTile(serialized_tile);
+				Debug.Print("Tile Loaded: " + tile.ToString());
 
+				tileset.Add(serialized_tile.GetID(), tile);
+			}
+
+			return tileset;
 		}
 
 		[Pure]
