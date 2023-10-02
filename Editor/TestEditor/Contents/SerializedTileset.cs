@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal readonly ref struct SerializedTileset
+	internal readonly struct SerializedTileset : ISerializedEntity<Tileset>
 	{
 		[JsonInclude]
 		public readonly IList<SerializedTile> tileData;
