@@ -8,7 +8,7 @@ namespace TestEditor.Contents
 	internal readonly struct SerializedTileset : IMapAsyncSerial<Tileset>
 	{
 		[JsonInclude]
-		public readonly IList<SerializedTile> tileData;
+		public readonly IReadOnlyList<SerializedTile> tileData;
 		[JsonInclude]
 		public readonly int tileWidth;
 		[JsonInclude]
