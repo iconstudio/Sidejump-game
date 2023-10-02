@@ -1,6 +1,9 @@
 ﻿namespace TestEditor.Contents
 {
-	internal interface IMapSerial<in T> : IMapObject
+	internal interface IMapSerial : IMapObject
+	{
+	}
+	internal interface IMapSerial<in T> : IMapObject, IMapSerial
 	{
 	}
 }
