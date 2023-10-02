@@ -7,9 +7,9 @@ namespace TestEditor.Contents
 	[Serializable]
 	internal struct Map : IMapEntity<SerializedMap>
 	{
-		[JsonIgnore] public static Map EmptyMap { get; }
 		[JsonIgnore] internal Tileset myTileset;
 		[JsonIgnore] internal Rectangle myResolution;
+		[JsonIgnore] public static Map EmptyMap { get; }
 
 		[JsonInclude]
 		public string Name { readonly get; set; }
