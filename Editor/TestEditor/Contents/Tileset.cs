@@ -6,6 +6,7 @@ namespace TestEditor.Contents
 	[Serializable]
 	internal class Tileset : IMapEntity<SerializedTileset>
 	{
+		public string Name { get; set; }
 		private Dictionary<int, Tile> TileMap { get; }
 		public int TileWidth { [Pure] get; private set; }
 		public int TileHeight { [Pure] get; private set; }
@@ -43,7 +44,7 @@ namespace TestEditor.Contents
 				serialized_tiles.Add(serialized);
 			}
 
-			return new(serialized_tiles, TileWidth, TileHeight);
+			return new(Name, serialized_tiles, TileWidth, TileHeight);
 		}
 	}
 }

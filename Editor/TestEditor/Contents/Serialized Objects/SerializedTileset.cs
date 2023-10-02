@@ -9,6 +9,8 @@ namespace TestEditor.Contents
 	internal readonly struct SerializedTileset : IMapAsyncSerial<Tileset>
 	{
 		[JsonInclude]
+		public readonly string tilesetName;
+		[JsonInclude]
 		public readonly IReadOnlyList<SerializedTile> tileData;
 		[JsonInclude]
 		public readonly int tileWidth;
@@ -18,8 +20,9 @@ namespace TestEditor.Contents
 		public bool IsDeserializable => false;
 
 		[JsonConstructor]
-		public SerializedTileset(in IEnumerable<SerializedTile> data, int w, int h)
+		public SerializedTileset(string name, in IEnumerable<SerializedTile> data, int w, int h)
 		{
+			tilesetName = name;
 			tileData = data.ToImmutableArray();
 			tileWidth = w;
 			tileHeight = h;
