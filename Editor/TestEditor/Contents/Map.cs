@@ -83,7 +83,15 @@ namespace TestEditor.Contents
 		[Pure]
 		public readonly SerializedMap Serialize()
 		{
-			throw new NotImplementedException();
+			return new()
+			{
+				Tileset = Tileset.Serialize(),
+				Name = Name,
+				Description = Description,
+				X = X, Y = Y,
+				W = Width, H = Height,
+				HorizontalTiles = HorizontalTiles, VerticalTiles = VerticalTiles
+			};
 		}
 	}
 }
