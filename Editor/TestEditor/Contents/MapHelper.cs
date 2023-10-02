@@ -10,13 +10,13 @@ namespace TestEditor.Contents
 {
 	internal static class MapHelper
 	{
-		internal const string mapFileExtension = ".gmap";
+		public const string mapFileExtension = ".gmap";
+		public static readonly JsonSerializerOptions mapLoadSetting;
+		public static readonly JsonSerializerOptions mapSaveSetting;
 
-		internal static StorageFile lastFile;
-		internal static Map? loadedMap;
-		internal static List<Map> storedMaps;
-		internal static readonly JsonSerializerOptions mapLoadSetting;
-		internal static readonly JsonSerializerOptions mapSaveSetting;
+		private static StorageFile lastFile;
+		private static Map? loadedMap;
+		private static List<Map> storedMaps;
 
 		public static StorageFile LastFile => lastFile;
 
