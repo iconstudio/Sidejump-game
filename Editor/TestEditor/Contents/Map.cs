@@ -11,13 +11,13 @@ namespace TestEditor.Contents
 		internal Rectangle myResolution;
 		public static Map EmptyMap { get; }
 
-		public string Name { readonly get; set; }
-		public string Description { readonly get; set; }
 		public Tileset Tileset
 		{
 			readonly get => myTileset;
 			set => myTileset = value;
 		}
+		public string Name { readonly get; set; }
+		public string Description { readonly get; set; }
 		public Rectangle Resolution
 		{
 			readonly get => myResolution;
