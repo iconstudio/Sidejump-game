@@ -26,7 +26,7 @@ namespace TestEditor.Contents
 		[Pure]
 		public override readonly string ToString()
 		{
-			return JsonSerializer.Serialize(this, MapHelper.mapSaveSetting);
+			return JsonSerializer.Serialize(this, MapHelper.MapSaveSetting);
 		}
 	}
 }

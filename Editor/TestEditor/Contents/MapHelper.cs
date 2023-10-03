@@ -11,27 +11,25 @@ namespace TestEditor.Contents
 	internal static class MapHelper
 	{
 		public const string mapFileExtension = ".gmap";
-		public static readonly JsonSerializerOptions mapLoadSetting;
-		public static readonly JsonSerializerOptions mapSaveSetting;
 
-		private static StorageFile lastFile;
 		private static Map? loadedMap;
 		private static List<Map> storedMaps;
 
-		public static StorageFile LastFile => lastFile;
+		public static StorageFile LastFile { get; private set; }
+		public static JsonSerializerOptions MapLoadSetting { get; }
+		public static JsonSerializerOptions MapSaveSetting { get; }
 
 		static MapHelper()
 		{
-			lastFile = null;
-
 			loadedMap = null;
 			storedMaps = new();
 #if !NET5_0_OR_GREATER
 			storedMaps.Clear();
 #endif
+			LastFile = null;
 
-			mapLoadSetting = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-			mapSaveSetting = new() { WriteIndented = true };
+			MapLoadSetting = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
+			MapSaveSetting = new() { WriteIndented = true };
 		}
 		public static async Task<Map?> LoadMap(StorageFile file)
 		{
@@ -55,7 +53,7 @@ namespace TestEditor.Contents
 
 			try
 			{
-				var map = JsonSerializer.Deserialize<Map?>(json, mapLoadSetting);
+				var map = JsonSerializer.Deserialize<Map?>(json, MapLoadSetting);
 
 				if (map is Map gmap)
 				{
@@ -115,7 +113,7 @@ namespace TestEditor.Contents
 		}
 		public static void MemoLastFile(in StorageFile file)
 		{
-			lastFile = file;
+			LastFile = file;
 		}
 		public static string GetMapExtension() => mapFileExtension;
 		public static List<Map> GetMaps() => storedMaps;
