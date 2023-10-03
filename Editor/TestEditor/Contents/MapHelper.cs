@@ -117,6 +117,5 @@ namespace TestEditor.Contents
 		{
 			LastFile = file;
 		}
-
 	}
 }

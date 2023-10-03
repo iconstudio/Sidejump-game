@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal struct SerializedMap : IMapSerial<Map>
+	internal struct SerializedMap : IMapAsyncSerial<Map>
 	{
 		[JsonInclude] public SerializedTileset Tileset { get; set; }
 		[JsonInclude] public string Name { get; set; }
@@ -18,9 +18,21 @@ namespace TestEditor.Contents
 		[JsonInclude] public int VerticalTiles { get; set; }
 		[JsonIgnore] public readonly bool IsDeserializable => false;
 
-		public Map Deserialize()
+		[Pure]
+		public readonly async Task<Map> Deserialize()
 		{
-			throw new NotImplementedException();
+			return new()
+			{
+				Tileset = await Tileset.Deserialize(),
+				Name = Name,
+				Description = Description,
+				X = X,
+				Y = Y,
+				Width = W,
+				Height = H,
+				HorizontalTiles = HorizontalTiles,
+				VerticalTiles = VerticalTiles
+			};
 		}
 
 		[Pure]
