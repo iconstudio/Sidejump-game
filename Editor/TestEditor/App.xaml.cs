@@ -19,18 +19,15 @@ namespace TestEditor
 
 	public partial class App : Application, ISingleton<App>, IDisposable
 	{
-		public static readonly string Version = string.Format(null, "v{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major,
-					Package.Current.Id.Version.Minor,
-					Package.Current.Id.Version.Build,
-					Package.Current.Id.Version.Revision);
-
 		public const int minWidth = 600;
 		public const int minHeight = 400;
-		internal static readonly SizeInt32 minSize = new(minWidth, minHeight);
-		internal static SizeInt32 DisplaySize { get; private set; }
 
 		internal Window myWindow;
 		internal WindowProjection myProject;
+
+		public static string Version { get; }
+		public static SizeInt32 MinimumResolution { get; }
+		public static SizeInt32 DisplaySize { get; private set; }
 
 		internal event WindowSubRoutine SubRoutines
 		{
@@ -40,7 +37,13 @@ namespace TestEditor
 
 		static App()
 		{
+			Version = string.Format(null, "v{0}.{1}.{2}.{3}",
+				Package.Current.Id.Version.Major,
+				Package.Current.Id.Version.Minor,
+				Package.Current.Id.Version.Build,
+				Package.Current.Id.Version.Revision);
 
+			MinimumResolution = new(minWidth, minHeight);
 		}
 		public App()
 		{
