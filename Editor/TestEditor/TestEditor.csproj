@@ -26,6 +26,7 @@
     <None Remove="EditorPage.xaml" />
     <None Remove="HomePage.xaml" />
     <None Remove="Infrastructures\AppTitleBar.xaml" />
+    <None Remove="Infrastructures\EditorCanvas.xaml" />
     <None Remove="Infrastructures\LayerToolPage.xaml" />
     <None Remove="Infrastructures\PaletteToolPage.xaml" />
     <None Remove="Infrastructures\ToolWindow.xaml" />
@@ -130,6 +131,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PRIResource Remove="Extensions\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Infrastructures\EditorCanvas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Infrastructures\LayerToolPage.xaml">
