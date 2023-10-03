@@ -15,7 +15,9 @@ namespace TestEditor.Contents
 		private static Map? loadedMap;
 		private static List<Map> storedMaps;
 
+		public static string MapExtension => mapFileExtension;
 		public static StorageFile LastFile { get; private set; }
+		public static List<Map> Maps => storedMaps;
 		public static JsonSerializerOptions MapLoadSetting { get; }
 		public static JsonSerializerOptions MapSaveSetting { get; }
 
@@ -76,7 +78,7 @@ namespace TestEditor.Contents
 		}
 		public static Task SaveMap(in Map? map, in StorageFolder dest)
 		{
-			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.Name, GetMapExtension()));
+			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.Name, MapExtension));
 		}
 		public static Task SaveMap(in Map? map, in StorageFile filepath)
 		{
@@ -115,8 +117,6 @@ namespace TestEditor.Contents
 		{
 			LastFile = file;
 		}
-		public static string GetMapExtension() => mapFileExtension;
-		public static List<Map> GetMaps() => storedMaps;
 
 	}
 }
