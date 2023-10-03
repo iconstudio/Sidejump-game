@@ -8,7 +8,8 @@ namespace TestEditor
 	{
 		private bool isSettingOpened;
 		private bool isSettingTransitioning;
-		private readonly TimeSpan settingTransitionDuration;
+
+		private TimeSpan c { get; }
 
 		public HomePage()
 		{
@@ -18,15 +19,15 @@ namespace TestEditor
 
 			if (Resources["SettingTransitionDuration"] is string represent)
 			{
-				settingTransitionDuration = TimeSpan.Parse(represent, null);
+				SettingTransitionDuration = TimeSpan.Parse(represent, null);
 			}
 			else
 			{
-				settingTransitionDuration = TimeSpan.FromSeconds(1);
+				SettingTransitionDuration = TimeSpan.FromSeconds(1);
 			}
 
-			menuStateHome.Duration = settingTransitionDuration;
-			menuStateSetting.Duration = settingTransitionDuration;
+			menuStateHome.Duration = SettingTransitionDuration;
+			menuStateSetting.Duration = SettingTransitionDuration;
 
 			homeContents.Navigate(typeof(ProjectOpenPage));
 		}
