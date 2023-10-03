@@ -1,19 +1,18 @@
+using System.Diagnostics;
+
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml.Navigation;
 
 using Windows.UI;
-using Windows.UI.WindowManagement;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
-using TestEditor.WinUI;
-using WinUIEx;
-using Microsoft.UI.Windowing;
 using TestEditor.Contents;
-using System.Diagnostics;
+using TestEditor.WinUI;
 
 namespace TestEditor
 {
