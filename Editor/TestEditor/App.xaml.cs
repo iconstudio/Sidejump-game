@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
+using Windows.ApplicationModel;
 using Windows.Devices.Display;
 using Windows.Devices.Enumeration;
 using Windows.Graphics;
@@ -18,6 +19,11 @@ namespace TestEditor
 
 	public partial class App : Application, ISingleton<App>, IDisposable
 	{
+		public static readonly string Version = string.Format(null, "v{0}.{1}.{2}.{3}", Package.Current.Id.Version.Major,
+					Package.Current.Id.Version.Minor,
+					Package.Current.Id.Version.Build,
+					Package.Current.Id.Version.Revision);
+
 		public const int minWidth = 600;
 		public const int minHeight = 400;
 		internal static readonly SizeInt32 minSize = new(minWidth, minHeight);
@@ -32,6 +38,10 @@ namespace TestEditor
 			remove => myProject.SubRoutines -= value;
 		}
 
+		static App()
+		{
+
+		}
 		public App()
 		{
 			InitializeComponent();

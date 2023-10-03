@@ -2,19 +2,10 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
-using Windows.ApplicationModel;
-using Windows.UI;
-
 namespace TestEditor
 {
 	public sealed partial class HomePage : Page
 	{
-		private static readonly string appVersion = string.Format(null, "v{0}.{1}.{2}.{3}",
-					Package.Current.Id.Version.Major,
-					Package.Current.Id.Version.Minor,
-					Package.Current.Id.Version.Build,
-					Package.Current.Id.Version.Revision);
-
 		private bool isSettingOpened;
 		private bool isSettingTransitioning;
 		private readonly TimeSpan settingTransitionDuration;
@@ -23,7 +14,7 @@ namespace TestEditor
 		{
 			InitializeComponent();
 
-			appVersionText.Text = appVersion;
+			appVersionText.Text = App.Version;
 
 			if (Resources["SettingTransitionDuration"] is string represent)
 			{
