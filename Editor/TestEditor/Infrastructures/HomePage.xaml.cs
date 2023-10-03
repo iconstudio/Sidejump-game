@@ -9,7 +9,7 @@ namespace TestEditor
 		private bool isSettingOpened;
 		private bool isSettingTransitioning;
 
-		private TimeSpan c { get; }
+		private TimeSpan SettingTransitionDuration { get; }
 
 		public HomePage()
 		{
