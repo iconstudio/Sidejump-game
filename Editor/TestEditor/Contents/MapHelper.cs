@@ -33,6 +33,7 @@ namespace TestEditor.Contents
 			MapLoadSetting = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
 			MapSaveSetting = new() { WriteIndented = true };
 		}
+
 		public static async Task<Map?> LoadMap(StorageFile file)
 		{
 			if (file is null)
@@ -104,6 +105,7 @@ namespace TestEditor.Contents
 				catch
 				{
 					// Do nothing
+					Debug.Print($"An error occured in SaveMap(map, {filepath})");
 				}
 			}
 			else
