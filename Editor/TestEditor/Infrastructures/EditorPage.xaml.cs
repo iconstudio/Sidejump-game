@@ -241,7 +241,7 @@ namespace TestEditor
 				var h3 = editorMenu?.ActualHeight ?? 40;
 				height -= double.IsNormal(h3) ? h3 : 40; // menubar
 
-				editorContents.Height = height;
+				editorCanvas.Height = height;
 			}
 		}
 		private void OnDraw(CanvasControl sender, CanvasDrawEventArgs args)

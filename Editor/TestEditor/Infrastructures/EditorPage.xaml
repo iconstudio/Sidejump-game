@@ -116,17 +116,13 @@
 
 		<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"/>
 
-		<Grid Name="editorContents"
+		<local:EditorCanvas x:Name="editorCanvas"
+			x:Load="False"
+			Loaded="OnCanvasLoaded"
+			Unloaded="OnCanvasUnloaded"
+			Draw="OnDraw"
 			HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-			MinHeight="226" Padding="5">
-
-			<canvas:CanvasControl x:Name="editorCanvas"
-				x:Load="False"
-				Loaded="OnCanvasLoaded"
-				Unloaded="OnCanvasUnloaded"
-				Draw="OnDraw">
-			</canvas:CanvasControl>
-		</Grid>
+			MinHeight="226" Padding="5"/>
 	</StackPanel>
 	<!--<Button x:Name="myButton" Click="myButton_Click">Click Me</Button>-->
 </Page>
