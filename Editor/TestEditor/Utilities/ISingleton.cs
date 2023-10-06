@@ -6,6 +6,8 @@
 
 		public static T SingleInstance => _Instance;
 
+		/// <param name="instance"></param>
+		/// <exception cref="SingletonException"></exception>
 		public static void SetInstance(T instance)
 		{
 			if (_Instance is not null)
