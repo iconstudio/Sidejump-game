@@ -39,15 +39,13 @@ namespace TestEditor
 			InitializeComponent();
 		}
 
-		private void Render(CanvasDrawingSession context)
+		private void OpenMap(in Map map)
 		{
-			using (context)
-			{
-				context.Clear(flushColour);
-
-				context.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
-				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
-			}
+			CurrentMap = map;
+		}
+		private void CloseCurrentMap()
+		{
+			CurrentMap = null;
 		}
 		private async void ProcessTransition(EditorTransitionCategory cat)
 		{
@@ -79,7 +77,7 @@ namespace TestEditor
 					{
 						Debug.Print($"A map '{map.Name}' is loaded");
 
-						CurrentMap = map;
+						OpenMap(map);
 					}
 					else
 					{
@@ -90,12 +88,22 @@ namespace TestEditor
 
 				case EditorTransitionCategory.Exit:
 				{
-					CurrentMap = null;
+					CloseCurrentMap();
 				}
 				break;
 
 				default:
 				break;
+			}
+		}
+		private void Render(CanvasDrawingSession context)
+		{
+			using (context)
+			{
+				context.Clear(flushColour);
+
+				context.DrawEllipse(155, 115, 80, 30, Colors.Black, 3);
+				context.DrawText("Hello, Win2D world!", 100, 100, Colors.Yellow);
 			}
 		}
 
