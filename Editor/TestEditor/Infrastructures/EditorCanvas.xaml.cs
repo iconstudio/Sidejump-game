@@ -23,6 +23,10 @@ namespace TestEditor
 			InitializeComponent();
 		}
 
+		public void Clear()
+		{
+
+		}
 		public void RemoveFromVisualTree()
 		{
 			Canvas.RemoveFromVisualTree();

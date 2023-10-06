@@ -42,10 +42,12 @@ namespace TestEditor
 		private void OpenMap(in Map map)
 		{
 			CurrentMap = map;
+			editorCanvas.Clear();
 		}
 		private void CloseCurrentMap()
 		{
 			CurrentMap = null;
+			editorCanvas.Clear();
 		}
 		private async void ProcessTransition(EditorTransitionCategory cat)
 		{
