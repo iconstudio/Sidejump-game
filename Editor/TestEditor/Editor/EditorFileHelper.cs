@@ -5,8 +5,9 @@ using System.Text.Json;
 using Windows.Storage;
 
 using TestEditor.Utility;
+using TestEditor.Contents;
 
-namespace TestEditor.Contents
+namespace TestEditor.Editor
 {
 	internal static class EditorFileHelper
 	{

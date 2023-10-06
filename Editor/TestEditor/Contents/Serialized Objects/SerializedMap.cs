@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using TestEditor.Editor;
 
 namespace TestEditor.Contents
 {
-	[Serializable]
+    [Serializable]
 	public struct SerializedMap : IMapAsyncSerial<Map>
 	{
 		[JsonInclude] public SerializedTileset Tileset { get; set; }

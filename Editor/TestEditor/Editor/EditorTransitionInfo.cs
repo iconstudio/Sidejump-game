@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 
-namespace TestEditor
+namespace TestEditor.Editor
 {
 	public enum EditorTransitionCategory
 	{

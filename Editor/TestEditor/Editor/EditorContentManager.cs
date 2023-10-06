@@ -1,6 +1,6 @@
 ﻿using TestEditor.Contents;
 
-namespace TestEditor
+namespace TestEditor.Editor
 {
 	internal static class EditorContentManager
 	{

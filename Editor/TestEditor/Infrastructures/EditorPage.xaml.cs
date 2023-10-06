@@ -13,13 +13,14 @@ using Windows.Win32.UI.WindowsAndMessaging;
 
 using TestEditor.Contents;
 using TestEditor.WinUI;
+using TestEditor.Editor;
 
 namespace TestEditor
 {
-	using WindowOption = WINDOW_EX_STYLE;
-	using WindowStyle = WINDOW_STYLE;
+    using WindowOption = WINDOW_EX_STYLE;
+    using WindowStyle = WINDOW_STYLE;
 
-	public sealed partial class EditorPage : Page
+    public sealed partial class EditorPage : Page
 	{
 		private const int toolWidth = 240;
 		private const int toolHeight = 300;

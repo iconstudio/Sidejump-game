@@ -3,12 +3,12 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 
 using TestEditor.Contents;
-
+using TestEditor.Editor;
 using Windows.Foundation;
 
 namespace TestEditor
 {
-	public sealed partial class EditorCanvas : UserControl
+    public sealed partial class EditorCanvas : UserControl
 	{
 		private class NullEditorPageException : NullReferenceException
 		{
