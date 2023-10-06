@@ -24,6 +24,8 @@ namespace TestEditor
 		public EditorCanvas()
 		{
 			InitializeComponent();
+
+			Draw += Render;
 		}
 
 		public void Clear()
@@ -33,6 +35,26 @@ namespace TestEditor
 		public void RemoveFromVisualTree()
 		{
 			Canvas.RemoveFromVisualTree();
+		}
+		private void Render(CanvasControl sender, CanvasDrawEventArgs e)
+		{
+			if (CurrentMap is not null)
+			{
+				var session = e.DrawingSession;
+
+				foreach (var tile in CurrentMap.Tiles)
+				{
+					var id = tile.Id;
+					var dx = tile.X;
+					var dy = tile.Y;
+
+					var img_ref = CurrentMap.Tileset?.TileMap[id] ?? null;
+					if (img_ref is TileImage img)
+					{
+						img.Draw(session, dx, dy);
+					}
+				}
+			}
 		}
 	}
 }
