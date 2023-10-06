@@ -24,7 +24,7 @@ namespace TestEditor.Contents
 		[Pure]
 		public readonly TileImage? Deserialize()
 		{
-			return TileManager.FindTile(GetFilePath());
+			return TileResourceManager.FindTile(GetFilePath());
 		}
 
 		[Pure]

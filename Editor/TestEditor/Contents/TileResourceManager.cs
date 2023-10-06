@@ -5,11 +5,11 @@ using Microsoft.Graphics.Canvas;
 
 namespace TestEditor.Contents
 {
-	internal static class TileManager
+	internal static class TileResourceManager
 	{
 		private static readonly ConcurrentDictionary<string, TileImage> managedTiles;
 
-		static TileManager()
+		static TileResourceManager()
 		{
 			managedTiles = new();
 		}
