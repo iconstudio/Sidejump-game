@@ -9,7 +9,6 @@ namespace TestEditor.Contents
 	{
 		internal Tileset myTileset;
 		internal Rectangle myResolution;
-		internal Tile[] myTiles;
 		public static Map EmptyMap { get; }
 
 		public Tileset Tileset
@@ -40,7 +39,7 @@ namespace TestEditor.Contents
 		{
 			readonly get => myResolution.Height; set => myResolution.Height = value;
 		}
-		public readonly Tile[] Tiles => myTiles;
+		public List<Tile> Tiles { readonly get; set; }
 		public int HorizontalTiles { readonly get; set; }
 		public int VerticalTiles { readonly get; set; }
 		public readonly bool IsDeserializable => false;
@@ -65,10 +64,10 @@ namespace TestEditor.Contents
 		{
 			myResolution = new();
 			myTileset = tileset;
-			myTiles = null;
 
 			Name = name;
 			Description = "";
+			Tiles = new();
 			HorizontalTiles = 0;
 			VerticalTiles = 0;
 		}
