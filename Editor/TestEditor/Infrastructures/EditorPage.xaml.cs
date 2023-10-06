@@ -32,6 +32,8 @@ namespace TestEditor
 		private ToolWindow paletteWindow;
 		private bool ignoreNcActivate;
 
+		private Map? CurrentMap { get; set; }
+
 		public EditorPage()
 		{
 			InitializeComponent();
@@ -76,6 +78,8 @@ namespace TestEditor
 					if (await MapHelper.LoadMap(MapHelper.LastFile) is Map map)
 					{
 						Debug.Print($"A map '{map.Name}' is loaded");
+
+						CurrentMap = map;
 					}
 					else
 					{
@@ -86,7 +90,7 @@ namespace TestEditor
 
 				case EditorTransitionCategory.Exit:
 				{
-
+					CurrentMap = null;
 				}
 				break;
 
