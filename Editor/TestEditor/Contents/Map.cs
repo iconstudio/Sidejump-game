@@ -71,6 +71,8 @@ namespace TestEditor.Contents
 			Tiles = new();
 			HorizontalTiles = 0;
 			VerticalTiles = 0;
+
+			Tiles.EnsureCapacity(1200);
 		}
 
 		public void SetTilesCount(int h, int v)
