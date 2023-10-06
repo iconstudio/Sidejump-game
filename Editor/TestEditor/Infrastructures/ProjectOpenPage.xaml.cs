@@ -22,9 +22,8 @@ namespace TestEditor
 			{
 				isPickerOpened = true;
 
-				var picker = await FilePickHelper.OpenSavePicker(this.GetWindow());
-
-				if (picker is StorageFile mapfile)
+				var handle = App.GetInstance().myProject.NativeHandle;
+				if (await FilePickHelper.OpenSavePicker(handle, EditorFileHelper.mapSaveExtensions) is StorageFile mapfile)
 				{
 					EditorFileHelper.MemoLastFile(mapfile);
 
