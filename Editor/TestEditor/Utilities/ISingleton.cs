@@ -2,36 +2,35 @@
 {
 	public interface ISingleton<T> where T : class, new()
 	{
-		private static T _Instance;
-
-		public static T SingleInstance => _Instance;
+		protected static T Instance { get; set; }
+		protected static T SingleInstance => Instance;
 
 		/// <param name="instance"></param>
 		/// <exception cref="SingletonException"></exception>
 		public static void SetInstance(T instance)
 		{
-			if (_Instance is not null)
+			if (Instance is not null)
 			{
 				throw new SingletonException($"Duplicated instance of {nameof(T)}");
 			}
 
-			_Instance = instance;
+			Instance = instance;
 		}
 		public static bool TryInstance(T instance)
 		{
-			if (_Instance is not null)
+			if (Instance is not null)
 			{
 				return false;
 			}
 
-			_Instance = instance;
+			Instance = instance;
 			return true;
 		}
 		public static T GetInstance()
 		{
-			lock (SingleInstance)
+			lock (Instance)
 			{
-				return SingleInstance;
+				return Instance;
 			}
 		}
 	}

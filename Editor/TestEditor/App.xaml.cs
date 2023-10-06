@@ -93,7 +93,7 @@ namespace TestEditor
 			myProject.Activate();
 		}
 
-		public static App GetInstance() => ISingleton<App>.SingleInstance;
+		public static App GetInstance() => ISingleton<App>.Instance;
 
 		private static LRESULT MainHook(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint id, nuint refdata)
 		{

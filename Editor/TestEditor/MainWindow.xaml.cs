@@ -41,6 +41,6 @@ namespace TestEditor
 		}
 
 		public Frame GetContent() => rootFrame;
-		public static MainWindow GetInstance() => ISingleton<MainWindow>.SingleInstance;
+		public static MainWindow GetInstance() => ISingleton<MainWindow>.Instance;
 	}
 }
