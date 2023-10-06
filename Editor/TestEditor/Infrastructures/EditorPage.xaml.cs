@@ -31,8 +31,6 @@ namespace TestEditor
 		private ToolWindow paletteWindow;
 		private bool ignoreNcActivate;
 
-		public Map CurrentMap { get; set; }
-
 		public EditorPage()
 		{
 			InitializeComponent();
@@ -40,12 +38,12 @@ namespace TestEditor
 
 		private void OpenMap(in Map map)
 		{
-			CurrentMap = map;
+			EditorContentManager.CurrentMap = map;
 			editorCanvas.Clear();
 		}
 		private void CloseCurrentMap()
 		{
-			CurrentMap = null;
+			EditorContentManager.CurrentMap = null;
 			editorCanvas.Clear();
 		}
 		private async void ProcessTransition(EditorTransitionCategory cat)

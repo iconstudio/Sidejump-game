@@ -15,31 +15,6 @@ namespace TestEditor
 			{ }
 		}
 
-		public Map CurrentMap
-		{
-			get
-			{
-				if (Parent is EditorPage editor)
-				{
-					return editor.CurrentMap;
-				}
-				else
-				{
-					throw new NullEditorPageException("Parent is null");
-				}
-			}
-			set
-			{
-				if (Parent is EditorPage editor)
-				{
-					editor.CurrentMap = value;
-				}
-				else
-				{
-					throw new NullEditorPageException("Parent is null");
-				}
-			}
-		}
 		public event TypedEventHandler<CanvasControl, CanvasDrawEventArgs> Draw
 		{
 			add => Canvas.Draw += value;
@@ -68,18 +43,19 @@ namespace TestEditor
 		}
 		private void Render(CanvasControl sender, CanvasDrawEventArgs e)
 		{
-			if (CurrentMap is not null)
+			var map = EditorContentManager.CurrentMap;
+
+			if (map is not null)
 			{
 				var session = e.DrawingSession;
 
-				foreach (var tile in CurrentMap.Tiles)
+				foreach (var tile in map.Tiles)
 				{
 					var id = tile.Id;
 					var dx = tile.X;
 					var dy = tile.Y;
 
-					var img_ref = CurrentMap.Tileset?.TileMap[id] ?? null;
-					if (img_ref is TileImage img)
+					if (map.Tileset?.TileMap[id] is TileImage img)
 					{
 						img.Draw(session, dx, dy);
 					}
