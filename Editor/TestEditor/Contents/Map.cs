@@ -52,6 +52,7 @@ namespace TestEditor.Contents
 				myTileset = null,
 				Name = "Empty Map",
 				Description = "",
+				Tiles = null,
 				HorizontalTiles = 0,
 				VerticalTiles = 0,
 			};
