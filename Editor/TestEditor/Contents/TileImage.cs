@@ -9,7 +9,7 @@ namespace TestEditor.Contents
 {
 	[Serializable]
 	internal readonly struct TileImage
-		: IMapEntity<SerializedTile, int>, IEquatable<TileImage>
+		: IMapEntity<SerializedTileImage, int>, IEquatable<TileImage>
 	{
 		public readonly string ImageFile { get; }
 		public readonly CanvasBitmap Source { get; }
@@ -83,7 +83,7 @@ namespace TestEditor.Contents
 			context.DrawImage(Source, x, y, Bounds, opacity, interpolation);
 		}
 		[Pure]
-		public readonly SerializedTile Serialize(int id)
+		public readonly SerializedTileImage Serialize(int id)
 		{
 			return new(id, ImageFile);
 		}

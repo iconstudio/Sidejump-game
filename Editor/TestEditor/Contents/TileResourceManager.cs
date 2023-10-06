@@ -34,7 +34,7 @@ namespace TestEditor.Contents
 
 			throw new IOException(filepath);
 		}
-		public static Task<TileImage> LoadTile(SerializedTile tile)
+		public static Task<TileImage> LoadTile(SerializedTileImage tile)
 		{
 			return LoadTile(tile.GetFilePath());
 		}

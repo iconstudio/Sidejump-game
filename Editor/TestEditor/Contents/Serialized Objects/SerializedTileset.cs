@@ -11,7 +11,7 @@ namespace TestEditor.Contents
 		[JsonInclude]
 		public readonly string tilesetName;
 		[JsonInclude]
-		public readonly IReadOnlyList<SerializedTile> tileData;
+		public readonly IReadOnlyList<SerializedTileImage> tileData;
 		[JsonInclude]
 		public readonly int tileWidth;
 		[JsonInclude]
@@ -20,7 +20,7 @@ namespace TestEditor.Contents
 		public bool IsDeserializable => false;
 
 		[JsonConstructor]
-		public SerializedTileset(string name, in IEnumerable<SerializedTile> data, int w, int h)
+		public SerializedTileset(string name, in IEnumerable<SerializedTileImage> data, int w, int h)
 		{
 			tilesetName = name;
 			tileData = data.ToImmutableArray();
@@ -44,12 +44,12 @@ namespace TestEditor.Contents
 		}
 
 		[Pure]
-		public readonly IEnumerable<SerializedTile> GetData()
+		public readonly IEnumerable<SerializedTileImage> GetData()
 		{
 			return tileData;
 		}
 		[Pure]
-		public readonly IEnumerator<SerializedTile> GetEnumerator()
+		public readonly IEnumerator<SerializedTileImage> GetEnumerator()
 		{
 			return tileData.GetEnumerator();
 		}

@@ -35,7 +35,7 @@ namespace TestEditor.Contents
 		[Pure]
 		public SerializedTileset Serialize()
 		{
-			List<SerializedTile> serialized_tiles = new();
+			List<SerializedTileImage> serialized_tiles = new();
 			serialized_tiles.EnsureCapacity(TileMap.Count);
 
 			foreach (var data in TileMap)
