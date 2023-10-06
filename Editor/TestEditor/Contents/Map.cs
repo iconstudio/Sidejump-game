@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal struct Map : IMapEntity<SerializedMap>
+	internal class Map : IMapEntity<SerializedMap>
 	{
 		internal Tileset myTileset;
 		internal Rectangle myResolution;
@@ -13,36 +13,40 @@ namespace TestEditor.Contents
 
 		public Tileset Tileset
 		{
-			readonly get => myTileset;
+			get => myTileset;
 			set => myTileset = value;
 		}
-		public string Name { readonly get; set; }
-		public string Description { readonly get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
 		public Rectangle Resolution
 		{
-			readonly get => myResolution;
+			get => myResolution;
 			set => myResolution = value;
 		}
 		public int X
 		{
-			readonly get => myResolution.X; set => myResolution.X = value;
+			get => myResolution.X;
+			set => myResolution.X = value;
 		}
 		public int Y
 		{
-			readonly get => myResolution.Y; set => myResolution.Y = value;
+			get => myResolution.Y;
+			set => myResolution.Y = value;
 		}
 		public int Width
 		{
-			readonly get => myResolution.Width; set => myResolution.Width = value;
+			get => myResolution.Width;
+			set => myResolution.Width = value;
 		}
 		public int Height
 		{
-			readonly get => myResolution.Height; set => myResolution.Height = value;
+			get => myResolution.Height;
+			set => myResolution.Height = value;
 		}
-		public List<Tile> Tiles { readonly get; set; }
-		public int HorizontalTiles { readonly get; set; }
-		public int VerticalTiles { readonly get; set; }
-		public readonly bool IsDeserializable => false;
+		public List<Tile> Tiles { get; set; }
+		public int HorizontalTiles { get; set; }
+		public int VerticalTiles { get; set; }
+		public bool IsDeserializable => false;
 
 		static Map()
 		{
@@ -87,7 +91,7 @@ namespace TestEditor.Contents
 			}
 		}
 		[Pure]
-		public readonly SerializedMap Serialize()
+		public SerializedMap Serialize()
 		{
 			return new()
 			{

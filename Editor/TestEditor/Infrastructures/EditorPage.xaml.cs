@@ -32,7 +32,7 @@ namespace TestEditor
 		private ToolWindow paletteWindow;
 		private bool ignoreNcActivate;
 
-		private Map? CurrentMap { get; set; }
+		private Map CurrentMap { get; set; }
 
 		public EditorPage()
 		{
