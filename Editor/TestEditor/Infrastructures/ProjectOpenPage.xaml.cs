@@ -40,7 +40,7 @@ namespace TestEditor
 			{
 				isPickerOpened = true;
 
-				if (await FilePickHelper.OpenLoadPicker(App.GetInstance().myProject, EditorFileHelper.MapExtension) is StorageFile mapfile)
+				if (await FilePickHelper.OpenLoadPicker(App.GetInstance().myProject.NativeHandle, EditorFileHelper.MapExtension) is StorageFile mapfile)
 				{
 					EditorFileHelper.MemoLastFile(mapfile);
 
