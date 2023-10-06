@@ -10,9 +10,8 @@ namespace TestEditor.Contents
 {
 	internal static class MapHelper
 	{
-		public const string mapFileExtension = ".gmap";
+		public const string mapFileExtension = ".map";
 
-		private static Map? loadedMap;
 		private static List<Map> storedMaps;
 
 		public static string MapExtension => mapFileExtension;
@@ -23,7 +22,6 @@ namespace TestEditor.Contents
 
 		static MapHelper()
 		{
-			loadedMap = null;
 			storedMaps = new();
 #if !NET5_0_OR_GREATER
 			storedMaps.Clear();
@@ -34,7 +32,7 @@ namespace TestEditor.Contents
 			MapSaveSetting = new() { WriteIndented = true };
 		}
 
-		public static async Task<Map?> LoadMap(StorageFile file)
+		public static async Task<Map> LoadMap(StorageFile file)
 		{
 			if (file is null)
 			{
@@ -56,14 +54,11 @@ namespace TestEditor.Contents
 
 			try
 			{
-				var map = JsonSerializer.Deserialize<Map?>(json, MapLoadSetting);
-
-				if (map is Map gmap)
+				if (JsonSerializer.Deserialize<Map>(json, MapLoadSetting) is Map map)
 				{
-					loadedMap = gmap;
-					storedMaps.Add(gmap);
+					storedMaps.Add(map);
 
-					return gmap;
+					return map;
 				}
 			}
 			catch (JsonException e)
@@ -77,15 +72,15 @@ namespace TestEditor.Contents
 
 			return null;
 		}
-		public static Task SaveMap(in Map? map, in StorageFolder dest)
+		public static Task SaveMap(in Map map, in StorageFolder dest)
 		{
 			return SaveMap(map, string.Format(null, "{0}{1}{2}", dest.Path, map?.Name, MapExtension));
 		}
-		public static Task SaveMap(in Map? map, in StorageFile filepath)
+		public static Task SaveMap(in Map map, in StorageFile filepath)
 		{
 			return SaveMap(map, filepath.Path);
 		}
-		public static Task SaveMap(in Map? map, in string filepath)
+		public static Task SaveMap(in Map map, in string filepath)
 		{
 			if (filepath is null)
 			{
