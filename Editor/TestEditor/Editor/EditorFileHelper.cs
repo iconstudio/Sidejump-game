@@ -1,17 +1,18 @@
 ﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 using Windows.Storage;
 
-using TestEditor.Utility;
 using TestEditor.Contents;
+using TestEditor.Utility;
 
 namespace TestEditor.Editor
 {
 	internal static class EditorFileHelper
 	{
+		public const string mapFileDescription = "Map File";
 		public const string mapFileExtension = ".map";
+		public static readonly KeyValuePair<string, IList<string>> mapSaveExtensions;
 
 		private static List<Map> storedMaps;
 
@@ -23,6 +24,8 @@ namespace TestEditor.Editor
 
 		static EditorFileHelper()
 		{
+			mapSaveExtensions = new(mapFileDescription, new string[] { mapFileExtension });
+
 			storedMaps = new();
 #if !NET5_0_OR_GREATER
 			storedMaps.Clear();
