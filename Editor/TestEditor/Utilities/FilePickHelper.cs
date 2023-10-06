@@ -1,8 +1,9 @@
 ﻿using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using TestEditor.Editor;
 using Windows.Win32.Foundation;
+
+using TestEditor.Editor;
 
 namespace TestEditor.Utility
 {
@@ -64,19 +65,46 @@ namespace TestEditor.Utility
 		}
 		internal static
 			IAsyncOperation<StorageFile>
-			OpenSavePicker(Window window)
+			OpenSavePicker(Window window, params KeyValuePair<string, IList<string>>[] extentions)
 		{
 			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
 
-			return OpenSavePicker((HWND) hwnd);
+			return OpenSavePicker((HWND) hwnd, extentions);
 		}
 		internal static
 			IAsyncOperation<StorageFile>
-			OpenSavePicker(HWND hwnd)
+			OpenSavePicker(HWND hwnd, params KeyValuePair<string, IList<string>>[] extentions)
 		{
 			FileSavePicker picker = new();
 			picker.FileTypeChoices.Clear();
-			picker.FileTypeChoices.Add("Map File", new List<string>() { EditorFileHelper.MapExtension });
+			foreach (var ext_pair in extentions)
+			{
+				picker.FileTypeChoices.Add(ext_pair);
+			}
+
+			WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+
+			return picker.PickSaveFileAsync();
+		}
+		internal static
+			IAsyncOperation<StorageFile>
+			OpenSavePicker(Window window, IEnumerable<KeyValuePair<string, IList<string>>> extentions)
+		{
+			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+			return OpenSavePicker((HWND) hwnd, extentions);
+		}
+		internal static
+			IAsyncOperation<StorageFile>
+			OpenSavePicker(HWND hwnd, IEnumerable<KeyValuePair<string, IList<string>>> extentions)
+		{
+			FileSavePicker picker = new();
+			picker.FileTypeChoices.Clear();
+			foreach (var ext_pair in extentions)
+			{
+				picker.FileTypeChoices.Add(ext_pair);
+			}
+			//picker.FileTypeChoices.Add("Map File", new List<string>() { EditorFileHelper.MapExtension });
 			//picker.FileTypeChoices.Add("Archieved Map File", new List<string>() { ".zip" });
 
 			WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
