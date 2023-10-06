@@ -1,5 +1,6 @@
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
 
 using TestEditor.Contents;
 
@@ -61,6 +62,19 @@ namespace TestEditor
 					}
 				}
 			}
+		}
+
+		private void ContentFrame_PointerPressed(object sender, PointerRoutedEventArgs e)
+		{
+
+		}
+		private void ContentFrame_PointerReleased(object sender, PointerRoutedEventArgs e)
+		{
+
+		}
+		private void ContentFrame_PointerExited(object sender, PointerRoutedEventArgs e)
+		{
+
 		}
 	}
 }

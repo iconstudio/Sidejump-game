@@ -11,7 +11,10 @@
 	mc:Ignorable="d"
 	DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-	<Grid x:Name="ContentFrame">
+	<Grid x:Name="ContentFrame"
+		  PointerPressed="ContentFrame_PointerPressed"
+		  PointerReleased="ContentFrame_PointerReleased"
+		  PointerExited="ContentFrame_PointerExited">
 		<canvas:CanvasControl x:Name="Canvas"/>
 	</Grid>
 </UserControl>
