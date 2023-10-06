@@ -8,7 +8,7 @@ using TestEditor.Utility;
 
 namespace TestEditor.Contents
 {
-	internal static class MapHelper
+	internal static class EditorFileHelper
 	{
 		public const string mapFileExtension = ".map";
 
@@ -20,7 +20,7 @@ namespace TestEditor.Contents
 		public static JsonSerializerOptions MapLoadSetting { get; }
 		public static JsonSerializerOptions MapSaveSetting { get; }
 
-		static MapHelper()
+		static EditorFileHelper()
 		{
 			storedMaps = new();
 #if !NET5_0_OR_GREATER

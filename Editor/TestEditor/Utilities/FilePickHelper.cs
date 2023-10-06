@@ -15,7 +15,7 @@ namespace TestEditor.Utility
 				ViewMode = PickerViewMode.Thumbnail
 			};
 			picker.FileTypeFilter.Clear();
-			picker.FileTypeFilter.Add(MapHelper.MapExtension);
+			picker.FileTypeFilter.Add(EditorFileHelper.MapExtension);
 
 			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
 			WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
@@ -26,7 +26,7 @@ namespace TestEditor.Utility
 		{
 			FileSavePicker picker = new();
 			picker.FileTypeChoices.Clear();
-			picker.FileTypeChoices.Add("Map File", new List<string>() { MapHelper.MapExtension });
+			picker.FileTypeChoices.Add("Map File", new List<string>() { EditorFileHelper.MapExtension });
 			//picker.FileTypeChoices.Add("Archieved Map File", new List<string>() { ".zip" });
 
 			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);

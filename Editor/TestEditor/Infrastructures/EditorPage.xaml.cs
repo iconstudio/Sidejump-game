@@ -58,21 +58,21 @@ namespace TestEditor
 				{
 					try
 					{
-						using (MapHelper.SaveMap(Map.EmptyMap, MapHelper.LastFile))
+						using (EditorFileHelper.SaveMap(Map.EmptyMap, EditorFileHelper.LastFile))
 						{
 							Debug.Print("Map is saved");
 						}
 					}
 					catch
 					{
-						Debug.Fail($"Cannot save the map to {MapHelper.LastFile}");
+						Debug.Fail($"Cannot save the map to {EditorFileHelper.LastFile}");
 					}
 				}
 				break;
 
 				case EditorTransitionCategory.Load:
 				{
-					if (await MapHelper.LoadMap(MapHelper.LastFile) is Map map)
+					if (await EditorFileHelper.LoadMap(EditorFileHelper.LastFile) is Map map)
 					{
 						Debug.Print($"A map '{map.Name}' is loaded");
 
@@ -80,7 +80,7 @@ namespace TestEditor
 					}
 					else
 					{
-						Debug.Fail($"Cannot load the map from {MapHelper.LastFile}");
+						Debug.Fail($"Cannot load the map from {EditorFileHelper.LastFile}");
 					}
 				}
 				break;

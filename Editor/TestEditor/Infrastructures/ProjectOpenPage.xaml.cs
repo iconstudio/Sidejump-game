@@ -27,7 +27,7 @@ namespace TestEditor
 
 				if (picker is StorageFile mapfile)
 				{
-					MapHelper.MemoLastFile(mapfile);
+					EditorFileHelper.MemoLastFile(mapfile);
 
 					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.saveTransition);
 				}
@@ -45,7 +45,7 @@ namespace TestEditor
 
 				if (picker is StorageFile mapfile)
 				{
-					MapHelper.MemoLastFile(mapfile);
+					EditorFileHelper.MemoLastFile(mapfile);
 
 					NavigationHelper.Goto(typeof(EditorPage), new DrillInNavigationTransitionInfo(), EditorTransitionInfo.loadTransition);
 				}
