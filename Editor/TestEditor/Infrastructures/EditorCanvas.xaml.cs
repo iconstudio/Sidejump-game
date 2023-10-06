@@ -9,7 +9,37 @@ namespace TestEditor
 {
 	public sealed partial class EditorCanvas : UserControl
 	{
-		public Map CurrentMap { get; set; }
+		private class NullEditorPageException : NullReferenceException
+		{
+			public NullEditorPageException(string message) : base(message)
+			{ }
+		}
+
+		public Map CurrentMap
+		{
+			get
+			{
+				if (Parent is EditorPage editor)
+				{
+					return editor.CurrentMap;
+				}
+				else
+				{
+					throw new NullEditorPageException("Parent is null");
+				}
+			}
+			set
+			{
+				if (Parent is EditorPage editor)
+				{
+					editor.CurrentMap = value;
+				}
+				else
+				{
+					throw new NullEditorPageException("Parent is null");
+				}
+			}
+		}
 		public event TypedEventHandler<CanvasControl, CanvasDrawEventArgs> Draw
 		{
 			add => Canvas.Draw += value;
