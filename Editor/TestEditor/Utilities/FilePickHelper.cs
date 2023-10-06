@@ -66,12 +66,19 @@ namespace TestEditor.Utility
 			IAsyncOperation<StorageFile>
 			OpenSavePicker(Window window)
 		{
+			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+			return OpenSavePicker((HWND) hwnd);
+		}
+		internal static
+			IAsyncOperation<StorageFile>
+			OpenSavePicker(HWND hwnd)
+		{
 			FileSavePicker picker = new();
 			picker.FileTypeChoices.Clear();
 			picker.FileTypeChoices.Add("Map File", new List<string>() { EditorFileHelper.MapExtension });
 			//picker.FileTypeChoices.Add("Archieved Map File", new List<string>() { ".zip" });
 
-			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
 			WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
 
 			return picker.PickSaveFileAsync();
