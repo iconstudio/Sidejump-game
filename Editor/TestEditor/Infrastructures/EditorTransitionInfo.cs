@@ -1,34 +1,61 @@
-﻿namespace TestEditor
+﻿using System.Diagnostics.Contracts;
+
+namespace TestEditor
 {
-	internal enum EditorTransitionCategory
+	public enum EditorTransitionCategory
 	{
 		Home, Create, Load, Exit
 	}
 
 	[Serializable]
-	internal readonly struct EditorTransitionInfo
+	public readonly struct EditorTransitionInfo : IEquatable<EditorTransitionInfo>
 	{
 		public static readonly EditorTransitionInfo homeTransition;
 		public static readonly EditorTransitionInfo saveTransition;
 		public static readonly EditorTransitionInfo loadTransition;
 		public static readonly EditorTransitionInfo exitTransition;
 
+		public readonly EditorTransitionCategory TransitionCategory { get; }
+
 		static EditorTransitionInfo()
 		{
-			homeTransition = new EditorTransitionInfo(EditorTransitionCategory.Home);
-			saveTransition = new EditorTransitionInfo(EditorTransitionCategory.Create);
-			loadTransition = new EditorTransitionInfo(EditorTransitionCategory.Load);
-			exitTransition = new EditorTransitionInfo(EditorTransitionCategory.Exit);
+			homeTransition = new(EditorTransitionCategory.Home);
+			saveTransition = new(EditorTransitionCategory.Create);
+			loadTransition = new(EditorTransitionCategory.Load);
+			exitTransition = new(EditorTransitionCategory.Exit);
 		}
-		public EditorTransitionInfo()
-		{
-			transitionCategory = EditorTransitionCategory.Home;
-		}
+		public EditorTransitionInfo() : this(EditorTransitionCategory.Home)
+		{ }
 		public EditorTransitionInfo(EditorTransitionCategory category)
 		{
-			transitionCategory = category;
+			TransitionCategory = category;
 		}
 
-		public readonly EditorTransitionCategory transitionCategory;
+		[Pure]
+		public readonly bool Equals(EditorTransitionInfo other)
+		{
+			return other.TransitionCategory == TransitionCategory;
+		}
+		[Pure]
+		public override readonly bool Equals(object obj)
+		{
+			return obj is EditorTransitionInfo other && Equals(other);
+		}
+		[Pure]
+		public override readonly int GetHashCode()
+		{
+			return TransitionCategory.GetHashCode();
+		}
+
+		[Pure]
+		public static bool operator ==(in EditorTransitionInfo left, in EditorTransitionInfo right)
+		{
+			return left.Equals(right);
+		}
+		[Pure]
+		public static bool operator !=(in EditorTransitionInfo left, in EditorTransitionInfo right)
+		{
+			return !(left == right);
+		}
 	}
 }

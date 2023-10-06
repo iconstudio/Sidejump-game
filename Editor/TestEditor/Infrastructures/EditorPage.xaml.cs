@@ -23,7 +23,6 @@ namespace TestEditor
 	{
 		private const int toolWidth = 240;
 		private const int toolHeight = 300;
-		private const WindowStyle toolStyle = WindowStyle.WS_CAPTION | WindowStyle.WS_SYSMENU;
 		private const WindowOption toolOption = WindowOption.WS_EX_PALETTEWINDOW | WindowOption.WS_EX_COMPOSITED | WindowOption.WS_EX_NOACTIVATE;
 
 		private static readonly Color Transparent = Color.FromArgb(0, 0, 0, 0);
@@ -234,7 +233,7 @@ namespace TestEditor
 
 			if (e.Parameter is EditorTransitionInfo info)
 			{
-				ProcessTransition(info.transitionCategory);
+				ProcessTransition(info.TransitionCategory);
 			}
 
 			// load the canvas
