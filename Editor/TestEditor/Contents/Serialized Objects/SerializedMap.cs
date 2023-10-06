@@ -14,6 +14,7 @@ namespace TestEditor.Contents
 		[JsonInclude] public int Y { get; set; }
 		[JsonInclude] public int W { get; set; }
 		[JsonInclude] public int H { get; set; }
+		[JsonInclude] public Tile[] Tiles { get; set; }
 		[JsonInclude] public int HorizontalTiles { get; set; }
 		[JsonInclude] public int VerticalTiles { get; set; }
 		[JsonIgnore] public readonly bool IsDeserializable => false;
@@ -30,6 +31,7 @@ namespace TestEditor.Contents
 				Y = Y,
 				Width = W,
 				Height = H,
+				Tiles = Tiles.ToList(),
 				HorizontalTiles = HorizontalTiles,
 				VerticalTiles = VerticalTiles
 			};
