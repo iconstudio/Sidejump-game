@@ -39,6 +39,7 @@ namespace TestEditor.Contents
 		{
 			readonly get => myResolution.Height; set => myResolution.Height = value;
 		}
+		public TileImage
 		public int HorizontalTiles { readonly get; set; }
 		public int VerticalTiles { readonly get; set; }
 		public readonly bool IsDeserializable => false;

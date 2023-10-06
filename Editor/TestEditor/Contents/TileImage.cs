@@ -8,15 +8,15 @@ using Windows.Foundation;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal readonly struct Tile
-		: IMapEntity<SerializedTile, int>, IEquatable<Tile>
+	internal readonly struct TileImage
+		: IMapEntity<SerializedTile, int>, IEquatable<TileImage>
 	{
 		public readonly string ImageFile { get; }
 		public readonly CanvasBitmap Source { get; }
 		public readonly Rect Bounds => Source?.Bounds ?? Rect.Empty;
 		public bool IsDeserializable => false;
 
-		public Tile(string filepath, CanvasBitmap source)
+		public TileImage(string filepath, CanvasBitmap source)
 		{
 			ImageFile = filepath;
 			Source = source;
@@ -89,14 +89,14 @@ namespace TestEditor.Contents
 		}
 
 		[Pure]
-		public readonly bool Equals(Tile other)
+		public readonly bool Equals(TileImage other)
 		{
 			return ImageFile == other.ImageFile && Source.Equals(other.Source);
 		}
 		[Pure]
 		public readonly override bool Equals(object obj)
 		{
-			return obj is Tile other && Equals(other);
+			return obj is TileImage other && Equals(other);
 		}
 		[Pure]
 		public readonly override int GetHashCode()
@@ -105,12 +105,12 @@ namespace TestEditor.Contents
 		}
 
 		[Pure]
-		public static bool operator ==(Tile lhs, Tile rhs)
+		public static bool operator ==(TileImage lhs, TileImage rhs)
 		{
 			return lhs.Equals(rhs);
 		}
 		[Pure]
-		public static bool operator !=(Tile lhs, Tile rhs)
+		public static bool operator !=(TileImage lhs, TileImage rhs)
 		{
 			return !lhs.Equals(rhs);
 		}

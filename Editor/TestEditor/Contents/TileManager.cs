@@ -7,14 +7,14 @@ namespace TestEditor.Contents
 {
 	internal static class TileManager
 	{
-		private static readonly ConcurrentDictionary<string, Tile> managedTiles;
+		private static readonly ConcurrentDictionary<string, TileImage> managedTiles;
 
 		static TileManager()
 		{
 			managedTiles = new();
 		}
 
-		public static async Task<Tile> LoadTile([NotNull] string filepath)
+		public static async Task<TileImage> LoadTile([NotNull] string filepath)
 		{
 			if (managedTiles.TryGetValue(filepath, out var existed))
 			{
@@ -25,7 +25,7 @@ namespace TestEditor.Contents
 
 			if (bitmap is not null)
 			{
-				var result = new Tile(filepath, bitmap);
+				var result = new TileImage(filepath, bitmap);
 
 				return managedTiles.AddOrUpdate(filepath
 					, (_) => result
@@ -34,11 +34,11 @@ namespace TestEditor.Contents
 
 			throw new IOException(filepath);
 		}
-		public static Task<Tile> LoadTile(SerializedTile tile)
+		public static Task<TileImage> LoadTile(SerializedTile tile)
 		{
 			return LoadTile(tile.GetFilePath());
 		}
-		public static Tile? FindTile([NotNull] string filepath)
+		public static TileImage? FindTile([NotNull] string filepath)
 		{
 			if (managedTiles.TryGetValue(filepath, out var tile))
 			{

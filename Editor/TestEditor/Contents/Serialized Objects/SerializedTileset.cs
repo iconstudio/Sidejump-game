@@ -35,7 +35,7 @@ namespace TestEditor.Contents
 			foreach (var serialized_tile in tileData)
 			{
 				var tile = await TileManager.LoadTile(serialized_tile);
-				Debug.Print("Tile Loaded: " + tile.ToString());
+				Debug.Print("TileImage Loaded: " + tile.ToString());
 
 				tileset.Add(serialized_tile.GetID(), tile);
 			}

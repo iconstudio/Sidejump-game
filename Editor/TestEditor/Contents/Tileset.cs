@@ -7,7 +7,7 @@ namespace TestEditor.Contents
 	internal class Tileset : IMapEntity<SerializedTileset>
 	{
 		public string Name { [Pure] get; }
-		private Dictionary<int, Tile> TileMap { [Pure] get; }
+		private Dictionary<int, TileImage> TileMap { [Pure] get; }
 		public int TileWidth { [Pure] get; }
 		public int TileHeight { [Pure] get; }
 		public bool IsDeserializable => false;
@@ -19,7 +19,7 @@ namespace TestEditor.Contents
 			TileWidth = tw;
 			TileHeight = th;
 		}
-		public Tileset([NotNull] string name, [NotNull] Dictionary<int, Tile> data, int tw, int th)
+		public Tileset([NotNull] string name, [NotNull] Dictionary<int, TileImage> data, int tw, int th)
 		{
 			Name = name;
 			TileMap = new(data);
@@ -27,7 +27,7 @@ namespace TestEditor.Contents
 			TileHeight = th;
 		}
 
-		public void Add(int id, Tile tile)
+		public void Add(int id, TileImage tile)
 		{
 			TileMap[id] = tile;
 		}

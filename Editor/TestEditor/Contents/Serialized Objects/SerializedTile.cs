@@ -5,7 +5,7 @@ namespace TestEditor.Contents
 {
 	[Serializable]
 	internal readonly struct SerializedTile
-		: IEquatable<SerializedTile>, IMapSerial<Tile?>
+		: IEquatable<SerializedTile>, IMapSerial<TileImage?>
 	{
 		[JsonInclude]
 		private readonly int tileID;
@@ -22,7 +22,7 @@ namespace TestEditor.Contents
 		}
 
 		[Pure]
-		public readonly Tile? Deserialize()
+		public readonly TileImage? Deserialize()
 		{
 			return TileManager.FindTile(GetFilePath());
 		}
