@@ -5,12 +5,12 @@ using System.Text.Json;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal class Map : IMapEntity<SerializedMap>
+	public class Map : IMapEntity<SerializedMap>
 	{
-		internal Tileset myTileset;
-		internal Rectangle myResolution;
-		public static Map EmptyMap { get; }
+		private Tileset myTileset;
+		private Rectangle myResolution;
 
+		public static Map EmptyMap { get; }
 		public Tileset Tileset
 		{
 			get => myTileset;

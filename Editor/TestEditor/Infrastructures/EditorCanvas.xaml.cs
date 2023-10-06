@@ -1,12 +1,15 @@
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 
+using TestEditor.Contents;
+
 using Windows.Foundation;
 
 namespace TestEditor
 {
 	public sealed partial class EditorCanvas : UserControl
 	{
+		public Map CurrentMap { get; set; }
 		public event TypedEventHandler<CanvasControl, CanvasDrawEventArgs> Draw
 		{
 			add => Canvas.Draw += value;

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal readonly struct SerializedTileImage
+	public readonly struct SerializedTileImage
 		: IEquatable<SerializedTileImage>, IMapSerial<TileImage?>
 	{
 		[JsonInclude]

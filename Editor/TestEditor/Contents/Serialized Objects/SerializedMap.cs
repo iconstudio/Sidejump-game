@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal struct SerializedMap : IMapAsyncSerial<Map>
+	public struct SerializedMap : IMapAsyncSerial<Map>
 	{
 		[JsonInclude] public SerializedTileset Tileset { get; set; }
 		[JsonInclude] public string Name { get; set; }

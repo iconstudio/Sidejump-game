@@ -4,10 +4,10 @@ using System.Diagnostics.Contracts;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal class Tileset : IMapEntity<SerializedTileset>
+	public class Tileset : IMapEntity<SerializedTileset>
 	{
 		public string Name { [Pure] get; }
-		private Dictionary<int, TileImage> TileMap { [Pure] get; }
+		public Dictionary<int, TileImage> TileMap { [Pure] get; }
 		public int TileWidth { [Pure] get; }
 		public int TileHeight { [Pure] get; }
 		public bool IsDeserializable => false;

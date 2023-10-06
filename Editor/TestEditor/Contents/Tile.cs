@@ -4,20 +4,20 @@ using System.Text.Json.Serialization;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal struct Tile
+	public struct Tile
 	{
-		[JsonInclude] public int id;
-		[JsonInclude] public int x;
-		[JsonInclude] public int y;
+		[JsonInclude] public int Id { get; set; }
+		[JsonInclude] public int X { get; set; }
+		[JsonInclude] public int Y { get; set; }
 
 		public Tile() : this(0, 0, 0)
 		{ }
 		[JsonConstructor]
 		public Tile(int tid, int tx, int ty)
 		{
-			id = tid;
-			x = tx;
-			y = ty;
+			Id = tid;
+			X = tx;
+			Y = ty;
 		}
 
 		[Pure]
@@ -25,9 +25,9 @@ namespace TestEditor.Contents
 		{
 			return new Tile()
 			{
-				id = tid,
-				x = tx,
-				y = ty
+				Id = tid,
+				X = tx,
+				Y = ty
 			};
 		}
 	}

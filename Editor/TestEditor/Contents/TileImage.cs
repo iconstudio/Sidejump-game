@@ -8,7 +8,7 @@ using Windows.Foundation;
 namespace TestEditor.Contents
 {
 	[Serializable]
-	internal readonly struct TileImage
+	public readonly struct TileImage
 		: IMapEntity<SerializedTileImage, int>, IEquatable<TileImage>
 	{
 		public readonly string ImageFile { get; }
