@@ -15,6 +15,8 @@ namespace TestEditor
 		private bool isDragging;
 		private PointerRoutedEventArgs lastDragArgs;
 
+		private EditorCanvasView Camera { get; }
+
 		private class NullEditorPageException : NullReferenceException
 		{
 			public NullEditorPageException(string message) : base(message)
@@ -37,6 +39,8 @@ namespace TestEditor
 			InitializeComponent();
 
 			Draw += Render;
+
+			Camera = new();
 		}
 
 		public void Clear()
