@@ -2,7 +2,7 @@
 
 namespace TestEditor.Editor
 {
-	internal class EditorCanvasView
+	internal class EditorCamera
 	{
 		private Rect myRect;
 

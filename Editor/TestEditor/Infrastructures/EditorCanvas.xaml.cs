@@ -15,7 +15,7 @@ namespace TestEditor
 		private bool isDragging;
 		private PointerRoutedEventArgs lastDragArgs;
 
-		private EditorCanvasView Camera { get; }
+		private EditorCamera Camera { get; }
 
 		private class NullEditorPageException : NullReferenceException
 		{
