@@ -95,7 +95,7 @@ namespace TestEditor.Contents
 		{
 			return new()
 			{
-				Tileset = Tileset.Serialize(),
+				Tileset = Tileset?.Serialize() ?? new SerializedTileset(),
 				Name = Name,
 				Description = Description,
 				X = X,
