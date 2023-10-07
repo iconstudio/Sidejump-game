@@ -8,6 +8,7 @@
 	xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
 	xmlns:local="using:TestEditor"
 	xmlns:winui="using:TestEditor.WinUI"
+	xmlns:nsedit="using:TestEditor.Editor"
 	mc:Ignorable="d"
 	Loaded="OnLoaded" Unloaded="OnUnloaded"
 	GotFocus="OnFocused" LostFocus="OnLostFocus">
@@ -116,7 +117,7 @@
 
 		<Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"/>
 
-		<local:EditorCanvas x:Name="editorCanvas"
+		<nsedit:EditorCanvas x:Name="editorCanvas"
 			x:Load="False"
 			Loaded="OnCanvasLoaded"
 			Unloaded="OnCanvasUnloaded"

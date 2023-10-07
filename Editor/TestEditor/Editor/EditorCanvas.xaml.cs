@@ -4,11 +4,10 @@ using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Input;
 
 using TestEditor.Contents;
-using TestEditor.Editor;
 
 using Windows.Foundation;
 
-namespace TestEditor
+namespace TestEditor.Editor
 {
 	public sealed partial class EditorCanvas : UserControl
 	{
