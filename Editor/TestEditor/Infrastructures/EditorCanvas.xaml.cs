@@ -1,15 +1,20 @@
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Input;
 
 using TestEditor.Contents;
 using TestEditor.Editor;
+
 using Windows.Foundation;
 
 namespace TestEditor
 {
-    public sealed partial class EditorCanvas : UserControl
+	public sealed partial class EditorCanvas : UserControl
 	{
+		private bool isDragging;
+		private PointerRoutedEventArgs lastDragArgs;
+
 		private class NullEditorPageException : NullReferenceException
 		{
 			public NullEditorPageException(string message) : base(message)
@@ -64,16 +69,64 @@ namespace TestEditor
 			}
 		}
 
-		private void ContentFrame_PointerPressed(object sender, PointerRoutedEventArgs e)
+		private void ContentFrame_PointerPressed(object _, PointerRoutedEventArgs e)
 		{
+			var point = e.GetCurrentPoint(this);
+			if (point.PointerDeviceType is PointerDeviceType.Touch
+				|| (point.PointerDeviceType is PointerDeviceType.Mouse && point.Properties.IsMiddleButtonPressed))
+			{
+				if (!isDragging)
+				{
+					isDragging = true;
+					lastDragArgs = e;
+				}
+			}
+			else if (point.Position is Point pos)
+			{
+				var x = pos.X;
+				var y = pos.Y;
 
-		}
-		private void ContentFrame_PointerReleased(object sender, PointerRoutedEventArgs e)
-		{
+				if (point.IsInContact)
+				{
 
+				}
+			}
 		}
-		private void ContentFrame_PointerExited(object sender, PointerRoutedEventArgs e)
+		private void ContentFrame_PointerMoved(object _, PointerRoutedEventArgs e)
 		{
+			var point = e.GetCurrentPoint(this);
+
+			if (isDragging && point.PointerId == lastDragArgs.Pointer.PointerId)
+			{
+
+				return;
+			}
+		}
+		private void ContentFrame_PointerReleased(object _, PointerRoutedEventArgs e)
+		{
+			var point = e.GetCurrentPoint(this);
+			if (point.PointerDeviceType is PointerDeviceType.Touch
+				|| (point.PointerDeviceType is PointerDeviceType.Mouse && point.Properties.IsMiddleButtonPressed))
+			{
+				if (isDragging && point.PointerId == lastDragArgs.Pointer.PointerId)
+				{
+					isDragging = false;
+					lastDragArgs = e;
+				}
+			}
+		}
+		private void ContentFrame_PointerExited(object _, PointerRoutedEventArgs e)
+		{
+			var point = e.GetCurrentPoint(this);
+
+			if (isDragging && point.PointerId == lastDragArgs.Pointer.PointerId)
+			{
+				isDragging = false;
+				lastDragArgs = e;
+
+				return;
+			}
+
 
 		}
 	}

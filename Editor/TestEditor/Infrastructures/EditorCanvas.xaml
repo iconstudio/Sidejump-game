@@ -13,6 +13,7 @@
 
 	<Grid x:Name="ContentFrame"
 		  PointerPressed="ContentFrame_PointerPressed"
+		  PointerMoved="ContentFrame_PointerMoved"
 		  PointerReleased="ContentFrame_PointerReleased"
 		  PointerExited="ContentFrame_PointerExited">
 		<canvas:CanvasControl x:Name="Canvas"/>
